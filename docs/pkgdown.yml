@@ -1,0 +1,11 @@
+pandoc: 2.1.2
+pkgdown: 1.1.0.9000
+pkgdown_sha: b2798656f04ce282edea3e12734ba5588c6acd6e
+articles:
+  alphordering-numbers: alphordering-numbers.html
+  argument-matching: argument-matching.html
+  before-and-after: before-and-after.html
+  checkmate: checkmate.html
+  important-miscellany: important-miscellany.html
+  numbers-in-strings: numbers-in-strings.html
+

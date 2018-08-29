@@ -139,10 +139,19 @@ str_to_vec(string)
 What if something is needlessly surrounded by parentheses and we want to get rid of them?
 
 ```{r trim-anything}
-string <- "(((Why all the parentheses)))"
+string <- "(((Why all the parentheses?)))"
 string %>% 
   str_trim_anything("(", side = "left") %>% 
   str_trim_anything(")", side = "r")
 ```
 
 Note that the `pattern` argument here isn't regular expression, just plain.
+
+
+## Remove duplicated bits of strings
+
+```{r singleize}
+string <- c("I often write the word *my* twice in a row in my my sentences.")
+str_singleize(string, " my")
+```
+
