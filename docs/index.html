@@ -69,13 +69,10 @@
       <a href="articles/before-and-after.html">Before and After</a>
     </li>
     <li>
-      <a href="articles/checkmate.html">Checkmate Rmarkdown</a>
-    </li>
-    <li>
       <a href="articles/important-miscellany.html">Important Miscellany</a>
     </li>
     <li>
-      <a href="articles/numbers-in-strings.html">Numbers within strings</a>
+      <a href="articles/numbers-in-strings.html">Numbers Within Strings</a>
     </li>
   </ul>
 </li>
@@ -105,32 +102,33 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <div id="strex" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#strex" class="anchor"></a>strex</h1></div>
-<p>The goal of strex is to …</p>
+<a href="#strex" class="anchor"></a>strex <img src="reference/figures/logo.png" align="right" height="140/">
+</h1></div>
+<p>There are some things that I wish were easier with the <code>stringr</code> or <code>stringi</code> packages. The foremost of these is the extraction of numbers from strings. <code>stringr</code> lets you figure this out the regex for yourself; <code>strex</code> takes care of this for you. There are many more useful functionalities in <code>strex</code>. In particular, there’s a <code><a href="reference/str_match_arg.html">match_arg()</a></code> function which is more flexible than the base <code>match.arg()</code>. Contributions to this package are encouraged: it is intended as a miscellany of string manipulation functions which cannot be found in <code>stringi</code> or <code>stringr</code>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of strex from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"strex"</span>)</a></code></pre></div>
+<p>You can install the released version of strex from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"rorynolan/strex"</span>)</a></code></pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="how-to-use-the-package" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">## basic example code</a></code></pre></div>
-<p>What is special about using <code>README.Rmd</code> instead of just <code>README.md</code>? You can include R chunks like so:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">summary</span>(cars)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;      speed           dist       </span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt;  Min.   : 4.0   Min.   :  2.00  </span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;  1st Qu.:12.0   1st Qu.: 26.00  </span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;  Median :15.0   Median : 36.00  </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;  Mean   :15.4   Mean   : 42.98  </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;  3rd Qu.:19.0   3rd Qu.: 56.00  </span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;  Max.   :25.0   Max.   :120.00</span></a></code></pre></div>
-<p>You’ll still need to render <code>README.Rmd</code> regularly, to keep <code>README.md</code> up-to-date.</p>
-<p>You can also embed plots, for example:</p>
-<p><img src="reference/figures/README-pressure-1.png" width="100%"></p>
-<p>In that case, don’t forget to commit and push the resulting figure files, so they display on GitHub!</p>
+<a href="#how-to-use-the-package" class="anchor"></a>How to use the package</h2>
+<p>The following articles contain all you need to get going:</p>
+<ul>
+<li>
+<a href="https://rorynolan.github.io/strex/articles/alphordering-numbers.html">Alphordering Numbers</a> tells you how to fix the pesky problem of numbers in file names not complying with alphabetical order.</li>
+<li>
+<a href="https://rorynolan.github.io/strex/articles/argument-matching.html">Argument Matching</a> showcases <code><a href="reference/str_match_arg.html">strex::match_arg()</a></code>, an improvement on <code><a href="http://www.rdocumentation.org/packages/base/topics/match.arg">base::match.arg()</a></code> which allows one to ignore case during argument matching.</li>
+<li>
+<a href="https://rorynolan.github.io/strex/articles/before-and-after.html">Before and After</a> is for the common problem where you want to get the bit of a string before or after an occurrence of a pattern.</li>
+<li>
+<a href="https://rorynolan.github.io/strex/articles/numbers-in-strings.html">Numbers Within Strings</a> shows how to deal with the common problem of extracting numeric information contained within larger strings.</li>
+<li>
+<a href="https://rorynolan.github.io/strex/articles/important-miscellany.html">Important Miscellany</a> is the rest, and there’s a lot.</li>
+</ul>
 </div>
 </div>
   </div>

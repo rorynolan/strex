@@ -1,10 +1,10 @@
 ---
-title: "Numbers within strings"
+title: "Numbers Within Strings"
 author: "Rory Nolan"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Numbers within strings}
+  %\VignetteIndexEntry{Numbers Within Strings}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

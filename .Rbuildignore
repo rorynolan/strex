@@ -1,3 +1,5 @@
+^codecov\.yml$
+^appveyor\.yml$
 ^\.github$
 ^docs$
 ^_pkgdown\.yml$
@@ -7,3 +9,4 @@
 ^\.Rproj\.user$
 ^index\.Rmd$
 ^index\.md$
+^\.travis\.yml$

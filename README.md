@@ -13,6 +13,16 @@ Contributions to this package are encouraged: it is intended as a
 miscellany of string manipulation functions which cannot be found in
 `stringi` or `stringr`.
 
+[![Travis-CI Build
+Status](https://travis-ci.org/rorynolan/strex.svg?branch=master)](https://travis-ci.org/rorynolan/strex)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/rorynolan/strex?branch=master&svg=true)](https://ci.appveyor.com/project/rorynolan/strex)
+[![Coverage
+status](https://codecov.io/gh/rorynolan/strex/branch/master/graph/badge.svg)](https://codecov.io/github/rorynolan/strex?branch=master)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/strex)](https://cran.r-project.org/package=strex)
+
 ## Installation
 
 You can install the released version of strex from
@@ -31,4 +41,4 @@ devtools::install_github("rorynolan/strex")
 
 ## How to use the package
 
-See
+See the package website at <https://rorynolan.github.io/strex>.

@@ -1,6 +1,6 @@
 Package: strex
 Title: Extra string manipulation functions
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: person("Rory", "Nolan", email = "rorynoolan@gmail.com", 
                   role = c("aut", "cre"))
 Description: There are some things that I wish were easier with the stringr 
@@ -32,7 +32,8 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
-    pacman
+    pacman,
+    covr
 VignetteBuilder: knitr
-URL: https://github.com/rorynolan/strex
+URL: https://rorynolan.github.io/strex/
 BugReports: https://github.com/rorynolan/strex/issues
