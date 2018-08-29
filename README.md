@@ -33,7 +33,7 @@ install.packages("strex")
 ```
 
 You can install the released version of strex from
-[CRAN](https://CRAN.R-project.org) with:
+[GitHub](https://github.com/rorynolan/strex/) with:
 
 ``` r
 devtools::install_github("rorynolan/strex")

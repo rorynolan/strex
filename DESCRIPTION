@@ -34,6 +34,7 @@ Suggests:
     rmarkdown,
     pacman,
     covr
+SystemRequirements: C++11
 VignetteBuilder: knitr
 URL: https://rorynolan.github.io/strex/
 BugReports: https://github.com/rorynolan/strex/issues
