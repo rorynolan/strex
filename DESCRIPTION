@@ -34,3 +34,5 @@ Suggests:
     rmarkdown,
     pacman
 VignetteBuilder: knitr
+URL: https://github.com/rorynolan/strex
+BugReports: https://github.com/rorynolan/strex/issues
