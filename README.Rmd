@@ -19,8 +19,14 @@ There are some things that I wish were easier with the `stringr` or `stringi` pa
 [![Travis-CI Build Status](https://travis-ci.org/rorynolan/strex.svg?branch=master)](https://travis-ci.org/rorynolan/strex)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/rorynolan/strex?branch=master&svg=true)](https://ci.appveyor.com/project/rorynolan/strex)
 [![Coverage status](https://codecov.io/gh/rorynolan/strex/branch/master/graph/badge.svg)](https://codecov.io/github/rorynolan/strex?branch=master)
+
+![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+
 [![CRAN status](https://www.r-pkg.org/badges/version/strex)](https://cran.r-project.org/package=strex)
+![RStudio CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/strex)
+![RStudio CRAN monthly downloads](http://cranlogs.r-pkg.org/badges/strex)
+[![Rdocumentation](http://www.rdocumentation.org/badges/version/strex)](http://www.rdocumentation.org/packages/strex)
 
 
 
