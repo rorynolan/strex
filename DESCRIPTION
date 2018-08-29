@@ -2,7 +2,8 @@ Package: strex
 Title: Extra string manipulation functions
 Version: 0.1.0
 Authors@R: person("Rory", "Nolan", email = "rorynoolan@gmail.com", 
-                  role = c("aut", "cre"))
+                  role = c("aut", "cre"), 
+                  comment = c(ORCID = "0000-0002-5239-4043"))
 Description: There are some things that I wish were easier with the stringr 
     or stringi packages. The foremost of these is the extraction of numbers from 
     strings. stringr lets you figure this out the regex for yourself, strex 
