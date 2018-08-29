@@ -1,0 +1,24 @@
+---
+title: "Checkmate Rmarkdown"
+date: "29/08/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r checkmate, error=TRUE}
+errfn_checkmate <- function(x) {
+  checkmate::assert_character(x)
+}
+errfn_checkmate(1)
+```
+
+```{r other-error, error=TRUE}
+errfn <- function() {
+  stop("error")
+}
+errfn()
+```
+

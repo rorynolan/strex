@@ -1,0 +1,36 @@
+Package: strex
+Title: Extra string manipulation functions
+Version: 0.0.0.9000
+Authors@R: person("Rory", "Nolan", email = "rorynoolan@gmail.com", 
+                  role = c("aut", "cre"))
+Description: There are some things that I wish were easier with the stringr 
+    or stringi packages. The foremost of these is the extraction of numbers from 
+    strings. stringr lets you figure this out the regex for yourself, strex 
+    takes care of this for you. There are many more useful functionalities in
+    strex. In particular, there's a `match_arg()` function which is more 
+    flexible than the base `match.arg()`. Contributions to this package are 
+    encouraged: it is intended as a miscellany of string manipulation functions
+    which cannot be found in stringi or stringr.
+Depends: stringr
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+LinkingTo: Rcpp
+Imports: 
+    Rcpp,
+    magrittr,
+    checkmate,
+    matrixStats,
+    ore,
+    purrr,
+    rlang,
+    tibble,
+    glue
+RoxygenNote: 6.1.0
+Roxygen: list(markdown = TRUE)
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown,
+    pacman
+VignetteBuilder: knitr
