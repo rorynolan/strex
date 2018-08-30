@@ -8,8 +8,8 @@
 \description{
 There are some things that I wish were easier with the \code{stringr} or \code{stringi}
 packages. The foremost of these is the extraction of numbers from strings.
-\code{stringr} lets you figure this out the regex for yourself; \code{strex} takes care
-of this for you. There are many more useful functionalities in \code{strex}. In
+\code{stringr} makes you figure out the regex for yourself; \code{strex} takes care of
+this for you. There are many more useful functionalities in \code{strex}. In
 particular, there's a \code{match_arg()} function which is more flexible than the
 base \code{match.arg()}. Contributions to this package are encouraged: it is
 intended as a miscellany of string manipulation functions which cannot be

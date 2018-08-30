@@ -5,7 +5,7 @@
 
 There are some things that I wish were easier with the `stringr` or
 `stringi` packages. The foremost of these is the extraction of numbers
-from strings. `stringr` lets you figure this out the regex for yourself;
+from strings. `stringr` makes you figure out the regex for yourself;
 `strex` takes care of this for you. There are many more useful
 functionalities in `strex`. In particular, there’s a `match_arg()`
 function which is more flexible than the base `match.arg()`.
