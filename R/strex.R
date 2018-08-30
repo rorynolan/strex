@@ -25,8 +25,8 @@ if (getRversion() >= "2.15.1") {
 #' found in `stringi` or `stringr`.
 #'
 #' @docType package
-#' @name filesstrings
-#' @aliases filesstrings-package
+#' @name strex
+#' @aliases strex-package
 #' @references Rory Nolan and Sergi Padilla-Parra (2017). filesstrings: An R
 #'   package for file and string manipulation. The Journal of Open Source
 #'   Software, 2(14).  \doi{10.21105/joss.00260}.
