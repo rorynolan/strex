@@ -1,16 +1,15 @@
-#' Extract or non-numbers from a string.
+#' Extract non-numbers from a string.
 #'
-#' `str_extract_non_numerics` extracts the bits of the string that aren't extracted
-#' by `extract_numbers`. `str_nth_non_numeric` is a convenient wrapper for
-#' `str_extract_non_numerics`, allowing you to choose which number you want. Please
-#' run the examples at the bottom of this page to ensure that you understand how
-#' these functions work, and their limitations. These functions are vectorized
-#' over `string`.
+#' `str_extract_non_numerics` extracts the bits of the string that aren't
+#' extracted by `extract_numbers`. `str_nth_non_numeric` is a convenient wrapper
+#' for `str_extract_non_numerics`, allowing you to choose which number you want.
+#' Please run the examples at the bottom of this page to ensure that you
+#' understand how these functions work, and their limitations. These functions
+#' are vectorized over `string`.
 #'
-#' \itemize{
-#' \item `str_first_non_numeric(...)` is just `str_nth_non_numeric(..., n = 1)`.
-#' \item `str_last_non_numeric(...)` is just `str_nth_non_numeric(..., n = -1)`.
-#' }
+#' \itemize{ \item `str_first_non_numeric(...)` is just
+#' `str_nth_non_numeric(..., n = 1)`. \item `str_last_non_numeric(...)` is just
+#' `str_nth_non_numeric(..., n = -1)`. }
 #'
 #' @inheritParams str_extract_numbers
 #'

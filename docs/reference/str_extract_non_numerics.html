@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract or non-numbers from a string. — str_extract_non_numerics • strex</title>
+<title>Extract non-numbers from a string. — str_extract_non_numerics • strex</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,14 +30,14 @@
 
 
 
-<meta property="og:title" content="Extract or non-numbers from a string. — str_extract_non_numerics" />
+<meta property="og:title" content="Extract non-numbers from a string. — str_extract_non_numerics" />
 
-<meta property="og:description" content="str_extract_non_numerics extracts the bits of the string that aren't extracted
-by extract_numbers. str_nth_non_numeric is a convenient wrapper for
-str_extract_non_numerics, allowing you to choose which number you want. Please
-run the examples at the bottom of this page to ensure that you understand how
-these functions work, and their limitations. These functions are vectorized
-over string." />
+<meta property="og:description" content="str_extract_non_numerics extracts the bits of the string that aren't
+extracted by extract_numbers. str_nth_non_numeric is a convenient wrapper
+for str_extract_non_numerics, allowing you to choose which number you want.
+Please run the examples at the bottom of this page to ensure that you
+understand how these functions work, and their limitations. These functions
+are vectorized over string." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -126,19 +126,19 @@ over string." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract or non-numbers from a string.</h1>
+    <h1>Extract non-numbers from a string.</h1>
     
     <div class="hidden name"><code>str_extract_non_numerics.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>str_extract_non_numerics</code> extracts the bits of the string that aren't extracted
-by <code>extract_numbers</code>. <code>str_nth_non_numeric</code> is a convenient wrapper for
-<code>str_extract_non_numerics</code>, allowing you to choose which number you want. Please
-run the examples at the bottom of this page to ensure that you understand how
-these functions work, and their limitations. These functions are vectorized
-over <code>string</code>.</p>
+    <p><code>str_extract_non_numerics</code> extracts the bits of the string that aren't
+extracted by <code>extract_numbers</code>. <code>str_nth_non_numeric</code> is a convenient wrapper
+for <code>str_extract_non_numerics</code>, allowing you to choose which number you want.
+Please run the examples at the bottom of this page to ensure that you
+understand how these functions work, and their limitations. These functions
+are vectorized over <code>string</code>.</p>
     
     </div>
 
@@ -189,8 +189,10 @@ function is vectorized over this argument.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <ul>
-<li><p><code>str_first_non_numeric(...)</code> is just <code>str_nth_non_numeric(..., n = 1)</code>.</p></li>
-<li><p><code>str_last_non_numeric(...)</code> is just <code>str_nth_non_numeric(..., n = -1)</code>.</p></li>
+<li><p><code>str_first_non_numeric(...)</code> is just
+<code>str_nth_non_numeric(..., n = 1)</code>.</p></li>
+<li><p><code>str_last_non_numeric(...)</code> is just
+<code>str_nth_non_numeric(..., n = -1)</code>.</p></li>
 </ul>
     
 

@@ -5,7 +5,7 @@
 \alias{str_nth_non_numeric}
 \alias{str_first_non_numeric}
 \alias{str_last_non_numeric}
-\title{Extract or non-numbers from a string.}
+\title{Extract non-numbers from a string.}
 \usage{
 str_extract_non_numerics(string, decimals = FALSE,
   leading_decimals = FALSE, negs = FALSE)
@@ -38,18 +38,17 @@ non-numeric), \code{n = -2} will give you the second last number and so on. The
 function is vectorized over this argument.}
 }
 \description{
-\code{str_extract_non_numerics} extracts the bits of the string that aren't extracted
-by \code{extract_numbers}. \code{str_nth_non_numeric} is a convenient wrapper for
-\code{str_extract_non_numerics}, allowing you to choose which number you want. Please
-run the examples at the bottom of this page to ensure that you understand how
-these functions work, and their limitations. These functions are vectorized
-over \code{string}.
+\code{str_extract_non_numerics} extracts the bits of the string that aren't
+extracted by \code{extract_numbers}. \code{str_nth_non_numeric} is a convenient wrapper
+for \code{str_extract_non_numerics}, allowing you to choose which number you want.
+Please run the examples at the bottom of this page to ensure that you
+understand how these functions work, and their limitations. These functions
+are vectorized over \code{string}.
 }
 \details{
-\itemize{
-\item \code{str_first_non_numeric(...)} is just \code{str_nth_non_numeric(..., n = 1)}.
-\item \code{str_last_non_numeric(...)} is just \code{str_nth_non_numeric(..., n = -1)}.
-}
+\itemize{ \item \code{str_first_non_numeric(...)} is just
+\code{str_nth_non_numeric(..., n = 1)}. \item \code{str_last_non_numeric(...)} is just
+\code{str_nth_non_numeric(..., n = -1)}. }
 }
 \examples{
 str_extract_non_numerics("abc123abc456")
