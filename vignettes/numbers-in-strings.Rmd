@@ -101,7 +101,7 @@ To extract all of this information tidily, use a `tibble`:
 ```{r tibble}
 tibble::tibble(img_names,
   patient = str_first_number_after_first(img_names, "patient"),
-  cell = str_first_number_after_first(img_names, "patient"),
+  cell = str_first_number_after_first(img_names, "cell"),
   hrs_after_biop = str_last_number_before_first(img_names, "biop", 
                                                 decimals = TRUE)
 )
