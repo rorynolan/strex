@@ -112,10 +112,12 @@ test_that("match_arg() works", {
   expect_equal(match_arg("ab", c("ab", "abc")), "ab")
   expect_error(
     match_arg("a", as.character(1:51)),
-    str_c("`arg` must be a prefix of exactly one element of `choices`.+",
-          ". Your first 50 `choices` are \\\"1\\\", \\\"2\\\", \\\"3\\\", .+",
-          "47\\\", \\\"48\\\", \\\"49\\\" and \\\"50\\\".+",
-          ". Your `arg` \\\"a\\\" is not a prefix of any of your `choices`.")
+    str_c(
+      "`arg` must be a prefix of exactly one element of `choices`.+",
+      ". Your first 50 `choices` are \\\"1\\\", \\\"2\\\", \\\"3\\\", .+",
+      "47\\\", \\\"48\\\", \\\"49\\\" and \\\"50\\\".+",
+      ". Your `arg` \\\"a\\\" is not a prefix of any of your `choices`."
+    )
   )
 })
 
@@ -139,6 +141,8 @@ test_that("`*_list_nth_elems()` error correctly", {
 })
 
 test_that("`custom_stop()` errors correctly", {
-  expect_error(custom_stop("a", 1),
-               "The arguments in ... must all be of character type.")
+  expect_error(
+    custom_stop("a", 1),
+    "The arguments in ... must all be of character type."
+  )
 })

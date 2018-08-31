@@ -47,7 +47,8 @@ str_nth_number_after_first <- function(string, pattern, n, decimals = FALSE,
 #' str_nth_number_after_last(string, "abc", -1)
 #' @export
 str_nth_number_after_last <- function(string, pattern, n,
-                                      decimals = FALSE, leading_decimals = FALSE,
+                                      decimals = FALSE,
+                                      leading_decimals = FALSE,
                                       negs = FALSE, leave_as_string = FALSE) {
   str_nth_number_after_mth(string, pattern,
     n = n, m = -1,

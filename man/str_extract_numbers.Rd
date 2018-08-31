@@ -5,7 +5,7 @@
 \alias{str_nth_number}
 \alias{str_first_number}
 \alias{str_last_number}
-\title{Extract numbers (or non-numbers) from a string.}
+\title{Extract numbers from a string.}
 \usage{
 str_extract_numbers(string, leave_as_string = FALSE, decimals = FALSE,
   leading_decimals = FALSE, negs = FALSE)

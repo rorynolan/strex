@@ -9,9 +9,8 @@ if (getRversion() >= "2.15.1") {
   utils::globalVariables(c("."))
 }
 
-.onUnload <- function(libpath) {
-  library.dynam.unload("strex", libpath)
-}
+.onUnload <- function(libpath) library.dynam.unload("strex", libpath)
+
 
 #' `strex`: extra string manipulation functions
 #'

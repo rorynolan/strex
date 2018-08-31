@@ -13,3 +13,11 @@
 ## Reverse dependencies
 
 There are no reverse dependencies.
+
+## Resubmission
+
+I have:
+
+* Put the package title in title case
+* Put package names in DESCRIPTION in single quotes
+* Removed quotes of function names in DESCRIPTION

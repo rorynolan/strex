@@ -99,7 +99,8 @@ str_last_number_before_mth <- function(string, pattern, m,
 str_first_number_before_first <- function(string, pattern,
                                           decimals = FALSE,
                                           leading_decimals = FALSE,
-                                          negs = FALSE, leave_as_string = FALSE) {
+                                          negs = FALSE,
+                                          leave_as_string = FALSE) {
   str_nth_number_before_mth(string, pattern,
     n = 1, m = 1,
     decimals = decimals,
@@ -132,7 +133,8 @@ str_first_number_before_last <- function(string, pattern,
 str_last_number_before_first <- function(string, pattern,
                                          decimals = FALSE,
                                          leading_decimals = FALSE,
-                                         negs = FALSE, leave_as_string = FALSE) {
+                                         negs = FALSE,
+                                         leave_as_string = FALSE) {
   str_nth_number_before_mth(string, pattern,
     n = -1, m = 1,
     decimals = decimals,

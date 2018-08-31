@@ -1,4 +1,4 @@
-#' Extract numbers (or non-numbers) from a string.
+#' Extract numbers from a string.
 #'
 #' `str_extract_numbers` extracts the numbers (or non-numbers) from a string
 #' where decimals are optionally allowed. `str_nth_number` is a convenient
@@ -45,8 +45,9 @@
 #' str_nth_number("-123abc456", -2, negs = TRUE)
 #'
 #' @export
-str_extract_numbers <- function(string, leave_as_string = FALSE, decimals = FALSE,
-                                leading_decimals = FALSE, negs = FALSE) {
+str_extract_numbers <- function(string, leave_as_string = FALSE,
+                                decimals = FALSE, leading_decimals = FALSE,
+                                negs = FALSE) {
   if (leading_decimals == TRUE && decimals == FALSE) {
     custom_stop(
       "To allow leading decimals, you need to first allow decimals.",

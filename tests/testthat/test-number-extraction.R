@@ -24,8 +24,10 @@ test_that("str_extract_numbers works", {
     leave_as_string = TRUE
   ), list((c("1", ".23", "456"))))
   expect_equal(str_extract_numbers("-123abc456"), list(c(123, 456)))
-  expect_equal(str_extract_numbers("-123abc456", negs = TRUE), list(c(-123, 456)))
-  expect_equal(str_extract_numbers("--123abc456", negs = TRUE), list(c(-123, 456)))
+  expect_equal(str_extract_numbers("-123abc456", negs = TRUE),
+               list(c(-123, 456)))
+  expect_equal(str_extract_numbers("--123abc456", negs = TRUE),
+               list(c(-123, 456)))
   expect_equal(str_extract_non_numerics("abc123abc456"), list(rep("abc", 2)))
   expect_equal(
     str_extract_non_numerics("abc1.23abc456"),
