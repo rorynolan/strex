@@ -24,8 +24,8 @@ You can install the released version of strex from
 install.packages("strex")
 ```
 
-You can install the released version of strex from
-[CRAN](https://CRAN.R-project.org) with:
+You can install the development version of strex from
+[GitHub](https://github.com/rorynolan/strex/) with:
 
 ``` r
 devtools::install_github("rorynolan/strex")
