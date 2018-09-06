@@ -41,7 +41,7 @@ You can install the released version of strex from
 install.packages("strex")
 ```
 
-You can install the released version of strex from
+You can install the development version of strex from
 [GitHub](https://github.com/rorynolan/strex/) with:
 
 ``` r
