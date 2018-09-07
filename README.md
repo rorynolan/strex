@@ -34,14 +34,14 @@ CRAN monthly downloads](http://cranlogs.r-pkg.org/badges/strex)
 
 ## Installation
 
-You can install the released version of strex from
+You can install the release version of `strex` from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("strex")
 ```
 
-You can install the development version of strex from
+You can install the development version of `strex` from
 [GitHub](https://github.com/rorynolan/strex/) with:
 
 ``` r
