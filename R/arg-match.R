@@ -1,4 +1,4 @@
-#' Argument Matching
+#' Argument Matching.
 #'
 #' Match `arg` against a series of candidate `choices` where `NULL` means take
 #' the first one. `arg` _matches_ an element of `choices` if `arg` is a prefix

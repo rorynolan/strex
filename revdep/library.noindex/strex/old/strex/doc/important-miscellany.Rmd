@@ -1,0 +1,157 @@
+---
+title: "Important Miscellany"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Important Miscellany}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## The Importance of this miscellany
+
+The features of `strex` that were deemed the _most_ interesting have been given their own vignettes. However, the package was intended as a miscellany of useful functions, so the functions demonstrated here encapsulate the spirit of this package, i.e. functions that save R string manipulators time.
+
+```{r load}
+library(strex)
+```
+
+
+## Could this be numeric?
+
+Sometimes you don't want to know whether something is numeric, just whether or not it could be. Now you can find out with `str_can_be_numeric()`.
+
+```{r can-be-numeric}
+str_can_be_numeric(c("1a", "abc", "5", "2e7", "seven"))
+```
+
+
+## Currency
+
+To get currencies and amounts mentioned in strings, there are `str_get_currency()` and `str_get_currencies()`. `str_get_currency()` just returns the first seen currency symbol (really just the character before the first number). `str_get_currencies()` returns all currencies and amounts mentioned in a string. `str_get_currencies()` only takes arguments of length 1, so to use it with multiple strings, you'll need to use `purrr::map()`.
+
+```{r, error=TRUE}
+string <- c("Alan paid £5", "Joe paid $7")
+str_get_currency(string)
+string <- c("€1 is $1.17", "£1 is $1.29")
+str_get_currency(string)  # only gets the first mentioned
+str_get_currencies(string[1])
+purrr::map(string, str_get_currencies)
+```
+
+
+## Extract a single element of a string
+
+This is a simple wrapper around `stringr::str_sub()`.
+
+```{r str-elem}
+string = "abcdefg"
+str_sub(string, 3, 3)
+str_elem(string, 3)  # simpler and more exressive
+```
+
+
+## Extract numbers and non-numeric elements
+
+```{r extract-num-non-num}
+string <- c("aa1bbb2ccc3", "xyz7ayc8jzk99elephant")
+str_extract_numbers(string)
+str_extract_non_numerics(string)
+```
+
+
+## Split a string by its numbers
+
+```{r split-by-nums}
+string <- c("aa1bbb2ccc3", "xyz7ayc8jzk99elephant")
+str_split_by_nums(string)
+```
+
+
+## Force a file name to have an extension
+
+We can give files a given extension, leaving them alone if they already have it.
+```{r giv-ext}
+string <- c("spreadsheet1.csv", "spreadsheet2")
+str_give_ext(string, "csv")
+```
+
+If the file already has an extension, we can append one or replace it.
+
+```{r give-ext-replace}
+str_give_ext(string, "xls")  # append
+str_give_ext(string, "csv", replace = TRUE)  # replace
+```
+
+
+## Strip away a file extension
+
+```{r before-last-dot}
+string <- c("spreadsheet1.csv", "spreadsheet2")
+str_before_last_dot(string)
+```
+
+
+## Remove quoted bits from a string
+
+```{r str-remove-quoted}
+string <- "I hate having these \"quotes\" in the middle of my strings."
+cat(string)
+str_remove_quoted(string)
+```
+
+
+## Split camel case
+
+I'm not mad on CamelCase, I often want to deconstruct it.
+
+```{r camel}
+library(magrittr)
+string <- c("CamelVar1", c("CamelVar2"))
+str_split_camel_case(string)
+string %>% 
+  str_split_camel_case() %>% 
+  purrr::map_chr(str_c, collapse = "_") %>% 
+  str_to_lower()
+```
+
+
+## Convert a string to a vector
+
+This is something I did a lot to avoid using regular expression. Don't do it for that purpose. Learn regex. https://regexone.com/ is a very good start.
+
+```{r to-vec}
+string <- "R is good."
+str_to_vec(string)
+```
+
+
+## Trim anything, not just whitespace
+
+What if something is needlessly surrounded by parentheses and we want to get rid of them?
+
+```{r trim-anything}
+string <- "(((Why all the parentheses?)))"
+string %>% 
+  str_trim_anything("(", side = "left") %>% 
+  str_trim_anything(")", side = "r")
+```
+
+Note that the `pattern` argument here isn't regular expression, just plain.
+
+
+## Remove duplicated bits of strings
+
+```{r singleize}
+string <- c("I often write the word *my* twice in a row in my my sentences.")
+str_singleize(string, " my")
+```
+

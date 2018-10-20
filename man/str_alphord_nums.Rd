@@ -2,7 +2,7 @@
 % Please edit documentation in R/alphord.R
 \name{str_alphord_nums}
 \alias{str_alphord_nums}
-\title{Make string numbers comply with alphabetical order}
+\title{Make string numbers comply with alphabetical order.}
 \usage{
 str_alphord_nums(strings)
 }

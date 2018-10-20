@@ -1,4 +1,4 @@
-#' Make string numbers comply with alphabetical order
+#' Make string numbers comply with alphabetical order.
 #'
 #' If strings are numbered, their numbers may not *comply* with
 #' alphabetical order, i.e. "abc2" comes after "abc10" in alphabetical order. We

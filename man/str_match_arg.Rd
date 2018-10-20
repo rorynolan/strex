@@ -3,7 +3,7 @@
 \name{str_match_arg}
 \alias{str_match_arg}
 \alias{match_arg}
-\title{Argument Matching}
+\title{Argument Matching.}
 \usage{
 str_match_arg(arg, choices, index = FALSE, several_ok = FALSE,
   ignore_case = FALSE)

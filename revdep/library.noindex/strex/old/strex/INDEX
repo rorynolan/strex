@@ -1,0 +1,34 @@
+currency                Get the currencies of numbers within a string.
+str_after_nth           Text before or after nth occurrence of pattern.
+str_alphord_nums        Make string numbers comply with alphabetical
+                        order
+str_before_last_dot     Get the part of a string before the last
+                        period.
+str_can_be_numeric      Check if a string could be considered as
+                        numeric.
+str_elem                Extract a single character from a string, using
+                        its index.
+str_extract_non_numerics
+                        Extract non-numbers from a string.
+str_extract_numbers     Extract numbers from a string.
+str_give_ext            Ensure a file name has the intended extension.
+str_locate_braces       Locate the braces in a string.
+str_locate_nth          Locate the indices of the nth instance of a
+                        pattern.
+str_match_arg           Argument Matching
+str_nth_number_after_mth
+                        Find the nth number after the mth occurrence of
+                        a pattern.
+str_nth_number_before_mth
+                        Find the nth number before the mth occurrence
+                        of a pattern.
+str_paste_elems         Extract bits of a string and paste them
+                        together
+str_remove_quoted       Remove the quoted parts of a string.
+str_singleize           Remove back-to-back duplicates of a pattern in
+                        a string.
+str_split_by_nums       Split a string by its numeric characters.
+str_split_camel_case    Split a string based on CamelCase
+str_to_vec              Convert a string to a vector of characters
+str_trim_anything       Trim something other than whitespace
+strex                   'strex': extra string manipulation functions
