@@ -25,7 +25,3 @@ There is 1 reverse dependency: `filesstrings`. This update does not break it. Se
 
 
 
-## Fix
-
-
-The package was failing mac tests on CRAN due to unexpected differences in error messages across platforms. This is the fix for that.
