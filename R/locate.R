@@ -39,7 +39,6 @@ str_locate_braces <- function(string) {
 #'
 #' @examples
 #' str_locate_nth(c("abcdabcxyz", "abcabc"), "abc", 2)
-#'
 #' @export
 str_locate_nth <- function(string, pattern, n) {
   checkmate::assert_number(n)

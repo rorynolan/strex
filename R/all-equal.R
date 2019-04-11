@@ -33,7 +33,7 @@
 #' all_equal(c(1, 88))
 #' all_equal(1:2)
 #' all_equal(list(1:2))
-#' all_equal(1:4, matrix(1:4, nrow = 2))  # note that this gives TRUE
+#' all_equal(1:4, matrix(1:4, nrow = 2)) # note that this gives TRUE
 #' @noRd
 all_equal <- function(a, b = NULL) {
   checkmate::assert(

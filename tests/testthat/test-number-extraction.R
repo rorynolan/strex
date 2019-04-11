@@ -24,10 +24,14 @@ test_that("str_extract_numbers works", {
     leave_as_string = TRUE
   ), list((c("1", ".23", "456"))))
   expect_equal(str_extract_numbers("-123abc456"), list(c(123, 456)))
-  expect_equal(str_extract_numbers("-123abc456", negs = TRUE),
-               list(c(-123, 456)))
-  expect_equal(str_extract_numbers("--123abc456", negs = TRUE),
-               list(c(-123, 456)))
+  expect_equal(
+    str_extract_numbers("-123abc456", negs = TRUE),
+    list(c(-123, 456))
+  )
+  expect_equal(
+    str_extract_numbers("--123abc456", negs = TRUE),
+    list(c(-123, 456))
+  )
   expect_equal(str_extract_non_numerics("abc123abc456"), list(rep("abc", 2)))
   expect_equal(
     str_extract_non_numerics("abc1.23abc456"),
@@ -54,15 +58,47 @@ test_that("str_extract_numbers works", {
     str_extract_non_numerics("--123abc456", negs = TRUE),
     list(c("-", "abc"))
   )
-  expect_equal(str_extract_numbers("abc1.2.3", decimals = TRUE), list(NA_real_))
-  expect_equal(str_extract_numbers("ab.1.2",
+  expect_warning(
+    str_extract_numbers("abc1.2.3", decimals = TRUE),
+    paste0(
+      "NAs introduced by ambiguity.+The first such ambiguity\\s?",
+      "is in string number 1 which is.+'abc1.+2.+3'."
+    )
+  )
+  expect_equal(suppressWarnings(
+    str_extract_numbers("abc1.2.3", decimals = TRUE)), list(NA_real_)
+  )
+  expect_warning(
+    str_extract_numbers("ab.1.2",
+      decimals = TRUE,
+      leading_decimals = TRUE
+    ),
+    paste0(
+      "NAs introduced by ambiguity.+The first such ambiguity\\s?",
+      "is in string number 1 which is.+'ab.+1.+2'."
+    )
+  )
+  expect_warning(str_extract_numbers("ab.1.2",
+                                     decimals = TRUE,
+                                     leading_decimals = TRUE
+  ), paste0(
+    "NAs introduced by ambiguity.+The first such ambiguity\\s?",
+    "is in string number 1 which is.+'ab.+1.+2'."
+  ))
+  expect_equal(suppressWarnings(str_extract_numbers("ab.1.2",
     decimals = TRUE,
     leading_decimals = TRUE
-  ), list(NA_real_))
+  )), list(NA_real_))
+  expect_warning(str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"),
+    decimals = TRUE
+  ), paste0(
+    "NAs introduced by ambiguity.+The first such ambiguity\\s?",
+    "is in string number 1 which is.+'abc1.+2.+3'."
+  ))
   expect_equal(
-    str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"),
+    suppressWarnings(str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"),
       decimals = TRUE
-    ),
+    )),
     c(as.list(rep(NA_real_, 3)), list(c(5, 6)))
   )
   expect_equal(str_nth_number("abc1.23abc456", 2), 23)
@@ -71,6 +107,29 @@ test_that("str_extract_numbers works", {
   expect_equal(str_nth_number("abc1.23abc456", 2, leave_as_string = TRUE), "23")
   expect_equal(str_nth_number("abc1.23abc456", 2, decimals = TRUE), 456)
   expect_equal(str_nth_number("-123abc456", -2, negs = TRUE), -123)
+  expect_equal(str_first_number("abc1e5"), 1)
+  expect_equal(str_first_number("abc1e5", sci = TRUE), 1e5)
+  expect_equal(str_first_number("abc1.4e5", sci = TRUE), 1)
+  expect_equal(str_first_number("abc1.4e5", sci = TRUE, decimals = TRUE), 1.4e5)
+  expect_equal(
+    str_first_number("abc-1.4e5", sci = TRUE, decimals = TRUE),
+    1.4e5
+  )
+  expect_equal(
+    str_first_number("abc-1.4e5",
+      sci = TRUE, decimals = TRUE,
+      negs = TRUE
+    ),
+    -1.4e5
+  )
+  expect_equal(
+    str_first_number("ab.1.2",
+      decimals = TRUE, leading_decimals = TRUE
+    ),
+    NA_real_
+  )
+  expect_equal(suppressWarnings(str_last_number("ab.1.2", decimals = TRUE,
+                               leading_decimals = TRUE)), NA_real_)
   expect_equal(
     str_extract_non_numerics("--123abc456", negs = TRUE),
     list(c("-", "abc"))

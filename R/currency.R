@@ -8,7 +8,7 @@
 #' vectorized over string. \item `get_currencies` takes a string and returns the
 #' currencies of all of the numbers within that string. It is not vectorized. }
 #'
-#' These functions do not allow for leading decimal points.
+#' Note that both "-$2.00" and "$-2.00" are interpreted as negative two dollars.
 #'
 #' @name currency
 #'
@@ -16,8 +16,9 @@
 #'   `get_currency()`.
 #'
 #' @return \itemize{ \item `get_currency` returns a character vector. \item
-#' `get_currencies` returns a data frame with one column for the currency symbol
-#' and one for the amount. }
+#'   `get_currencies` returns a list of [tibble][tibble::tibble-package]s, one
+#'   for each input string in the character vector, each with one column for the
+#'   currency symbol and one for the amount. }
 #' @examples
 #' str_get_currencies("35.00 $1.14 abc5 $3.8 77")
 #' @export
@@ -29,7 +30,7 @@ str_get_currencies <- function(string) {
   before_num_indices <- num_indices - 1
   before_num_strings <- purrr::map_chr(
     before_num_indices,
-    ~ifelse(. %in% num_indices || . < 1, "", ssbn[.])
+    ~ ifelse(. %in% num_indices || . < 1, "", ssbn[.])
   )
   currencies <- str_elem(before_num_strings, -1)
   tibble::tibble(currency = currencies, amount = numbers)

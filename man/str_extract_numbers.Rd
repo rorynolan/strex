@@ -8,16 +8,16 @@
 \title{Extract numbers from a string.}
 \usage{
 str_extract_numbers(string, leave_as_string = FALSE, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE)
+  leading_decimals = FALSE, negs = FALSE, sci = FALSE)
 
 str_nth_number(string, n, leave_as_string = FALSE, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE)
+  leading_decimals = FALSE, negs = FALSE, sci = FALSE)
 
 str_first_number(string, leave_as_string = FALSE, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE)
+  leading_decimals = FALSE, negs = FALSE, sci = FALSE)
 
 str_last_number(string, leave_as_string = FALSE, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE)
+  leading_decimals = FALSE, negs = FALSE, sci = FALSE)
 }
 \arguments{
 \item{string}{A string.}
@@ -41,7 +41,7 @@ non-numeric), \code{n = -2} will give you the second last number and so on. The
 function is vectorized over this argument.}
 }
 \value{
-For \code{str_extract_numbers} and \code{extract_non_numerics}, a list of
+For \code{str_extract_numbers} and \code{str_extract_non_numerics}, a list of
 numeric or character vectors, one list element for each element of
 \code{string}. For \code{str_nth_number} and \code{nth_non_numeric}, a vector the same
 length as \code{string} (as in \code{length(string)}, not \code{nchar(string)}).
@@ -67,16 +67,28 @@ scientific notation (e.g. \code{1e6} for 1000000).
 str_extract_numbers(c("abc123abc456", "abc1.23abc456"))
 str_extract_numbers(c("abc1.23abc456", "abc1..23abc456"), decimals = TRUE)
 str_extract_numbers("abc1..23abc456", decimals = TRUE)
-str_extract_numbers("abc1..23abc456", decimals = TRUE, leading_decimals = TRUE)
-str_extract_numbers("abc1..23abc456", decimals = TRUE, leading_decimals = TRUE,
-                leave_as_string = TRUE)
+str_extract_numbers("abc1..23abc456",
+  decimals = TRUE,
+  leading_decimals = TRUE
+)
+str_extract_numbers("abc1..23abc456",
+  decimals = TRUE,
+  leading_decimals = TRUE, leave_as_string = TRUE
+)
 str_extract_numbers("-123abc456")
 str_extract_numbers("-123abc456", negs = TRUE)
-str_extract_numbers("--123abc456", negs = TRUE)
-str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"), decimals = TRUE)
-str_extract_numbers("ab.1.2", decimals = TRUE, leading_decimals = TRUE)
+str_extract_numbers("--123abc456", negs = TRUE) # careful with this one
+str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"),
+  decimals = TRUE
+)
+str_first_number("abc1e5")
+str_first_number("abc1e5", sci = TRUE)
+str_extract_numbers("abc1.4e5", sci = TRUE) # careful
+str_extract_numbers("abc1.4e5", sci = TRUE, decimals = TRUE)
+str_first_number("abc-1.4e5", sci = TRUE, decimals = TRUE)
+str_first_number("abc-1.4e5", sci = TRUE, decimals = TRUE, negs = TRUE)
+str_first_number("ab.1.2", decimals = TRUE, leading_decimals = TRUE)
 str_nth_number("abc1.23abc456", 2:3)
 str_nth_number("abc1.23abc456", 2, decimals = TRUE)
 str_nth_number("-123abc456", -2, negs = TRUE)
-
 }

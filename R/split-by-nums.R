@@ -2,7 +2,11 @@
 #'
 #' Break a string wherever you go from a numeric character to a non-numeric or
 #' vice-versa.
+#'
 #' @inheritParams str_extract_numbers
+#'
+#' @return A list of character vectors.
+#'
 #' @examples
 #' str_split_by_nums(c("abc123def456.789gh", "a1b2c344"))
 #' str_split_by_nums("abc123def456.789gh", decimals = TRUE)

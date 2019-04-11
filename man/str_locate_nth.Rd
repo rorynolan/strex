@@ -38,5 +38,4 @@ indices. These functions tell you which indices those are.
 }
 \examples{
 str_locate_nth(c("abcdabcxyz", "abcabc"), "abc", 2)
-
 }

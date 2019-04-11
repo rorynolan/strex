@@ -37,9 +37,10 @@
 #' match_arg("A", choices)
 #' match_arg("B", choices, index = TRUE)
 #' match_arg(c("a", "b"), choices, several_ok = TRUE, ignore_case = TRUE)
-#' match_arg(c("b", "a"), choices, ignore_case = TRUE, index = TRUE,
-#'           several_ok = TRUE)
-#'
+#' match_arg(c("b", "a"), choices,
+#'   ignore_case = TRUE, index = TRUE,
+#'   several_ok = TRUE
+#' )
 #' @export
 str_match_arg <- function(arg, choices, index = FALSE, several_ok = FALSE,
                           ignore_case = FALSE) {

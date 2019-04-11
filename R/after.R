@@ -17,12 +17,12 @@
 #'   need `n = -2` and so on.
 #' @return A character vector of the desired strings.
 #' @examples
-#' string <- "ab..cd..de..fg..h"
-#' str_after_nth(string, "\\.\\.", 3)
+#' string <- "abxxcdxxdexxfgxxh"
+#' str_after_nth(string, "xx", 3)
 #' str_before_nth(string, "e", 1)
-#' str_before_nth(string, "\\.", -3)
+#' str_before_nth(string, "xx", -3)
 #' str_before_nth(string, ".", -3)
-#' str_before_nth(rep(string, 2), fixed("."), -3)
+#' str_before_nth(rep(string, 2), "..x", -3)
 #' @export
 str_after_nth <- function(strings, pattern, n) {
   nth_instance_indices <- str_locate_nth(strings, pattern, n)

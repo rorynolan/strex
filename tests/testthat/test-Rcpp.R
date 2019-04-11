@@ -82,19 +82,23 @@ test_that("Random Rcpp stuff works", {
   if (get_os() == "mac") {
     expect_error(
       str_elems(c("abc", "def"), 1:3),
-      paste0("(",
-             "`strings` and `locations` must have the same length.",
-             "|",
-             ore::ore.escape("c++ exception (unknown reason)"),
-             ")")
+      paste0(
+        "(",
+        "`strings` and `locations` must have the same length.",
+        "|",
+        ore::ore.escape("c++ exception (unknown reason)"),
+        ")"
+      )
     )
     expect_error(
       lst_df_pos_brace(list(1, 1:2, 1:3), list(")", c("[", "]"))),
-      paste0("(",
-             "`positions` and `braces` must have the same length.",
-             "|",
-             ore::ore.escape("c++ exception (unknown reason)"),
-             ")")
+      paste0(
+        "(",
+        "`positions` and `braces` must have the same length.",
+        "|",
+        ore::ore.escape("c++ exception (unknown reason)"),
+        ")"
+      )
     )
   } else {
     expect_error(

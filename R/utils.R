@@ -3,56 +3,45 @@
 #' Given a strictly increasing vector (each element is bigger than the last),
 #' group together stretches of the vector where *adjacent* elements are
 #' separated by at most some specified distance. Hence, each element in each
-#' group has at least one other element in that group that is *close* to
-#' it. See the examples.
-#' @param vec_ascending A strictly increasing numeric vector.
+#' group has at least one other element in that group that is *close* to it. See
+#' the examples.
+#' @param x A strictly increasing numeric vector.
 #' @param max_gap The biggest allowable gap between adjacent elements for them
 #'   to be considered part of the same *group*.
+#' @param check Check inputs for validity? Can be turned off for speed if you're
+#'   sure your inputs are valid.
 #' @return A where each element is one group, as a numeric vector.
 #' @examples
 #' group_close(1:10, 1)
 #' group_close(1:10, 0.5)
 #' group_close(c(1, 2, 4, 10, 11, 14, 20, 25, 27), 3)
 #' @noRd
-group_close <- function(vec_ascending, max_gap = 1) {
-  checkmate::assert_numeric(vec_ascending, min.len = 1)
-  test <- diff(vec_ascending) > 0
-  if (anyNA(test) || (!all(test))) {
-    bad_index <- match(F, test)
-    custom_stop(
-      "`vec_ascending` must be strictly increasing.",
-      "
-                Indices {bad_index} and {bad_index + 1} of `vec_ascending`
-                are respectively {vec_ascending[bad_index]} and
-                {vec_ascending[bad_index + 1]}, therefore `vec_ascending`
-                is not strictly increasing.
-                "
-    )
-  }
-  lv <- length(vec_ascending)
-  if (lv == 1) {
-    return(list(vec_ascending))
-  } else {
-    gaps <- vec_ascending[2:lv] - vec_ascending[1:(lv - 1)]
-    big_gaps <- gaps > max_gap
-    nbgaps <- sum(big_gaps) # number of big gaps
-    if (!nbgaps) {
-      return(list(vec_ascending))
-    } else {
-      ends <- which(big_gaps) # vertical end of lines
-      group1 <- vec_ascending[1:ends[1]]
-      lg <- list(group1)
-      if (nbgaps == 1) {
-        lg[[2]] <- vec_ascending[(ends[1] + 1):lv]
-      } else {
-        for (i in 2:nbgaps) {
-          lg[[i]] <- vec_ascending[(ends[i - 1] + 1):ends[i]]
-          ikeep <- i
-        }
-        lg[[ikeep + 1]] <- vec_ascending[(ends[nbgaps] + 1):lv]
-      }
-      return(lg)
+group_close <- function(x, max_gap = 1, check = TRUE) {
+  dva <- diff(x)
+  if (check) {
+    checkmate::assert_numeric(x, min.len = 1)
+    test <- dva > 0
+    if (anyNA(test) || (!all(test))) {
+      bad_index <- match(F, test)
+      custom_stop(
+        "`vec_ascending` must be strictly increasing.",
+        "
+                  Indices {bad_index} and {bad_index + 1} of `vec_ascending`
+                  are respectively {vec_ascending[bad_index]} and
+                  {vec_ascending[bad_index + 1]}, therefore `vec_ascending`
+                  is not strictly increasing.
+                  "
+      )
     }
+  }
+  lva <- length(x)
+  if (lva == 1) return(list(x))
+  gaps <- dva
+  big_gaps <- which(gaps > max_gap)
+  nbgaps <- length(big_gaps) # number of big gaps
+  if (!nbgaps) return(list(x))
+  big_gaps %>% {
+    split(x, rep(seq_len(nbgaps + 1), times = c(.[1], diff(c(., lva)))))
   }
 }
 
@@ -74,7 +63,6 @@ group_close <- function(vec_ascending, max_gap = 1) {
 #' @examples
 #' str_list_nth_elems_(list(c("a", "b", "c"), c("d", "f", "a")), 2)
 #' num_list_nth_elems_(list(1:5, 0:2), 4)
-#'
 #' @noRd
 str_list_nth_elems <- function(char_list, n) {
   checkmate::assert_list(char_list, min.len = 1)
@@ -122,7 +110,7 @@ num_list_nth_elems <- function(num_list, n) {
 #'   console.
 #'
 #' @noRd
-custom_stop_bullet <- function(string) {
+custom_bullet <- function(string) {
   checkmate::assert_string(string)
   string %<>% strwrap(width = 57)
   string[1] %<>% {
@@ -134,6 +122,24 @@ custom_stop_bullet <- function(string) {
     }
   }
   glue::glue_collapse(string, sep = "\n")
+}
+
+custom_condition_prep <- function(main_message, ..., .envir = parent.frame()) {
+  checkmate::assert_string(main_message)
+  main_message %<>% glue::glue(.envir = .envir)
+  out <- strwrap(main_message, width = 63)
+  dots <- unlist(list(...))
+  if (length(dots)) {
+    if (!is.character(dots)) {
+      stop("\nThe arguments in ... must all be of character type.")
+    }
+    dots %<>% vapply(glue::glue, character(1), .envir = .envir) %>%
+      vapply(custom_bullet, character(1))
+    out %<>% {
+      glue::glue_collapse(c(., dots), sep = "\n")
+    }
+  }
+  out
 }
 
 #' Nicely formatted error message.
@@ -148,21 +154,11 @@ custom_stop_bullet <- function(string) {
 #'
 #' @noRd
 custom_stop <- function(main_message, ..., .envir = parent.frame()) {
-  checkmate::assert_string(main_message)
-  main_message %<>% glue::glue(.envir = .envir)
-  out <- strwrap(main_message, width = 63)
-  dots <- unlist(list(...))
-  if (length(dots)) {
-    if (!is.character(dots)) {
-      stop("\nThe arguments in ... must all be of character type.")
-    }
-    dots %<>% purrr::map_chr(glue::glue, .envir = .envir) %>%
-      purrr::map_chr(custom_stop_bullet)
-    out %<>% {
-      glue::glue_collapse(c(., dots), sep = "\n")
-    }
-  }
-  rlang::abort(glue::glue("{out}"))
+  rlang::abort(custom_condition_prep(main_message, ..., .envir = .envir))
+}
+
+custom_warn <- function(main_message, ..., .envir = parent.frame()) {
+  rlang::warn(custom_condition_prep(main_message, ..., .envir = .envir))
 }
 
 get_os <- function() {

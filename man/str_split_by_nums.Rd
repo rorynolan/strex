@@ -19,6 +19,9 @@ the start of a number?}
 \item{negs}{Do you want to allow negative numbers? Note that double negatives
 are not handled here (see the examples).}
 }
+\value{
+A list of character vectors.
+}
 \description{
 Break a string wherever you go from a numeric character to a non-numeric or
 vice-versa.

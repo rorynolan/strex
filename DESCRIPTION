@@ -25,7 +25,8 @@ Imports:
     purrr,
     rlang,
     tibble,
-    glue (>= 1.3.0)
+    glue (>= 1.3.0),
+    stringi
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Suggests: 

@@ -16,8 +16,9 @@ str_get_currency(string)
 }
 \value{
 \itemize{ \item \code{get_currency} returns a character vector. \item
-\code{get_currencies} returns a data frame with one column for the currency symbol
-and one for the amount. }
+\code{get_currencies} returns a list of \link[tibble:tibble-package]{tibble}s, one
+for each input string in the character vector, each with one column for the
+currency symbol and one for the amount. }
 }
 \description{
 The currency of a number is defined as the character coming before the number
@@ -29,7 +30,7 @@ vectorized over string. \item \code{get_currencies} takes a string and returns t
 currencies of all of the numbers within that string. It is not vectorized. }
 }
 \details{
-These functions do not allow for leading decimal points.
+Note that both "-$2.00" and "$-2.00" are interpreted as negative two dollars.
 }
 \examples{
 str_get_currencies("35.00 $1.14 abc5 $3.8 77")

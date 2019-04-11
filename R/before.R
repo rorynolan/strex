@@ -29,7 +29,6 @@ str_before_last <- function(strings, pattern) {
 #'
 #' @examples
 #' str_before_last_dot(c("spreadsheet1.csv", "doc2.doc", ".R"))
-#'
 #' @export
 str_before_last_dot <- function(string) {
   string %>%

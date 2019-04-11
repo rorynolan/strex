@@ -68,8 +68,10 @@ Given a string, a pattern and natural numbers \code{n} and \code{m}, find the \c
 number after the \code{m}th occurrence of the pattern.
 }
 \examples{
-string <- c("abc1abc2abc3abc4abc5abc6abc7abc8abc9",
-            "abc1def2ghi3abc4def5ghi6abc7def8ghi9")
+string <- c(
+  "abc1abc2abc3abc4abc5abc6abc7abc8abc9",
+  "abc1def2ghi3abc4def5ghi6abc7def8ghi9"
+)
 str_nth_number_after_mth(string, "abc", 1, 3)
 str_nth_number_after_mth(string, "abc", 2, 3)
 str_nth_number_after_first(string, "abc", 2)

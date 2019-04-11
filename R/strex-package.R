@@ -1,7 +1,12 @@
 #' @import stringr
 #' @importFrom magrittr '%>%' '%<>%' '%T>%'
+NULL
+
+## usethis namespace: start
 #' @useDynLib strex, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
+#' @importFrom tibble tibble
+## usethis namespace: end
 NULL
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
