@@ -34,6 +34,9 @@ the start of a number?}
 \item{negs}{Do you want to allow negative numbers? Note that double negatives
 are not handled here (see the examples).}
 
+\item{sci}{Make the search aware of scientific notation e.g. 2e3 is the same
+as 2000.}
+
 \item{n}{The index of the number (or non-numeric) that you seek. Negative
 indexing is allowed i.e. \code{n = 1} (the default) will give you the first
 number (or non-numeric) whereas \code{n = -1} will give you the last number (or

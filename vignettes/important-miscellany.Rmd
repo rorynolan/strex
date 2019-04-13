@@ -70,9 +70,9 @@ str_extract_non_numerics(string)
 
 ## Split a string by its numbers
 
-```{r split-by-nums}
+```{r split-by-numbers}
 string <- c("aa1bbb2ccc3", "xyz7ayc8jzk99elephant")
-str_split_by_nums(string)
+str_split_by_numbers(string)
 ```
 
 

@@ -8,16 +8,16 @@
 \title{Extract non-numbers from a string.}
 \usage{
 str_extract_non_numerics(string, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE)
+  leading_decimals = FALSE, negs = FALSE, sci = FALSE)
 
 str_nth_non_numeric(string, n, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE)
+  leading_decimals = FALSE, negs = FALSE, sci = FALSE)
 
 str_first_non_numeric(string, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE)
+  leading_decimals = FALSE, negs = FALSE, sci = FALSE)
 
 str_last_non_numeric(string, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE)
+  leading_decimals = FALSE, negs = FALSE, sci = FALSE)
 }
 \arguments{
 \item{string}{A string.}
@@ -30,6 +30,9 @@ the start of a number?}
 
 \item{negs}{Do you want to allow negative numbers? Note that double negatives
 are not handled here (see the examples).}
+
+\item{sci}{Make the search aware of scientific notation e.g. 2e3 is the same
+as 2000.}
 
 \item{n}{The index of the number (or non-numeric) that you seek. Negative
 indexing is allowed i.e. \code{n = 1} (the default) will give you the first

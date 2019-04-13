@@ -48,10 +48,10 @@ indexed. See 'Arguments'.
 \code{str_before_last(...)} is just \code{str_before_nth(..., n = -1)}. }
 }
 \examples{
-string <- "ab..cd..de..fg..h"
-str_after_nth(string, "\\\\.\\\\.", 3)
+string <- "abxxcdxxdexxfgxxh"
+str_after_nth(string, "xx", 3)
 str_before_nth(string, "e", 1)
-str_before_nth(string, "\\\\.", -3)
+str_before_nth(string, "xx", -3)
 str_before_nth(string, ".", -3)
-str_before_nth(rep(string, 2), fixed("."), -3)
+str_before_nth(rep(string, 2), "..x", -3)
 }

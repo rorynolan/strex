@@ -53,12 +53,12 @@ ambig_num_regex <- function(decimals = FALSE, leading_decimals = FALSE,
   if (!any(decimals, leading_decimals, sci)) return(out)
   if (decimals) {
     out <- ifelse(leading_decimals,
-      "\\.\\d+\\.\\d+", "\\d+\\.\\d+\\.\\d+"
+      "\\.\\d+\\.\\d", "\\d+\\.\\d+\\.\\d"
     )
   }
   if (sci) {
-    sci_bit <- ifelse(decimals, "\\d+\\.?[eE]\\d+\\.?\\d*[eE]\\d+",
-      "\\d+[eE]\\d+[eE]\\d+"
+    sci_bit <- ifelse(decimals, "\\d+\\.?[eE]\\d+(\\.\\d|\\.[eE]\\d|[eE]\\d)",
+      "\\d+[eE]\\d+[eE]\\d"
     )
     out <- ifelse(decimals, glue::glue("({sci_bit})|({out})"), sci_bit)
   }
@@ -114,6 +114,9 @@ ambig_warn <- function(string, ambigs) {
 #'   the start of a number?
 #' @param negs Do you want to allow negative numbers? Note that double negatives
 #'   are not handled here (see the examples).
+#' @param sci Make the search aware of scientific notation e.g. 2e3 is the same
+#'   as 2000.
+#'
 #' @return For `str_extract_numbers` and `str_extract_non_numerics`, a list of
 #'   numeric or character vectors, one list element for each element of
 #'   `string`. For `str_nth_number` and `nth_non_numeric`, a vector the same
@@ -204,6 +207,7 @@ str_nth_number <- function(string, n, leave_as_string = FALSE, decimals = FALSE,
     ambigs <- FALSE
     if (str_length(ambig_pattern)) ambigs <- str_detect(string, ambig_pattern)
     if (any(ambigs)) {
+      ambig_warn(string, ambigs)
       not_ambigs <- !ambigs
       out[ambigs] <- NA_character_
       if (n[[1]] == 1) {

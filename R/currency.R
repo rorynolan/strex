@@ -24,7 +24,7 @@
 #' @export
 str_get_currencies <- function(string) {
   checkmate::assert_string(string)
-  ssbn <- str_split_by_nums(string, decimals = TRUE, negs = TRUE)[[1]]
+  ssbn <- str_split_by_numbers(string, decimals = TRUE, negs = TRUE)[[1]]
   num_indices <- which(str_can_be_numeric(ssbn))
   numbers <- as.numeric(ssbn[num_indices])
   before_num_indices <- num_indices - 1

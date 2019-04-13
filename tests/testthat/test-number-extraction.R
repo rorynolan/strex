@@ -122,10 +122,20 @@ test_that("str_extract_numbers works", {
     ),
     -1.4e5
   )
-  expect_equal(
+  expect_warning(expect_equal(
     str_first_number("ab.1.2",
-      decimals = TRUE, leading_decimals = TRUE
+                     decimals = TRUE, leading_decimals = TRUE
     ),
+    NA_real_
+  ),
+  paste0(
+    "NAs introduced by ambiguity.+The first such ambiguity\\s?",
+    "is in string number 1 which is.+'ab.+1.+2'."
+  ))
+  expect_equal(
+    suppressWarnings(str_first_number("ab.1.2",
+      decimals = TRUE, leading_decimals = TRUE
+    )),
     NA_real_
   )
   expect_equal(suppressWarnings(str_last_number("ab.1.2", decimals = TRUE,

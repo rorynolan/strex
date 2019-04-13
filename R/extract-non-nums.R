@@ -1,3 +1,22 @@
+#' Extract non-numerics assuming no number ambiguity.
+#'
+#' Sometimes the strings have ambiguous numbers in them e.g. 2.5.3. These have
+#' to be dealt with by strex (which it does by returning `NA` in those cases).
+#' This helper to `str_extract_non_numerics()` assumes that the input has
+#' no such ambiguities.
+#'
+#' @param string A character vector.
+#' @param num_pattern The regex defining a numer in the current context.
+#'
+#' @return A list of character vectors.
+#'
+#' @noRd
+str_extract_non_numerics_no_ambigs <- function(string, num_pattern) {
+  string_lengths <- str_length(string)
+  num_locs <- str_locate_all(string, num_pattern)
+  unlocated_substrs(string, num_locs)
+}
+
 #' Extract non-numbers from a string.
 #'
 #' `str_extract_non_numerics` extracts the bits of the string that aren't
@@ -30,39 +49,44 @@
 #' str_nth_non_numeric("--123abc456", -2)
 #' @export
 str_extract_non_numerics <- function(string, decimals = FALSE,
-                                     leading_decimals = FALSE, negs = FALSE) {
-  if (leading_decimals == TRUE && decimals == FALSE) {
-    custom_stop(
-      "To allow leading decimals, you need to first allow decimals.",
-      "To allow decimals, use `decimals = TRUE`."
-    )
-  }
+                                     leading_decimals = FALSE, negs = FALSE,
+                                     sci = FALSE) {
   checkmate::assert_character(string)
-  if (decimals) {
-    pattern <- "(?:[0-9]+(?:\\.?[0-9]+)*)+"
-    if (leading_decimals) pattern <- str_c("\\.?", pattern)
-  } else {
-    pattern <- "[0-9]+"
-  }
-  if (negs) pattern %<>% str_c("-?", .)
-  non_numerics <- str_split(string, pattern) %>% str_list_remove_empties()
-  numerics <- str_extract_numbers(string,
-    decimals = decimals,
-    leading_decimals = leading_decimals, negs = negs
+  num_pattern <- num_regex(
+    decimals = decimals, leading_decimals = leading_decimals,
+    negs = negs, sci = sci
   )
-  na_pos <- purrr::map_lgl(numerics, anyNA)
-  non_numerics[na_pos] <- NA_character_
-  non_numerics
+  ambig_pattern <- ambig_num_regex(
+    decimals = decimals,
+    leading_decimals = leading_decimals,
+    sci = sci
+  )
+  ambigs <- num_ambigs(string,
+                       decimals = decimals,
+                       leading_decimals = leading_decimals, sci = sci
+  )
+  out <- vector(mode = "list", length = length(string))
+  if (any(ambigs)) {
+    ambig_warn(string, ambigs)
+    out[ambigs] <- NA_character_
+    not_ambigs <- !ambigs
+    out[not_ambigs] <- str_extract_non_numerics_no_ambigs(string[not_ambigs],
+                                                          num_pattern)
+  } else {
+    out[] <- str_extract_non_numerics_no_ambigs(string, num_pattern)
+  }
+  out
 }
 
 #' @rdname str_extract_non_numerics
 #' @export
 str_nth_non_numeric <- function(string, n, decimals = FALSE,
-                                leading_decimals = FALSE, negs = FALSE) {
+                                leading_decimals = FALSE, negs = FALSE,
+                                sci = FALSE) {
   checkmate::assert_numeric(n)
   checkmate::assert_numeric(abs(n), lower = 1)
   non_numerics <- str_extract_non_numerics(string,
-    decimals = decimals, negs = negs,
+    decimals = decimals, negs = negs, sci = sci,
     leading_decimals = leading_decimals
   )
   str_list_nth_elems(non_numerics, n)
@@ -71,21 +95,23 @@ str_nth_non_numeric <- function(string, n, decimals = FALSE,
 #' @rdname str_extract_non_numerics
 #' @export
 str_first_non_numeric <- function(string, decimals = FALSE,
-                                  leading_decimals = FALSE, negs = FALSE) {
+                                  leading_decimals = FALSE, negs = FALSE,
+                                  sci = FALSE) {
   str_nth_non_numeric(string,
     n = 1,
     decimals = decimals, leading_decimals = leading_decimals,
-    negs = negs
+    negs = negs, sci = sci
   )
 }
 
 #' @rdname str_extract_non_numerics
 #' @export
 str_last_non_numeric <- function(string, decimals = FALSE,
-                                 leading_decimals = FALSE, negs = FALSE) {
+                                 leading_decimals = FALSE, negs = FALSE,
+                                 sci = FALSE) {
   str_nth_non_numeric(string,
     n = -1,
     decimals = decimals, leading_decimals = leading_decimals,
-    negs = negs
+    negs = negs, sci = sci
   )
 }
