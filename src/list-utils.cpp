@@ -14,19 +14,17 @@ using namespace Rcpp;
 //' @noRd
 // [[Rcpp::export]]
 List str_list_remove_empties(List char_list) {
-  List no_empties = clone(char_list);
-  for (int i = 0; i < char_list.length(); i++) {
-    CharacterVector strings = as<CharacterVector>(char_list[i]);
-    int j = 0;
-    while (j < strings.size()) {
-      if (strings[j] == "")
-        strings.erase(j);
-      else
-        j++;
-    }
-    no_empties[i] = strings;
+  R_xlen_t n = char_list.length();
+  List out(n);
+  for (R_xlen_t i = 0; i != n; ++i) {
+    CharacterVector strings = char_list[i];
+    R_xlen_t sz = strings.length();
+    LogicalVector non_empty(sz);
+    for (R_xlen_t j = 0; j != sz; ++j)
+      non_empty[j] = strings[j].size();
+    out[i] = strings[non_empty];
   }
-  return(no_empties);
+  return(out);
 }
 
 //' Get the nth element of each vector in a list of numeric or character
@@ -48,12 +46,12 @@ List str_list_remove_empties(List char_list) {
 //' @return A list.
 //'
 //' @examples
-//' str_list_nth_elems_(list(c("a", "b", "c"), c("d", "f", "a")), 2)
-//' num_list_nth_elems_(list(1:5, 0:2), 4)
+//' str_list_nth_elems_helper(list(c("a", "b", "c"), c("d", "f", "a")), 2)
+//' num_list_nth_elems_helper(list(1:5, 0:2), 4)
 //'
 //' @noRd
 // [[Rcpp::export]]
-CharacterVector str_list_nth_elems_(List char_list, IntegerVector n) {
+CharacterVector str_list_nth_elems_helper(List char_list, IntegerVector n) {
   std::size_t cl_sz = char_list.size(), n_sz = n.size();
   CharacterVector nths;
   if (cl_sz == 1) {

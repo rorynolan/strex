@@ -78,7 +78,7 @@ str_list_nth_elems <- function(char_list, n) {
       your `n` has length {length(n)}.
     ")
   }
-  str_list_nth_elems_(char_list, n)
+  str_list_nth_elems_helper(char_list, n)
 }
 
 

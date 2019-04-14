@@ -106,12 +106,12 @@ str_list_remove_empties <- function(char_list) {
 #' @return A list.
 #'
 #' @examples
-#' str_list_nth_elems_(list(c("a", "b", "c"), c("d", "f", "a")), 2)
-#' num_list_nth_elems_(list(1:5, 0:2), 4)
+#' str_list_nth_elems_helper(list(c("a", "b", "c"), c("d", "f", "a")), 2)
+#' num_list_nth_elems_helper(list(1:5, 0:2), 4)
 #'
 #' @noRd
-str_list_nth_elems_ <- function(char_list, n) {
-    .Call(`_strex_str_list_nth_elems_`, char_list, n)
+str_list_nth_elems_helper <- function(char_list, n) {
+    .Call(`_strex_str_list_nth_elems_helper`, char_list, n)
 }
 
 #' @rdname str_list_nth_elems_

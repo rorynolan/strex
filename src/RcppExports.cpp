@@ -102,15 +102,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// str_list_nth_elems_
-CharacterVector str_list_nth_elems_(List char_list, IntegerVector n);
-RcppExport SEXP _strex_str_list_nth_elems_(SEXP char_listSEXP, SEXP nSEXP) {
+// str_list_nth_elems_helper
+CharacterVector str_list_nth_elems_helper(List char_list, IntegerVector n);
+RcppExport SEXP _strex_str_list_nth_elems_helper(SEXP char_listSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< List >::type char_list(char_listSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(str_list_nth_elems_(char_list, n));
+    rcpp_result_gen = Rcpp::wrap(str_list_nth_elems_helper(char_list, n));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -218,7 +218,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_strex_interleave_correctly", (DL_FUNC) &_strex_interleave_correctly, 3},
     {"_strex_interleave_char_lists", (DL_FUNC) &_strex_interleave_char_lists, 2},
     {"_strex_str_list_remove_empties", (DL_FUNC) &_strex_str_list_remove_empties, 1},
-    {"_strex_str_list_nth_elems_", (DL_FUNC) &_strex_str_list_nth_elems_, 2},
+    {"_strex_str_list_nth_elems_helper", (DL_FUNC) &_strex_str_list_nth_elems_helper, 2},
     {"_strex_num_list_nth_elems_", (DL_FUNC) &_strex_num_list_nth_elems_, 2},
     {"_strex_intmat_list_bind_nth_rows", (DL_FUNC) &_strex_intmat_list_bind_nth_rows, 2},
     {"_strex_lst_char_to_num", (DL_FUNC) &_strex_lst_char_to_num, 1},
