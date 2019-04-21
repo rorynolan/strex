@@ -29,18 +29,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// unlocated_substrs
-List unlocated_substrs(CharacterVector strings, List other_locations);
-RcppExport SEXP _strex_unlocated_substrs(SEXP stringsSEXP, SEXP other_locationsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type strings(stringsSEXP);
-    Rcpp::traits::input_parameter< List >::type other_locations(other_locationsSEXP);
-    rcpp_result_gen = Rcpp::wrap(unlocated_substrs(strings, other_locations));
-    return rcpp_result_gen;
-END_RCPP
-}
 // interleave_strings
 CharacterVector interleave_strings(CharacterVector strings1, CharacterVector strings2);
 RcppExport SEXP _strex_interleave_strings(SEXP strings1SEXP, SEXP strings2SEXP) {
@@ -50,32 +38,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< CharacterVector >::type strings1(strings1SEXP);
     Rcpp::traits::input_parameter< CharacterVector >::type strings2(strings2SEXP);
     rcpp_result_gen = Rcpp::wrap(interleave_strings(strings1, strings2));
-    return rcpp_result_gen;
-END_RCPP
-}
-// interleave_correctly_vec
-CharacterVector interleave_correctly_vec(std::string orig, CharacterVector strings1, CharacterVector strings2);
-RcppExport SEXP _strex_interleave_correctly_vec(SEXP origSEXP, SEXP strings1SEXP, SEXP strings2SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type orig(origSEXP);
-    Rcpp::traits::input_parameter< CharacterVector >::type strings1(strings1SEXP);
-    Rcpp::traits::input_parameter< CharacterVector >::type strings2(strings2SEXP);
-    rcpp_result_gen = Rcpp::wrap(interleave_correctly_vec(orig, strings1, strings2));
-    return rcpp_result_gen;
-END_RCPP
-}
-// interleave_correctly
-List interleave_correctly(CharacterVector orig, List strings1, List strings2);
-RcppExport SEXP _strex_interleave_correctly(SEXP origSEXP, SEXP strings1SEXP, SEXP strings2SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type orig(origSEXP);
-    Rcpp::traits::input_parameter< List >::type strings1(strings1SEXP);
-    Rcpp::traits::input_parameter< List >::type strings2(strings2SEXP);
-    rcpp_result_gen = Rcpp::wrap(interleave_correctly(orig, strings1, strings2));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -139,13 +101,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // lst_char_to_num
-List lst_char_to_num(List x);
-RcppExport SEXP _strex_lst_char_to_num(SEXP xSEXP) {
+List lst_char_to_num(List x, bool commas);
+RcppExport SEXP _strex_lst_char_to_num(SEXP xSEXP, SEXP commasSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< List >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(lst_char_to_num(x));
+    Rcpp::traits::input_parameter< bool >::type commas(commasSEXP);
+    rcpp_result_gen = Rcpp::wrap(lst_char_to_num(x, commas));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -157,6 +120,30 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< List >::type x(xSEXP);
     rcpp_result_gen = Rcpp::wrap(int_lst_first_col(x));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lst_rbind
+IntegerMatrix lst_rbind(List x, NumericVector x_lens);
+RcppExport SEXP _strex_lst_rbind(SEXP xSEXP, SEXP x_lensSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type x_lens(x_lensSEXP);
+    rcpp_result_gen = Rcpp::wrap(lst_rbind(x, x_lens));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lst_rbind_nth_rows
+IntegerMatrix lst_rbind_nth_rows(List x, NumericVector n);
+RcppExport SEXP _strex_lst_rbind_nth_rows(SEXP xSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(lst_rbind_nth_rows(x, n));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -212,17 +199,16 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_strex_match_arg_index", (DL_FUNC) &_strex_match_arg_index, 2},
     {"_strex_lst_df_pos_brace", (DL_FUNC) &_strex_lst_df_pos_brace, 2},
-    {"_strex_unlocated_substrs", (DL_FUNC) &_strex_unlocated_substrs, 2},
     {"_strex_interleave_strings", (DL_FUNC) &_strex_interleave_strings, 2},
-    {"_strex_interleave_correctly_vec", (DL_FUNC) &_strex_interleave_correctly_vec, 3},
-    {"_strex_interleave_correctly", (DL_FUNC) &_strex_interleave_correctly, 3},
     {"_strex_interleave_char_lists", (DL_FUNC) &_strex_interleave_char_lists, 2},
     {"_strex_str_list_remove_empties", (DL_FUNC) &_strex_str_list_remove_empties, 1},
     {"_strex_str_list_nth_elems_helper", (DL_FUNC) &_strex_str_list_nth_elems_helper, 2},
     {"_strex_num_list_nth_elems_", (DL_FUNC) &_strex_num_list_nth_elems_, 2},
     {"_strex_intmat_list_bind_nth_rows", (DL_FUNC) &_strex_intmat_list_bind_nth_rows, 2},
-    {"_strex_lst_char_to_num", (DL_FUNC) &_strex_lst_char_to_num, 1},
+    {"_strex_lst_char_to_num", (DL_FUNC) &_strex_lst_char_to_num, 2},
     {"_strex_int_lst_first_col", (DL_FUNC) &_strex_int_lst_first_col, 1},
+    {"_strex_lst_rbind", (DL_FUNC) &_strex_lst_rbind, 2},
+    {"_strex_lst_rbind_nth_rows", (DL_FUNC) &_strex_lst_rbind_nth_rows, 2},
     {"_strex_paste_collapse", (DL_FUNC) &_strex_paste_collapse, 2},
     {"_strex_paste_collapse_list_elems", (DL_FUNC) &_strex_paste_collapse_list_elems, 2},
     {"_strex_fullocated_substrs", (DL_FUNC) &_strex_fullocated_substrs, 2},

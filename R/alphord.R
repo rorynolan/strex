@@ -86,7 +86,10 @@ str_alphord_nums <- function(strings) {
   if (!all_equal(num_first)) {
     bad_index <- match(!num_first[1], num_first)
     custom_stop(
-      "Either all strings or none should start with numbers.",
+      "
+      It should either be the case that all strings start with numbers or
+      that none of them do.
+      ",
       "
       String number 1 \"{strings[1]}\"
       {ifelse(num_first[1], 'does', 'does not')} start with a number

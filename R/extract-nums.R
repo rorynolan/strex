@@ -5,12 +5,7 @@
 #' characters (0123456789). See the examples to understand how these options
 #' work.
 #'
-#' @param decimals Search for decimal numbers e.g. 12.5?
-#' @param leading_decimals Include leading decimals i.e. .5 is found just the
-#'   same as 0.5?
-#' @param negs Search for negative numbers?
-#' @param sci Make the search aware of scientific notation e.g. 2e3 is the same
-#'   as 2000.
+#' @inheritParams str_extract_numbers
 #'
 #' @return A string. The appropriate regex pattern for searching for the chosen
 #'   types of numbers in strings.
@@ -25,55 +20,73 @@
 #'   negs = TRUE, sci = TRUE
 #' )
 #' @noRd
-num_regex <- function(decimals = FALSE, leading_decimals = FALSE,
-                      negs = FALSE, sci = FALSE) {
+num_regex <- function(decimals = FALSE, leading_decimals = decimals,
+                      negs = FALSE, sci = FALSE, commas = FALSE) {
   if (leading_decimals == TRUE && decimals == FALSE) {
     custom_stop(
       "To allow leading decimals, you need to first allow decimals.",
       "To allow decimals, use `decimals = TRUE`."
     )
   }
-  dec_pattern <- "[0-9]+(\\.[0-9]+)?" # Numbers with optional decimals
-  leading_dec_pattern <- glue::glue("\\.?{dec_pattern}")
-  non_dec_pattern <- "[0-9]+"
+  dec_pattern <- ifelse(commas, "\\d+(?:,?\\d+)*(?:\\.\\d+)?",
+                        "\\d+(?:\\.\\d+)?")
+  leading_dec_pattern <- ifelse(commas,
+                                str_c("(?:(?:\\d+(?:,?\\d+)*(?:\\.\\d+)?)|",
+                                      "(?:\\.?\\d+))"),
+                                "(?:\\d+(?:\\.\\d+)?|\\.?\\d+)")
+  non_dec_pattern <- ifelse(commas, "\\d+(?:,?\\d+)*", "\\d+")
   pattern <- non_dec_pattern
-  if (decimals) {
+  if (decimals)
     pattern <- ifelse(leading_decimals, leading_dec_pattern, dec_pattern)
-  }
   if (sci) {
-    pattern <- glue::glue("({pattern}[eE][+-]?{non_dec_pattern})|({pattern})")
+    pattern <- glue::glue("(?:(?:{pattern}[eE][+-]?{non_dec_pattern})|",
+                          "(?:{pattern}))")
   }
-  if (negs) pattern <- glue::glue("-?({pattern})")
+  if (negs) pattern <- glue::glue("-?(?:{pattern})")
   pattern
 }
 
-ambig_num_regex <- function(decimals = FALSE, leading_decimals = FALSE,
-                            sci = FALSE) {
+ambig_num_regex <- function(decimals = FALSE, leading_decimals = decimals,
+                            sci = FALSE, commas = FALSE) {
   out <- character(1)
   if (!any(decimals, leading_decimals, sci)) return(out)
   if (decimals) {
-    out <- ifelse(leading_decimals,
-      "\\.\\d+\\.\\d", "\\d+\\.\\d+\\.\\d"
-    )
+    if (commas) {
+      out <- ifelse(leading_decimals, "\\.(?:\\d+,?)+\\.\\d",
+                    "(?:\\d+,?)+\\.(?:\\d+,?)+\\.\\d")
+    } else {
+      out <- ifelse(leading_decimals, "\\.\\d+\\.\\d", "\\d\\.\\d+\\.\\d")
+    }
   }
   if (sci) {
-    sci_bit <- ifelse(decimals, "\\d+\\.?[eE]\\d+(\\.\\d|\\.[eE]\\d|[eE]\\d)",
-      "\\d+[eE]\\d+[eE]\\d"
-    )
+    if (commas) {
+      sci_bit <- ifelse(
+        decimals,
+        "\\d\\.?\\d*[eE](?:\\d+(?:,\\d+)*)+(?:\\.\\d|\\.[eE]\\d|[eE]\\d)", ###
+        "\\d[eE](?:\\d+(?:,\\d+)*)+[eE]\\d"
+      )
+    } else {
+      sci_bit <- ifelse(
+        decimals,
+        "\\d\\.?\\d*[eE]\\d+(?:\\.\\d|\\.[eE]\\d|[eE]\\d)",
+        "\\d[eE]\\d+[eE]\\d"
+      )
+    }
     out <- ifelse(decimals, glue::glue("({sci_bit})|({out})"), sci_bit)
   }
   out
 }
 
-num_ambigs <- function(string, decimals = FALSE, leading_decimals = FALSE,
-                       sci = FALSE) {
+num_ambigs <- function(string, decimals = FALSE, leading_decimals = decimals,
+                       sci = FALSE, commas = FALSE) {
   if (!any(c(decimals, sci))) return(FALSE)
   str_detect(string, ambig_num_regex(
-    decimals = decimals, leading_decimals = leading_decimals, sci = sci
+    decimals = decimals, leading_decimals = leading_decimals,
+    sci = sci, commas = commas
   ))
 }
 
-ambig_warn <- function(string, ambigs) {
+ambig_warn <- function(string, ambigs, ambig_regex) {
   first_offender <- match(T, ambigs) %>%
     list(., string[.])
   first_offender[[2]] %<>% {
@@ -82,28 +95,34 @@ ambig_warn <- function(string, ambigs) {
   custom_warn(
     "NAs introduced by ambiguity.",
     "
-              The first such ambiguity is in string number
-              {first_offender[[1]]} which is '{first_offender[[2]]}'.
-              "
+    The first such ambiguity is in string number
+    {first_offender[[1]]} which is '{first_offender[[2]]}'.
+    ",
+    "
+    The offending part of that string is
+    '{str_extract(first_offender[[2]], ambig_regex)}'.
+    "
   )
 }
 
 #' Extract numbers from a string.
 #'
-#' `str_extract_numbers` extracts the numbers (or non-numbers) from a string
-#' where decimals are optionally allowed. `str_nth_number` is a convenient
-#' wrapper for `str_extract_numbers`, allowing you to choose which number you
-#' want. Please run the examples at the bottom of this page to ensure that you
-#' understand how these functions work, and their limitations. These functions
-#' are vectorized over `string`.
+#' Extract the numbers from a string, where decimals, scientific notation and
+#' commas (as separators, not as an alternative to the decimal point) are
+#' optionally allowed.
 #'
 #' If any part of a string contains an ambiguous number (e.g. `1.2.3` would be
 #' ambiguous if `decimals = TRUE` (but not otherwise)), the value returned for
-#' that string will be `NA`. Note that these functions do not know about
-#' scientific notation (e.g. `1e6` for 1000000).
+#' that string will be `NA` and a `warning` will be issued.
 #'
-#' \itemize{ \item `str_first_number(...)` is just `str_nth_number(..., n = 1)`.
-#' \item `str_last_number(...)` is just `str_nth_number(..., n = -1)`. }
+#' With scientific notation, it is assumed that the exponent is not a decimal
+#' number e.g. `2e2.4` is unacceptable. Commas, however, are acceptable in the
+#' exponent, so 2e1,100 is fine and equal to 2e1100 if the option to allow
+#' commas in numbers has been turned on.
+#'
+#' Numbers outside the double precision floating point range (i.e. with absolute
+#' value greater than 1.797693e+308) are read as `Inf` (or `-Inf` if they begin
+#' with a minus sign). This is what `base::as.numeric()` does.
 #'
 #' @param string A string.
 #' @param leave_as_string Do you want to return the number as a string (`TRUE`)
@@ -116,60 +135,50 @@ ambig_warn <- function(string, ambigs) {
 #'   are not handled here (see the examples).
 #' @param sci Make the search aware of scientific notation e.g. 2e3 is the same
 #'   as 2000.
+#' @param commas Allow comma separators in numbers (i.e. interpret 1,100 as a
+#'   single number (one thousand one hundred) rather than two numbers (one and
+#'   one hundred)).
+#'
 #'
 #' @return For `str_extract_numbers` and `str_extract_non_numerics`, a list of
 #'   numeric or character vectors, one list element for each element of
 #'   `string`. For `str_nth_number` and `nth_non_numeric`, a vector the same
 #'   length as `string` (as in `length(string)`, not `nchar(string)`).
 #' @examples
-#' str_extract_numbers(c("abc123abc456", "abc1.23abc456"))
-#' str_extract_numbers(c("abc1.23abc456", "abc1..23abc456"), decimals = TRUE)
-#' str_extract_numbers("abc1..23abc456", decimals = TRUE)
-#' str_extract_numbers("abc1..23abc456",
-#'   decimals = TRUE,
-#'   leading_decimals = TRUE
-#' )
-#' str_extract_numbers("abc1..23abc456",
-#'   decimals = TRUE,
-#'   leading_decimals = TRUE, leave_as_string = TRUE
-#' )
-#' str_extract_numbers("-123abc456")
-#' str_extract_numbers("-123abc456", negs = TRUE)
-#' str_extract_numbers("--123abc456", negs = TRUE) # careful with this one
-#' str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"),
-#'   decimals = TRUE
-#' )
-#' str_first_number("abc1e5")
-#' str_first_number("abc1e5", sci = TRUE)
-#' str_extract_numbers("abc1.4e5", sci = TRUE) # careful
-#' str_extract_numbers("abc1.4e5", sci = TRUE, decimals = TRUE)
-#' str_first_number("abc-1.4e5", sci = TRUE, decimals = TRUE)
-#' str_first_number("abc-1.4e5", sci = TRUE, decimals = TRUE, negs = TRUE)
-#' str_first_number("ab.1.2", decimals = TRUE, leading_decimals = TRUE)
-#' str_nth_number("abc1.23abc456", 2:3)
-#' str_nth_number("abc1.23abc456", 2, decimals = TRUE)
-#' str_nth_number("-123abc456", -2, negs = TRUE)
+#' strings <- c("abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
+#' "abc1,100def1,230.5", "abc1,100e3,215def4e1,000")
+#' str_extract_numbers(strings)
+#' str_extract_numbers(strings, decimals = TRUE)
+#' str_extract_numbers(strings, decimals = TRUE, leading_decimals = TRUE)
+#' str_extract_numbers(strings, commas = TRUE)
+#' str_extract_numbers(strings, decimals = TRUE, leading_decimals = TRUE,
+#' sci = TRUE)
+#' str_extract_numbers(strings, decimals = TRUE, leading_decimals = TRUE,
+#' sci = TRUE, commas = TRUE, negs = TRUE)
+#' str_extract_numbers(strings, decimals = TRUE, leading_decimals = FALSE,
+#' sci = FALSE, commas = TRUE, leave_as_string = TRUE)
+#'
 #' @export
 str_extract_numbers <- function(string, leave_as_string = FALSE,
-                                decimals = FALSE, leading_decimals = FALSE,
-                                negs = FALSE, sci = FALSE) {
+                                decimals = FALSE, leading_decimals = decimals,
+                                negs = FALSE, sci = FALSE, commas = FALSE) {
   checkmate::assert_character(string)
   pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
-    negs = negs, sci = sci
+    negs = negs, sci = sci, commas = commas
   )
   ambig_pattern <- ambig_num_regex(
     decimals = decimals,
     leading_decimals = leading_decimals,
-    sci = sci
+    sci = sci, commas = commas
   )
   ambigs <- num_ambigs(string,
     decimals = decimals,
-    leading_decimals = leading_decimals, sci = sci
+    leading_decimals = leading_decimals, sci = sci, commas = commas
   )
   out <- vector(mode = "list", length = length(string))
   if (any(ambigs)) {
-    ambig_warn(string, ambigs)
+    ambig_warn(string, ambigs, ambig_regex = ambig_pattern)
     out[ambigs] <- NA_character_
     not_ambigs <- !ambigs
     out[not_ambigs] <- str_extract_all(string[not_ambigs], pattern)
@@ -177,19 +186,48 @@ str_extract_numbers <- function(string, leave_as_string = FALSE,
     out[] <- str_extract_all(string, pattern)
   }
   if (leave_as_string) return(out)
-  lst_char_to_num(out)
+  lst_char_to_num(out, commas = commas)
 }
 
-#' @rdname str_extract_numbers
+#' Extract the `n`th number from a string.
+#'
+#' Extract the `n`th number from a string, where decimals, scientific notation
+#' and commas (as separators, not as an alternative to the decimal point) are
+#' optionally allowed.
+#'
+#' \itemize{ \item `str_first_number(...)` is just `str_nth_number(..., n = 1)`.
+#' \item `str_last_number(...)` is just `str_nth_number(..., n = -1)`. }
+#'
+#' For a detailed explanation of the number extraction, see
+#' [str_extract_numbers()].
+#'
+#' @inheritParams str_extract_numbers
 #' @param n The index of the number (or non-numeric) that you seek. Negative
 #'   indexing is allowed i.e. `n = 1` (the default) will give you the first
 #'   number (or non-numeric) whereas `n = -1` will give you the last number (or
 #'   non-numeric), `n = -2` will give you the second last number and so on. The
 #'   function is vectorized over this argument.
+#'
+#' @return A numeric vector (or a character vector if `leave_as_string = TRUE`).
+#'
+#' @examples
+#' strings <- c("abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
+#' "abc1,100def1,230.5", "abc1,100e3,215def4e1,000")
+#' str_nth_number(strings, n = 2)
+#' str_nth_number(strings, n = -2, decimals = TRUE)
+#' str_first_number(strings, decimals = TRUE, leading_decimals = TRUE)
+#' str_last_number(strings, commas = TRUE)
+#' str_nth_number(strings, n = 1, decimals = TRUE, leading_decimals = TRUE,
+#' sci = TRUE)
+#' str_first_number(strings, decimals = TRUE, leading_decimals = TRUE,
+#' sci = TRUE, commas = TRUE, negs = TRUE)
+#' str_last_number(strings, decimals = TRUE, leading_decimals = FALSE,
+#' sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE)
+#'
 #' @export
 str_nth_number <- function(string, n, leave_as_string = FALSE, decimals = FALSE,
-                           leading_decimals = FALSE, negs = FALSE,
-                           sci = FALSE) {
+                           leading_decimals = decimals, negs = FALSE,
+                           sci = FALSE, commas = FALSE) {
   checkmate::assert_numeric(n)
   checkmate::assert_numeric(abs(n), lower = 1)
   out <- character(length(string))
@@ -197,17 +235,17 @@ str_nth_number <- function(string, n, leave_as_string = FALSE, decimals = FALSE,
     matrixStats::allValue(n, value = -1)) {
     pattern <- num_regex(
       decimals = decimals, leading_decimals = leading_decimals,
-      negs = negs, sci = sci
+      negs = negs, sci = sci, commas = commas
     )
     ambig_pattern <- ambig_num_regex(
       decimals = decimals,
       leading_decimals = leading_decimals,
-      sci = sci
+      sci = sci, commas = commas
     )
     ambigs <- FALSE
     if (str_length(ambig_pattern)) ambigs <- str_detect(string, ambig_pattern)
     if (any(ambigs)) {
-      ambig_warn(string, ambigs)
+      ambig_warn(string, ambigs, ambig_regex = ambig_pattern)
       not_ambigs <- !ambigs
       out[ambigs] <- NA_character_
       if (n[[1]] == 1) {
@@ -232,34 +270,37 @@ str_nth_number <- function(string, n, leave_as_string = FALSE, decimals = FALSE,
     numbers <- str_extract_numbers(string,
       leave_as_string = TRUE, negs = negs, sci = sci,
       decimals = decimals,
-      leading_decimals = leading_decimals
+      leading_decimals = leading_decimals, commas = commas
     )
     out <- str_list_nth_elems(numbers, n)
   }
-  if (!leave_as_string) out %<>% as.numeric()
-  out
+  if (leave_as_string) return(out)
+  if (commas) out %<>% str_replace_all(",", "")
+  as.numeric(out)
 }
 
 #' @rdname str_extract_numbers
 #' @export
 str_first_number <- function(string, leave_as_string = FALSE, decimals = FALSE,
-                             leading_decimals = FALSE, negs = FALSE,
-                             sci = FALSE) {
+                             leading_decimals = decimals, negs = FALSE,
+                             sci = FALSE, commas = FALSE) {
   str_nth_number(string,
     n = 1, leave_as_string = leave_as_string,
     decimals = decimals, leading_decimals = leading_decimals,
-    negs = negs, sci = sci
+    negs = negs, sci = sci, commas = commas
   )
 }
 
 #' @rdname str_extract_numbers
 #' @export
 str_last_number <- function(string, leave_as_string = FALSE, decimals = FALSE,
-                            leading_decimals = FALSE, negs = FALSE,
-                            sci = FALSE) {
+                            leading_decimals = decimals, negs = FALSE,
+                            sci = FALSE, commas = FALSE) {
   str_nth_number(string,
     n = -1, leave_as_string = leave_as_string,
     decimals = decimals, leading_decimals = leading_decimals,
-    negs = negs, sci = sci
+    negs = negs, sci = sci, commas = commas
   )
 }
+
+

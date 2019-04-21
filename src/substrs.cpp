@@ -6,8 +6,8 @@ using namespace Rcpp;
 //'
 //' @param s A `std::string`.
 //' @param locs An even length `std::vector<size_t>`. Pairs of numbers
-//' indicating the locations (start position and size) of the substrings to
-//' extract.
+//' indicating the locations (0-indexed, start position and size) of the
+//' substrings to extract.
 //'
 //' @return A character vector.
 //'
@@ -22,3 +22,4 @@ CharacterVector substrs(const std::string& s,
   }
   return out;
 }
+

@@ -60,22 +60,6 @@ test_that("Random Rcpp stuff works", {
     NA_character_
   )
   expect_equal(
-    interleave_correctly_vec("a", character(0), "a"),
-    "a"
-  )
-  expect_equal(
-    interleave_correctly_vec("a", "a", character(0)),
-    "a"
-  )
-  expect_equal(
-    interleave_correctly_vec("ab", "b", "a"),
-    c("a", "b")
-  )
-  expect_equal(
-    interleave_correctly("a", list(), list()),
-    list(NA_character_)
-  )
-  expect_equal(
     interleave_char_lists(list("a"), list()),
     list(NA_character_)
   )

@@ -1,6 +1,11 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
+#include <string>
+#include <regex>
+#include <exception>
+
+#include "stod.h"
 
 //' Remove empty strings from a character list.
 //'
@@ -154,31 +159,12 @@ IntegerVector intmat_list_bind_nth_rows(List intmat_list, IntegerVector n) {
   return out;
 }
 
-NumericVector char_to_num(CharacterVector x) {
-  std::size_t n = x.size();
-  if (n == 0) return NumericVector(0);
-  NumericVector out(n);
-  for (std::size_t i = 0; i != n; ++i) {
-    std::string x_i(x[i]);
-    double number = NA_REAL;
-    try {
-      std::size_t pos;
-      number = std::stod(x_i, &pos);
-      number = ((pos == x_i.size()) ? number : NA_REAL);
-    } catch (const std::invalid_argument& e) {
-      ;  // do nothing
-    }
-    out[i] = number;
-  }
-  return out;
-}
-
 // [[Rcpp::export]]
-List lst_char_to_num(List x) {
+List lst_char_to_num(List x, bool commas) {
   std::size_t n = x.size();
   List out(n);
   for (std::size_t i = 0; i != n; ++i)
-    out[i] = char_to_num(x[i]);
+    out[i] = char_to_num(x[i], commas);
   return out;
 }
 
@@ -189,6 +175,72 @@ List int_lst_first_col(List x) {
   for (std::size_t i = 0; i != n; ++i) {
     IntegerMatrix x_i = as<IntegerMatrix>(x[i]);
     out[i] = x_i.column(0);
+  }
+  return out;
+}
+
+//' rbind all elements of a list.
+//'
+//' Assumes all elements of list are integer matrices with the same number of
+//' columns. Undefined behaviour if not.
+//'
+//' @param x A list of integer matrices all with the same number of rows.
+//' @param x_lens The lengths of the elements of x.
+//'
+//' @return An integer matrix.
+//'
+//' @noRd
+//'
+// [[Rcpp::export]]
+IntegerMatrix lst_rbind(List x, NumericVector x_lens) {
+  const R_xlen_t out_len = sum(x_lens);
+  IntegerMatrix x0 = x[0];
+  R_xlen_t nc = x0.ncol();
+  const R_xlen_t nr = out_len / nc;
+  R_xlen_t r = 0;
+  IntegerMatrix out(nr, nc);
+  for (R_xlen_t i = 0, x_len = x.length(); i != x_len; ++i) {
+    IntegerMatrix intmat_i = x[i];
+    for (R_xlen_t r_i = 0, nr_i = intmat_i.nrow(); r_i != nr_i; ++r_i) {
+      for (R_xlen_t c_i = 0; c_i != nc; ++c_i)
+        out(r, c_i) = intmat_i(r_i, c_i);
+      ++r;
+    }
+  }
+  return out;
+}
+
+//' rbind the nth rows of all elements of a list.
+//'
+//' Assumes all elements of list are integer matrices with the same number of
+//' columns. Undefined behaviour if not.
+//'
+//' @param x A list of integer matrices all with the same number of rows.
+//' @param x_lens The lengths of the elements of x.
+//'
+//' @return An integer matrix.
+//'
+//' @noRd
+//'
+// [[Rcpp::export]]
+IntegerMatrix lst_rbind_nth_rows(List x, NumericVector n) {
+  const R_xlen_t x_len = x.length();
+  IntegerMatrix x0 = x[0];
+  R_xlen_t nc = x0.ncol();
+  IntegerMatrix out(x_len, nc);
+  if (n.length() > 1) {
+    for (R_xlen_t i = 0; i != x_len; ++i) {
+      IntegerMatrix intmat_i = x[i];
+      for (R_xlen_t c = 0; c != nc; ++c)
+        out(i, c) = intmat_i(n[i] - 1, c);
+    }
+  } else {
+    for (R_xlen_t i = 0; i != x_len; ++i) {
+      IntegerMatrix intmat_i = x[i];
+      for (R_xlen_t c = 0; c != nc; ++c) {
+        out(i, c) = intmat_i(n[0] - 1, c);
+      }
+    }
   }
   return out;
 }

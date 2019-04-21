@@ -19,7 +19,13 @@ test_that("str_alphord_nums works", {
   )
   expect_error(
     str_alphord_nums(c("abc9def55", "abc9def5", "abc10xyz7")),
-    "The non-number bits of every string must be the same."
+    paste0(
+      "The non-number bits of every string must be the\\s?",
+      "same.+The first pair of your `strings` with\\s?",
+      "different.+non-number bits are strings 1 and 3.+They\\s?",
+      "are \"abc9def55\"\\s?",
+      "and \"abc10xyz7\""
+    )
   )
   expect_error(
     str_alphord_nums(c("abc9def55", "9abc10def7")),
@@ -27,7 +33,14 @@ test_that("str_alphord_nums works", {
   )
   expect_error(
     str_alphord_nums(c("0abc9def55g", "abc10def7g0")),
-    "Either all strings or none should start with numbers."
+    paste0(
+      "It should either be the case that all strings start\\s?",
+      "with.+numbers or that none of them do.+String number 1\\s?",
+      "\"0abc9def55g\" does\\s?",
+      "start with a number.+whereas string number 2\\s?",
+      "\"abc10def7g0\" does\\s?",
+      "not, start.+with a number."
+    )
   )
   expect_error(
     str_alphord_nums("abc"),

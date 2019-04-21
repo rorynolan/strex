@@ -9,37 +9,6 @@ lst_df_pos_brace <- function(positions, braces) {
     .Call(`_strex_lst_df_pos_brace`, positions, braces)
 }
 
-#' Negate `str_locate()`.
-#'
-#' `str_locate()` tells you where bits of a string matching your pattern are.
-#' `str_unlocate()` takes the output of `str_locate()` and gives you the
-#' locations of the substrings _not_ located.
-#'
-#' @param x A two-column integer matrix: the output of str_locate.
-#' @param string_length The length of the searched string.
-#'
-#' @return An even-length integer vector. Each pair of elements defines a
-#' substring by the position of the first character and the substring size
-#' (this is ideal for feeding into C++'s `string::substr()`).
-#'
-#' @noRd
-NULL
-
-#' Get the unlocated parts of strings.
-#'
-#' Given a character vector and the output from `str_locate_all()`, get the
-#' unlocated substrings (not their locations, the actual strings).
-#'
-#' @param strings A character vector.
-#' @param other_locations The output of `str_locate_all()`.
-#'
-#' @return A list of character vectors, as output by e.g. `str_extract_all()`.
-#'
-#' @noRd
-unlocated_substrs <- function(strings, other_locations) {
-    .Call(`_strex_unlocated_substrs`, strings, other_locations)
-}
-
 #' Interleave two vectors of strings.
 #'
 #' Make a vector of strings where the first element is from `strings1`, the
@@ -59,14 +28,6 @@ unlocated_substrs <- function(strings, other_locations) {
 #' @noRd
 interleave_strings <- function(strings1, strings2) {
     .Call(`_strex_interleave_strings`, strings1, strings2)
-}
-
-interleave_correctly_vec <- function(orig, strings1, strings2) {
-    .Call(`_strex_interleave_correctly_vec`, orig, strings1, strings2)
-}
-
-interleave_correctly <- function(orig, strings1, strings2) {
-    .Call(`_strex_interleave_correctly`, orig, strings1, strings2)
 }
 
 interleave_char_lists <- function(strings1, strings2) {
@@ -125,12 +86,44 @@ intmat_list_bind_nth_rows <- function(intmat_list, n) {
     .Call(`_strex_intmat_list_bind_nth_rows`, intmat_list, n)
 }
 
-lst_char_to_num <- function(x) {
-    .Call(`_strex_lst_char_to_num`, x)
+lst_char_to_num <- function(x, commas) {
+    .Call(`_strex_lst_char_to_num`, x, commas)
 }
 
 int_lst_first_col <- function(x) {
     .Call(`_strex_int_lst_first_col`, x)
+}
+
+#' rbind all elements of a list.
+#'
+#' Assumes all elements of list are integer matrices with the same number of
+#' columns. Undefined behaviour if not.
+#'
+#' @param x A list of integer matrices all with the same number of rows.
+#' @param x_lens The lengths of the elements of x.
+#'
+#' @return An integer matrix.
+#'
+#' @noRd
+#'
+lst_rbind <- function(x, x_lens) {
+    .Call(`_strex_lst_rbind`, x, x_lens)
+}
+
+#' rbind the nth rows of all elements of a list.
+#'
+#' Assumes all elements of list are integer matrices with the same number of
+#' columns. Undefined behaviour if not.
+#'
+#' @param x A list of integer matrices all with the same number of rows.
+#' @param x_lens The lengths of the elements of x.
+#'
+#' @return An integer matrix.
+#'
+#' @noRd
+#'
+lst_rbind_nth_rows <- function(x, n) {
+    .Call(`_strex_lst_rbind_nth_rows`, x, n)
 }
 
 #' Paste a vector of strings into a single string.

@@ -1,13 +1,37 @@
 context("Currency")
-test_that("`str_get_currencies()` works", {
+test_that("`str_extract_currencies()` works", {
+  string <- "35.00 $1.14 abc5 $3.8 77"
   expect_equal(
-    str_get_currencies("35.00 $1.14 abc5 $3.8 77"),
+    str_extract_currencies(string),
     tibble::tibble(
-      currency = c("", "$", "c", "$", " "),
+      string_num = 1, string = string,
+      curr_sym = c("", "$", "c", "$", " "),
       amount = c(35, 1.14, 5, 3.8, 77)
     )
   )
+  string <- c(
+    "35.00 $1.14", "abc5 $3.8 77", "-$1.5e6",
+    "over £1,000"
+  )
+  reps <- c(2, 3, 1, 1)
+  expect_equal(str_extract_currencies(string),
+  tibble::tibble(
+    string_num = rep(seq_along(string), reps),
+    string = rep(string, reps),
+    curr_sym = c("", "$", "c", "$", " ", "$", "£"),
+    amount = c(35, 1.14, 5, 3.8, 77, -1.5e6, 1000)
+  )
+  )
 })
-test_that("`str_get_currency()` works", {
-  expect_equal(str_get_currency(c("ab3 13", "$1")), c("b", "$"))
+test_that("`str_extract_currency()` works", {
+  string <- c("ab3 13", "$1")
+  expect_equal(str_nth_currency(string, n = 2),
+               tibble::tibble(string_num = seq_along(string), string = string,
+                              curr_sym = c(" ", NA), amount = c(13, NA)))
+  string <- c("35.00 $1.14", "abc5 $3.8", "stuff")
+  expect_equal(str_nth_currency(string, c(
+    1,
+    2, 1
+  )), tibble::tibble(string_num = seq_along(string), string = string,
+                     curr_sym = c("", "$", NA), amount = c(35, 3.8, NA)))
 })
