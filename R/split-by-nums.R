@@ -33,8 +33,8 @@ str_split_by_numbers_no_ambigs <- function(string, num_pattern) {
 #' str_split_by_numbers("22")
 #' @export
 str_split_by_numbers <- function(string, decimals = FALSE,
-                              leading_decimals = FALSE, negs = FALSE,
-                              sci = FALSE) {
+                                 leading_decimals = FALSE, negs = FALSE,
+                                 sci = FALSE) {
   checkmate::assert_character(string)
   num_pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
@@ -46,16 +46,18 @@ str_split_by_numbers <- function(string, decimals = FALSE,
     sci = sci
   )
   ambigs <- num_ambigs(string,
-                       decimals = decimals,
-                       leading_decimals = leading_decimals, sci = sci
+    decimals = decimals,
+    leading_decimals = leading_decimals, sci = sci
   )
   out <- vector(mode = "list", length = length(string))
   if (any(ambigs)) {
     ambig_warn(string, ambigs)
     out[ambigs] <- NA_character_
     not_ambigs <- !ambigs
-    out[not_ambigs] <- str_split_by_numbers_no_ambigs(string[not_ambigs],
-                                                          num_pattern)
+    out[not_ambigs] <- str_split_by_numbers_no_ambigs(
+      string[not_ambigs],
+      num_pattern
+    )
   } else {
     out[] <- str_split_by_numbers_no_ambigs(string, num_pattern)
   }

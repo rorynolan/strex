@@ -29,8 +29,10 @@ is vectorized over \code{string}.
 currency amounts, you get an amount and currency symbol of \code{NA}.}
 }
 \examples{
-str_extract_currencies(c("35.00 $1.14", "abc5 $3.8 77",
-"-$1.5e6", "over £1,000"))
+str_extract_currencies(c(
+  "35.00 $1.14", "abc5 $3.8 77",
+  "-$1.5e6", "over £1,000"
+))
 }
 \seealso{
 \code{\link[=str_nth_currency]{str_nth_currency()}}

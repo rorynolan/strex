@@ -2,9 +2,15 @@
 % Please edit documentation in R/currency.R
 \name{str_nth_currency}
 \alias{str_nth_currency}
+\alias{str_first_currency}
+\alias{str_last_currency}
 \title{Extract the \code{n}th currency amount from a string.}
 \usage{
 str_nth_currency(string, n)
+
+str_first_currency(string)
+
+str_last_currency(string)
 }
 \arguments{
 \item{string}{A character vector.}
@@ -19,9 +25,11 @@ in the tibble detailing the string number and string that it was extracted
 from, the currency symbol and the amount.
 }
 \description{
-This function is vectorized over \code{string} and \code{n}. \code{\link[=str_extract_currencies]{str_extract_currencies()}}
-extracts all currency amounts but \code{str_nth_currency()} just gets the \code{n}th
-currency amount from each string.
+These functions are vectorized over \code{string} and \code{n}.
+\code{\link[=str_extract_currencies]{str_extract_currencies()}} extracts all currency amounts but
+\code{str_nth_currency()} just gets the \code{n}th currency amount from each string.
+\code{str_first_currency(string)} and \code{str_last_currency(string)} are just
+wrappers for \code{str_nth_currency(string, n = 1)} and \code{str_nth_currency(string, n = -1)}.
 }
 \details{
 \itemize{\item "-$2.00" and "$-2.00" are interpreted as negative two dollars.
@@ -29,7 +37,9 @@ currency amount from each string.
 currency amounts, you get an amount and currency symbol of \code{NA}.}
 }
 \examples{
-str_nth_currency(c("ab3 13", "$1"), n = 2)
-str_nth_currency(c("35.00 $1.14", "abc5 $3.8", "stuff"), c(1, 2, 1))
-
+string <- c("ab3 13", "$1", "35.00 $1.14", "abc5 $3.8", "stuff")
+str_nth_currency(string, n = 2)
+str_nth_currency(string, c(1, 2, 1, 2, 1))
+str_first_currency(string)
+str_last_currency(string)
 }

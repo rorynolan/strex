@@ -34,7 +34,8 @@ Suggests:
     rmarkdown,
     pacman,
     covr,
-    spelling
+    spelling,
+    purrr
 SystemRequirements: C++11
 VignetteBuilder: knitr
 URL: https://rorynolan.github.io/strex/

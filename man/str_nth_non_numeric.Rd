@@ -18,26 +18,52 @@ str_last_non_numeric(string, decimals = FALSE,
   leading_decimals = decimals, negs = FALSE, sci = FALSE,
   commas = FALSE)
 }
+\arguments{
+\item{string}{A string.}
+
+\item{n}{A numeric vector of length 1 or with length equal to the length of
+\code{string}.
+
+\itemize{ \item \code{str_first_non_numeric(...)} is just
+\code{str_nth_non_numeric(..., n = 1)}. \item \code{str_last_non_numeric(...)} is
+just \code{str_nth_non_numeric(..., n = -1)}. }}
+
+\item{decimals}{Do you want to include the possibility of decimal numbers
+(\code{TRUE}) or not (\code{FALSE}, the default).}
+
+\item{leading_decimals}{Do you want to allow a leading decimal point to be
+the start of a number?}
+
+\item{negs}{Do you want to allow negative numbers? Note that double negatives
+are not handled here (see the examples).}
+
+\item{sci}{Make the search aware of scientific notation e.g. 2e3 is the same
+as 2000.}
+
+\item{commas}{Allow comma separators in numbers (i.e. interpret 1,100 as a
+single number (one thousand one hundred) rather than two numbers (one and
+one hundred)).}
+}
 \description{
 Extract the \code{n}th non-numeric bit of a string where numbers are optionally
 defined with decimals, scientific notation and commas (as separators, not as
 an alternative to the decimal point).
 }
-\details{
-\itemize{ \item \code{str_first_non_numeric(...)} is just
-\code{str_nth_non_numeric(..., n = 1)}. \item \code{str_last_non_numeric(...)} is just
-\code{str_nth_non_numeric(..., n = -1)}. }
-}
 \examples{
-strings <- c("abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
-"abc1,100def1,230.5", "abc1,100e3,215def4e1,000")
+strings <- c(
+  "abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
+  "abc1,100def1,230.5", "abc1,100e3,215def4e1,000"
+)
 str_nth_non_numeric(strings, n = 2)
 str_nth_non_numeric(strings, n = -2, decimals = TRUE)
 str_first_non_numeric(strings, decimals = TRUE, leading_decimals = FALSE)
 str_last_non_numeric(strings, commas = TRUE)
-str_nth_non_numeric(strings, n = 1, decimals = TRUE, leading_decimals = TRUE,
-sci = TRUE)
-str_first_non_numeric(strings, decimals = TRUE, leading_decimals = TRUE,
-sci = TRUE, commas = TRUE, negs = TRUE)
-
+str_nth_non_numeric(strings,
+  n = 1, decimals = TRUE, leading_decimals = TRUE,
+  sci = TRUE
+)
+str_first_non_numeric(strings,
+  decimals = TRUE, leading_decimals = TRUE,
+  sci = TRUE, commas = TRUE, negs = TRUE
+)
 }

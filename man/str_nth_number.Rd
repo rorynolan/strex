@@ -52,17 +52,24 @@ For a detailed explanation of the number extraction, see
 \code{\link[=str_extract_numbers]{str_extract_numbers()}}.
 }
 \examples{
-strings <- c("abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
-"abc1,100def1,230.5", "abc1,100e3,215def4e1,000")
+strings <- c(
+  "abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
+  "abc1,100def1,230.5", "abc1,100e3,215def4e1,000"
+)
 str_nth_number(strings, n = 2)
 str_nth_number(strings, n = -2, decimals = TRUE)
 str_first_number(strings, decimals = TRUE, leading_decimals = TRUE)
 str_last_number(strings, commas = TRUE)
-str_nth_number(strings, n = 1, decimals = TRUE, leading_decimals = TRUE,
-sci = TRUE)
-str_first_number(strings, decimals = TRUE, leading_decimals = TRUE,
-sci = TRUE, commas = TRUE, negs = TRUE)
-str_last_number(strings, decimals = TRUE, leading_decimals = FALSE,
-sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE)
-
+str_nth_number(strings,
+  n = 1, decimals = TRUE, leading_decimals = TRUE,
+  sci = TRUE
+)
+str_first_number(strings,
+  decimals = TRUE, leading_decimals = TRUE,
+  sci = TRUE, commas = TRUE, negs = TRUE
+)
+str_last_number(strings,
+  decimals = TRUE, leading_decimals = FALSE,
+  sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE
+)
 }

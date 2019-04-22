@@ -12,7 +12,8 @@ test_that("str_extract_numbers works", {
   )
   expect_equal(
     str_extract_numbers("abc1..23abc456",
-                        decimals = TRUE, leading_decimals = FALSE),
+      decimals = TRUE, leading_decimals = FALSE
+    ),
     list(c(1, 23, 456))
   )
   expect_equal(str_extract_numbers("abc1..23abc456",
@@ -43,8 +44,10 @@ test_that("str_extract_numbers works", {
     list(c("abc", "abc"))
   )
   expect_equal(
-    str_extract_non_numerics("abc1..23abc456", decimals = TRUE,
-                             leading_decimals = FALSE),
+    str_extract_non_numerics("abc1..23abc456",
+      decimals = TRUE,
+      leading_decimals = FALSE
+    ),
     list(c("abc", "..", "abc"))
   )
   expect_equal(str_extract_non_numerics("abc1..23abc456",
@@ -68,8 +71,8 @@ test_that("str_extract_numbers works", {
     )
   )
   expect_equal(suppressWarnings(
-    str_extract_numbers("abc1.2.3", decimals = TRUE)), list(NA_real_)
-  )
+    str_extract_numbers("abc1.2.3", decimals = TRUE)
+  ), list(NA_real_))
   expect_warning(
     str_extract_numbers("ab.1.2",
       decimals = TRUE,
@@ -81,8 +84,8 @@ test_that("str_extract_numbers works", {
     )
   )
   expect_warning(str_extract_numbers("ab.1.2",
-                                     decimals = TRUE,
-                                     leading_decimals = TRUE
+    decimals = TRUE,
+    leading_decimals = TRUE
   ), paste0(
     "NAs introduced by ambiguity.+The first such ambiguity\\s?",
     "is in string number 1 which is.+'ab.+1.+2'."
@@ -124,24 +127,28 @@ test_that("str_extract_numbers works", {
     ),
     -1.4e5
   )
-  expect_warning(expect_equal(
-    str_first_number("ab.1.2",
-                     decimals = TRUE, leading_decimals = TRUE
+  expect_warning(
+    expect_equal(
+      str_first_number("ab.1.2",
+        decimals = TRUE, leading_decimals = TRUE
+      ),
+      NA_real_
     ),
-    NA_real_
-  ),
-  paste0(
-    "NAs introduced by ambiguity.+The first such ambiguity\\s?",
-    "is in string number 1 which is.+'ab.+1.+2'."
-  ))
+    paste0(
+      "NAs introduced by ambiguity.+The first such ambiguity\\s?",
+      "is in string number 1 which is.+'ab.+1.+2'."
+    )
+  )
   expect_equal(
     suppressWarnings(str_first_number("ab.1.2",
       decimals = TRUE, leading_decimals = TRUE
     )),
     NA_real_
   )
-  expect_equal(suppressWarnings(str_last_number("ab.1.2", decimals = TRUE,
-                               leading_decimals = TRUE)), NA_real_)
+  expect_equal(suppressWarnings(str_last_number("ab.1.2",
+    decimals = TRUE,
+    leading_decimals = TRUE
+  )), NA_real_)
   expect_equal(
     str_extract_non_numerics("--123abc456", negs = TRUE),
     list(c("-", "abc"))
@@ -168,90 +175,148 @@ test_that("str_extract_numbers works", {
     "abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
     "abc1,100def1,230.5", "abc1,100e3,215def4e1,000"
   )
-  expect_equal(str_nth_number(strings, n = 2),
-               c(456, 12, 4, 100, 100))
-  expect_equal(str_nth_number(strings, n = -2, decimals = TRUE),
-               c(123, 0.12, 34.5, 1, 1))
-  expect_equal(str_first_number(strings,
-                                decimals = TRUE, leading_decimals = TRUE),
-               c(123, 0.12, 0.12, 1, 1))
-  expect_equal(str_last_number(strings, commas = TRUE),
-               c(456, 345, 9, 5, 1000))
+  expect_equal(
+    str_nth_number(strings, n = 2),
+    c(456, 12, 4, 100, 100)
+  )
+  expect_equal(
+    str_nth_number(strings, n = -2, decimals = TRUE),
+    c(123, 0.12, 34.5, 1, 1)
+  )
+  expect_equal(
+    str_first_number(strings,
+      decimals = TRUE, leading_decimals = TRUE
+    ),
+    c(123, 0.12, 0.12, 1, 1)
+  )
+  expect_equal(
+    str_last_number(strings, commas = TRUE),
+    c(456, 345, 9, 5, 1000)
+  )
   expect_equal(str_nth_number(strings,
-                              n = 1, decimals = TRUE, leading_decimals = TRUE,
-                              sci = TRUE
+    n = 1, decimals = TRUE, leading_decimals = TRUE,
+    sci = TRUE
   ), c(123, 0.12, 1200, 1, 1))
   expect_equal(str_first_number(strings,
-                                decimals = TRUE, leading_decimals = TRUE,
-                                sci = TRUE, commas = TRUE, negs = TRUE
+    decimals = TRUE, leading_decimals = TRUE,
+    sci = TRUE, commas = TRUE, negs = TRUE
   ), c(123, -0.12, 1200, 1100, Inf))
   expect_equal(str_last_number(strings,
-                               decimals = TRUE, leading_decimals = FALSE,
-                               sci = FALSE, commas = TRUE, leave_as_string = TRUE
+    decimals = TRUE, leading_decimals = FALSE,
+    sci = FALSE, commas = TRUE, leave_as_string = TRUE
   ), c("456", "345", "9", "1,230.5", "1,000"))
-  expect_equal(str_extract_numbers(strings),
-               list(c(123, 456), c(0, 12, 345), c(12, 4, 34, 5, 9), c(1, 100,
-                                                                      1, 230, 5), c(1, 100, 3, 215, 4, 1, 0)))
+  expect_equal(
+    str_extract_numbers(strings),
+    list(c(123, 456), c(0, 12, 345), c(12, 4, 34, 5, 9), c(
+      1, 100,
+      1, 230, 5
+    ), c(1, 100, 3, 215, 4, 1, 0))
+  )
+  expect_equal(
+    str_extract_numbers(strings,
+      decimals = TRUE, leading_decimals = FALSE
+    ),
+    list(c(123, 456), c(0.12, 345), c(12, 4, 34.5, 9), c(
+      1, 100,
+      1, 230.5
+    ), c(1, 100, 3, 215, 4, 1, 0))
+  )
+  expect_equal(
+    str_extract_numbers(strings,
+      decimals = TRUE, leading_decimals = TRUE
+    ),
+    list(c(123, 456), c(0.12, 0.345), c(0.12, 4, 34.5, 9), c(
+      1, 100,
+      1, 230.5
+    ), c(1, 100, 3, 215, 4, 1, 0))
+  )
+  expect_equal(
+    str_extract_numbers(strings, commas = TRUE),
+    list(c(123, 456), c(0, 12, 345), c(12, 4, 34, 5, 9), c(
+      1100,
+      1230, 5
+    ), c(1100, 3215, 4, 1000))
+  )
   expect_equal(str_extract_numbers(strings,
-                                   decimals = TRUE, leading_decimals = FALSE),
-               list(c(123, 456), c(0.12, 345), c(12, 4, 34.5, 9), c(1, 100,
-                                                                    1, 230.5), c(1, 100, 3, 215, 4, 1, 0)))
+    decimals = TRUE, sci = TRUE
+  ), list(c(123, 456), c(0.12, 0.345), c(1200, 3.45e+10), c(
+    1, 100,
+    1, 230.5
+  ), c(1, 1e+05, 215, 40, 0)))
   expect_equal(str_extract_numbers(strings,
-                                   decimals = TRUE, leading_decimals = TRUE),
-               list(c(123, 456), c(0.12, 0.345), c(0.12, 4, 34.5, 9), c(1, 100,
-                                                                        1, 230.5), c(1, 100, 3, 215, 4, 1, 0)))
-  expect_equal(str_extract_numbers(strings, commas = TRUE),
-               list(c(123, 456), c(0, 12, 345), c(12, 4, 34, 5, 9), c(1100,
-                                                                      1230, 5), c(1100, 3215, 4, 1000)))
+    decimals = TRUE, sci = TRUE, commas = TRUE, negs = TRUE
+  ), list(c(123, 456), c(-0.12, 0.345), c(1200, 3.45e+10), c(
+    1100,
+    1230.5
+  ), c(Inf, Inf)))
   expect_equal(str_extract_numbers(strings,
-                                   decimals = TRUE, sci = TRUE
-  ), list(c(123, 456), c(0.12, 0.345), c(1200, 3.45e+10), c(1, 100,
-                                                            1, 230.5), c(1, 1e+05, 215, 40, 0)))
-  expect_equal(str_extract_numbers(strings,
-                                   decimals = TRUE, sci = TRUE, commas = TRUE, negs = TRUE
-  ), list(c(123, 456), c(-0.12, 0.345), c(1200, 3.45e+10), c(1100,
-                                                             1230.5), c(Inf, Inf)))
-  expect_equal(str_extract_numbers(strings,
-                                   decimals = TRUE, leading_decimals = FALSE,
-                                   sci = FALSE, commas = TRUE, leave_as_string = TRUE
-  ), list(c("123", "456"), c("0.12", "345"), c("12", "4", "34.5",
-                                               "9"), c("1,100", "1,230.5"), c("1,100", "3,215", "4", "1,000"
-                                               )))
-  expect_equal(str_extract_non_numerics(strings),
-               list(c("abc", "def"), c("abc-", ".", "def."), c("abc.", "e",
-                                                               "def", ".", "e"), c("abc", ",", "def", ",", "."), c("abc", ",",
-                                                                                                                   "e", ",", "def", "e", ",")))
-  expect_equal(str_extract_non_numerics(strings, decimals = TRUE, leading_decimals = FALSE), list(c("abc", "def"), c("abc-", "def."), c("abc.", "e", "def",
-                                                                                                                                        "e"), c("abc", ",", "def", ","), c("abc", ",", "e", ",", "def",
-                                                                                                                                                                           "e", ",")))
-  expect_equal(str_extract_non_numerics(strings, decimals = TRUE), list(c("abc", "def"), c("abc-", "def"), c("abc", "e", "def",
-                                                                                                             "e"), c("abc", ",", "def", ","), c("abc", ",", "e", ",", "def",
-                                                                                                                                                "e", ",")))
-  expect_equal(str_extract_non_numerics(strings, commas = TRUE), list(c("abc", "def"), c("abc-", ".", "def."), c("abc.", "e",
-                                                                                                                 "def", ".", "e"), c("abc", "def", "."), c("abc", "e", "def",
-                                                                                                                                                           "e")))
+    decimals = TRUE, leading_decimals = FALSE,
+    sci = FALSE, commas = TRUE, leave_as_string = TRUE
+  ), list(c("123", "456"), c("0.12", "345"), c(
+    "12", "4", "34.5",
+    "9"
+  ), c("1,100", "1,230.5"), c("1,100", "3,215", "4", "1,000")))
+  expect_equal(
+    str_extract_non_numerics(strings),
+    list(c("abc", "def"), c("abc-", ".", "def."), c(
+      "abc.", "e",
+      "def", ".", "e"
+    ), c("abc", ",", "def", ",", "."), c(
+      "abc", ",",
+      "e", ",", "def", "e", ","
+    ))
+  )
+  expect_equal(str_extract_non_numerics(strings, decimals = TRUE, leading_decimals = FALSE), list(c("abc", "def"), c("abc-", "def."), c(
+    "abc.", "e", "def",
+    "e"
+  ), c("abc", ",", "def", ","), c(
+    "abc", ",", "e", ",", "def",
+    "e", ","
+  )))
+  expect_equal(str_extract_non_numerics(strings, decimals = TRUE), list(c("abc", "def"), c("abc-", "def"), c(
+    "abc", "e", "def",
+    "e"
+  ), c("abc", ",", "def", ","), c(
+    "abc", ",", "e", ",", "def",
+    "e", ","
+  )))
+  expect_equal(str_extract_non_numerics(strings, commas = TRUE), list(c("abc", "def"), c("abc-", ".", "def."), c(
+    "abc.", "e",
+    "def", ".", "e"
+  ), c("abc", "def", "."), c(
+    "abc", "e", "def",
+    "e"
+  )))
   expect_equal(str_extract_non_numerics(strings,
-                                        decimals = TRUE, leading_decimals = TRUE,
-                                        sci = TRUE
-  ), list(c("abc", "def"), c("abc-", "def"), c("abc", "def"), c("abc",
-                                                                ",", "def", ","), c("abc", ",", ",", "def", ",")))
+    decimals = TRUE, leading_decimals = TRUE,
+    sci = TRUE
+  ), list(c("abc", "def"), c("abc-", "def"), c("abc", "def"), c(
+    "abc",
+    ",", "def", ","
+  ), c("abc", ",", ",", "def", ",")))
   expect_equal(str_extract_non_numerics(strings,
-                                        decimals = TRUE, leading_decimals = TRUE,
-                                        sci = TRUE, commas = TRUE, negs = TRUE
-  ), list(c("abc", "def"), c("abc", "def"), c("abc", "def"), c("abc",
-                                                               "def"), c("abc", "def")))
+    decimals = TRUE, leading_decimals = TRUE,
+    sci = TRUE, commas = TRUE, negs = TRUE
+  ), list(c("abc", "def"), c("abc", "def"), c("abc", "def"), c(
+    "abc",
+    "def"
+  ), c("abc", "def")))
   expect_equal(str_nth_non_numeric(strings, n = 2), c("def", ".", "e", ",", ","))
-  expect_equal(str_nth_non_numeric(strings, n = -2, decimals = TRUE),
-               c("abc", "abc-", "def", "def", "e"))
-  expect_equal(str_first_non_numeric(strings, decimals = TRUE,
-                                     leading_decimals = FALSE), c("abc", "abc-", "abc.", "abc", "abc"))
+  expect_equal(
+    str_nth_non_numeric(strings, n = -2, decimals = TRUE),
+    c("abc", "abc-", "def", "def", "e")
+  )
+  expect_equal(str_first_non_numeric(strings,
+    decimals = TRUE,
+    leading_decimals = FALSE
+  ), c("abc", "abc-", "abc.", "abc", "abc"))
   expect_equal(str_last_non_numeric(strings, commas = TRUE), c("def", "def.", "e", ".", "e"))
   expect_equal(str_nth_non_numeric(strings,
-                                   n = 1, decimals = TRUE, leading_decimals = TRUE,
-                                   sci = TRUE
+    n = 1, decimals = TRUE, leading_decimals = TRUE,
+    sci = TRUE
   ), c("abc", "abc-", "abc", "abc", "abc"))
   expect_equal(str_first_non_numeric(strings,
-                                     decimals = TRUE, leading_decimals = TRUE,
-                                     sci = TRUE, commas = TRUE, negs = TRUE
+    decimals = TRUE, leading_decimals = TRUE,
+    sci = TRUE, commas = TRUE, negs = TRUE
   ), c("abc", "abc", "abc", "abc", "abc"))
 })

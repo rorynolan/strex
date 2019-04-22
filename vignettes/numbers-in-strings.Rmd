@@ -108,6 +108,15 @@ tibble::tibble(img_names,
 ```
 
 
+## Other number formats
+
+`strex` can also deal with numbers in scientific and comma notation.
+
+```{r scicom}
+string <- c("$1,000", "$1e6")
+str_first_number(string, commas = TRUE, sci = TRUE)
+```
+
 # All of the number functions
 
 There are a whole host of functions for extracting numbers from strings in the `strex` package:

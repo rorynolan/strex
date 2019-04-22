@@ -29,18 +29,25 @@ num_regex <- function(decimals = FALSE, leading_decimals = decimals,
     )
   }
   dec_pattern <- ifelse(commas, "\\d+(?:,?\\d+)*(?:\\.\\d+)?",
-                        "\\d+(?:\\.\\d+)?")
+    "\\d+(?:\\.\\d+)?"
+  )
   leading_dec_pattern <- ifelse(commas,
-                                str_c("(?:(?:\\d+(?:,?\\d+)*(?:\\.\\d+)?)|",
-                                      "(?:\\.?\\d+))"),
-                                "(?:\\d+(?:\\.\\d+)?|\\.?\\d+)")
+    str_c(
+      "(?:(?:\\d+(?:,?\\d+)*(?:\\.\\d+)?)|",
+      "(?:\\.?\\d+))"
+    ),
+    "(?:\\d+(?:\\.\\d+)?|\\.?\\d+)"
+  )
   non_dec_pattern <- ifelse(commas, "\\d+(?:,?\\d+)*", "\\d+")
   pattern <- non_dec_pattern
-  if (decimals)
+  if (decimals) {
     pattern <- ifelse(leading_decimals, leading_dec_pattern, dec_pattern)
+  }
   if (sci) {
-    pattern <- glue::glue("(?:(?:{pattern}[eE][+-]?{non_dec_pattern})|",
-                          "(?:{pattern}))")
+    pattern <- glue::glue(
+      "(?:(?:{pattern}[eE][+-]?{non_dec_pattern})|",
+      "(?:{pattern}))"
+    )
   }
   if (negs) pattern <- glue::glue("-?(?:{pattern})")
   pattern
@@ -53,7 +60,8 @@ ambig_num_regex <- function(decimals = FALSE, leading_decimals = decimals,
   if (decimals) {
     if (commas) {
       out <- ifelse(leading_decimals, "\\.(?:\\d+,?)+\\.\\d",
-                    "(?:\\d+,?)+\\.(?:\\d+,?)+\\.\\d")
+        "(?:\\d+,?)+\\.(?:\\d+,?)+\\.\\d"
+      )
     } else {
       out <- ifelse(leading_decimals, "\\.\\d+\\.\\d", "\\d\\.\\d+\\.\\d")
     }
@@ -145,19 +153,26 @@ ambig_warn <- function(string, ambigs, ambig_regex) {
 #'   `string`. For `str_nth_number` and `nth_non_numeric`, a vector the same
 #'   length as `string` (as in `length(string)`, not `nchar(string)`).
 #' @examples
-#' strings <- c("abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
-#' "abc1,100def1,230.5", "abc1,100e3,215def4e1,000")
+#' strings <- c(
+#'   "abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
+#'   "abc1,100def1,230.5", "abc1,100e3,215def4e1,000"
+#' )
 #' str_extract_numbers(strings)
 #' str_extract_numbers(strings, decimals = TRUE)
 #' str_extract_numbers(strings, decimals = TRUE, leading_decimals = TRUE)
 #' str_extract_numbers(strings, commas = TRUE)
-#' str_extract_numbers(strings, decimals = TRUE, leading_decimals = TRUE,
-#' sci = TRUE)
-#' str_extract_numbers(strings, decimals = TRUE, leading_decimals = TRUE,
-#' sci = TRUE, commas = TRUE, negs = TRUE)
-#' str_extract_numbers(strings, decimals = TRUE, leading_decimals = FALSE,
-#' sci = FALSE, commas = TRUE, leave_as_string = TRUE)
-#'
+#' str_extract_numbers(strings,
+#'   decimals = TRUE, leading_decimals = TRUE,
+#'   sci = TRUE
+#' )
+#' str_extract_numbers(strings,
+#'   decimals = TRUE, leading_decimals = TRUE,
+#'   sci = TRUE, commas = TRUE, negs = TRUE
+#' )
+#' str_extract_numbers(strings,
+#'   decimals = TRUE, leading_decimals = FALSE,
+#'   sci = FALSE, commas = TRUE, leave_as_string = TRUE
+#' )
 #' @export
 str_extract_numbers <- function(string, leave_as_string = FALSE,
                                 decimals = FALSE, leading_decimals = decimals,
@@ -211,19 +226,26 @@ str_extract_numbers <- function(string, leave_as_string = FALSE,
 #' @return A numeric vector (or a character vector if `leave_as_string = TRUE`).
 #'
 #' @examples
-#' strings <- c("abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
-#' "abc1,100def1,230.5", "abc1,100e3,215def4e1,000")
+#' strings <- c(
+#'   "abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
+#'   "abc1,100def1,230.5", "abc1,100e3,215def4e1,000"
+#' )
 #' str_nth_number(strings, n = 2)
 #' str_nth_number(strings, n = -2, decimals = TRUE)
 #' str_first_number(strings, decimals = TRUE, leading_decimals = TRUE)
 #' str_last_number(strings, commas = TRUE)
-#' str_nth_number(strings, n = 1, decimals = TRUE, leading_decimals = TRUE,
-#' sci = TRUE)
-#' str_first_number(strings, decimals = TRUE, leading_decimals = TRUE,
-#' sci = TRUE, commas = TRUE, negs = TRUE)
-#' str_last_number(strings, decimals = TRUE, leading_decimals = FALSE,
-#' sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE)
-#'
+#' str_nth_number(strings,
+#'   n = 1, decimals = TRUE, leading_decimals = TRUE,
+#'   sci = TRUE
+#' )
+#' str_first_number(strings,
+#'   decimals = TRUE, leading_decimals = TRUE,
+#'   sci = TRUE, commas = TRUE, negs = TRUE
+#' )
+#' str_last_number(strings,
+#'   decimals = TRUE, leading_decimals = FALSE,
+#'   sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE
+#' )
 #' @export
 str_nth_number <- function(string, n, leave_as_string = FALSE, decimals = FALSE,
                            leading_decimals = decimals, negs = FALSE,
@@ -302,5 +324,3 @@ str_last_number <- function(string, leave_as_string = FALSE, decimals = FALSE,
     negs = negs, sci = sci, commas = commas
   )
 }
-
-

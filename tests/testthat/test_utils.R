@@ -22,19 +22,6 @@ test_that("all_equal works", {
   expect_false(all_equal(1:3, matrix(1:4, nrow = 2)))
 })
 
-test_that("group_close works", {
-  expect_equal(unname(group_close(1:10, 1)), list(1:10))
-  expect_equal(unname(group_close(1:10, 0.5)), as.list(1:10))
-  expect_equal(
-    unname(group_close(c(1, 2, 4, 10, 11, 14, 20, 25, 27), 3)),
-    list(c(1, 2, 4), c(10, 11, 14), 20, c(25, 27))
-  )
-  expect_error(group_close(integer(0)))
-  expect_error(group_close(rep(1, 2)))
-  expect_equal(unname(group_close(0)), list(0))
-  expect_equal(unname(group_close(c(0, 2))), list(0, 2))
-})
-
 test_that("match_arg() works", {
   expect_equal(match_arg("ab", c("abcdef", "defgh")), "abcdef")
   expect_error(match_arg("abcdefg", c("Abcdef", "defg")), "not a prefix of any")

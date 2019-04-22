@@ -38,15 +38,20 @@ alternative to the decimal point).
 \code{str_nth_non_numeric(..., n = -1)}. }
 }
 \examples{
-strings <- c("abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
-"abc1,100def1,230.5", "abc1,100e3,215def4e1,000")
+strings <- c(
+  "abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
+  "abc1,100def1,230.5", "abc1,100e3,215def4e1,000"
+)
 str_extract_non_numerics(strings)
 str_extract_non_numerics(strings, decimals = TRUE, leading_decimals = FALSE)
 str_extract_non_numerics(strings, decimals = TRUE)
 str_extract_non_numerics(strings, commas = TRUE)
-str_extract_non_numerics(strings, decimals = TRUE, leading_decimals = TRUE,
-sci = TRUE)
-str_extract_non_numerics(strings, decimals = TRUE, leading_decimals = TRUE,
-sci = TRUE, commas = TRUE, negs = TRUE)
-
+str_extract_non_numerics(strings,
+  decimals = TRUE, leading_decimals = TRUE,
+  sci = TRUE
+)
+str_extract_non_numerics(strings,
+  decimals = TRUE, leading_decimals = TRUE,
+  sci = TRUE, commas = TRUE, negs = TRUE
+)
 }

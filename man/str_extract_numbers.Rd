@@ -66,17 +66,24 @@ value greater than 1.797693e+308) are read as \code{Inf} (or \code{-Inf} if they
 with a minus sign). This is what \code{base::as.numeric()} does.
 }
 \examples{
-strings <- c("abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
-"abc1,100def1,230.5", "abc1,100e3,215def4e1,000")
+strings <- c(
+  "abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
+  "abc1,100def1,230.5", "abc1,100e3,215def4e1,000"
+)
 str_extract_numbers(strings)
 str_extract_numbers(strings, decimals = TRUE)
 str_extract_numbers(strings, decimals = TRUE, leading_decimals = TRUE)
 str_extract_numbers(strings, commas = TRUE)
-str_extract_numbers(strings, decimals = TRUE, leading_decimals = TRUE,
-sci = TRUE)
-str_extract_numbers(strings, decimals = TRUE, leading_decimals = TRUE,
-sci = TRUE, commas = TRUE, negs = TRUE)
-str_extract_numbers(strings, decimals = TRUE, leading_decimals = FALSE,
-sci = FALSE, commas = TRUE, leave_as_string = TRUE)
-
+str_extract_numbers(strings,
+  decimals = TRUE, leading_decimals = TRUE,
+  sci = TRUE
+)
+str_extract_numbers(strings,
+  decimals = TRUE, leading_decimals = TRUE,
+  sci = TRUE, commas = TRUE, negs = TRUE
+)
+str_extract_numbers(strings,
+  decimals = TRUE, leading_decimals = FALSE,
+  sci = FALSE, commas = TRUE, leave_as_string = TRUE
+)
 }
