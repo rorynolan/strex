@@ -114,13 +114,8 @@ str_remove_quoted(string)
 I'm not mad on CamelCase, I often want to deconstruct it.
 
 ```{r camel}
-library(magrittr)
 string <- c("CamelVar1", c("CamelVar2"))
 str_split_camel_case(string)
-string %>% 
-  str_split_camel_case() %>% 
-  purrr::map_chr(str_c, collapse = "_") %>% 
-  str_to_lower()
 ```
 
 

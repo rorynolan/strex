@@ -1,6 +1,6 @@
 Package: strex
 Title: Extra String Manipulation Functions
-Version: 0.1.3.9001
+Version: 0.1.3.9002
 Authors@R: person("Rory", "Nolan", email = "rorynoolan@gmail.com", 
                   role = c("aut", "cre"), 
                   comment = c(ORCID = "0000-0002-5239-4043"))
@@ -34,8 +34,7 @@ Suggests:
     rmarkdown,
     pacman,
     covr,
-    spelling,
-    purrr
+    spelling
 SystemRequirements: C++11
 VignetteBuilder: knitr
 URL: https://rorynolan.github.io/strex/
