@@ -39,9 +39,8 @@
 
 <meta property="og:title" content="Argument Matching. — str_match_arg" />
 
-<meta property="og:description" content="Match arg against a series of candidate choices where NULL means take
-the first one. arg matches an element of choices if arg is a prefix
-of that element." />
+<meta property="og:description" content="Match arg against a series of candidate choices. arg matches an
+element of choices if arg is a prefix of that element." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -139,9 +138,8 @@ of that element." />
 
     <div class="ref-description">
     
-    <p>Match <code>arg</code> against a series of candidate <code>choices</code> where <code>NULL</code> means take
-the first one. <code>arg</code> <em>matches</em> an element of <code>choices</code> if <code>arg</code> is a prefix
-of that element.</p>
+    <p>Match <code>arg</code> against a series of candidate <code>choices</code>. <code>arg</code> <em>matches</em> an
+element of <code>choices</code> if <code>arg</code> is a prefix of that element.</p>
     
     </div>
 
@@ -164,35 +162,34 @@ of that element.</p>
     </tr>
     <tr>
       <th>index</th>
-      <td><p>Return the index of the match rather than the match itself?
-Default no.</p></td>
+      <td><p>Return the index of the match rather than the match itself?</p></td>
     </tr>
     <tr>
       <th>several_ok</th>
       <td><p>Allow <code>arg</code> to have length greater than one to match
-several arguments at once? Default no.</p></td>
+several arguments at once?</p></td>
     </tr>
     <tr>
       <th>ignore_case</th>
-      <td><p>Ignore case while matching. Default no. If this is <code>TRUE</code>,
-the returned value is the matched element of <code>choices</code> (with its original
+      <td><p>Ignore case while matching. If this is <code>TRUE</code>, the
+returned value is the matched element of <code>choices</code> (with its original
 casing).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>ERROR</code>s are thrown when a match is not made and where the match is
+    <p>If <code>arg</code> is <code>NULL</code>, the first of <code>choices</code> is chosen.</p>
+<p><code>ERROR</code>s are thrown when a match is not made and where the match is
 ambiguous. However, sometimes ambiguities are inevitable. Consider the case
 where <code>choices = c("ab", "abc")</code>, then there's no way to choose <code>"ab"</code>
 because <code>"ab"</code> is a prefix for <code>"ab"</code> and <code>"abc"</code>. If this is the case, you
 need to provide a full match, i.e. using <code>arg = "ab"</code> will get you <code>"ab"</code>
 without an error, however <code>arg = "a"</code> will throw an ambiguity error.</p>
 <p>This function inspired by <code>RSAGA::match.arg.ext()</code>. Its behaviour is almost
-identical (the difference is that <code>RSAGA::match.arg.ext(..., ignore.case = TRUE)</code> guarantees that the function returns strings in all lower case, but
-that is not so with <code>filesstrings::match_arg(..., ignore_case = TRUE)</code>) but
-<code>RSAGA</code> is a heavy package to depend upon so <code>filesstrings::match_arg()</code>
-might be handy for package developers.</p>
+identical (the difference is that <code>RSAGA::match.arg.ext(..., ignore.case = TRUE)</code> always returns in all lower case; <code>strex::match_arg(..., ignore_case = TRUE)</code> ignores case while matching but returns the element of <code>choices</code> in
+its original case). <code>RSAGA</code> is a heavy package to depend upon so
+<code>strex::match_arg()</code> is handy for package developers.</p>
 <p>This function is designed to be used inside of other functions. It's fine to
 use it for other purposes, but the error messages might be a bit weird.</p>
     

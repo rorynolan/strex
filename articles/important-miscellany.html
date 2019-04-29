@@ -94,7 +94,7 @@
     <div class="page-header toc-ignore">
       <h1>Important Miscellany</h1>
             
-            <h4 class="date">2019-04-22</h4>
+            <h4 class="date">2019-04-29</h4>
       
       
       <div class="hidden name"><code>important-miscellany.Rmd</code></div>
@@ -120,28 +120,28 @@
 <div id="currency" class="section level2">
 <h2 class="hasAnchor">
 <a href="#currency" class="anchor"></a>Currency</h2>
-<p>To get currencies and amounts mentioned in strings, there are <code><a href="../reference/str_extract_currencies.html">str_extract_currencies()</a></code> and <code><a href="../reference/str_nth_currency.html">str_nth_currency()</a></code>, <code><a href="../reference/str_nth_currency.html">str_first_currency()</a></code> and <code><a href="../reference/str_nth_currency.html">str_last_currency()</a></code>. <code><a href="../reference/str_nth_currency.html">str_first_currency()</a></code> just returns the first currency amount. <code><a href="../reference/str_nth_currency.html">str_last_currency()</a></code> returns the last. <code><a href="../reference/str_nth_currency.html">str_nth_currency()</a></code> allows you to get the second, third and so on. <code><a href="../reference/str_extract_currencies.html">str_extract_currencies()</a></code> returns all currency amounts mentioned in a string.</p>
+<p>To get currencies and amounts mentioned in strings, there are <code><a href="../reference/currency.html">str_extract_currencies()</a></code> and <code><a href="../reference/currency.html">str_nth_currency()</a></code>, <code><a href="../reference/currency.html">str_first_currency()</a></code> and <code><a href="../reference/currency.html">str_last_currency()</a></code>. <code><a href="../reference/currency.html">str_first_currency()</a></code> just returns the first currency amount. <code><a href="../reference/currency.html">str_last_currency()</a></code> returns the last. <code><a href="../reference/currency.html">str_nth_currency()</a></code> allows you to get the second, third and so on. <code><a href="../reference/currency.html">str_extract_currencies()</a></code> returns all currency amounts mentioned in a string.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">string &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Alan paid £5"</span>, <span class="st">"Joe paid $7"</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="../reference/str_nth_currency.html">str_first_currency</a></span>(string)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="../reference/currency.html">str_first_currency</a></span>(string)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; # A tibble: 2 x 4</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;   string_num string       curr_sym amount</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt;</span></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; 1          1 Alan paid £5 £             5</span></a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; 2          2 Joe paid $7  $             7</span></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">string &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"€1 is $1.17"</span>, <span class="st">"£1 is $1.29"</span>)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw"><a href="../reference/str_nth_currency.html">str_nth_currency</a></span>(string, <span class="dt">n =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw"><a href="../reference/currency.html">str_nth_currency</a></span>(string, <span class="dt">n =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
 <a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; # A tibble: 2 x 4</span></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;   string_num string      curr_sym amount</span></a>
 <a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;</span></a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; 1          1 €1 is $1.17 €          1   </span></a>
 <a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; 2          2 £1 is $1.29 $          1.29</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="kw"><a href="../reference/str_nth_currency.html">str_last_currency</a></span>(string)  <span class="co"># only gets the first mentioned</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="kw"><a href="../reference/currency.html">str_last_currency</a></span>(string)  <span class="co"># only gets the first mentioned</span></a>
 <a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; # A tibble: 2 x 4</span></a>
 <a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt;   string_num string      curr_sym amount</span></a>
 <a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;</span></a>
 <a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; 1          1 €1 is $1.17 $          1.17</span></a>
 <a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; 2          2 £1 is $1.29 $          1.29</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="kw"><a href="../reference/str_extract_currencies.html">str_extract_currencies</a></span>(string)</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="kw"><a href="../reference/currency.html">str_extract_currencies</a></span>(string)</a>
 <a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt; # A tibble: 4 x 4</span></a>
 <a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt;   string_num string      curr_sym amount</span></a>
 <a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;</span></a>

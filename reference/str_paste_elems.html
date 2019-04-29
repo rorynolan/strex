@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract bits of a string and paste them together — str_paste_elems • strex</title>
+<title>Extract single elements of a string and paste them together. — str_paste_elems • strex</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,10 +37,10 @@
 
 
 
-<meta property="og:title" content="Extract bits of a string and paste them together — str_paste_elems" />
+<meta property="og:title" content="Extract single elements of a string and paste them together. — str_paste_elems" />
 
-<meta property="og:description" content="Extract characters - specified by their indices - from a string and paste
-them together" />
+<meta property="og:description" content="This is a quick way around doing a call to str_elems() followed by a call
+of apply(..., paste)." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -131,41 +131,50 @@ them together" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract bits of a string and paste them together</h1>
+    <h1>Extract single elements of a string and paste them together.</h1>
     
     <div class="hidden name"><code>str_paste_elems.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Extract characters - specified by their indices - from a string and paste
-them together</p>
+    <p>This is a quick way around doing a call to <code><a href='str_elems.html'>str_elems()</a></code> followed by a call
+of <code><a href='https://www.rdocumentation.org/packages/base/topics/apply'>apply(..., paste)</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>str_paste_elems</span>(<span class='no'>string</span>, <span class='no'>indices</span>)</pre>
+    <pre class="usage"><span class='fu'>str_paste_elems</span>(<span class='no'>string</span>, <span class='no'>indices</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>string</th>
-      <td><p>A string.</p></td>
+      <td><p>A character vector.</p></td>
     </tr>
     <tr>
       <th>indices</th>
-      <td><p>A numeric vector of positive integers detailing the indices of
-the characters of <code>string</code> that we wish to paste together.</p></td>
+      <td><p>A vector of integerish values. Negative indexing is allowed as
+in <code><a href='https://stringr.tidyverse.org/reference/str_sub.html'>stringr::str_sub()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>sep</th>
+      <td><p>A string. The separator for pasting <code>string</code> elements together.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A string.</p>
+    <p>A character vector.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Elements that don't exist e.g. element 5 of <code>"abc"</code> are ignored.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>str_paste_elems</span>(<span class='st'>"abcdef"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>5</span>:<span class='fl'>6</span>))</div><div class='output co'>#&gt; [1] "bef"</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>string</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abc"</span>, <span class='st'>"def"</span>, <span class='st'>"ghi"</span>, <span class='st'>"vwxyz"</span>)
+<span class='fu'>str_paste_elems</span>(<span class='no'>string</span>, <span class='fl'>1</span>:<span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "ab" "de" "gh" "vw"</div><div class='input'><span class='fu'>str_paste_elems</span>(<span class='no'>string</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, -<span class='fl'>1</span>))</div><div class='output co'>#&gt; [1] "abcc"  "deff"  "ghii"  "vwxyz"</div><div class='input'><span class='fu'>str_paste_elems</span>(<span class='st'>"abc"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>55</span>, <span class='fl'>43</span>, <span class='fl'>3</span>))</div><div class='output co'>#&gt; [1] "ac"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -173,6 +182,8 @@ the characters of <code>string</code> that we wish to paste together.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

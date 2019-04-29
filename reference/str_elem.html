@@ -39,7 +39,9 @@
 
 <meta property="og:title" content="Extract a single character from a string, using its index. — str_elem" />
 
-<meta property="og:description" content="If the element does not exist, this function returns the empty string." />
+<meta property="og:description" content="If the element does not exist, this function returns the empty string. This
+is consistent with stringr::str_sub(). This function is vectorised over
+both arguments." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -137,7 +139,9 @@
 
     <div class="ref-description">
     
-    <p>If the element does not exist, this function returns the empty string.</p>
+    <p>If the element does not exist, this function returns the empty string. This
+is consistent with <code><a href='https://stringr.tidyverse.org/reference/str_sub.html'>stringr::str_sub()</a></code>. This function is vectorised over
+both arguments.</p>
     
     </div>
 
@@ -148,7 +152,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>string</th>
-      <td><p>A string.</p></td>
+      <td><p>A character vector.</p></td>
     </tr>
     <tr>
       <th>index</th>

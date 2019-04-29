@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Locate the indices of the \(n\)th instance of a pattern. — str_locate_nth • strex</title>
+<title>Extract several single elements from a string. — str_elems • strex</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,11 +37,11 @@
 
 
 
-<meta property="og:title" content="Locate the indices of the \(n\)th instance of a pattern. — str_locate_nth" />
+<meta property="og:title" content="Extract several single elements from a string. — str_elems" />
 
-<meta property="og:description" content="The \(n\)th instance of an pattern will cover a series of character
-indices. These functions tell you which indices those are. These functions
-are vectorised over all arguments." />
+<meta property="og:description" content="Efficiently extract several elements from a string. See str_elem() for
+extracting single elements. This function is vectorized over the first
+argument." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -132,66 +132,58 @@ are vectorised over all arguments." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Locate the indices of the \(n\)th instance of a pattern.</h1>
+    <h1>Extract several single elements from a string.</h1>
     
-    <div class="hidden name"><code>str_locate_nth.Rd</code></div>
+    <div class="hidden name"><code>str_elems.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>The \(n\)th instance of an pattern will cover a series of character
-indices. These functions tell you which indices those are. These functions
-are vectorised over all arguments.</p>
+    <p>Efficiently extract several elements from a string. See <code><a href='str_elem.html'>str_elem()</a></code> for
+extracting single elements. This function is vectorized over the first
+argument.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>str_locate_nth</span>(<span class='no'>string</span>, <span class='no'>pattern</span>, <span class='no'>n</span>)
-
-<span class='fu'>str_locate_first</span>(<span class='no'>string</span>, <span class='no'>pattern</span>)
-
-<span class='fu'>str_locate_last</span>(<span class='no'>string</span>, <span class='no'>pattern</span>)</pre>
+    <pre class="usage"><span class='fu'>str_elems</span>(<span class='no'>string</span>, <span class='no'>indices</span>, <span class='kw'>byrow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>string</th>
-      <td><p>A character vector. These functions are vectorized over this
-argument.</p></td>
+      <td><p>A character vector.</p></td>
     </tr>
     <tr>
-      <th>pattern</th>
-      <td><p>A character vector. Pattern(s) specified like the pattern(s)
-in the stringr package (e.g. look at <code><a href='https://stringr.tidyverse.org/reference/str_locate.html'>stringr::str_locate()</a></code>). If
-this has length &gt;1 its length must be the same as that of <code>string</code>.</p></td>
+      <th>indices</th>
+      <td><p>A vector of integerish values. Negative indexing is allowed as
+in <code><a href='https://stringr.tidyverse.org/reference/str_sub.html'>stringr::str_sub()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>n</th>
-      <td><p>A character vector of length 1 or the same length as <code>string</code>.</p></td>
+      <th>byrow</th>
+      <td><p>Should the elements be organised in the matrix with one row per
+string (<code>byrow = TRUE</code>, the default) or one column per string (<code>byrow = FALSE</code>). See examples if you don't understand.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A two-column matrix. The \(i\)th row of this matrix gives the start
-and end indices of the \(n\)th instance of <code>pattern</code> in the \(i\)th
-element of <code>string</code>.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <ul>
-<li><p><code>str_locate_first(...)</code> is just <code>str_locate_nth(..., n = 1)</code>.</p></li>
-<li><p><code>str_locate_last(...)</code> is just <code>str_locate_nth(..., n = -1)</code>.</p></li>
-</ul>
+    <p>A character matrix.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>str_locate_nth</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abcdabcxyz"</span>, <span class='st'>"abcabc"</span>), <span class='st'>"abc"</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt;      start end
-#&gt; [1,]     5   7
-#&gt; [2,]     4   6</div><div class='input'><span class='fu'>str_locate_nth</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"This old thing."</span>, <span class='st'>"That beautiful thing there."</span>),
-<span class='st'>"\\w+"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>, -<span class='fl'>2</span>))</div><div class='output co'>#&gt;      start end
-#&gt; [1,]     6   8
-#&gt; [2,]    16  20</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>string</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abc"</span>, <span class='st'>"def"</span>, <span class='st'>"ghi"</span>, <span class='st'>"vwxyz"</span>)
+<span class='fu'>str_elems</span>(<span class='no'>string</span>, <span class='fl'>1</span>:<span class='fl'>2</span>)</div><div class='output co'>#&gt;      [,1] [,2]
+#&gt; [1,] "a"  "b" 
+#&gt; [2,] "d"  "e" 
+#&gt; [3,] "g"  "h" 
+#&gt; [4,] "v"  "w" </div><div class='input'><span class='fu'>str_elems</span>(<span class='no'>string</span>, <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>byrow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;      [,1] [,2] [,3] [,4]
+#&gt; [1,] "a"  "d"  "g"  "v" 
+#&gt; [2,] "b"  "e"  "h"  "w" </div><div class='input'><span class='fu'>str_elems</span>(<span class='no'>string</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, -<span class='fl'>1</span>))</div><div class='output co'>#&gt;      [,1] [,2] [,3] [,4] [,5]
+#&gt; [1,] "a"  "b"  "c"  ""   "c" 
+#&gt; [2,] "d"  "e"  "f"  ""   "f" 
+#&gt; [3,] "g"  "h"  "i"  ""   "i" 
+#&gt; [4,] "v"  "w"  "x"  "y"  "z" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -199,8 +191,6 @@ element of <code>string</code>.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

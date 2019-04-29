@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Text before or after <code>n</code>th occurrence of pattern. — str_after_nth • strex</title>
+<title>Extract currency amounts from a string. — currency • strex</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,11 +37,12 @@
 
 
 
-<meta property="og:title" content="Text before or after <code>n</code>th occurrence of pattern. — str_after_nth" />
+<meta property="og:title" content="Extract currency amounts from a string. — currency" />
 
-<meta property="og:description" content="Extract the part of a string which is before or after the nth occurrence of
-a specified pattern, vectorized over the string. n can be negatively
-indexed. See 'Arguments'." />
+<meta property="og:description" content="The currency of a number is defined as the character coming before the number
+in the string. If nothing comes before (i.e. if the number is the first thing
+in the string), the currency is the empty string, similarly the currency can
+be a space, comma or any manner of thing." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -132,30 +133,27 @@ indexed. See 'Arguments'." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Text before or after <code>n</code>th occurrence of pattern.</h1>
+    <h1>Extract currency amounts from a string.</h1>
     
-    <div class="hidden name"><code>str_after_nth.Rd</code></div>
+    <div class="hidden name"><code>currency.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Extract the part of a string which is before or after the <code>n</code>th occurrence of
-a specified pattern, vectorized over the string. <code>n</code> can be negatively
-indexed. See 'Arguments'.</p>
+    <p>The currency of a number is defined as the character coming before the number
+in the string. If nothing comes before (i.e. if the number is the first thing
+in the string), the currency is the empty string, similarly the currency can
+be a space, comma or any manner of thing.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>str_after_nth</span>(<span class='no'>string</span>, <span class='no'>pattern</span>, <span class='no'>n</span>)
+    <pre class="usage"><span class='fu'>str_extract_currencies</span>(<span class='no'>string</span>)
 
-<span class='fu'>str_after_first</span>(<span class='no'>string</span>, <span class='no'>pattern</span>)
+<span class='fu'>str_nth_currency</span>(<span class='no'>string</span>, <span class='no'>n</span>)
 
-<span class='fu'>str_after_last</span>(<span class='no'>string</span>, <span class='no'>pattern</span>)
+<span class='fu'>str_first_currency</span>(<span class='no'>string</span>)
 
-<span class='fu'>str_before_nth</span>(<span class='no'>string</span>, <span class='no'>pattern</span>, <span class='no'>n</span>)
-
-<span class='fu'>str_before_first</span>(<span class='no'>string</span>, <span class='no'>pattern</span>)
-
-<span class='fu'>str_before_last</span>(<span class='no'>string</span>, <span class='no'>pattern</span>)</pre>
+<span class='fu'>str_last_currency</span>(<span class='no'>string</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,14 +161,6 @@ indexed. See 'Arguments'.</p>
     <tr>
       <th>string</th>
       <td><p>A character vector.</p></td>
-    </tr>
-    <tr>
-      <th>pattern</th>
-      <td><p>The pattern to look for.</p>
-<p>The default interpretation is a regular expression, as described in
-<a href='https://www.rdocumentation.org/packages/stringi/topics/stringi-search-regex'>stringi::stringi-search-regex</a>.</p>
-<p>To match a without regular expression (i.e. as a human would), use
-<a href='https://stringr.tidyverse.org/reference/modifiers.html'>coll()</a>. For details see <code><a href='https://stringr.tidyverse.org/reference/modifiers.html'>stringr::regex()</a></code>.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -183,22 +173,70 @@ the back: while <code>n = 1</code> and <code>n = 2</code> correspond to first an
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character vector of the desired strings.</p>
+    <p>A <a href='https://tibble.tidyverse.org/reference/tibble-package.html'>tibble</a> with 4 columns: <code>string_num</code>,
+<code>string</code>, <code>curr_sym</code> and <code>amount</code>. Every extracted currency amount gets its
+own row in the tibble detailing the string number and string that it was
+extracted from, the currency symbol and the amount.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <ul>
-<li><p><code>str_after_first(...)</code> is just <code>str_after_nth(..., n = 1)</code>.</p></li>
-<li><p><code>str_after_last(...)</code> is just <code>str_after_nth(..., n = -1)</code>.</p></li>
-<li><p><code>str_before_first(...)</code> is just <code>str_before_nth(..., n = 1)</code>.</p></li>
-<li><p><code>str_before_last(...)</code> is just <code>str_before_nth(..., n = -1)</code>.</p></li>
-</ul>
+    <p>These functions are vectorized over <code>string</code> and <code>n</code>.</p>
+<p><code>str_extract_currencies()</code> extracts all currency amounts.</p>
+<p><code>str_nth_currency()</code> just gets the <code>n</code>th currency amount from each string.
+<code>str_first_currency(string)</code> and <code>str_last_currency(string)</code> are just
+wrappers for <code>str_nth_currency(string, n = 1)</code> and <code>str_nth_currency(string, n = -1)</code>.</p>
+<p>"-$2.00" and "$-2.00" are interpreted as negative two dollars.</p>
+<p>If you request e.g. the 5th currency amount but there are only 3 currency
+amounts, you get an amount and currency symbol of <code>NA</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>string</span> <span class='kw'>&lt;-</span> <span class='st'>"abxxcdxxdexxfgxxh"</span>
-<span class='fu'>str_after_nth</span>(<span class='no'>string</span>, <span class='st'>"xx"</span>, <span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] "fgxxh"</div><div class='input'><span class='fu'>str_before_nth</span>(<span class='no'>string</span>, <span class='st'>"e"</span>, <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] "abxxcdxxd"</div><div class='input'><span class='fu'>str_before_nth</span>(<span class='no'>string</span>, <span class='st'>"xx"</span>, -<span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] "abxxcd"</div><div class='input'><span class='fu'>str_before_nth</span>(<span class='no'>string</span>, <span class='st'>"."</span>, -<span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] "abxxcdxxdexxfg"</div><div class='input'><span class='fu'>str_before_nth</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='no'>string</span>, <span class='fl'>2</span>), <span class='st'>"..x"</span>, -<span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] "abxx" "abxx"</div><div class='input'><span class='no'>string</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abc"</span>, <span class='st'>"xyz.zyx"</span>)
-<span class='fu'>str_after_first</span>(<span class='no'>string</span>, <span class='st'>"."</span>) <span class='co'># using regex</span></div><div class='output co'>#&gt; [1] "bc"     "yz.zyx"</div><div class='input'><span class='fu'>str_after_first</span>(<span class='no'>string</span>, <span class='fu'>coll</span>(<span class='st'>"."</span>)) <span class='co'># using human matching</span></div><div class='output co'>#&gt; [1] NA    "zyx"</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>string</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"ab3 13"</span>, <span class='st'>"$1"</span>, <span class='st'>"35.00 $1.14"</span>, <span class='st'>"abc5 $3.8"</span>, <span class='st'>"stuff"</span>)
+<span class='fu'>str_extract_currencies</span>(<span class='no'>string</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 4
+#&gt;   string_num string      curr_sym amount
+#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;
+#&gt; 1          1 ab3 13      b          3   
+#&gt; 2          1 ab3 13      " "       13   
+#&gt; 3          2 $1          $          1   
+#&gt; 4          3 35.00 $1.14 ""        35   
+#&gt; 5          3 35.00 $1.14 $          1.14
+#&gt; 6          4 abc5 $3.8   c          5   
+#&gt; 7          4 abc5 $3.8   $          3.8 </div><div class='input'><span class='fu'>str_nth_currency</span>(<span class='no'>string</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 4
+#&gt;   string_num string      curr_sym amount
+#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;
+#&gt; 1          1 ab3 13      " "       13   
+#&gt; 2          2 $1          &lt;NA&gt;      NA   
+#&gt; 3          3 35.00 $1.14 $          1.14
+#&gt; 4          4 abc5 $3.8   $          3.8 
+#&gt; 5          5 stuff       &lt;NA&gt;      NA   </div><div class='input'><span class='fu'>str_nth_currency</span>(<span class='no'>string</span>, <span class='kw'>n</span> <span class='kw'>=</span> -<span class='fl'>2</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 4
+#&gt;   string_num string      curr_sym amount
+#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;
+#&gt; 1          1 ab3 13      b             3
+#&gt; 2          2 $1          &lt;NA&gt;         NA
+#&gt; 3          3 35.00 $1.14 ""           35
+#&gt; 4          4 abc5 $3.8   c             5
+#&gt; 5          5 stuff       &lt;NA&gt;         NA</div><div class='input'><span class='fu'>str_nth_currency</span>(<span class='no'>string</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, -<span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, -<span class='fl'>1</span>))</div><div class='output co'>#&gt; # A tibble: 5 x 4
+#&gt;   string_num string      curr_sym amount
+#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;
+#&gt; 1          1 ab3 13      b           3  
+#&gt; 2          2 $1          &lt;NA&gt;       NA  
+#&gt; 3          3 35.00 $1.14 ""         35  
+#&gt; 4          4 abc5 $3.8   $           3.8
+#&gt; 5          5 stuff       &lt;NA&gt;       NA  </div><div class='input'><span class='fu'>str_first_currency</span>(<span class='no'>string</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 4
+#&gt;   string_num string      curr_sym amount
+#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;
+#&gt; 1          1 ab3 13      b             3
+#&gt; 2          2 $1          $             1
+#&gt; 3          3 35.00 $1.14 ""           35
+#&gt; 4          4 abc5 $3.8   c             5
+#&gt; 5          5 stuff       &lt;NA&gt;         NA</div><div class='input'><span class='fu'>str_last_currency</span>(<span class='no'>string</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 4
+#&gt;   string_num string      curr_sym amount
+#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;
+#&gt; 1          1 ab3 13      " "       13   
+#&gt; 2          2 $1          $          1   
+#&gt; 3          3 35.00 $1.14 $          1.14
+#&gt; 4          4 abc5 $3.8   $          3.8 
+#&gt; 5          5 stuff       &lt;NA&gt;      NA   </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
