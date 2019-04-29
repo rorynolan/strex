@@ -45,6 +45,7 @@ test_that("num_list_nth_elems works", {
 })
 
 test_that("char_to_num() errors correctly", {
+  skip_on_cran()
   expect_error(char_to_num("1,000a", TRUE),
                "Could not convert '1,000a' to numeric.", fixed = TRUE,
                class = "std::invalid_argument")
@@ -66,6 +67,7 @@ test_that("interleave_strings() works", {
 })
 
 test_that("interleave_char_lists() works", {
+  skip_on_cran()
   expect_error(interleave_char_lists(as.list(1:2), list(1)),
                paste("`interleave_char_lists()` expects two lists of",
                      "the same length. You have passed arguments of",

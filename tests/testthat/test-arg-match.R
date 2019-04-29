@@ -94,17 +94,17 @@ test_that("match_arg() works", {
   word <- function(w = c("abacus", "baseball", "candy")) {
     match_arg(as.character(w), several_ok = TRUE)
   }
-  word_err_msg <- paste("You have used `strex::match_arg()` without",
-                        "specifying a\n`choices` argument.\n    * The only",
-                        "way to do this is from another function where\n   ",
-                        "  `arg` has a default setting. This is the same",
-                        "as\n      `base::match.arg()`.\n    * See the man",
-                        "page for `strex::match_arg()`, particularly\n     ",
-                        "the examples: enter `help(\"strex::match_arg\",",
-                        "package =\n      \"strex\")` at the R console.\n    *",
-                        "See also the vignette on argument matching:",
-                        "enter\n      `vignette(\"argument-matching\",",
-                        "package = \"strex\")` at\n      the R console.")
+  word_err_msg <- paste("You have used `match_arg()` without specifying a",
+                        "`choices`\nargument.\n    * The only way to do this",
+                        "is from another function where\n      `arg` has a",
+                        "default setting. This is the same as\n     ",
+                        "`base::match.arg()`.\n    * See the man page for",
+                        "`match_arg()`, particularly the\n      examples:",
+                        "enter `help(\"match_arg\", package = \"strex\")`\n   ",
+                        "  at the R console.\n    * See also the vignette on",
+                        "argument matching: enter\n     ",
+                        "`vignette(\"argument-matching\", package =",
+                        "\"strex\")` at\n      the R console.")
   expect_error(word(), word_err_msg, fixed = TRUE)
   word <- function(w = 1:3) {
     match_arg(w, several_ok = TRUE)
