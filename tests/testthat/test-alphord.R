@@ -1,4 +1,3 @@
-context("Alphordering")
 test_that("str_alphord_nums works", {
   strings <- paste0("abc", 1:12)
   expect_equal(
@@ -19,17 +18,17 @@ test_that("str_alphord_nums works", {
   )
   expect_error(
     str_alphord_nums(c("abc9def55", "abc9def5", "abc10xyz7")),
-    paste0(
-      "The non-number bits of every string must be the\\s?",
-      "same.+The first pair of your `strings` with\\s?",
-      "different.+non-number bits are strings 1 and 3.+They\\s?",
-      "are \"abc9def55\"\\s?",
-      "and \"abc10xyz7\""
-    )
+    paste(
+      "The non-number bits of every string must be the",
+      "same.\n    * The first pair of strings with",
+      "different non-number bits\n      are strings 1 and",
+      "3.\n    * They are \"abc9def55\" and \"abc10xyz7\""
+    ),
+    fixed = TRUE
   )
   expect_error(
     str_alphord_nums(c("abc9def55", "9abc10def7")),
-    "The `strings` must all have the same number of numbers."
+    "The strings must all have the same number of numbers."
   )
   expect_error(
     str_alphord_nums(c("0abc9def55g", "abc10def7g0")),

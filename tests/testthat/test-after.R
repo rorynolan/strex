@@ -1,4 +1,3 @@
-context("After nth pattern")
 test_that("str_after_nth works", {
   string <- "ab..cd..de..fg..h"
   expect_equal(str_after_nth(string, "\\.\\.", 3), "fg..h",
@@ -27,4 +26,7 @@ test_that("str_after_nth works", {
     rep("ab..cd..de..fg.", 2),
     check.attributes = FALSE
   )
+  string <- c("abc", "xyz.zyx")
+  expect_equal(str_after_first(string, "."), str_sub(string, 2))
+  expect_equal(str_after_first(string, coll(".")), c(NA, "zyx"))
 })

@@ -5,10 +5,6 @@ match_arg_index <- function(arg, choices) {
     .Call(`_strex_match_arg_index`, arg, choices)
 }
 
-lst_df_pos_brace <- function(positions, braces) {
-    .Call(`_strex_lst_df_pos_brace`, positions, braces)
-}
-
 #' Interleave two vectors of strings.
 #'
 #' Make a vector of strings where the first element is from `strings1`, the
@@ -82,10 +78,6 @@ num_list_nth_elems_ <- function(num_list, n) {
     .Call(`_strex_num_list_nth_elems_`, num_list, n)
 }
 
-intmat_list_bind_nth_rows <- function(intmat_list, n) {
-    .Call(`_strex_intmat_list_bind_nth_rows`, intmat_list, n)
-}
-
 lst_char_to_num <- function(x, commas) {
     .Call(`_strex_lst_char_to_num`, x, commas)
 }
@@ -126,41 +118,6 @@ lst_rbind_nth_rows <- function(x, n) {
     .Call(`_strex_lst_rbind_nth_rows`, x, n)
 }
 
-#' Paste a vector of strings into a single string.
-#'
-#' Paste a vector of strings together with a specified separator.
-#'
-#' @param strings A character vector of strings.
-#' @param collapse A string.
-#'
-#' @return A string.
-#'
-#' @examples
-#' paste_collapse(c("abc", "def"), collapse = "_")
-#'
-#' @noRd
-paste_collapse <- function(strings, collapse) {
-    .Call(`_strex_paste_collapse`, strings, collapse)
-}
-
-#' Apply paste collapse to each element of a list.
-#'
-#' This is the same as doing
-#' `sapply(char.list, paste, collapse = collapse)`, it's just faster.
-#'
-#' @param char_list A list of character vectors.
-#' @param collapse A string.
-#'
-#' @return A list of character vectors.
-#'
-#' @examples
-#' paste_collapse_list_elems(list(1:3, c("a", 5, "rory")), collapse = "R")
-#'
-#' @noRd
-paste_collapse_list_elems <- function(char_list, collapse = "") {
-    .Call(`_strex_paste_collapse_list_elems`, char_list, collapse)
-}
-
 #' Get the locations of strings located by `str_locate()` and the substrings
 #' that are left out by `str_locate()`.
 #'
@@ -194,7 +151,17 @@ fullocated_substrs <- function(strings, locations) {
     .Call(`_strex_fullocated_substrs`, strings, locations)
 }
 
-str_elems <- function(strings, locations) {
-    .Call(`_strex_str_elems`, strings, locations)
+#' Convert a character vector to a numeric vector.
+#'
+#' This is my cpp best shot at R's `as.numeric()`.
+#'
+#' @param x A character vector.
+#' @param commas Allow comma-separated numbers like 1,000?
+#'
+#' @return A numeric vector.
+#'
+#' @noRd
+char_to_num <- function(x, commas) {
+    .Call(`_strex_char_to_num`, x, commas)
 }
 

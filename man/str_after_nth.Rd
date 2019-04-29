@@ -7,37 +7,41 @@
 \alias{str_before_nth}
 \alias{str_before_first}
 \alias{str_before_last}
-\title{Text before or after \eqn{n}th occurrence of pattern.}
+\title{Text before or after \code{n}th occurrence of pattern.}
 \usage{
-str_after_nth(strings, pattern, n)
+str_after_nth(string, pattern, n)
 
-str_after_first(strings, pattern)
+str_after_first(string, pattern)
 
-str_after_last(strings, pattern)
+str_after_last(string, pattern)
 
-str_before_nth(strings, pattern, n)
+str_before_nth(string, pattern, n)
 
-str_before_first(strings, pattern)
+str_before_first(string, pattern)
 
-str_before_last(strings, pattern)
+str_before_last(string, pattern)
 }
 \arguments{
-\item{strings}{A character vector.}
+\item{string}{A character vector.}
 
-\item{pattern}{A character vector. Pattern(s) specified like the pattern(s)
-in the stringr package (e.g. look at \code{\link[stringr:str_locate]{stringr::str_locate()}}). If
-this has length >1 its length must be the same as that of \code{string}.}
+\item{pattern}{The pattern to look for.
 
-\item{n}{A natural number to identify the \eqn{n}th occurrence (defaults to
-first (\code{n = 1})). This can be negatively indexed, so if you wish to select
-the \emph{last} occurrence, you need \code{n = -1}, for the second-last, you
-need \code{n = -2} and so on.}
+The default interpretation is a regular expression, as described in
+\link[stringi:stringi-search-regex]{stringi::stringi-search-regex}.
+
+To match a without regular expression (i.e. as a human would), use
+\link[stringr:coll]{coll()}. For details see \code{\link[stringr:regex]{stringr::regex()}}.}
+
+\item{n}{A vector of integerish values. Must be either length 1 or
+have length equal to the length of \code{string}. Negative indices count from
+the back: while \code{n = 1} and \code{n = 2} correspond to first and second, \code{n = -1} and \code{n = -2} correspond to last and second-last. \code{n = 0} will return
+\code{NA}.}
 }
 \value{
 A character vector of the desired strings.
 }
 \description{
-Extract the part of a string which is before or after the \emph{n}th occurrence of
+Extract the part of a string which is before or after the \code{n}th occurrence of
 a specified pattern, vectorized over the string. \code{n} can be negatively
 indexed. See 'Arguments'.
 }
@@ -54,4 +58,7 @@ str_before_nth(string, "e", 1)
 str_before_nth(string, "xx", -3)
 str_before_nth(string, ".", -3)
 str_before_nth(rep(string, 2), "..x", -3)
+string <- c("abc", "xyz.zyx")
+str_after_first(string, ".") # using regex
+str_after_first(string, coll(".")) # using human matching
 }

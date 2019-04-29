@@ -1,8 +1,9 @@
 #' Argument Matching.
 #'
-#' Match `arg` against a series of candidate `choices` where `NULL` means take
-#' the first one. `arg` _matches_ an element of `choices` if `arg` is a prefix
-#' of that element.
+#' Match `arg` against a series of candidate `choices`. `arg` _matches_ an
+#' element of `choices` if `arg` is a prefix of that element.
+#'
+#' If `arg` is `NULL`, the first of `choices` is chosen.
 #'
 #' `ERROR`s are thrown when a match is not made and where the match is
 #' ambiguous. However, sometimes ambiguities are inevitable. Consider the case
@@ -13,10 +14,10 @@
 #'
 #' This function inspired by `RSAGA::match.arg.ext()`. Its behaviour is almost
 #' identical (the difference is that `RSAGA::match.arg.ext(..., ignore.case =
-#' TRUE)` guarantees that the function returns strings in all lower case, but
-#' that is not so with `filesstrings::match_arg(..., ignore_case = TRUE)`) but
-#' `RSAGA` is a heavy package to depend upon so `filesstrings::match_arg()`
-#' might be handy for package developers.
+#' TRUE)` always returns in all lower case; `strex::match_arg(..., ignore_case =
+#' TRUE)` ignores case while matching but returns the element of `choices` in
+#' its original case). `RSAGA` is a heavy package to depend upon so
+#' `strex::match_arg()` is handy for package developers.
 #'
 #' This function is designed to be used inside of other functions. It's fine to
 #' use it for other purposes, but the error messages might be a bit weird.
@@ -24,11 +25,10 @@
 #' @param arg A character vector (of length one unless `several_ok = TRUE`).
 #' @param choices A character vector of candidate values.
 #' @param index Return the index of the match rather than the match itself?
-#'   Default no.
 #' @param several_ok Allow `arg` to have length greater than one to match
-#'   several arguments at once? Default no.
-#' @param ignore_case Ignore case while matching. Default no. If this is `TRUE`,
-#'   the returned value is the matched element of `choices` (with its original
+#'   several arguments at once?
+#' @param ignore_case Ignore case while matching. If this is `TRUE`, the
+#'   returned value is the matched element of `choices` (with its original
 #'   casing).
 #'
 #' @examples

@@ -10,9 +10,10 @@ str_locate_braces(string)
 \item{string}{A character vector}
 }
 \value{
-A list of data frames, one for each member of the string character
-vector. Each data frame has a "position" and "brace" column which give the
-positions and types of braces in the given string.
+A \link[tibble:tibble-package]{tibble} with 4 columns: \code{string_num},
+\code{string}, \code{position} and \code{brace}. Every extracted brace amount gets its
+own row in the tibble detailing the string number and string that it was
+extracted from, the position in its string and the brace.
 }
 \description{
 Give the positions of \code{(}, \code{)}, \code{[}, \code{]}, \code{\{}, \code{\}} within a string.

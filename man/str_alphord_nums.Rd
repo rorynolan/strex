@@ -4,10 +4,10 @@
 \alias{str_alphord_nums}
 \title{Make string numbers comply with alphabetical order.}
 \usage{
-str_alphord_nums(strings)
+str_alphord_nums(string)
 }
 \arguments{
-\item{strings}{A vector of strings.}
+\item{string}{A character vector.}
 }
 \description{
 If strings are numbered, their numbers may not \emph{comply} with
@@ -21,13 +21,13 @@ must have the same number of numbers, and the non-number bits must be the
 same.
 }
 \examples{
-strings <- paste0("abc", 1:12)
-strings
-str_alphord_nums(strings)
+string <- paste0("abc", 1:12)
+print(string)
+str_alphord_nums(string)
 str_alphord_nums(c("abc9def55", "abc10def7"))
 str_alphord_nums(c("01abc9def55", "5abc10def777", "99abc4def4"))
 str_alphord_nums(1:10)
 \dontrun{
-str_alphord_nums(c("abc9def55", "abc10xyz7"))
+str_alphord_nums(c("abc9def55", "abc10xyz7")) # error
 }
 }

@@ -10,7 +10,7 @@
 \alias{str_first_number_after_last}
 \alias{str_last_number_after_first}
 \alias{str_last_number_after_last}
-\title{Find the \eqn{n}th number after the \eqn{m}th occurrence of a pattern.}
+\title{Find the \code{n}th number after the \code{m}th occurrence of a pattern.}
 \usage{
 str_nth_number_after_mth(string, pattern, n, m, decimals = FALSE,
   leading_decimals = FALSE, negs = FALSE, leave_as_string = FALSE)

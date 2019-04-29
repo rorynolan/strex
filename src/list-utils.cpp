@@ -143,23 +143,6 @@ NumericVector num_list_nth_elems_(List num_list, IntegerVector n) {
 }
 
 // [[Rcpp::export]]
-IntegerVector intmat_list_bind_nth_rows(List intmat_list, IntegerVector n) {
-  IntegerMatrix mat1 = as<IntegerMatrix>(intmat_list[0]);
-  std::size_t nc = mat1.ncol();
-  std::size_t intmat_list_size = intmat_list.size();
-  IntegerMatrix out(intmat_list_size, nc);
-  std::copy(mat1.row(n[0]).begin(), mat1.row(n[0]).end(), out.row(0).begin());
-  if (intmat_list_size > 1) {
-    for (std::size_t i = 1; i != intmat_list_size; ++i) {
-      IntegerMatrix mat_i = as<IntegerMatrix>(intmat_list[i]);
-      std::copy(mat_i.row(n[i]).begin(), mat_i.row(n[i]).end(),
-                out.row(i).begin());
-    }
-  }
-  return out;
-}
-
-// [[Rcpp::export]]
 List lst_char_to_num(List x, bool commas) {
   std::size_t n = x.size();
   List out(n);
@@ -231,15 +214,18 @@ IntegerMatrix lst_rbind_nth_rows(List x, NumericVector n) {
   if (n.length() > 1) {
     for (R_xlen_t i = 0; i != x_len; ++i) {
       IntegerMatrix intmat_i = x[i];
+      std::copy(intmat_i.row(n[i] - 1).cbegin(),
+                intmat_i.row(n[i] - 1).cend(),
+                out.row(i).begin());
       for (R_xlen_t c = 0; c != nc; ++c)
         out(i, c) = intmat_i(n[i] - 1, c);
     }
   } else {
     for (R_xlen_t i = 0; i != x_len; ++i) {
       IntegerMatrix intmat_i = x[i];
-      for (R_xlen_t c = 0; c != nc; ++c) {
-        out(i, c) = intmat_i(n[0] - 1, c);
-      }
+      std::copy(intmat_i.row(n[0] - 1).cbegin(),
+                intmat_i.row(n[0] - 1).cend(),
+                out.row(i).begin());
     }
   }
   return out;

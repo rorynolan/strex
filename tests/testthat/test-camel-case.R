@@ -1,4 +1,3 @@
-context("CamelCase")
 test_that("str_split_camel_case()` works", {
   expect_equal(
     str_split_camel_case(c(

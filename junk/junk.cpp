@@ -55,4 +55,25 @@ CharacterVector substrs2(const std::string& s,
   }
   return out;
 }
-ı
+
+
+//' Remove first element of each character vector in list.
+//'
+//' BE CAREFUL! THIS FUNCTION MODIFIES ITS INPUT.
+//'
+//' @param x A list of character vectors.
+//'
+//' @return A list of character vectors.
+//'
+// [[Rcpp::export]]
+List str_list_remove_first_elems(List x) {
+  R_xlen_t n = x.length();
+  for (R_xlen_t i = 0; i != n; ++i) {
+    CharacterVector x_i = x[i];
+    if (x_i.length()) {
+      x_i.erase(0);
+      x[i] = x_i;
+    }
+  }
+  return x;
+}

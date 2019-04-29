@@ -1,4 +1,3 @@
-context("Can be numeric")
 test_that("`str_can_be_numeric()` works", {
   expect_true(str_can_be_numeric("3"))
   expect_true(str_can_be_numeric("5 "))

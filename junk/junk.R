@@ -57,3 +57,42 @@ test_that("group_close works", {
   expect_equal(unname(group_close(0)), list(0))
   expect_equal(unname(group_close(c(0, 2))), list(0, 2))
 })
+
+#' Locate the braces in a string.
+#'
+#' Give the positions of `(`, `)`, `[`, `]`, `\{`, `\}` within a string.
+#'
+#' @param string A character vector
+#'
+#' @return A list of data frames, one for each member of the string character
+#'   vector. Each data frame has a "position" and "brace" column which give the
+#'   positions and types of braces in the given string.
+#'
+#' @examples
+#' str_locate_braces(c("a{](kkj)})", "ab(]c{}"))
+#' @export
+str_locate_braces <- function(string) {
+  locations <- str_locate_all(string, "[\\(\\)\\[\\]\\{\\}]") %>%
+    int_lst_first_col()
+  braces <- str_elems(string, locations)
+  lst_df_pos_brace(locations, braces)
+}
+
+get_os <- function() {
+  sysinf <- Sys.info()
+  if (!is.null(sysinf)) {
+    os <- sysinf["sysname"]
+    if (os == "Darwin") {
+      os <- "mac"
+    }
+  } else { ## mystery machine
+    os <- .Platform$OS.type
+    if (grepl("^darwin", R.version$os)) {
+      os <- "mac"
+    }
+    if (grepl("linux-gnu", R.version$os)) {
+      os <- "linux"
+    }
+  }
+  tolower(os)
+}

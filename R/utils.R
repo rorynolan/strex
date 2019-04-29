@@ -113,22 +113,3 @@ custom_stop <- function(main_message, ..., .envir = parent.frame()) {
 custom_warn <- function(main_message, ..., .envir = parent.frame()) {
   rlang::warn(custom_condition_prep(main_message, ..., .envir = .envir))
 }
-
-get_os <- function() {
-  sysinf <- Sys.info()
-  if (!is.null(sysinf)) {
-    os <- sysinf["sysname"]
-    if (os == "Darwin") {
-      os <- "mac"
-    }
-  } else { ## mystery machine
-    os <- .Platform$OS.type
-    if (grepl("^darwin", R.version$os)) {
-      os <- "mac"
-    }
-    if (grepl("linux-gnu", R.version$os)) {
-      os <- "linux"
-    }
-  }
-  tolower(os)
-}

@@ -1,7 +1,6 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-#include "pasting.h"
 
 //' Interleave two vectors of strings.
 //'
@@ -23,13 +22,12 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 CharacterVector interleave_strings(CharacterVector strings1,
                                    CharacterVector strings2) {
-  int s1l = strings1.size();
-  int s2l = strings2.size();
-  int length_diff = s1l - s2l;
+  R_xlen_t s1l = strings1.size(), s2l = strings2.size();
+  int64_t length_diff = s1l - s2l;
   if (abs(length_diff) > 1) {
     return(NA_STRING);
   } else {
-    int l = s1l + s2l;
+    R_xlen_t l = s1l + s2l;
     CharacterVector interleaved(l);
     int i = 0;
     if (length_diff >= 0) {
@@ -59,14 +57,15 @@ CharacterVector interleave_strings(CharacterVector strings1,
 
 // [[Rcpp::export]]
 List interleave_char_lists(List strings1, List strings2) {
-  int l = strings1.size();
+  R_xlen_t l = strings1.size();
   List interleaved(l);
   if (l != strings2.size()) {
-    for (int i = 0; i < l; i++) {
-      interleaved[i] = CharacterVector::create(NA_STRING);
-    }
-  }
-  else {
+    auto err_msg = std::string("`interleave_char_lists()` expects ") +
+      "two lists of the same length. You have passed arguments of length " +
+      std::to_string(strings1.size()) + " and " +
+      std::to_string(strings2.size()) + ".";
+    throw std::invalid_argument(err_msg);
+  } else {
     for (int i = 0; i < l; i++) {
       interleaved[i] = interleave_strings(as<CharacterVector>(strings1[i]),
                                           as<CharacterVector>(strings2[i]));

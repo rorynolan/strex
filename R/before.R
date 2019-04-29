@@ -1,20 +1,20 @@
 #' @rdname str_after_nth
 #' @export
-str_before_nth <- function(strings, pattern, n) {
-  nth_instance_indices <- str_locate_nth(strings, pattern, n)
-  str_sub(strings, 1, nth_instance_indices[, "start"] - 1)
+str_before_nth <- function(string, pattern, n) {
+  nth_instance_indices <- str_locate_nth(string, pattern, n)
+  str_sub(string, 1, nth_instance_indices[, "start"] - 1)
 }
 
 #' @rdname str_after_nth
 #' @export
-str_before_first <- function(strings, pattern) {
-  str_before_nth(strings = strings, pattern = pattern, n = 1)
+str_before_first <- function(string, pattern) {
+  str_before_nth(string = string, pattern = pattern, n = 1)
 }
 
 #' @rdname str_after_nth
 #' @export
-str_before_last <- function(strings, pattern) {
-  str_before_nth(strings = strings, pattern = pattern, n = -1)
+str_before_last <- function(string, pattern) {
+  str_before_nth(string = string, pattern = pattern, n = -1)
 }
 
 #' Get the part of a string before the last period.
@@ -23,7 +23,7 @@ str_before_last <- function(strings, pattern) {
 #' file extension. It is vectorized over `string`. If there is no period in
 #' `string`, the input is returned.
 #'
-#' @param string A character vector.
+#' @inheritParams str_after_nth
 #'
 #' @return A character vector.
 #'

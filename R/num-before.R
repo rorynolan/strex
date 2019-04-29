@@ -1,4 +1,4 @@
-#' Find the \eqn{n}th number before the \eqn{m}th occurrence of a pattern.
+#' Find the `n`th number before the `m`th occurrence of a pattern.
 #'
 #' Given a string, a pattern and natural numbers `n` and `m`, find the `n`th
 #' number that comes before the `m`th occurrence of the pattern.

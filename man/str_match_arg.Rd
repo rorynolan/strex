@@ -16,22 +16,22 @@ match_arg(arg, choices, index = FALSE, several_ok = FALSE,
 
 \item{choices}{A character vector of candidate values.}
 
-\item{index}{Return the index of the match rather than the match itself?
-Default no.}
+\item{index}{Return the index of the match rather than the match itself?}
 
 \item{several_ok}{Allow \code{arg} to have length greater than one to match
-several arguments at once? Default no.}
+several arguments at once?}
 
-\item{ignore_case}{Ignore case while matching. Default no. If this is \code{TRUE},
-the returned value is the matched element of \code{choices} (with its original
+\item{ignore_case}{Ignore case while matching. If this is \code{TRUE}, the
+returned value is the matched element of \code{choices} (with its original
 casing).}
 }
 \description{
-Match \code{arg} against a series of candidate \code{choices} where \code{NULL} means take
-the first one. \code{arg} \emph{matches} an element of \code{choices} if \code{arg} is a prefix
-of that element.
+Match \code{arg} against a series of candidate \code{choices}. \code{arg} \emph{matches} an
+element of \code{choices} if \code{arg} is a prefix of that element.
 }
 \details{
+If \code{arg} is \code{NULL}, the first of \code{choices} is chosen.
+
 \code{ERROR}s are thrown when a match is not made and where the match is
 ambiguous. However, sometimes ambiguities are inevitable. Consider the case
 where \code{choices = c("ab", "abc")}, then there's no way to choose \code{"ab"}
@@ -40,10 +40,9 @@ need to provide a full match, i.e. using \code{arg = "ab"} will get you \code{"a
 without an error, however \code{arg = "a"} will throw an ambiguity error.
 
 This function inspired by \code{RSAGA::match.arg.ext()}. Its behaviour is almost
-identical (the difference is that \code{RSAGA::match.arg.ext(..., ignore.case = TRUE)} guarantees that the function returns strings in all lower case, but
-that is not so with \code{filesstrings::match_arg(..., ignore_case = TRUE)}) but
-\code{RSAGA} is a heavy package to depend upon so \code{filesstrings::match_arg()}
-might be handy for package developers.
+identical (the difference is that \code{RSAGA::match.arg.ext(..., ignore.case = TRUE)} always returns in all lower case; \code{strex::match_arg(..., ignore_case = TRUE)} ignores case while matching but returns the element of \code{choices} in
+its original case). \code{RSAGA} is a heavy package to depend upon so
+\code{strex::match_arg()} is handy for package developers.
 
 This function is designed to be used inside of other functions. It's fine to
 use it for other purposes, but the error messages might be a bit weird.

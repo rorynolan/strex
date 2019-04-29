@@ -3,7 +3,8 @@ using namespace Rcpp;
 
 
 // [[Rcpp::export]]
-List lst_df_pos_brace(List positions, List braces) {
+List lst_df_pos_brace(CharacterVector string,
+                      List positions, List braces) {
   std::size_t n = positions.size();
   if (braces.size() != n) {
     throw std::invalid_argument("`positions` and `braces` must have the "

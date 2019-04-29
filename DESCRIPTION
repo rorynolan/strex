@@ -15,7 +15,8 @@ Depends: stringr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-LinkingTo: Rcpp
+LinkingTo: 
+    Rcpp
 Imports: 
     Rcpp,
     magrittr,
@@ -29,7 +30,7 @@ Imports:
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Suggests: 
-    testthat,
+    testthat (>= 2.1.0),
     knitr,
     rmarkdown,
     pacman,

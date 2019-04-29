@@ -51,7 +51,7 @@ str_split_by_numbers <- function(string, decimals = FALSE,
   )
   out <- vector(mode = "list", length = length(string))
   if (any(ambigs)) {
-    ambig_warn(string, ambigs)
+    ambig_warn(string, ambigs, ambig_pattern)
     out[ambigs] <- NA_character_
     not_ambigs <- !ambigs
     out[not_ambigs] <- str_split_by_numbers_no_ambigs(

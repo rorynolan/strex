@@ -1,5 +1,3 @@
-context("nth number before mth pattern")
-
 test_that("`nth_number_before_mth()` works", {
   string <- c(
     "abc1abc2abc3abc4def5abc6abc7abc8abc9",

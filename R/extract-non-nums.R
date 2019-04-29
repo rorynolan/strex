@@ -93,6 +93,7 @@ str_extract_non_numerics <- function(string, decimals = FALSE,
 #'
 #' @noRd
 str_nth_non_numeric_no_ambigs <- function(string, num_pattern, n) {
+  if (length(string) == 0) return(character())
   if (length(n) == 1 && n >= 0) {
     out <- stringi::stri_split_regex(string, num_pattern,
       n = n + 1,
@@ -161,7 +162,7 @@ str_nth_non_numeric <- function(string, n, decimals = FALSE,
   )
   out <- character(length(string))
   if (any(ambigs)) {
-    ambig_warn(string, ambigs)
+    ambig_warn(string, ambigs, ambig_pattern)
     out[ambigs] <- NA_character_
     not_ambigs <- !ambigs
     out[not_ambigs] <- str_nth_non_numeric_no_ambigs(

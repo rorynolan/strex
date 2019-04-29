@@ -1,4 +1,3 @@
-context("Currency")
 test_that("`str_extract_currencies()` works", {
   string <- "35.00 $1.14 abc5 $3.8 77"
   expect_equal(
@@ -94,4 +93,21 @@ test_that("`str_nth_currency()` works", {
       "tbl", "data.frame"
     ))
   )
+  expect_error(str_nth_currency(as.character(1:3), 1:7),
+               paste("`n` must either be length 1 or have the same",
+                     "length as\n`string`.\n    * Your `n` has length 7.\n",
+                     "   * Your `string` has length 3."),
+               fixed = TRUE)
+  expect_equal(as.data.frame(str_nth_currency(string, n = -2)),
+               data.frame(string_num = seq_along(string), string,
+                          curr_sym = c("b", NA, "", "c", NA),
+                          amount = c(3, NA, 35, 5, NA),
+                          stringsAsFactors = FALSE),
+               check.attributes = FALSE)
+  expect_equal(as.data.frame(str_nth_currency(string, c(1, -2, 1, 2, -1))),
+               data.frame(string_num = seq_along(string), string,
+                          curr_sym = c("b", NA, "", "$", NA),
+                          amount = c(3, NA, 35, 3.8, NA),
+                          stringsAsFactors = FALSE))
+
 })

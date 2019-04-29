@@ -17,18 +17,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// lst_df_pos_brace
-List lst_df_pos_brace(List positions, List braces);
-RcppExport SEXP _strex_lst_df_pos_brace(SEXP positionsSEXP, SEXP bracesSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< List >::type positions(positionsSEXP);
-    Rcpp::traits::input_parameter< List >::type braces(bracesSEXP);
-    rcpp_result_gen = Rcpp::wrap(lst_df_pos_brace(positions, braces));
-    return rcpp_result_gen;
-END_RCPP
-}
 // interleave_strings
 CharacterVector interleave_strings(CharacterVector strings1, CharacterVector strings2);
 RcppExport SEXP _strex_interleave_strings(SEXP strings1SEXP, SEXP strings2SEXP) {
@@ -88,18 +76,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// intmat_list_bind_nth_rows
-IntegerVector intmat_list_bind_nth_rows(List intmat_list, IntegerVector n);
-RcppExport SEXP _strex_intmat_list_bind_nth_rows(SEXP intmat_listSEXP, SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< List >::type intmat_list(intmat_listSEXP);
-    Rcpp::traits::input_parameter< IntegerVector >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(intmat_list_bind_nth_rows(intmat_list, n));
-    return rcpp_result_gen;
-END_RCPP
-}
 // lst_char_to_num
 List lst_char_to_num(List x, bool commas);
 RcppExport SEXP _strex_lst_char_to_num(SEXP xSEXP, SEXP commasSEXP) {
@@ -147,30 +123,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// paste_collapse
-std::string paste_collapse(CharacterVector strings, std::string collapse);
-RcppExport SEXP _strex_paste_collapse(SEXP stringsSEXP, SEXP collapseSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type strings(stringsSEXP);
-    Rcpp::traits::input_parameter< std::string >::type collapse(collapseSEXP);
-    rcpp_result_gen = Rcpp::wrap(paste_collapse(strings, collapse));
-    return rcpp_result_gen;
-END_RCPP
-}
-// paste_collapse_list_elems
-CharacterVector paste_collapse_list_elems(List char_list, std::string collapse);
-RcppExport SEXP _strex_paste_collapse_list_elems(SEXP char_listSEXP, SEXP collapseSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< List >::type char_list(char_listSEXP);
-    Rcpp::traits::input_parameter< std::string >::type collapse(collapseSEXP);
-    rcpp_result_gen = Rcpp::wrap(paste_collapse_list_elems(char_list, collapse));
-    return rcpp_result_gen;
-END_RCPP
-}
 // fullocated_substrs
 List fullocated_substrs(CharacterVector strings, List locations);
 RcppExport SEXP _strex_fullocated_substrs(SEXP stringsSEXP, SEXP locationsSEXP) {
@@ -183,36 +135,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// str_elems
-List str_elems(StringVector strings, List locations);
-RcppExport SEXP _strex_str_elems(SEXP stringsSEXP, SEXP locationsSEXP) {
+// char_to_num
+NumericVector char_to_num(CharacterVector x, bool commas);
+RcppExport SEXP _strex_char_to_num(SEXP xSEXP, SEXP commasSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type strings(stringsSEXP);
-    Rcpp::traits::input_parameter< List >::type locations(locationsSEXP);
-    rcpp_result_gen = Rcpp::wrap(str_elems(strings, locations));
+    Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< bool >::type commas(commasSEXP);
+    rcpp_result_gen = Rcpp::wrap(char_to_num(x, commas));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_strex_match_arg_index", (DL_FUNC) &_strex_match_arg_index, 2},
-    {"_strex_lst_df_pos_brace", (DL_FUNC) &_strex_lst_df_pos_brace, 2},
     {"_strex_interleave_strings", (DL_FUNC) &_strex_interleave_strings, 2},
     {"_strex_interleave_char_lists", (DL_FUNC) &_strex_interleave_char_lists, 2},
     {"_strex_str_list_remove_empties", (DL_FUNC) &_strex_str_list_remove_empties, 1},
     {"_strex_str_list_nth_elems_helper", (DL_FUNC) &_strex_str_list_nth_elems_helper, 2},
     {"_strex_num_list_nth_elems_", (DL_FUNC) &_strex_num_list_nth_elems_, 2},
-    {"_strex_intmat_list_bind_nth_rows", (DL_FUNC) &_strex_intmat_list_bind_nth_rows, 2},
     {"_strex_lst_char_to_num", (DL_FUNC) &_strex_lst_char_to_num, 2},
     {"_strex_int_lst_first_col", (DL_FUNC) &_strex_int_lst_first_col, 1},
     {"_strex_lst_rbind", (DL_FUNC) &_strex_lst_rbind, 2},
     {"_strex_lst_rbind_nth_rows", (DL_FUNC) &_strex_lst_rbind_nth_rows, 2},
-    {"_strex_paste_collapse", (DL_FUNC) &_strex_paste_collapse, 2},
-    {"_strex_paste_collapse_list_elems", (DL_FUNC) &_strex_paste_collapse_list_elems, 2},
     {"_strex_fullocated_substrs", (DL_FUNC) &_strex_fullocated_substrs, 2},
-    {"_strex_str_elems", (DL_FUNC) &_strex_str_elems, 2},
+    {"_strex_char_to_num", (DL_FUNC) &_strex_char_to_num, 2},
     {NULL, NULL, 0}
 };
 

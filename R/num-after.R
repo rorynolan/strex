@@ -1,4 +1,4 @@
-#' Find the \eqn{n}th number after the \eqn{m}th occurrence of a pattern.
+#' Find the `n`th number after the `m`th occurrence of a pattern.
 #'
 #' Given a string, a pattern and natural numbers `n` and `m`, find the `n`th
 #' number after the `m`th occurrence of the pattern.

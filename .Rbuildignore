@@ -15,3 +15,5 @@
 ^\.travis\.yml$
 ^junk$
 ^pkgdown$
+^codemeta\.json$
+^\.covrignore$

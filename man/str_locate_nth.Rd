@@ -20,7 +20,7 @@ argument.}
 in the stringr package (e.g. look at \code{\link[stringr:str_locate]{stringr::str_locate()}}). If
 this has length >1 its length must be the same as that of \code{string}.}
 
-\item{n}{Then \eqn{n} for the \eqn{n}th instance of the pattern.}
+\item{n}{A character vector of length 1 or the same length as \code{string}.}
 }
 \value{
 A two-column matrix. The \eqn{i}th row of this matrix gives the start
@@ -29,13 +29,15 @@ element of \code{string}.
 }
 \description{
 The \eqn{n}th instance of an pattern will cover a series of character
-indices. These functions tell you which indices those are.
+indices. These functions tell you which indices those are. These functions
+are vectorised over all arguments.
 }
 \details{
-\itemize{ \item \code{str_locate_first(...)} is just
-\code{str_locate_nth(..., n = 1)}. \item
-\code{str_locate_last(...)} is just \code{str_locate_nth(..., n = -1)}. }
+\itemize{ \item \code{str_locate_first(...)} is just \code{str_locate_nth(..., n = 1)}.
+\item \code{str_locate_last(...)} is just \code{str_locate_nth(..., n = -1)}. }
 }
 \examples{
 str_locate_nth(c("abcdabcxyz", "abcabc"), "abc", 2)
+str_locate_nth(c("This old thing.", "That beautiful thing there."),
+"\\\\w+", c(2, -2))
 }
