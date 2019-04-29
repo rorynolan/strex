@@ -5,10 +5,10 @@
 \alias{match_arg}
 \title{Argument Matching.}
 \usage{
-str_match_arg(arg, choices, index = FALSE, several_ok = FALSE,
+str_match_arg(arg, choices = NULL, index = FALSE, several_ok = FALSE,
   ignore_case = FALSE)
 
-match_arg(arg, choices, index = FALSE, several_ok = FALSE,
+match_arg(arg, choices = NULL, index = FALSE, several_ok = FALSE,
   ignore_case = FALSE)
 }
 \arguments{
@@ -30,14 +30,21 @@ Match \code{arg} against a series of candidate \code{choices}. \code{arg} \emph{
 element of \code{choices} if \code{arg} is a prefix of that element.
 }
 \details{
-If \code{arg} is \code{NULL}, the first of \code{choices} is chosen.
-
 \code{ERROR}s are thrown when a match is not made and where the match is
 ambiguous. However, sometimes ambiguities are inevitable. Consider the case
 where \code{choices = c("ab", "abc")}, then there's no way to choose \code{"ab"}
 because \code{"ab"} is a prefix for \code{"ab"} and \code{"abc"}. If this is the case, you
 need to provide a full match, i.e. using \code{arg = "ab"} will get you \code{"ab"}
 without an error, however \code{arg = "a"} will throw an ambiguity error.
+
+When \code{choices} is \code{NULL}, the \code{choices} are obtained from a default setting
+for the formal argument \code{arg} of the function from which \code{str_match_arg} was
+called. This is consistent with \code{base::match.arg()}. See the examples for
+details.
+
+When \code{arg} and \code{choices} are identical and \code{several_ok = FALSE}, the first
+element of \code{choices} is returned. This is consistent with
+\code{base::match.arg()}.
 
 This function inspired by \code{RSAGA::match.arg.ext()}. Its behaviour is almost
 identical (the difference is that \code{RSAGA::match.arg.ext(..., ignore.case = TRUE)} always returns in all lower case; \code{strex::match_arg(..., ignore_case = TRUE)} ignores case while matching but returns the element of \code{choices} in
@@ -49,7 +56,6 @@ use it for other purposes, but the error messages might be a bit weird.
 }
 \examples{
 choices <- c("Apples", "Pears", "Bananas", "Oranges")
-match_arg(NULL, choices)
 match_arg("A", choices)
 match_arg("B", choices, index = TRUE)
 match_arg(c("a", "b"), choices, several_ok = TRUE, ignore_case = TRUE)
@@ -57,4 +63,17 @@ match_arg(c("b", "a"), choices,
   ignore_case = TRUE, index = TRUE,
   several_ok = TRUE
 )
+myword <- function(w = c("abacus", "baseball", "candy")) {
+  w <- match_arg(w)
+  w
+}
+myword("b")
+myword()
+myword <- function(w = c("abacus", "baseball", "candy")) {
+  w <- match_arg(w, several_ok = TRUE)
+  w
+}
+myword("c")
+myword()
+
 }

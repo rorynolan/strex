@@ -3,14 +3,21 @@
 #' Match `arg` against a series of candidate `choices`. `arg` _matches_ an
 #' element of `choices` if `arg` is a prefix of that element.
 #'
-#' If `arg` is `NULL`, the first of `choices` is chosen.
-#'
 #' `ERROR`s are thrown when a match is not made and where the match is
 #' ambiguous. However, sometimes ambiguities are inevitable. Consider the case
 #' where `choices = c("ab", "abc")`, then there's no way to choose `"ab"`
 #' because `"ab"` is a prefix for `"ab"` and `"abc"`. If this is the case, you
 #' need to provide a full match, i.e. using `arg = "ab"` will get you `"ab"`
 #' without an error, however `arg = "a"` will throw an ambiguity error.
+#'
+#' When `choices` is `NULL`, the `choices` are obtained from a default setting
+#' for the formal argument `arg` of the function from which `str_match_arg` was
+#' called. This is consistent with `base::match.arg()`. See the examples for
+#' details.
+#'
+#' When `arg` and `choices` are identical and `several_ok = FALSE`, the first
+#' element of `choices` is returned. This is consistent with
+#' `base::match.arg()`.
 #'
 #' This function inspired by `RSAGA::match.arg.ext()`. Its behaviour is almost
 #' identical (the difference is that `RSAGA::match.arg.ext(..., ignore.case =
@@ -33,7 +40,6 @@
 #'
 #' @examples
 #' choices <- c("Apples", "Pears", "Bananas", "Oranges")
-#' match_arg(NULL, choices)
 #' match_arg("A", choices)
 #' match_arg("B", choices, index = TRUE)
 #' match_arg(c("a", "b"), choices, several_ok = TRUE, ignore_case = TRUE)
@@ -41,14 +47,68 @@
 #'   ignore_case = TRUE, index = TRUE,
 #'   several_ok = TRUE
 #' )
+#' myword <- function(w = c("abacus", "baseball", "candy")) {
+#'   w <- match_arg(w)
+#'   w
+#' }
+#' myword("b")
+#' myword()
+#' myword <- function(w = c("abacus", "baseball", "candy")) {
+#'   w <- match_arg(w, several_ok = TRUE)
+#'   w
+#' }
+#' myword("c")
+#' myword()
+#'
 #' @export
-str_match_arg <- function(arg, choices, index = FALSE, several_ok = FALSE,
-                          ignore_case = FALSE) {
+str_match_arg <- function(arg, choices = NULL, index = FALSE,
+                          several_ok = FALSE, ignore_case = FALSE) {
+  if (is.null(choices)) {
+    arg_sym <- rlang::enexpr(arg)
+    null_choice_err <- FALSE
+    if (!rlang::is_symbol(arg_sym)) null_choice_err <- TRUE
+    if (!null_choice_err) {
+      formal_args <- formals(sys.function(sys_p <- sys.parent()))
+      arg_sym %<>% as.character()
+      default_arg_names <- formal_args %>% {
+        names(.)[as.logical(str_length(as.character(.)))]
+      }
+      if (matrixStats::anyValue(default_arg_names, value = arg_sym)) {
+        choices <- eval(formal_args[[arg_sym]], envir = sys.frame(sys_p))
+        if (is.character(choices)) {
+          return(str_match_arg(arg, choices = choices, index = index,
+                               several_ok = several_ok,
+                               ignore_case = ignore_case))
+        } else {
+          null_choice_err <- TRUE
+        }
+      } else {
+        null_choice_err <- TRUE
+      }
+    }
+    if (null_choice_err) {
+      fun <- as.character(match.call())[[1]]
+      custom_stop(
+        "You have used `{fun}()` without specifying a `choices` argument. ",
+        "
+        The only way to do this is from another function where `arg` has a
+        default setting. This is the same as `base::match.arg()`.
+        ", "
+        See the man page for `{fun}()`, particularly the examples:
+        enter `help(\"{fun}\", package = \"strex\")` at the R console.
+        ", "
+        See also the vignette on argument matching:
+        enter `vignette(\"argument-matching\", package = \"strex\")`
+        at the R console.
+        "
+      )
+    }
+  }
+  checkmate::assert_character(arg, min.len = 1)
   checkmate::assert_character(choices, min.len = 1)
   checkmate::assert_flag(index)
   checkmate::assert_flag(several_ok)
   checkmate::assert_flag(ignore_case)
-  if (is.null(arg)) return(choices[1])
   checkmate::assert_character(arg, min.len = 1)
   first_dup <- anyDuplicated(choices)
   if (first_dup) {
@@ -77,6 +137,7 @@ str_match_arg <- function(arg, choices, index = FALSE, several_ok = FALSE,
   }
   arg_len <- length(arg)
   if ((!several_ok) && arg_len > 1) {
+    if (all_equal(arg, choices)) return(choices[[1]])
     custom_stop(
       "`arg` must have length 1.",
       "Your `arg` has length {arg_len}.",
@@ -132,9 +193,7 @@ str_match_arg <- function(arg, choices, index = FALSE, several_ok = FALSE,
       )
     }
   }
-  indices %<>% {
-    . + 1
-  }
+  indices <- indices + 1
   if (index) return(indices)
   choices[indices]
 }

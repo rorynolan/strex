@@ -76,4 +76,31 @@ strex::match_arg("P", choices)
 ```
 
 
+## Not specifying `choices`
 
+It's OK not to specify choices in one circumstance: when `arg` is passed as a default argument of another function.
+
+```{r NULL-choices}
+myword <- function(w = c("abacus", "baseball", "candy")) {
+  w <- strex::match_arg(w)
+  w
+}
+myword()
+myword("b")
+myword("c")
+```
+
+This is very strict though, only the _symbol_ for the default argument can be passed, not any variant of it, not even something which evaluates to the same thing.
+
+```{r NULL-choices-errors, error=TRUE}
+myword <- function(w = c("abacus", "baseball", "candy")) {
+  w <- strex::match_arg(identity(w))
+  w
+}
+myword("b")
+myword <- function(w = c("abacus", "baseball", "candy")) {
+  w <- strex::match_arg(as.character(w))
+  w
+}
+myword("b")
+```

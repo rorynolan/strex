@@ -6,7 +6,6 @@ NULL
 #' @useDynLib strex, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 #' @importFrom tibble tibble
-#' @importFrom stringi stri_c
 ## usethis namespace: end
 NULL
 
