@@ -143,10 +143,10 @@ element of <code>choices</code> if <code>arg</code> is a prefix of that element.
     
     </div>
 
-    <pre class="usage"><span class='fu'>str_match_arg</span>(<span class='no'>arg</span>, <span class='no'>choices</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>several_ok</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <pre class="usage"><span class='fu'>str_match_arg</span>(<span class='no'>arg</span>, <span class='kw'>choices</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>several_ok</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>ignore_case</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
-<span class='fu'>match_arg</span>(<span class='no'>arg</span>, <span class='no'>choices</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>several_ok</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+<span class='fu'>match_arg</span>(<span class='no'>arg</span>, <span class='kw'>choices</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>several_ok</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>ignore_case</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -179,13 +179,19 @@ casing).</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If <code>arg</code> is <code>NULL</code>, the first of <code>choices</code> is chosen.</p>
-<p><code>ERROR</code>s are thrown when a match is not made and where the match is
+    <p><code>ERROR</code>s are thrown when a match is not made and where the match is
 ambiguous. However, sometimes ambiguities are inevitable. Consider the case
 where <code>choices = c("ab", "abc")</code>, then there's no way to choose <code>"ab"</code>
 because <code>"ab"</code> is a prefix for <code>"ab"</code> and <code>"abc"</code>. If this is the case, you
 need to provide a full match, i.e. using <code>arg = "ab"</code> will get you <code>"ab"</code>
 without an error, however <code>arg = "a"</code> will throw an ambiguity error.</p>
+<p>When <code>choices</code> is <code>NULL</code>, the <code>choices</code> are obtained from a default setting
+for the formal argument <code>arg</code> of the function from which <code>str_match_arg</code> was
+called. This is consistent with <code><a href='https://www.rdocumentation.org/packages/base/topics/match.arg'>base::match.arg()</a></code>. See the examples for
+details.</p>
+<p>When <code>arg</code> and <code>choices</code> are identical and <code>several_ok = FALSE</code>, the first
+element of <code>choices</code> is returned. This is consistent with
+<code><a href='https://www.rdocumentation.org/packages/base/topics/match.arg'>base::match.arg()</a></code>.</p>
 <p>This function inspired by <code>RSAGA::match.arg.ext()</code>. Its behaviour is almost
 identical (the difference is that <code>RSAGA::match.arg.ext(..., ignore.case = TRUE)</code> always returns in all lower case; <code>strex::match_arg(..., ignore_case = TRUE)</code> ignores case while matching but returns the element of <code>choices</code> in
 its original case). <code>RSAGA</code> is a heavy package to depend upon so
@@ -196,10 +202,19 @@ use it for other purposes, but the error messages might be a bit weird.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>choices</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Apples"</span>, <span class='st'>"Pears"</span>, <span class='st'>"Bananas"</span>, <span class='st'>"Oranges"</span>)
-<span class='fu'>match_arg</span>(<span class='kw'>NULL</span>, <span class='no'>choices</span>)</div><div class='output co'>#&gt; [1] "Apples"</div><div class='input'><span class='fu'>match_arg</span>(<span class='st'>"A"</span>, <span class='no'>choices</span>)</div><div class='output co'>#&gt; [1] "Apples"</div><div class='input'><span class='fu'>match_arg</span>(<span class='st'>"B"</span>, <span class='no'>choices</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 3</div><div class='input'><span class='fu'>match_arg</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>), <span class='no'>choices</span>, <span class='kw'>several_ok</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ignore_case</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "Apples"  "Bananas"</div><div class='input'><span class='fu'>match_arg</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"b"</span>, <span class='st'>"a"</span>), <span class='no'>choices</span>,
+<span class='fu'>match_arg</span>(<span class='st'>"A"</span>, <span class='no'>choices</span>)</div><div class='output co'>#&gt; [1] "Apples"</div><div class='input'><span class='fu'>match_arg</span>(<span class='st'>"B"</span>, <span class='no'>choices</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 3</div><div class='input'><span class='fu'>match_arg</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>), <span class='no'>choices</span>, <span class='kw'>several_ok</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ignore_case</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "Apples"  "Bananas"</div><div class='input'><span class='fu'>match_arg</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"b"</span>, <span class='st'>"a"</span>), <span class='no'>choices</span>,
   <span class='kw'>ignore_case</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>several_ok</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; [1] 3 1</div></pre>
+)</div><div class='output co'>#&gt; [1] 3 1</div><div class='input'><span class='no'>myword</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>w</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abacus"</span>, <span class='st'>"baseball"</span>, <span class='st'>"candy"</span>)) {
+  <span class='no'>w</span> <span class='kw'>&lt;-</span> <span class='fu'>match_arg</span>(<span class='no'>w</span>)
+  <span class='no'>w</span>
+}
+<span class='fu'>myword</span>(<span class='st'>"b"</span>)</div><div class='output co'>#&gt; [1] "baseball"</div><div class='input'><span class='fu'>myword</span>()</div><div class='output co'>#&gt; [1] "abacus"</div><div class='input'><span class='no'>myword</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>w</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abacus"</span>, <span class='st'>"baseball"</span>, <span class='st'>"candy"</span>)) {
+  <span class='no'>w</span> <span class='kw'>&lt;-</span> <span class='fu'>match_arg</span>(<span class='no'>w</span>, <span class='kw'>several_ok</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+  <span class='no'>w</span>
+}
+<span class='fu'>myword</span>(<span class='st'>"c"</span>)</div><div class='output co'>#&gt; [1] "candy"</div><div class='input'><span class='fu'>myword</span>()</div><div class='output co'>#&gt; [1] "abacus"   "baseball" "candy"   </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -176,6 +176,55 @@
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; `choices` must not have duplicate elements.</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;     * Element 7, of your `choices` ("Pears") is a duplicate.</span></a></code></pre></div>
 </div>
+<div id="not-specifying-choices" class="section level2">
+<h2 class="hasAnchor">
+<a href="#not-specifying-choices" class="anchor"></a>Not specifying <code>choices</code>
+</h2>
+<p>It’s OK not to specify choices in one circumstance: when <code>arg</code> is passed as a default argument of another function.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">myword &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">w =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"abacus"</span>, <span class="st">"baseball"</span>, <span class="st">"candy"</span>)) {</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  w &lt;-<span class="st"> </span>strex<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/strex/topics/str_match_arg">match_arg</a></span>(w)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  w</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">myword</span>()</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt; [1] "abacus"</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="kw">myword</span>(<span class="st">"b"</span>)</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt; [1] "baseball"</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="kw">myword</span>(<span class="st">"c"</span>)</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt; [1] "candy"</span></a></code></pre></div>
+<p>This is very strict though, only the <em>symbol</em> for the default argument can be passed, not any variant of it, not even something which evaluates to the same thing.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">myword &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">w =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"abacus"</span>, <span class="st">"baseball"</span>, <span class="st">"candy"</span>)) {</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">  w &lt;-<span class="st"> </span>strex<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/strex/topics/str_match_arg">match_arg</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/identity">identity</a></span>(w))</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">  w</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">myword</span>(<span class="st">"b"</span>)</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt; You have used `strex::match_arg()` without specifying a</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt; `choices` argument.</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt;     * The only way to do this is from another function where</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt;       `arg` has a default setting. This is the same as</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt;       `base::match.arg()`.</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt;     * See the man page for `strex::match_arg()`, particularly</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt;       the examples: enter `help("strex::match_arg", package =</span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;       "strex")` at the R console.</span></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt;     * See also the vignette on argument matching: enter</span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt;       `vignette("argument-matching", package = "strex")` at</span></a>
+<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt;       the R console.</span></a>
+<a class="sourceLine" id="cb8-17" data-line-number="17">myword &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">w =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"abacus"</span>, <span class="st">"baseball"</span>, <span class="st">"candy"</span>)) {</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18">  w &lt;-<span class="st"> </span>strex<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/strex/topics/str_match_arg">match_arg</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(w))</a>
+<a class="sourceLine" id="cb8-19" data-line-number="19">  w</a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">}</a>
+<a class="sourceLine" id="cb8-21" data-line-number="21"><span class="kw">myword</span>(<span class="st">"b"</span>)</a>
+<a class="sourceLine" id="cb8-22" data-line-number="22"><span class="co">#&gt; You have used `strex::match_arg()` without specifying a</span></a>
+<a class="sourceLine" id="cb8-23" data-line-number="23"><span class="co">#&gt; `choices` argument.</span></a>
+<a class="sourceLine" id="cb8-24" data-line-number="24"><span class="co">#&gt;     * The only way to do this is from another function where</span></a>
+<a class="sourceLine" id="cb8-25" data-line-number="25"><span class="co">#&gt;       `arg` has a default setting. This is the same as</span></a>
+<a class="sourceLine" id="cb8-26" data-line-number="26"><span class="co">#&gt;       `base::match.arg()`.</span></a>
+<a class="sourceLine" id="cb8-27" data-line-number="27"><span class="co">#&gt;     * See the man page for `strex::match_arg()`, particularly</span></a>
+<a class="sourceLine" id="cb8-28" data-line-number="28"><span class="co">#&gt;       the examples: enter `help("strex::match_arg", package =</span></a>
+<a class="sourceLine" id="cb8-29" data-line-number="29"><span class="co">#&gt;       "strex")` at the R console.</span></a>
+<a class="sourceLine" id="cb8-30" data-line-number="30"><span class="co">#&gt;     * See also the vignette on argument matching: enter</span></a>
+<a class="sourceLine" id="cb8-31" data-line-number="31"><span class="co">#&gt;       `vignette("argument-matching", package = "strex")` at</span></a>
+<a class="sourceLine" id="cb8-32" data-line-number="32"><span class="co">#&gt;       the R console.</span></a></code></pre></div>
+</div>
 </div>
   </div>
 
@@ -196,6 +245,7 @@
       <li><a href="#multiple-matches">Multiple matches</a></li>
       <li><a href="#wrong-arg-length">Wrong <code>arg</code> length</a></li>
       <li><a href="#duplicate-elements-in-choices">Duplicate elements in <code>choices</code></a></li>
+      <li><a href="#not-specifying-choices">Not specifying <code>choices</code></a></li>
       </ul>
 </li>
       </ul>
