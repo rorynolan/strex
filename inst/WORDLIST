@@ -1,6 +1,8 @@
 abc
 alphorder
+alphorderers
 Alphordering
+appenders
 AppVeyor
 behaviour
 camelcase
@@ -10,8 +12,11 @@ filesstrings
 github
 http
 https
+integerish
 io
 lifecycle
+matchers
+organised
 Parra
 possiblity
 Ramnath
@@ -21,12 +26,14 @@ repo
 rorynolan
 RStudio
 Sergi
+splitters
 stackoverflow
 stringi
 stringr
 th
 tibble
 Vaidyanathan's
+vectorised
 Vectorised
 vectorized
 Vectorized

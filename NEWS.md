@@ -4,7 +4,7 @@
 * `str_split_by_nums()` has been renamed to `str_split_by_numbers()` for consistency with `str_extract_numbers()`.
 * `str_get_currencies()` has been renamed to `str_extract_currencies()` and been greatly improved.
 * `str_get_currency()` has been replaced by `str_nth_currency()` with siblings `str_first_currency()` and `str_last_currency()`.
-* `str_match_arg()` has ben updated to behave more like `base::match_arg()`.
+* `str_match_arg()` has been updated to behave more like `base::match_arg()`.
 
 ## NEW FEATURES
 * `str_elems()` has been added. It is a vectorized version of `str_elem()`.
