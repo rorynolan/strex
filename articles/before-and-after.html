@@ -94,7 +94,7 @@
     <div class="page-header toc-ignore">
       <h1>Before and After</h1>
             
-            <h4 class="date">2019-04-29</h4>
+            <h4 class="date">2019-05-01</h4>
       
       
       <div class="hidden name"><code>before-and-after.Rmd</code></div>
@@ -109,33 +109,33 @@
 <div id="before" class="section level2">
 <h2 class="hasAnchor">
 <a href="#before" class="anchor"></a>Before</h2>
-<p><code><a href="../reference/str_after_nth.html">str_before_nth()</a></code> gives you the part of a string before the <code>n</code><sup>th</sup> appearance of a pattern. It has the friends <code><a href="../reference/str_after_nth.html">str_before_first()</a></code> and <code><a href="../reference/str_after_nth.html">str_before_last()</a></code>.</p>
+<p><code><a href="../reference/before-and-after.html">str_before_nth()</a></code> gives you the part of a string before the <code>n</code><sup>th</sup> appearance of a pattern. It has the friends <code><a href="../reference/before-and-after.html">str_before_first()</a></code> and <code><a href="../reference/before-and-after.html">str_before_last()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">string &lt;-<span class="st"> "ab..cd..de..fg..h"</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="../reference/str_after_nth.html">str_before_first</a></span>(string, <span class="st">"e"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="../reference/before-and-after.html">str_before_first</a></span>(string, <span class="st">"e"</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; [1] "ab..cd..d"</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="../reference/str_after_nth.html">str_before_nth</a></span>(string, <span class="st">"</span><span class="ch">\\</span><span class="st">."</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="../reference/before-and-after.html">str_before_nth</a></span>(string, <span class="st">"</span><span class="ch">\\</span><span class="st">."</span>, <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; [1] "ab..cd"</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw"><a href="../reference/str_after_nth.html">str_before_last</a></span>(string, <span class="st">"</span><span class="ch">\\</span><span class="st">."</span>)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw"><a href="../reference/before-and-after.html">str_before_last</a></span>(string, <span class="st">"</span><span class="ch">\\</span><span class="st">."</span>)</a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; [1] "ab..cd..de..fg."</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw"><a href="../reference/str_after_nth.html">str_before_nth</a></span>(string, <span class="st">"."</span>, <span class="dv">-3</span>)</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw"><a href="../reference/before-and-after.html">str_before_nth</a></span>(string, <span class="st">"."</span>, <span class="dv">-3</span>)</a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; [1] "ab..cd..de..fg"</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="../reference/str_after_nth.html">str_before_nth</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(string, <span class="dv">2</span>), <span class="kw">fixed</span>(<span class="st">"."</span>), <span class="dv">-3</span>)</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="../reference/before-and-after.html">str_before_nth</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(string, <span class="dv">2</span>), <span class="kw">fixed</span>(<span class="st">"."</span>), <span class="dv">-3</span>)</a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; [1] "ab..cd..de." "ab..cd..de."</span></a></code></pre></div>
 </div>
 <div id="after" class="section level2">
 <h2 class="hasAnchor">
 <a href="#after" class="anchor"></a>After</h2>
-<p><code><a href="../reference/str_after_nth.html">str_after_nth()</a></code> gives you the part of a string after the <code>n</code><sup>th</sup> appearance of a pattern. It has the friends <code><a href="../reference/str_after_nth.html">str_after_first()</a></code> and <code><a href="../reference/str_after_nth.html">str_after_last()</a></code>.</p>
+<p><code><a href="../reference/before-and-after.html">str_after_nth()</a></code> gives you the part of a string after the <code>n</code><sup>th</sup> appearance of a pattern. It has the friends <code><a href="../reference/before-and-after.html">str_after_first()</a></code> and <code><a href="../reference/before-and-after.html">str_after_last()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">string &lt;-<span class="st"> "ab..cd..de..fg..h"</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="../reference/str_after_nth.html">str_after_first</a></span>(string, <span class="st">"e"</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="../reference/before-and-after.html">str_after_first</a></span>(string, <span class="st">"e"</span>)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; [1] "..fg..h"</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="../reference/str_after_nth.html">str_after_nth</a></span>(string, <span class="st">"</span><span class="ch">\\</span><span class="st">."</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="../reference/before-and-after.html">str_after_nth</a></span>(string, <span class="st">"</span><span class="ch">\\</span><span class="st">."</span>, <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; [1] ".de..fg..h"</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw"><a href="../reference/str_after_nth.html">str_after_last</a></span>(string, <span class="st">"</span><span class="ch">\\</span><span class="st">."</span>)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw"><a href="../reference/before-and-after.html">str_after_last</a></span>(string, <span class="st">"</span><span class="ch">\\</span><span class="st">."</span>)</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; [1] "h"</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw"><a href="../reference/str_after_nth.html">str_after_nth</a></span>(string, <span class="st">"."</span>, <span class="dv">-3</span>)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw"><a href="../reference/before-and-after.html">str_after_nth</a></span>(string, <span class="st">"."</span>, <span class="dv">-3</span>)</a>
 <a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; [1] ".h"</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw"><a href="../reference/str_after_nth.html">str_after_nth</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(string, <span class="dv">2</span>), <span class="kw">fixed</span>(<span class="st">"."</span>), <span class="dv">-3</span>)</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw"><a href="../reference/before-and-after.html">str_after_nth</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(string, <span class="dv">2</span>), <span class="kw">fixed</span>(<span class="st">"."</span>), <span class="dv">-3</span>)</a>
 <a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; [1] "fg..h" "fg..h"</span></a></code></pre></div>
 </div>
 <div id="a-more-concrete-example" class="section level2">
@@ -146,14 +146,14 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">get_task &lt;-<span class="st"> </span><span class="cf">function</span>(string, name) {</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="kw">str_c</span>(name, <span class="st">" did the "</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="../reference/str_after_nth.html">str_after_first</a></span>(string, .) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/str_after_nth.html">str_before_first</a></span>(<span class="st">"[</span><span class="ch">\\</span><span class="st">.,]"</span>)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="../reference/before-and-after.html">str_after_first</a></span>(string, .) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/before-and-after.html">str_before_first</a></span>(<span class="st">"[</span><span class="ch">\\</span><span class="st">.,]"</span>)</a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">}</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw">get_task</span>(string, <span class="st">"James"</span>)</a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; [1] "cooking"</span></a>
 <a class="sourceLine" id="cb5-9" data-line-number="9"><span class="kw">get_task</span>(string, <span class="st">"Harry"</span>)</a>
 <a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [1] "cleaning"</span></a></code></pre></div>
-<p><code>get_task()</code> would have been more difficult to write without <code><a href="../reference/str_after_nth.html">str_after_first()</a></code> and <code><a href="../reference/str_after_nth.html">str_before_first()</a></code>.</p>
+<p><code>get_task()</code> would have been more difficult to write without <code><a href="../reference/before-and-after.html">str_after_first()</a></code> and <code><a href="../reference/before-and-after.html">str_before_first()</a></code>.</p>
 </div>
   </div>
 

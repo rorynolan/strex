@@ -184,6 +184,10 @@ element of <code>string</code>.</p>
 <li><p><code>str_locate_last(...)</code> is just <code>str_locate_nth(..., n = -1)</code>.</p></li>
 </ul>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other locators: <code><a href='str_locate_braces.html'>str_locate_braces</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>str_locate_nth</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abcdabcxyz"</span>, <span class='st'>"abcabc"</span>), <span class='st'>"abc"</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt;      start end
@@ -191,7 +195,12 @@ element of <code>string</code>.</p>
 #&gt; [2,]     4   6</div><div class='input'><span class='fu'>str_locate_nth</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"This old thing."</span>, <span class='st'>"That beautiful thing there."</span>),
 <span class='st'>"\\w+"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>, -<span class='fl'>2</span>))</div><div class='output co'>#&gt;      start end
 #&gt; [1,]     6   8
-#&gt; [2,]    16  20</div></pre>
+#&gt; [2,]    16  20</div><div class='input'><span class='fu'>str_locate_nth</span>(<span class='st'>"abc"</span>, <span class='st'>"b"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>))</div><div class='output co'>#&gt;      start end
+#&gt; [1,]    NA  NA
+#&gt; [2,]     2   2
+#&gt; [3,]     2   2
+#&gt; [4,]    NA  NA</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -201,6 +210,8 @@ element of <code>string</code>.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

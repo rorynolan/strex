@@ -145,9 +145,9 @@ optionally allowed.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>str_nth_number</span>(<span class='no'>string</span>, <span class='no'>n</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <pre class="usage"><span class='fu'>str_nth_number</span>(<span class='no'>string</span>, <span class='no'>n</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>, <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,11 +163,6 @@ indexing is allowed i.e. <code>n = 1</code> (the default) will give you the firs
 number (or non-numeric) whereas <code>n = -1</code> will give you the last number (or
 non-numeric), <code>n = -2</code> will give you the second last number and so on. The
 function is vectorized over this argument.</p></td>
-    </tr>
-    <tr>
-      <th>leave_as_string</th>
-      <td><p>Do you want to return the number as a string (<code>TRUE</code>)
-or as numeric (<code>FALSE</code>, the default)?</p></td>
     </tr>
     <tr>
       <th>decimals</th>
@@ -195,6 +190,11 @@ as 2000.</p></td>
 single number (one thousand one hundred) rather than two numbers (one and
 one hundred)).</p></td>
     </tr>
+    <tr>
+      <th>leave_as_string</th>
+      <td><p>Do you want to return the number as a string (<code>TRUE</code>)
+or as numeric (<code>FALSE</code>, the default)?</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -209,6 +209,12 @@ one hundred)).</p></td>
 </ul>
     <p>For a detailed explanation of the number extraction, see
 <code><a href='str_extract_numbers.html'>str_extract_numbers()</a></code>.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other numeric extractors: <code><a href='str_extract_numbers.html'>str_extract_numbers</a></code>,
+  <code><a href='str_nth_number_after_mth.html'>str_nth_number_after_mth</a></code>,
+  <code><a href='str_nth_number_before_mth.html'>str_nth_number_before_mth</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -225,7 +231,8 @@ one hundred)).</p></td>
 )</div><div class='output co'>#&gt; [1]  123.00   -0.12 1200.00 1100.00     Inf</div><div class='input'><span class='fu'><a href='str_extract_numbers.html'>str_last_number</a></span>(<span class='no'>strings</span>,
   <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; [1] "456"     "345"     "9"       "1,230.5" "1,000"  </div></pre>
+)</div><div class='output co'>#&gt; [1] "456"     "345"     "9"       "1,230.5" "1,000"  </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -235,6 +242,8 @@ one hundred)).</p></td>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

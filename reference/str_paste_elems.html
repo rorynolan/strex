@@ -171,10 +171,16 @@ in <code><a href='https://stringr.tidyverse.org/reference/str_sub.html'>stringr:
 
     <p>Elements that don't exist e.g. element 5 of <code>"abc"</code> are ignored.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other single element extractors: <code><a href='str_elems.html'>str_elems</a></code>,
+  <code><a href='str_elem.html'>str_elem</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>string</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abc"</span>, <span class='st'>"def"</span>, <span class='st'>"ghi"</span>, <span class='st'>"vwxyz"</span>)
-<span class='fu'>str_paste_elems</span>(<span class='no'>string</span>, <span class='fl'>1</span>:<span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "ab" "de" "gh" "vw"</div><div class='input'><span class='fu'>str_paste_elems</span>(<span class='no'>string</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, -<span class='fl'>1</span>))</div><div class='output co'>#&gt; [1] "abcc"  "deff"  "ghii"  "vwxyz"</div><div class='input'><span class='fu'>str_paste_elems</span>(<span class='st'>"abc"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>55</span>, <span class='fl'>43</span>, <span class='fl'>3</span>))</div><div class='output co'>#&gt; [1] "ac"</div></pre>
+<span class='fu'>str_paste_elems</span>(<span class='no'>string</span>, <span class='fl'>1</span>:<span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "ab" "de" "gh" "vw"</div><div class='input'><span class='fu'>str_paste_elems</span>(<span class='no'>string</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, -<span class='fl'>1</span>))</div><div class='output co'>#&gt; [1] "abcc"  "deff"  "ghii"  "vwxyz"</div><div class='input'><span class='fu'>str_paste_elems</span>(<span class='st'>"abc"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>55</span>, <span class='fl'>43</span>, <span class='fl'>3</span>))</div><div class='output co'>#&gt; [1] "ac"</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -184,6 +190,8 @@ in <code><a href='https://stringr.tidyverse.org/reference/str_sub.html'>stringr:
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

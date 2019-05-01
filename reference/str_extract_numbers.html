@@ -145,17 +145,17 @@ optionally allowed.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>str_extract_numbers</span>(<span class='no'>string</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <pre class="usage"><span class='fu'>str_extract_numbers</span>(<span class='no'>string</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>, <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
-<span class='fu'>str_first_number</span>(<span class='no'>string</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>, <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>str_first_number</span>(<span class='no'>string</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>,
+  <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
-<span class='fu'>str_last_number</span>(<span class='no'>string</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>, <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>str_last_number</span>(<span class='no'>string</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>,
+  <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,11 +163,6 @@ optionally allowed.</p>
     <tr>
       <th>string</th>
       <td><p>A string.</p></td>
-    </tr>
-    <tr>
-      <th>leave_as_string</th>
-      <td><p>Do you want to return the number as a string (<code>TRUE</code>)
-or as numeric (<code>FALSE</code>, the default)?</p></td>
     </tr>
     <tr>
       <th>decimals</th>
@@ -195,6 +190,11 @@ as 2000.</p></td>
 single number (one thousand one hundred) rather than two numbers (one and
 one hundred)).</p></td>
     </tr>
+    <tr>
+      <th>leave_as_string</th>
+      <td><p>Do you want to return the number as a string (<code>TRUE</code>)
+or as numeric (<code>FALSE</code>, the default)?</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -216,6 +216,12 @@ commas in numbers has been turned on.</p>
 <p>Numbers outside the double precision floating point range (i.e. with absolute
 value greater than 1.797693e+308) are read as <code>Inf</code> (or <code>-Inf</code> if they begin
 with a minus sign). This is what <code><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>base::as.numeric()</a></code> does.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other numeric extractors: <code><a href='str_nth_number_after_mth.html'>str_nth_number_after_mth</a></code>,
+  <code><a href='str_nth_number_before_mth.html'>str_nth_number_before_mth</a></code>,
+  <code><a href='str_nth_number.html'>str_nth_number</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -330,7 +336,8 @@ with a minus sign). This is what <code><a href='https://www.rdocumentation.org/p
 #&gt; 
 #&gt; [[5]]
 #&gt; [1] "1,100" "3,215" "4"     "1,000"
-#&gt; </div></pre>
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -340,6 +347,8 @@ with a minus sign). This is what <code><a href='https://www.rdocumentation.org/p
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

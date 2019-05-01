@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the part of a string before the last period. — str_before_last_dot • strex</title>
+<title>Extract the part of a string before the last period. — str_before_last_dot • strex</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,7 +37,7 @@
 
 
 
-<meta property="og:title" content="Get the part of a string before the last period. — str_before_last_dot" />
+<meta property="og:title" content="Extract the part of a string before the last period. — str_before_last_dot" />
 
 <meta property="og:description" content="This is usually used to get the part of a file name that doesn't include the
 file extension. It is vectorized over string. If there is no period in
@@ -132,7 +132,7 @@ string, the input is returned." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the part of a string before the last period.</h1>
+    <h1>Extract the part of a string before the last period.</h1>
     
     <div class="hidden name"><code>str_before_last_dot.Rd</code></div>
     </div>
@@ -160,9 +160,14 @@ file extension. It is vectorized over <code>string</code>. If there is no period
 
     <p>A character vector.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other bisectors: <code><a href='before-and-after.html'>before-and-after</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>str_before_last_dot</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"spreadsheet1.csv"</span>, <span class='st'>"doc2.doc"</span>, <span class='st'>".R"</span>))</div><div class='output co'>#&gt; [1] "spreadsheet1" "doc2"         ""            </div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>str_before_last_dot</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"spreadsheet1.csv"</span>, <span class='st'>"doc2.doc"</span>, <span class='st'>".R"</span>))</div><div class='output co'>#&gt; [1] "spreadsheet1" "doc2"         ""            </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -170,6 +175,8 @@ file extension. It is vectorized over <code>string</code>. If there is no period
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

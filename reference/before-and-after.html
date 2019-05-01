@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove back-to-back duplicates of a pattern in a string. — str_singleize • strex</title>
+<title>Extract text before or after <code>n</code>th occurrence of pattern. — before-and-after • strex</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,13 +37,10 @@
 
 
 
-<meta property="og:title" content="Remove back-to-back duplicates of a pattern in a string. — str_singleize" />
+<meta property="og:title" content="Extract text before or after <code>n</code>th occurrence of pattern. — before-and-after" />
 
-<meta property="og:description" content="If a string contains a given pattern duplicated back-to-back a number of
-times, remove that duplication, leaving the pattern appearing once in that
-position (works if the pattern is duplicated in different parts of a string,
-removing all instances of duplication). This is vectorized over string and
-pattern." />
+<meta property="og:description" content="Extract the part of a string which is before or after the nth occurrence of
+a specified pattern, vectorized over the string." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -134,50 +131,76 @@ pattern." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove back-to-back duplicates of a pattern in a string.</h1>
+    <h1>Extract text before or after <code>n</code>th occurrence of pattern.</h1>
     
-    <div class="hidden name"><code>str_singleize.Rd</code></div>
+    <div class="hidden name"><code>before-and-after.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>If a string contains a given pattern duplicated back-to-back a number of
-times, remove that duplication, leaving the pattern appearing once in that
-position (works if the pattern is duplicated in different parts of a string,
-removing all instances of duplication). This is vectorized over string and
-pattern.</p>
+    <p>Extract the part of a string which is before or after the <code>n</code>th occurrence of
+a specified pattern, vectorized over the string.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>str_singleize</span>(<span class='no'>string</span>, <span class='no'>pattern</span>)</pre>
+    <pre class="usage"><span class='fu'>str_after_nth</span>(<span class='no'>string</span>, <span class='no'>pattern</span>, <span class='no'>n</span>)
+
+<span class='fu'>str_after_first</span>(<span class='no'>string</span>, <span class='no'>pattern</span>)
+
+<span class='fu'>str_after_last</span>(<span class='no'>string</span>, <span class='no'>pattern</span>)
+
+<span class='fu'>str_before_nth</span>(<span class='no'>string</span>, <span class='no'>pattern</span>, <span class='no'>n</span>)
+
+<span class='fu'>str_before_first</span>(<span class='no'>string</span>, <span class='no'>pattern</span>)
+
+<span class='fu'>str_before_last</span>(<span class='no'>string</span>, <span class='no'>pattern</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>string</th>
-      <td><p>A character vector. The string(s) to be purged of duplicates.</p></td>
+      <td><p>A character vector.</p></td>
     </tr>
     <tr>
       <th>pattern</th>
-      <td><p>A character vector. Pattern(s) specified like the pattern(s)
-in the stringr package (e.g. look at <code><a href='https://stringr.tidyverse.org/reference/str_locate.html'>stringr::str_locate()</a></code>). If
-this has length &gt;1 its length must be the same as that of <code>string</code>.</p></td>
+      <td><p>The pattern to look for.</p>
+<p>The default interpretation is a regular expression, as described in
+<a href='https://www.rdocumentation.org/packages/stringi/topics/stringi-search-regex'>stringi::stringi-search-regex</a>.</p>
+<p>To match a without regular expression (i.e. as a human would), use
+<a href='https://stringr.tidyverse.org/reference/modifiers.html'>coll()</a>. For details see <code><a href='https://stringr.tidyverse.org/reference/modifiers.html'>stringr::regex()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>A vector of integerish values. Must be either length 1 or
+have length equal to the length of <code>string</code>. Negative indices count from
+the back: while <code>n = 1</code> and <code>n = 2</code> correspond to first and second, <code>n = -1</code> and <code>n = -2</code> correspond to last and second-last. <code>n = 0</code> will return
+<code>NA</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The string with the duplicates fixed.</p>
+    <p>A character vector.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <ul>
+<li><p><code>str_after_first(...)</code> is just <code>str_after_nth(..., n = 1)</code>.</p></li>
+<li><p><code>str_after_last(...)</code> is just <code>str_after_nth(..., n = -1)</code>.</p></li>
+<li><p><code>str_before_first(...)</code> is just <code>str_before_nth(..., n = 1)</code>.</p></li>
+<li><p><code>str_before_last(...)</code> is just <code>str_before_nth(..., n = -1)</code>.</p></li>
+</ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other removers: <code><a href='str_remove_quoted.html'>str_remove_quoted</a></code>,
-  <code><a href='str_trim_anything.html'>str_trim_anything</a></code></p></div>
+    <div class='dont-index'><p>Other bisectors: <code><a href='str_before_last_dot.html'>str_before_last_dot</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>str_singleize</span>(<span class='st'>"abc//def"</span>, <span class='st'>"/"</span>)</div><div class='output co'>#&gt; [1] "abc/def"</div><div class='input'><span class='fu'>str_singleize</span>(<span class='st'>"abababcabab"</span>, <span class='st'>"ab"</span>)</div><div class='output co'>#&gt; [1] "abcab"</div><div class='input'><span class='fu'>str_singleize</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abab"</span>, <span class='st'>"cdcd"</span>), <span class='st'>"cd"</span>)</div><div class='output co'>#&gt; [1] "abab" "cd"  </div><div class='input'><span class='fu'>str_singleize</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abab"</span>, <span class='st'>"cdcd"</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"ab"</span>, <span class='st'>"cd"</span>))</div><div class='output co'>#&gt; [1] "ab" "cd"</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>string</span> <span class='kw'>&lt;-</span> <span class='st'>"abxxcdxxdexxfgxxh"</span>
+<span class='fu'>str_after_nth</span>(<span class='no'>string</span>, <span class='st'>"xx"</span>, <span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] "fgxxh"</div><div class='input'><span class='fu'>str_before_nth</span>(<span class='no'>string</span>, <span class='st'>"e"</span>, <span class='fl'>1</span>:<span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "abxxcdxxd" NA         </div><div class='input'><span class='fu'>str_before_nth</span>(<span class='no'>string</span>, <span class='st'>"xx"</span>, -<span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] "abxxcd"</div><div class='input'><span class='fu'>str_before_nth</span>(<span class='no'>string</span>, <span class='st'>"."</span>, -<span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] "abxxcdxxdexxfg"</div><div class='input'><span class='fu'>str_before_nth</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='no'>string</span>, <span class='fl'>2</span>), <span class='st'>"..x"</span>, -<span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] "abxx" "abxx"</div><div class='input'><span class='no'>string</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abc"</span>, <span class='st'>"xyz.zyx"</span>)
+<span class='fu'>str_after_first</span>(<span class='no'>string</span>, <span class='st'>"."</span>) <span class='co'># using regex</span></div><div class='output co'>#&gt; [1] "bc"     "yz.zyx"</div><div class='input'><span class='fu'>str_after_first</span>(<span class='no'>string</span>, <span class='fu'>coll</span>(<span class='st'>"."</span>)) <span class='co'># using human matching</span></div><div class='output co'>#&gt; [1] NA    "zyx"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -186,6 +209,8 @@ this has length &gt;1 its length must be the same as that of <code>string</code>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

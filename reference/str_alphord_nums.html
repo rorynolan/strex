@@ -39,15 +39,14 @@
 
 <meta property="og:title" content="Make string numbers comply with alphabetical order. — str_alphord_nums" />
 
-<meta property="og:description" content="If strings are numbered, their numbers may not comply with
-alphabetical order, i.e. &quot;abc2&quot; comes after &quot;abc10&quot; in alphabetical order. We
-might (for whatever reason) wish to change them such that they come in the
-order that we would like. This function alters the strings such that
-they comply with alphabetical order, so here &quot;abc2&quot; would be renamed to
-&quot;abc02&quot;. It works on file names with more than one number in them e.g.
-&quot;abc01def3&quot; (a string with 2 numbers). All the file names that it works on
-must have the same number of numbers, and the non-number bits must be the
-same." />
+<meta property="og:description" content="If strings are numbered, their numbers may not comply with alphabetical
+order, e.g. &quot;abc2&quot; comes after &quot;abc10&quot; in alphabetical order. We might (for
+whatever reason) wish to change them such that they come in the order that
+we would like. This function alters the strings such that they comply with
+alphabetical order, so here &quot;abc2&quot; would be renamed to &quot;abc02&quot;. It works on
+file names with more than one number in them e.g. &quot;abc01def3&quot; (a string
+with 2 numbers). All the strings in the character vector string must have
+the same number of numbers, and the non-number bits must be the same." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -145,15 +144,14 @@ same." />
 
     <div class="ref-description">
     
-    <p>If strings are numbered, their numbers may not <em>comply</em> with
-alphabetical order, i.e. "abc2" comes after "abc10" in alphabetical order. We
-might (for whatever reason) wish to change them such that they come in the
-order <em>that we would like</em>. This function alters the strings such that
-they comply with alphabetical order, so here "abc2" would be renamed to
-"abc02". It works on file names with more than one number in them e.g.
-"abc01def3" (a string with 2 numbers). All the file names that it works on
-must have the same number of numbers, and the non-number bits must be the
-same.</p>
+    <p>If strings are numbered, their numbers may not <em>comply</em> with alphabetical
+order, e.g. "abc2" comes after <code>"abc10"</code> in alphabetical order. We might (for
+whatever reason) wish to change them such that they come in the order <em>that
+we would like</em>. This function alters the strings such that they comply with
+alphabetical order, so here <code>"abc2"</code> would be renamed to "abc02". It works on
+file names with more than one number in them e.g. <code>"abc01def3"</code> (a string
+with 2 numbers). All the strings in the character vector <code>string</code> must have
+the same number of numbers, and the non-number bits must be the same.</p>
     
     </div>
 
@@ -168,6 +166,10 @@ same.</p>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A character vector.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>string</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"abc"</span>, <span class='fl'>1</span>:<span class='fl'>12</span>)
@@ -175,13 +177,16 @@ same.</p>
 #&gt; [10] "abc10" "abc11" "abc12"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='no'>string</span>)</div><div class='output co'>#&gt;  [1] "abc01" "abc02" "abc03" "abc04" "abc05" "abc06" "abc07" "abc08" "abc09"
 #&gt; [10] "abc10" "abc11" "abc12"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abc9def55"</span>, <span class='st'>"abc10def7"</span>))</div><div class='output co'>#&gt; [1] "abc09def55" "abc10def07"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"01abc9def55"</span>, <span class='st'>"5abc10def777"</span>, <span class='st'>"99abc4def4"</span>))</div><div class='output co'>#&gt; [1] "01abc09def055" "05abc10def777" "99abc04def004"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='fl'>1</span>:<span class='fl'>10</span>)</div><div class='output co'>#&gt;  [1] "01" "02" "03" "04" "05" "06" "07" "08" "09" "10"</div><span class='co'># NOT RUN {</span>
 <span class='fu'>str_alphord_nums</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abc9def55"</span>, <span class='st'>"abc10xyz7"</span>)) <span class='co'># error</span>
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
