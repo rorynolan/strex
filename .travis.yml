@@ -1,13 +1,13 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
 cache: packages
 
 matrix:
   include:
     - os: linux
       dist: xenial
+      sudo: false
       after_success: Rscript -e 'covr::codecov()'
       before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
       deploy:
@@ -15,6 +15,9 @@ matrix:
         script: Rscript -e 'pkgdown::deploy_site_github()'
         skip_cleanup: true
     - os: osx
+      sudo: true
+      before_install:
+        - sudo tlmgr install inconsolata
 
 
 
