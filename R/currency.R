@@ -74,12 +74,17 @@ extract_curr_helper <- function(string_num, string, locs) {
 #' str_first_currency(string)
 #' str_last_currency(string)
 #' @name currency
+#' @family currency extractors
 NULL
 
 #' @rdname currency
 #' @export
 str_extract_currencies <- function(string) {
-  checkmate::assert_character(string, min.len = 1)
+  if (all_equal(string, character())) {
+    return(extract_curr_helper(integer(), character(),
+                               matrix(ncol = 2, nrow = 0)))
+  }
+  checkmate::assert_character(string)
   locs <- str_locate_all(string, curr_pattern())
   locs_lens <- lengths(locs)
   string_num <- rep(seq_along(string), locs_lens / 2)
@@ -92,15 +97,12 @@ str_extract_currencies <- function(string) {
 #' @rdname currency
 #' @export
 str_nth_currency <- function(string, n) {
-  checkmate::assert_character(string, min.len = 1)
-  checkmate::assert_integerish(n)
-  if (length(n) > 1 && length(n) != length(string)) {
-    custom_stop(
-      "`n` must either be length 1 or have the same length as `string`.",
-      "Your `n` has length {length(n)}.",
-      "Your `string` has length {length(string)}."
-    )
+  if (all_equal(string, character())) {
+    checkmate::assert_integerish(n)
+    return(extract_curr_helper(integer(), character(),
+                               matrix(ncol = 2, nrow = 0)))
   }
+  verify_string_n(string, n)
   abs_n <- abs(n)
   if (length(n) == 1 && abs_n == 1) {
     if (n == 1) {

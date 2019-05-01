@@ -6,23 +6,20 @@
 \alias{str_last_number}
 \title{Extract numbers from a string.}
 \usage{
-str_extract_numbers(string, leave_as_string = FALSE, decimals = FALSE,
+str_extract_numbers(string, decimals = FALSE,
   leading_decimals = decimals, negs = FALSE, sci = FALSE,
-  commas = FALSE)
+  commas = FALSE, leave_as_string = FALSE)
 
-str_first_number(string, leave_as_string = FALSE, decimals = FALSE,
-  leading_decimals = decimals, negs = FALSE, sci = FALSE,
-  commas = FALSE)
+str_first_number(string, decimals = FALSE, leading_decimals = decimals,
+  negs = FALSE, sci = FALSE, commas = FALSE,
+  leave_as_string = FALSE)
 
-str_last_number(string, leave_as_string = FALSE, decimals = FALSE,
-  leading_decimals = decimals, negs = FALSE, sci = FALSE,
-  commas = FALSE)
+str_last_number(string, decimals = FALSE, leading_decimals = decimals,
+  negs = FALSE, sci = FALSE, commas = FALSE,
+  leave_as_string = FALSE)
 }
 \arguments{
 \item{string}{A string.}
-
-\item{leave_as_string}{Do you want to return the number as a string (\code{TRUE})
-or as numeric (\code{FALSE}, the default)?}
 
 \item{decimals}{Do you want to include the possibility of decimal numbers
 (\code{TRUE}) or not (\code{FALSE}, the default).}
@@ -39,6 +36,9 @@ as 2000.}
 \item{commas}{Allow comma separators in numbers (i.e. interpret 1,100 as a
 single number (one thousand one hundred) rather than two numbers (one and
 one hundred)).}
+
+\item{leave_as_string}{Do you want to return the number as a string (\code{TRUE})
+or as numeric (\code{FALSE}, the default)?}
 }
 \value{
 For \code{str_extract_numbers} and \code{str_extract_non_numerics}, a list of
@@ -86,4 +86,11 @@ str_extract_numbers(strings,
   decimals = TRUE, leading_decimals = FALSE,
   sci = FALSE, commas = TRUE, leave_as_string = TRUE
 )
+
 }
+\seealso{
+Other numeric extractors: \code{\link{str_nth_number_after_mth}},
+  \code{\link{str_nth_number_before_mth}},
+  \code{\link{str_nth_number}}
+}
+\concept{numeric extractors}

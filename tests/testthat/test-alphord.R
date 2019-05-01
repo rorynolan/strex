@@ -46,4 +46,5 @@ test_that("str_alphord_nums works", {
     "Some of the input strings have no numbers in them."
   )
   expect_equal(str_alphord_nums(1:10), c(paste0(0, 1:9), 10))
+  expect_equal(str_alphord_nums(character()), character())
 })

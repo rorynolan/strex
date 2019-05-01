@@ -15,8 +15,11 @@
 #' str_give_ext(c("abc", "abc.csv"), "csv")
 #' str_give_ext("abc.csv", "pdf")
 #' str_give_ext("abc.csv", "pdf", replace = TRUE)
+#'
+#' @family appenders
 #' @export
 str_give_ext <- function(string, ext, replace = FALSE) {
+  if (all_equal(string, character())) return(character())
   checkmate::assert_character(string)
   checkmate::assert_string(ext)
   checkmate::assert_flag(replace)

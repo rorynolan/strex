@@ -28,4 +28,10 @@ str_singleize("abc//def", "/")
 str_singleize("abababcabab", "ab")
 str_singleize(c("abab", "cdcd"), "cd")
 str_singleize(c("abab", "cdcd"), c("ab", "cd"))
+
 }
+\seealso{
+Other removers: \code{\link{str_remove_quoted}},
+  \code{\link{str_trim_anything}}
+}
+\concept{removers}

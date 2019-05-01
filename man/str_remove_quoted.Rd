@@ -21,4 +21,10 @@ exactly how this function works.
 string <- "\\"abc\\"67a\\'dk\\'f"
 cat(string)
 str_remove_quoted(string)
+
 }
+\seealso{
+Other removers: \code{\link{str_singleize}},
+  \code{\link{str_trim_anything}}
+}
+\concept{removers}

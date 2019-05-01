@@ -40,4 +40,10 @@ are vectorised over all arguments.
 str_locate_nth(c("abcdabcxyz", "abcabc"), "abc", 2)
 str_locate_nth(c("This old thing.", "That beautiful thing there."),
 "\\\\w+", c(2, -2))
+str_locate_nth("abc", "b", c(0, 1, 1, 2))
+
 }
+\seealso{
+Other locators: \code{\link{str_locate_braces}}
+}
+\concept{locators}

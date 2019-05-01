@@ -241,4 +241,8 @@ test_that("str_extract_numbers works", {
     "12", "4", "34.5",
     "9"
   ), c("1,100", "1,230.5"), c("1,100", "3,215", "4", "1,000")))
+  expect_equal(str_extract_numbers(character()), list())
+  expect_equal(str_first_number(character()), numeric())
+  expect_equal(str_last_number(character(), leave_as_string = TRUE),
+               character())
 })

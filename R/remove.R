@@ -11,8 +11,12 @@
 #' string <- "\"abc\"67a\'dk\'f"
 #' cat(string)
 #' str_remove_quoted(string)
+#'
+#' @family removers
 #' @export
 str_remove_quoted <- function(string) {
+  if (all_equal(string, character())) return(character())
+  checkmate::assert_character(string)
   string <- str_replace_all(string, "(?:\".*?\")", "")
   string <- str_replace_all(string, "(?:\'.*?\')", "")
   string

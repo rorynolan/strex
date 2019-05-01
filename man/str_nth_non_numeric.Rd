@@ -66,4 +66,9 @@ str_first_non_numeric(strings,
   decimals = TRUE, leading_decimals = TRUE,
   sci = TRUE, commas = TRUE, negs = TRUE
 )
+
 }
+\seealso{
+Other non-numeric extractors: \code{\link{str_extract_non_numerics}}
+}
+\concept{non-numeric extractors}

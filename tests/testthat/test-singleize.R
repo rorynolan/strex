@@ -6,4 +6,5 @@ test_that("`str_singleize()` works", {
     str_singleize(c("abab", "cdcd"), c("ab", "cd")),
     c("ab", "cd")
   )
+  expect_equal(str_singleize(character(), "abc"), character())
 })

@@ -1,8 +1,7 @@
-#' Text before or after `n`th occurrence of pattern.
+#' Extract text before or after `n`th occurrence of pattern.
 #'
 #' Extract the part of a string which is before or after the `n`th occurrence of
-#' a specified pattern, vectorized over the string. `n` can be negatively
-#' indexed. See 'Arguments'.
+#' a specified pattern, vectorized over the string.
 #'
 #' \itemize{ \item `str_after_first(...)` is just `str_after_nth(..., n = 1)`.
 #' \item `str_after_last(...)` is just `str_after_nth(..., n = -1)`. \item
@@ -24,30 +23,38 @@
 #'   -1` and `n = -2` correspond to last and second-last. `n = 0` will return
 #'   `NA`.
 #'
-#' @return A character vector of the desired strings.
+#' @return A character vector.
 #' @examples
 #' string <- "abxxcdxxdexxfgxxh"
 #' str_after_nth(string, "xx", 3)
-#' str_before_nth(string, "e", 1)
+#' str_before_nth(string, "e", 1:2)
 #' str_before_nth(string, "xx", -3)
 #' str_before_nth(string, ".", -3)
 #' str_before_nth(rep(string, 2), "..x", -3)
 #' string <- c("abc", "xyz.zyx")
 #' str_after_first(string, ".") # using regex
 #' str_after_first(string, coll(".")) # using human matching
+#'
+#' @name before-and-after
+#' @family bisectors
+NULL
+
+#' @rdname before-and-after
 #' @export
 str_after_nth <- function(string, pattern, n) {
+  if (all_equal(string, character())) return(character())
+  verify_string_pattern_n(string, pattern, n)
   nth_instance_indices <- str_locate_nth(string, pattern, n)
   str_sub(string, nth_instance_indices[, "end"] + 1)
 }
 
-#' @rdname str_after_nth
+#' @rdname before-and-after
 #' @export
 str_after_first <- function(string, pattern) {
   str_after_nth(string, pattern, n = 1)
 }
 
-#' @rdname str_after_nth
+#' @rdname before-and-after
 #' @export
 str_after_last <- function(string, pattern) {
   str_after_nth(string, pattern, n = -1)

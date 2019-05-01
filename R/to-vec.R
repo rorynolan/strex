@@ -6,8 +6,11 @@
 #' @return A character vector.
 #' @examples
 #' str_to_vec("abcdef")
+#'
+#' @family converters
 #' @export
 str_to_vec <- function(string) {
+  if (all_equal(string, character())) return(character())
   checkmate::assert_character(string)
   strsplit(string, NULL)[[1]]
 }

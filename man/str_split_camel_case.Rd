@@ -2,7 +2,7 @@
 % Please edit documentation in R/camel-case.R
 \name{str_split_camel_case}
 \alias{str_split_camel_case}
-\title{Split a string based on CamelCase}
+\title{Split a string based on CamelCase.}
 \usage{
 str_split_camel_case(string, lower = FALSE)
 }
@@ -20,8 +20,13 @@ Vectorized over \code{string}.
 }
 \examples{
 str_split_camel_case(c("RoryNolan", "NaomiFlagg", "DepartmentOfSillyHats"))
+
 }
 \references{
 Adapted from Ramnath Vaidyanathan's answer at
 http://stackoverflow.com/questions/8406974/splitting-camelcase-in-r.
 }
+\seealso{
+Other splitters: \code{\link{str_split_by_numbers}}
+}
+\concept{splitters}

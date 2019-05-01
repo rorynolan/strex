@@ -5,7 +5,8 @@
 \title{Split a string by its numeric characters.}
 \usage{
 str_split_by_numbers(string, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE, sci = FALSE)
+  leading_decimals = FALSE, negs = FALSE, sci = FALSE,
+  commas = FALSE)
 }
 \arguments{
 \item{string}{A string.}
@@ -21,6 +22,10 @@ are not handled here (see the examples).}
 
 \item{sci}{Make the search aware of scientific notation e.g. 2e3 is the same
 as 2000.}
+
+\item{commas}{Allow comma separators in numbers (i.e. interpret 1,100 as a
+single number (one thousand one hundred) rather than two numbers (one and
+one hundred)).}
 }
 \value{
 A list of character vectors.
@@ -34,4 +39,9 @@ vice-versa. Keep the whole string, just split it up. Vectorised over
 str_split_by_numbers(c("abc123def456.789gh", "a1b2c344"))
 str_split_by_numbers("abc123def456.789gh", decimals = TRUE)
 str_split_by_numbers("22")
+
 }
+\seealso{
+Other splitters: \code{\link{str_split_camel_case}}
+}
+\concept{splitters}

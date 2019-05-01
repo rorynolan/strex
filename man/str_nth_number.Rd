@@ -4,9 +4,9 @@
 \alias{str_nth_number}
 \title{Extract the \code{n}th number from a string.}
 \usage{
-str_nth_number(string, n, leave_as_string = FALSE, decimals = FALSE,
+str_nth_number(string, n, decimals = FALSE,
   leading_decimals = decimals, negs = FALSE, sci = FALSE,
-  commas = FALSE)
+  commas = FALSE, leave_as_string = FALSE)
 }
 \arguments{
 \item{string}{A string.}
@@ -16,9 +16,6 @@ indexing is allowed i.e. \code{n = 1} (the default) will give you the first
 number (or non-numeric) whereas \code{n = -1} will give you the last number (or
 non-numeric), \code{n = -2} will give you the second last number and so on. The
 function is vectorized over this argument.}
-
-\item{leave_as_string}{Do you want to return the number as a string (\code{TRUE})
-or as numeric (\code{FALSE}, the default)?}
 
 \item{decimals}{Do you want to include the possibility of decimal numbers
 (\code{TRUE}) or not (\code{FALSE}, the default).}
@@ -35,6 +32,9 @@ as 2000.}
 \item{commas}{Allow comma separators in numbers (i.e. interpret 1,100 as a
 single number (one thousand one hundred) rather than two numbers (one and
 one hundred)).}
+
+\item{leave_as_string}{Do you want to return the number as a string (\code{TRUE})
+or as numeric (\code{FALSE}, the default)?}
 }
 \value{
 A numeric vector (or a character vector if \code{leave_as_string = TRUE}).
@@ -72,4 +72,11 @@ str_last_number(strings,
   decimals = TRUE, leading_decimals = FALSE,
   sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE
 )
+
 }
+\seealso{
+Other numeric extractors: \code{\link{str_extract_numbers}},
+  \code{\link{str_nth_number_after_mth}},
+  \code{\link{str_nth_number_before_mth}}
+}
+\concept{numeric extractors}

@@ -31,23 +31,31 @@ str_split_by_numbers_no_ambigs <- function(string, num_pattern) {
 #' str_split_by_numbers(c("abc123def456.789gh", "a1b2c344"))
 #' str_split_by_numbers("abc123def456.789gh", decimals = TRUE)
 #' str_split_by_numbers("22")
+#'
+#' @family splitters
 #' @export
 str_split_by_numbers <- function(string, decimals = FALSE,
                                  leading_decimals = FALSE, negs = FALSE,
-                                 sci = FALSE) {
+                                 sci = FALSE, commas = FALSE) {
+  if (all_equal(string, character())) return(list())
   checkmate::assert_character(string)
+  checkmate::assert_flag(decimals)
+  checkmate::assert_flag(leading_decimals)
+  checkmate::assert_flag(negs)
+  checkmate::assert_flag(sci)
+  checkmate::assert_flag(commas)
   num_pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
-    negs = negs, sci = sci
+    negs = negs, sci = sci, commas = commas
   )
   ambig_pattern <- ambig_num_regex(
     decimals = decimals,
     leading_decimals = leading_decimals,
-    sci = sci
+    sci = sci, commas = commas
   )
   ambigs <- num_ambigs(string,
     decimals = decimals,
-    leading_decimals = leading_decimals, sci = sci
+    leading_decimals = leading_decimals, sci = sci, commas = commas
   )
   out <- vector(mode = "list", length = length(string))
   if (any(ambigs)) {

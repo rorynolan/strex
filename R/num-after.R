@@ -17,15 +17,29 @@
 #' )
 #' str_nth_number_after_mth(string, "abc", 1, 3)
 #' str_nth_number_after_mth(string, "abc", 2, 3)
+#'
+#' @family numeric extractors
 #' @export
 str_nth_number_after_mth <- function(string, pattern, n, m,
-                                     decimals = FALSE, leading_decimals = FALSE,
-                                     negs = FALSE, leave_as_string = FALSE) {
+                                     decimals = FALSE,
+                                     leading_decimals = decimals,
+                                     negs = FALSE, sci = FALSE, commas = FALSE,
+                                     leave_as_string = FALSE) {
+  checkmate::assert_flag(leave_as_string)
+  if (all_equal(string, character()))
+    return(vector(mode = ifelse(leave_as_string, "character", "numeric")))
+  verify_string_pattern_n_m(string, pattern, n, m)
+  checkmate::assert_flag(decimals)
+  checkmate::assert_flag(leading_decimals)
+  checkmate::assert_flag(negs)
+  checkmate::assert_flag(sci)
+  checkmate::assert_flag(commas)
   string %>%
     str_after_nth(pattern, m) %>%
     str_nth_number(n,
       decimals = decimals, leading_decimals = leading_decimals,
-      negs = negs, leave_as_string = leave_as_string
+      negs = negs, leave_as_string = leave_as_string, sci = sci,
+      commas = commas
     )
 }
 
@@ -34,12 +48,14 @@ str_nth_number_after_mth <- function(string, pattern, n, m,
 #' str_nth_number_after_first(string, "abc", 2)
 #' @export
 str_nth_number_after_first <- function(string, pattern, n, decimals = FALSE,
-                                       leading_decimals = FALSE,
-                                       negs = FALSE, leave_as_string = FALSE) {
+                                       leading_decimals = decimals,
+                                       negs = FALSE, sci = FALSE,
+                                       commas = FALSE,
+                                       leave_as_string = FALSE) {
   str_nth_number_after_mth(string, pattern,
     n = n, m = 1,
     decimals = decimals,
-    leading_decimals = leading_decimals,
+    leading_decimals = leading_decimals, sci = sci, commas = commas,
     negs = negs, leave_as_string = leave_as_string
   )
 }
@@ -50,8 +66,10 @@ str_nth_number_after_first <- function(string, pattern, n, decimals = FALSE,
 #' @export
 str_nth_number_after_last <- function(string, pattern, n,
                                       decimals = FALSE,
-                                      leading_decimals = FALSE,
-                                      negs = FALSE, leave_as_string = FALSE) {
+                                      leading_decimals = decimals,
+                                      negs = FALSE, sci = FALSE,
+                                      commas = FALSE,
+                                      leave_as_string = FALSE) {
   str_nth_number_after_mth(string, pattern,
     n = n, m = -1,
     decimals = decimals,
@@ -66,12 +84,14 @@ str_nth_number_after_last <- function(string, pattern, n,
 #' @export
 str_first_number_after_mth <- function(string, pattern, m,
                                        decimals = FALSE,
-                                       leading_decimals = FALSE,
-                                       negs = FALSE, leave_as_string = FALSE) {
+                                       leading_decimals = decimals,
+                                       negs = FALSE, sci = FALSE,
+                                       commas = FALSE,
+                                       leave_as_string = FALSE) {
   str_nth_number_after_mth(string, pattern,
     n = 1, m = m,
     decimals = decimals,
-    leading_decimals = leading_decimals,
+    leading_decimals = leading_decimals, sci = sci, commas = commas,
     negs = negs, leave_as_string = leave_as_string
   )
 }
@@ -82,12 +102,14 @@ str_first_number_after_mth <- function(string, pattern, m,
 #' @export
 str_last_number_after_mth <- function(string, pattern, m,
                                       decimals = FALSE,
-                                      leading_decimals = FALSE,
-                                      negs = FALSE, leave_as_string = FALSE) {
+                                      leading_decimals = decimals,
+                                      negs = FALSE, sci = FALSE,
+                                      commas = FALSE,
+                                      leave_as_string = FALSE) {
   str_nth_number_after_mth(string, pattern,
     n = -1, m = m,
     decimals = decimals,
-    leading_decimals = leading_decimals,
+    leading_decimals = leading_decimals, sci = sci, commas = commas,
     negs = negs, leave_as_string = leave_as_string
   )
 }
@@ -98,13 +120,14 @@ str_last_number_after_mth <- function(string, pattern, m,
 #' @export
 str_first_number_after_first <- function(string, pattern,
                                          decimals = FALSE,
-                                         leading_decimals = FALSE,
-                                         negs = FALSE,
+                                         leading_decimals = decimals,
+                                         negs = FALSE, sci = FALSE,
+                                         commas = FALSE,
                                          leave_as_string = FALSE) {
   str_nth_number_after_mth(string, pattern,
     n = 1, m = 1,
     decimals = decimals,
-    leading_decimals = leading_decimals,
+    leading_decimals = leading_decimals, sci = sci, commas = commas,
     negs = negs, leave_as_string = leave_as_string
   )
 }
@@ -115,11 +138,13 @@ str_first_number_after_first <- function(string, pattern,
 #' @export
 str_first_number_after_last <- function(string, pattern,
                                         decimals = FALSE,
-                                        leading_decimals = FALSE,
-                                        negs = FALSE, leave_as_string = FALSE) {
+                                        leading_decimals = decimals,
+                                        negs = FALSE,
+                                        sci = FALSE, commas = FALSE,
+                                        leave_as_string = FALSE) {
   str_nth_number_after_mth(string, pattern,
     n = 1, m = -1,
-    decimals = decimals,
+    decimals = decimals, sci = sci, commas = commas,
     leading_decimals = leading_decimals,
     negs = negs, leave_as_string = leave_as_string
   )
@@ -130,11 +155,13 @@ str_first_number_after_last <- function(string, pattern,
 #' str_last_number_after_first(string, "abc")
 #' @export
 str_last_number_after_first <- function(string, pattern, decimals = FALSE,
-                                        leading_decimals = FALSE,
-                                        negs = FALSE, leave_as_string = FALSE) {
+                                        leading_decimals = decimals,
+                                        negs = FALSE,
+                                        sci = FALSE, commas = FALSE,
+                                        leave_as_string = FALSE) {
   str_nth_number_after_mth(string, pattern,
     n = -1, m = 1,
-    decimals = decimals,
+    decimals = decimals, sci = sci, commas = commas,
     leading_decimals = leading_decimals,
     negs = negs, leave_as_string = leave_as_string
   )
@@ -146,11 +173,13 @@ str_last_number_after_first <- function(string, pattern, decimals = FALSE,
 #' @export
 str_last_number_after_last <- function(string, pattern,
                                        decimals = FALSE,
-                                       leading_decimals = FALSE,
-                                       negs = FALSE, leave_as_string = FALSE) {
+                                       leading_decimals = decimals,
+                                       negs = FALSE,
+                                       sci = FALSE, commas = FALSE,
+                                       leave_as_string = FALSE) {
   str_nth_number_after_mth(string, pattern,
     n = -1, m = -1, decimals = decimals,
-    leading_decimals = leading_decimals,
+    leading_decimals = leading_decimals, sci = sci, commas = commas,
     negs = negs, leave_as_string = leave_as_string
   )
 }

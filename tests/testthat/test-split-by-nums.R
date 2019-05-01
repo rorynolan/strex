@@ -14,4 +14,5 @@ test_that("str_split_by_numbers works", {
   expect_equal(
     suppressWarnings(str_split_by_numbers("abc25.25.25def", decimals = TRUE)),
     list(NA_character_))
+  expect_equal(str_split_by_numbers(character()), list())
 })

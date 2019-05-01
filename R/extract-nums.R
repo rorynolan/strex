@@ -133,8 +133,6 @@ ambig_warn <- function(string, ambigs, ambig_regex) {
 #' with a minus sign). This is what `base::as.numeric()` does.
 #'
 #' @param string A string.
-#' @param leave_as_string Do you want to return the number as a string (`TRUE`)
-#'   or as numeric (`FALSE`, the default)?
 #' @param decimals Do you want to include the possibility of decimal numbers
 #'   (`TRUE`) or not (`FALSE`, the default).
 #' @param leading_decimals Do you want to allow a leading decimal point to be
@@ -146,6 +144,8 @@ ambig_warn <- function(string, ambigs, ambig_regex) {
 #' @param commas Allow comma separators in numbers (i.e. interpret 1,100 as a
 #'   single number (one thousand one hundred) rather than two numbers (one and
 #'   one hundred)).
+#' @param leave_as_string Do you want to return the number as a string (`TRUE`)
+#'   or as numeric (`FALSE`, the default)?
 #'
 #'
 #' @return For `str_extract_numbers` and `str_extract_non_numerics`, a list of
@@ -173,11 +173,21 @@ ambig_warn <- function(string, ambigs, ambig_regex) {
 #'   decimals = TRUE, leading_decimals = FALSE,
 #'   sci = FALSE, commas = TRUE, leave_as_string = TRUE
 #' )
+#'
+#' @family numeric extractors
 #' @export
-str_extract_numbers <- function(string, leave_as_string = FALSE,
+str_extract_numbers <- function(string,
                                 decimals = FALSE, leading_decimals = decimals,
-                                negs = FALSE, sci = FALSE, commas = FALSE) {
+                                negs = FALSE, sci = FALSE, commas = FALSE,
+                                leave_as_string = FALSE) {
   checkmate::assert_character(string)
+  checkmate::assert_flag(leave_as_string)
+  checkmate::assert_flag(decimals)
+  checkmate::assert_flag(leading_decimals)
+  checkmate::assert_flag(negs)
+  checkmate::assert_flag(sci)
+  checkmate::assert_flag(commas)
+  if (all_equal(string, character())) return(list())
   pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
     negs = negs, sci = sci, commas = commas
@@ -246,12 +256,22 @@ str_extract_numbers <- function(string, leave_as_string = FALSE,
 #'   decimals = TRUE, leading_decimals = FALSE,
 #'   sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE
 #' )
+#'
+#' @family numeric extractors
 #' @export
-str_nth_number <- function(string, n, leave_as_string = FALSE, decimals = FALSE,
+str_nth_number <- function(string, n, decimals = FALSE,
                            leading_decimals = decimals, negs = FALSE,
-                           sci = FALSE, commas = FALSE) {
-  checkmate::assert_numeric(n)
-  checkmate::assert_numeric(abs(n), lower = 1)
+                           sci = FALSE, commas = FALSE,
+                           leave_as_string = FALSE) {
+  checkmate::assert_flag(leave_as_string)
+  if (all_equal(string, character()))
+    return(vector(mode = ifelse(leave_as_string, "character", "numeric")))
+  verify_string_n(string, n)
+  checkmate::assert_flag(decimals)
+  checkmate::assert_flag(leading_decimals)
+  checkmate::assert_flag(negs)
+  checkmate::assert_flag(sci)
+  checkmate::assert_flag(commas)
   out <- character(length(string))
   if (matrixStats::allValue(n, value = 1) ||
     matrixStats::allValue(n, value = -1)) {
@@ -303,9 +323,10 @@ str_nth_number <- function(string, n, leave_as_string = FALSE, decimals = FALSE,
 
 #' @rdname str_extract_numbers
 #' @export
-str_first_number <- function(string, leave_as_string = FALSE, decimals = FALSE,
+str_first_number <- function(string, decimals = FALSE,
                              leading_decimals = decimals, negs = FALSE,
-                             sci = FALSE, commas = FALSE) {
+                             sci = FALSE, commas = FALSE,
+                             leave_as_string = FALSE) {
   str_nth_number(string,
     n = 1, leave_as_string = leave_as_string,
     decimals = decimals, leading_decimals = leading_decimals,
@@ -315,9 +336,10 @@ str_first_number <- function(string, leave_as_string = FALSE, decimals = FALSE,
 
 #' @rdname str_extract_numbers
 #' @export
-str_last_number <- function(string, leave_as_string = FALSE, decimals = FALSE,
+str_last_number <- function(string, decimals = FALSE,
                             leading_decimals = decimals, negs = FALSE,
-                            sci = FALSE, commas = FALSE) {
+                            sci = FALSE, commas = FALSE,
+                            leave_as_string = FALSE) {
   str_nth_number(string,
     n = -1, leave_as_string = leave_as_string,
     decimals = decimals, leading_decimals = leading_decimals,

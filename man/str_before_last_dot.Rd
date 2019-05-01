@@ -2,7 +2,7 @@
 % Please edit documentation in R/before.R
 \name{str_before_last_dot}
 \alias{str_before_last_dot}
-\title{Get the part of a string before the last period.}
+\title{Extract the part of a string before the last period.}
 \usage{
 str_before_last_dot(string)
 }
@@ -19,4 +19,9 @@ file extension. It is vectorized over \code{string}. If there is no period in
 }
 \examples{
 str_before_last_dot(c("spreadsheet1.csv", "doc2.doc", ".R"))
+
 }
+\seealso{
+Other bisectors: \code{\link{before-and-after}}
+}
+\concept{bisectors}

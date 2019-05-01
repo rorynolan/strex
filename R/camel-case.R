@@ -1,4 +1,4 @@
-#' Split a string based on CamelCase
+#' Split a string based on CamelCase.
 #'
 #' Vectorized over `string`.
 #'
@@ -13,8 +13,12 @@
 #'
 #' @examples
 #' str_split_camel_case(c("RoryNolan", "NaomiFlagg", "DepartmentOfSillyHats"))
+#'
+#' @family splitters
 #' @export
 str_split_camel_case <- function(string, lower = FALSE) {
+  checkmate::assert_character(string)
+  checkmate::assert_flag(lower)
   string %<>% gsub("^[^[:alnum:]]+|[^[:alnum:]]+$", "", .) %>%
     gsub("(?!^)(?=[[:upper:]])", " ", ., perl = TRUE)
   if (lower) string %<>% str_to_lower()

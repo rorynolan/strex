@@ -28,4 +28,10 @@ string <- c("abc", "def", "ghi", "vwxyz")
 str_elems(string, 1:2)
 str_elems(string, 1:2, byrow = FALSE)
 str_elems(string, c(1, 2, 3, 4, -1))
+
 }
+\seealso{
+Other single element extractors: \code{\link{str_elem}},
+  \code{\link{str_paste_elems}}
+}
+\concept{single element extractors}

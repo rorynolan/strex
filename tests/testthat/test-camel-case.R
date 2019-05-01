@@ -22,4 +22,5 @@ test_that("str_split_camel_case()` works", {
     ) %>%
       lapply(str_to_lower)
   )
+  expect_equal(str_split_camel_case(character()), list())
 })

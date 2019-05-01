@@ -44,11 +44,19 @@ str_extract_non_numerics_no_ambigs <- function(string, num_pattern) {
 #'   decimals = TRUE, leading_decimals = TRUE,
 #'   sci = TRUE, commas = TRUE, negs = TRUE
 #' )
+#'
+#' @family non-numeric extractors
 #' @export
 str_extract_non_numerics <- function(string, decimals = FALSE,
                                      leading_decimals = decimals, negs = FALSE,
                                      sci = FALSE, commas = FALSE) {
   checkmate::assert_character(string)
+  checkmate::assert_flag(decimals)
+  checkmate::assert_flag(leading_decimals)
+  checkmate::assert_flag(negs)
+  checkmate::assert_flag(sci)
+  checkmate::assert_flag(commas)
+  if (all_equal(string, character())) return(list())
   num_pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
     negs = negs, sci = sci, commas = commas
@@ -139,13 +147,19 @@ str_nth_non_numeric_no_ambigs <- function(string, num_pattern, n) {
 #'   decimals = TRUE, leading_decimals = TRUE,
 #'   sci = TRUE, commas = TRUE, negs = TRUE
 #' )
+#'
+#' @family non-numeric extractors
 #' @export
 str_nth_non_numeric <- function(string, n, decimals = FALSE,
                                 leading_decimals = decimals, negs = FALSE,
                                 sci = FALSE, commas = FALSE) {
-  checkmate::assert_numeric(n)
-  checkmate::assert_numeric(abs(n), lower = 1)
-  checkmate::assert_character(string)
+  if (all_equal(string, character())) return(character())
+  verify_string_n(string, n)
+  checkmate::assert_flag(decimals)
+  checkmate::assert_flag(leading_decimals)
+  checkmate::assert_flag(negs)
+  checkmate::assert_flag(sci)
+  checkmate::assert_flag(commas)
   num_pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
     negs = negs, sci = sci, commas = commas

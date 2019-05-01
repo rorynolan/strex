@@ -88,4 +88,6 @@ test_that("str_extract_non_numerics() works", {
     suppressWarnings(str_last_non_numeric("abc25.25.25def",
                                           decimals = TRUE)),
     NA_character_)
+  expect_equal(str_extract_non_numerics(character()), list())
+  expect_equal(str_last_non_numeric(character()), character())
 })

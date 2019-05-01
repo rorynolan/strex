@@ -12,21 +12,16 @@ test_that("str_after_nth works", {
   expect_equal(str_before_first(string, "e"), "ab..cd..d",
     check.attributes = FALSE
   )
-  expect_equal(str_before_nth(string, "\\.", -3), "ab..cd..de.",
-    check.attributes = FALSE
-  )
-  expect_equal(str_before_nth(string, ".", -3), "ab..cd..de..fg",
-    check.attributes = FALSE
-  )
-  expect_equal(str_before_nth(rep(string, 2), fixed("."), -3),
-    rep("ab..cd..de.", 2),
-    check.attributes = FALSE
-  )
-  expect_equal(str_before_last(rep(string, 2), fixed(".")),
-    rep("ab..cd..de..fg.", 2),
-    check.attributes = FALSE
-  )
   string <- c("abc", "xyz.zyx")
   expect_equal(str_after_first(string, "."), str_sub(string, 2))
   expect_equal(str_after_first(string, coll(".")), c(NA, "zyx"))
+  expect_equal(str_after_first(character(), 1:3), character())
+  expect_equal(str_after_nth("abc", "b", c(0, 1)), c(NA, "c"))
+  string <- "abxxcdxxdexxfgxxh"
+  expect_equal(str_after_nth(string, "e", 1:2), c("xxfgxxh", NA))
+  expect_error(str_after_nth(c("a"), c("a", "b"), 1:3),
+               paste0("If `pattern` and `n` both have length greater than",
+                      " 1, their\nlengths must be equal.\n    * Your `patte",
+                      "rn` has length 2.\n    * Your `n` has length 3."),
+               fixed = TRUE)
 })

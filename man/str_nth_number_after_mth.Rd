@@ -13,31 +13,40 @@
 \title{Find the \code{n}th number after the \code{m}th occurrence of a pattern.}
 \usage{
 str_nth_number_after_mth(string, pattern, n, m, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE, leave_as_string = FALSE)
+  leading_decimals = decimals, negs = FALSE, sci = FALSE,
+  commas = FALSE, leave_as_string = FALSE)
 
 str_nth_number_after_first(string, pattern, n, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE, leave_as_string = FALSE)
+  leading_decimals = decimals, negs = FALSE, sci = FALSE,
+  commas = FALSE, leave_as_string = FALSE)
 
 str_nth_number_after_last(string, pattern, n, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE, leave_as_string = FALSE)
+  leading_decimals = decimals, negs = FALSE, sci = FALSE,
+  commas = FALSE, leave_as_string = FALSE)
 
 str_first_number_after_mth(string, pattern, m, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE, leave_as_string = FALSE)
+  leading_decimals = decimals, negs = FALSE, sci = FALSE,
+  commas = FALSE, leave_as_string = FALSE)
 
 str_last_number_after_mth(string, pattern, m, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE, leave_as_string = FALSE)
+  leading_decimals = decimals, negs = FALSE, sci = FALSE,
+  commas = FALSE, leave_as_string = FALSE)
 
 str_first_number_after_first(string, pattern, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE, leave_as_string = FALSE)
+  leading_decimals = decimals, negs = FALSE, sci = FALSE,
+  commas = FALSE, leave_as_string = FALSE)
 
 str_first_number_after_last(string, pattern, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE, leave_as_string = FALSE)
+  leading_decimals = decimals, negs = FALSE, sci = FALSE,
+  commas = FALSE, leave_as_string = FALSE)
 
 str_last_number_after_first(string, pattern, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE, leave_as_string = FALSE)
+  leading_decimals = decimals, negs = FALSE, sci = FALSE,
+  commas = FALSE, leave_as_string = FALSE)
 
 str_last_number_after_last(string, pattern, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE, leave_as_string = FALSE)
+  leading_decimals = decimals, negs = FALSE, sci = FALSE,
+  commas = FALSE, leave_as_string = FALSE)
 }
 \arguments{
 \item{string}{A character vector.}
@@ -57,6 +66,13 @@ the start of a number?}
 \item{negs}{Do you want to allow negative numbers? Note that double negatives
 are not handled here (see the examples).}
 
+\item{sci}{Make the search aware of scientific notation e.g. 2e3 is the same
+as 2000.}
+
+\item{commas}{Allow comma separators in numbers (i.e. interpret 1,100 as a
+single number (one thousand one hundred) rather than two numbers (one and
+one hundred)).}
+
 \item{leave_as_string}{Do you want to return the number as a string (\code{TRUE})
 or as numeric (\code{FALSE}, the default)?}
 }
@@ -74,6 +90,7 @@ string <- c(
 )
 str_nth_number_after_mth(string, "abc", 1, 3)
 str_nth_number_after_mth(string, "abc", 2, 3)
+
 str_nth_number_after_first(string, "abc", 2)
 str_nth_number_after_last(string, "abc", -1)
 str_first_number_after_mth(string, "abc", 2)
@@ -83,3 +100,9 @@ str_first_number_after_last(string, "abc")
 str_last_number_after_first(string, "abc")
 str_last_number_after_last(string, "abc")
 }
+\seealso{
+Other numeric extractors: \code{\link{str_extract_numbers}},
+  \code{\link{str_nth_number_before_mth}},
+  \code{\link{str_nth_number}}
+}
+\concept{numeric extractors}

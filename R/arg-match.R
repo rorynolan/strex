@@ -60,6 +60,7 @@
 #' myword("c")
 #' myword()
 #'
+#' @family argument matchers
 #' @export
 str_match_arg <- function(arg, choices = NULL, index = FALSE,
                           several_ok = FALSE, ignore_case = FALSE) {

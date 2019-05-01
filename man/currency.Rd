@@ -59,3 +59,4 @@ str_nth_currency(string, c(1, -2, 1, 2, -1))
 str_first_currency(string)
 str_last_currency(string)
 }
+\concept{currency extractors}

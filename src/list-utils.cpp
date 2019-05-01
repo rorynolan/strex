@@ -207,18 +207,23 @@ IntegerMatrix lst_rbind(List x, NumericVector x_lens) {
 //'
 // [[Rcpp::export]]
 IntegerMatrix lst_rbind_nth_rows(List x, NumericVector n) {
-  const R_xlen_t x_len = x.length();
+  const R_xlen_t x_len = x.length(), n_len = n.length();
   IntegerMatrix x0 = x[0];
-  R_xlen_t nc = x0.ncol();
-  IntegerMatrix out(x_len, nc);
-  if (n.length() > 1) {
+  R_xlen_t nc = x0.ncol(), nr = (x_len == 1) ? n_len: x_len;
+  IntegerMatrix out(nr, nc);
+  if (x_len == 1) {
+    IntegerMatrix intmat = x[0];
+    for (R_xlen_t i = 0; i != n_len; ++i) {
+      std::copy(intmat.row(n[i] - 1).cbegin(),
+                intmat.row(n[i] - 1).cend(),
+                out.row(i).begin());
+    }
+  } else if (n_len > 1) {
     for (R_xlen_t i = 0; i != x_len; ++i) {
       IntegerMatrix intmat_i = x[i];
       std::copy(intmat_i.row(n[i] - 1).cbegin(),
                 intmat_i.row(n[i] - 1).cend(),
                 out.row(i).begin());
-      for (R_xlen_t c = 0; c != nc; ++c)
-        out(i, c) = intmat_i(n[i] - 1, c);
     }
   } else {
     for (R_xlen_t i = 0; i != x_len; ++i) {

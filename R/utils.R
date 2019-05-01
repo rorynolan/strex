@@ -113,3 +113,78 @@ custom_stop <- function(main_message, ..., .envir = parent.frame()) {
 custom_warn <- function(main_message, ..., .envir = parent.frame()) {
   rlang::warn(custom_condition_prep(main_message, ..., .envir = .envir))
 }
+
+#' Generate an error due to an incompatible combination of arguemnt lengths.
+#'
+#' @param string A character vector.
+#' @param sym Another argument to a strex function.
+#' @param replacement_sym A string to replace sym in the error message.
+#'
+#' @noRd
+err_string_len <- function(string, sym, replacement_sym = NULL) {
+  sym_sym <- rlang::enexpr(sym)
+  sym_str <- as.character(sym_sym)
+  if (!is.null(replacement_sym)) sym_str <- replacement_sym
+  sym_len <- length(sym)
+  custom_stop(
+    "
+    When `string` has length greater than 1,
+    `{sym_str}` must either be length 1 or have the same length as `string`.
+    ",
+    "Your `string` has length {length(string)}.",
+    "Your `{sym_str}` has length {sym_len}."
+
+  )
+}
+
+verify_string_pattern <- function(string, pattern) {
+  checkmate::assert_character(string, min.len = 1)
+  checkmate::assert_character(pattern, min.len = 1)
+  if (length(pattern) > 1 && length(string) > 1 &&
+      length(pattern) != length(string))
+    err_string_len(string, pattern)
+  invisible(TRUE)
+}
+
+verify_string_n <- function(string, n, replacement_n_sym = NULL) {
+  checkmate::assert_character(string, min.len = 1)
+  checkmate::assert_integerish(n, min.len = 1)
+  if (length(n) > 1 && length(string) > 1 &&
+      length(n) != length(string))
+    err_string_len(string, n, replacement_n_sym)
+  invisible(TRUE)
+}
+
+verify_string_pattern_n <- function(string, pattern, n,
+                                    replacement_n_sym = NULL) {
+  verify_string_pattern(string, pattern)
+  verify_string_n(string, n, replacement_n_sym)
+  n_sym_str <- "n"
+  if (!is.null(replacement_n_sym)) n_sym_str <- replacement_n_sym
+  if (length(pattern) > 1 && length(n) > 1 &&
+      length(pattern) != length(n)) {
+    custom_stop("
+                If `pattern` and `{n_sym_str}` both have length greater than 1,
+                their lengths must be equal.
+                ",
+                "Your `pattern` has length {length(pattern)}.",
+                "Your `{n_sym_str}` has length {length(n)}.")
+  }
+  invisible(TRUE)
+}
+
+verify_string_pattern_n_m <- function(string, pattern, n, m) {
+  verify_string_pattern_n(string, pattern, n)
+  checkmate::assert_integerish(m, min.len = 1)
+  verify_string_pattern_n(string, pattern, m, "m")
+  if (length(n) > 1 && length(m) > 1 &&
+      length(n) != length(m)) {
+    custom_stop("
+                If `n` and `m` both have length greater than 1,
+                their lengths must be equal.
+                ",
+                "Your `n` has length {length(n)}.",
+                "Your `m` has length {length(m)}.")
+  }
+  invisible(TRUE)
+}

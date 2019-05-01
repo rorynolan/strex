@@ -11,8 +11,19 @@
 #'
 #' @examples
 #' str_locate_braces(c("a{](kkj)})", "ab(]c{}"))
+#'
+#' @family locators
 #' @export
 str_locate_braces <- function(string) {
+  checkmate::assert_character(string)
+  if (all_equal(string, character())) {
+    out <- list(string_num = integer(),
+                string = character(),
+                position = integer(),
+                brace = character()) %>%
+      tibble::new_tibble(nrow = 0)
+    return(out)
+  }
   pattern <- "[\\(\\)\\[\\]\\{\\}]"
   locations <- str_locate_all(string, pattern) %>%
     int_lst_first_col()
@@ -47,26 +58,17 @@ str_locate_braces <- function(string) {
 #' str_locate_nth(c("abcdabcxyz", "abcabc"), "abc", 2)
 #' str_locate_nth(c("This old thing.", "That beautiful thing there."),
 #' "\\w+", c(2, -2))
+#' str_locate_nth("abc", "b", c(0, 1, 1, 2))
+#'
+#' @family locators
 #' @export
 str_locate_nth <- function(string, pattern, n) {
-  checkmate::assert_character(string, min.len = 1)
-  checkmate::assert_character(pattern, min.len = 1)
-  checkmate::assert_integerish(n, min.len = 1)
-  l <- length(string)
-  if (length(pattern) > 1 && length(pattern) != l) {
-    custom_stop(
-      "`pattern` must either be length 1 or have the same length as `string`",
-      "Your `pattern` has length {length(pattern)}.",
-      "Your `string` has length {l}."
-    )
+  if (all_equal(string, character(0))) {
+    out <- matrix(character(), ncol = 2) %>%
+      magrittr::set_colnames(c("start", "end"))
+    return(out)
   }
-  if (length(n) > 1 && length(n) != l) {
-    custom_stop(
-      "`n` must either be length 1 or have the same length as `string`",
-      "Your `n` has length {length(n)}.",
-      "Your `string` has length {l}."
-    )
-  }
+  verify_string_pattern_n(string, pattern, n)
   locs <- str_locate_all(string, pattern)
   locs_n_matches <- lengths(locs) / 2
   n_negs <- n < 0
@@ -77,13 +79,16 @@ str_locate_nth <- function(string, pattern, n) {
       n[n_negs] <- locs_n_matches[n_negs] + n[n_negs] + 1
     }
   }
-  out <- matrix(NA, nrow = l, ncol = 2) %>%
+  out <- matrix(NA, nrow = max(lengths(list(string, pattern, n))), ncol = 2) %>%
     magrittr::set_colnames(c("start", "end"))
   good <- (abs(n) <= locs_n_matches) & (n != 0)
   if (any(good)) {
-    if (length(n) > 1) n <- n[good]
-    out[good, ] <- locs[good] %>%
-      lst_rbind_nth_rows(n)
+    if (length(locs) == 1) {
+      out[good, ] <- lst_rbind_nth_rows(locs, n[good])
+    } else {
+      if (length(n) > 1) n <- n[good]
+      out[good, ] <- lst_rbind_nth_rows(locs[good], n)
+    }
   }
   out
 }
@@ -91,11 +96,11 @@ str_locate_nth <- function(string, pattern, n) {
 #' @rdname str_locate_nth
 #' @export
 str_locate_first <- function(string, pattern) {
-  str_locate_nth(string = string, pattern = pattern, n = 1)
+  str_locate_nth(string, pattern, n = 1)
 }
 
 #' @rdname str_locate_nth
 #' @export
 str_locate_last <- function(string, pattern) {
-  str_locate_nth(string = string, pattern = pattern, n = -1)
+  str_locate_nth(string, pattern, n = -1)
 }
