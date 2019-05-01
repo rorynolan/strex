@@ -15,4 +15,5 @@ matrix:
         script: Rscript -e 'pkgdown::deploy_site_github()'
         skip_cleanup: true
     - os: osx
-      r_build_args: --no-build-vignettes
+      r_build_args: --no-build-vignettes --no-manual
+      r_check_args: --no-build-vignettes --no-manual
