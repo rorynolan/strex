@@ -17,6 +17,7 @@ matrix:
     - os: osx
       sudo: true
       before_install:
+        - sudo tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
         - sudo tlmgr install inconsolata
 
 
