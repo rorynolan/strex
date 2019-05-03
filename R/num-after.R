@@ -3,12 +3,14 @@
 #' Given a string, a pattern and natural numbers `n` and `m`, find the `n`th
 #' number after the `m`th occurrence of the pattern.
 #'
-#' @param string A character vector.
-#' @param n,m Natural numbers.
-#' @inheritParams str_singleize
+#' @param n,m Vectors of integerish values. Must be either length 1 or have
+#'   length equal to the length of `string`. Negative indices count from the
+#'   back: while `1` and `2` correspond to first and second, `-1` and `-2`
+#'   correspond to last and second-last. `0` will return `NA`.
+#' @inheritParams str_after_nth
 #' @inheritParams str_extract_numbers
 #'
-#' @return A numeric vector.
+#' @return A numeric or character vector.
 #'
 #' @examples
 #' string <- c(

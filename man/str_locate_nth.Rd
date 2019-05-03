@@ -4,7 +4,7 @@
 \alias{str_locate_nth}
 \alias{str_locate_first}
 \alias{str_locate_last}
-\title{Locate the indices of the \eqn{n}th instance of a pattern.}
+\title{Locate the indices of the \code{n}th instance of a pattern.}
 \usage{
 str_locate_nth(string, pattern, n)
 
@@ -13,14 +13,20 @@ str_locate_first(string, pattern)
 str_locate_last(string, pattern)
 }
 \arguments{
-\item{string}{A character vector. These functions are vectorized over this
-argument.}
+\item{string}{A character vector.}
 
-\item{pattern}{A character vector. Pattern(s) specified like the pattern(s)
-in the stringr package (e.g. look at \code{\link[stringr:str_locate]{stringr::str_locate()}}). If
-this has length >1 its length must be the same as that of \code{string}.}
+\item{pattern}{The pattern to look for.
 
-\item{n}{A character vector of length 1 or the same length as \code{string}.}
+The default interpretation is a regular expression, as described in
+\link[stringi:stringi-search-regex]{stringi::stringi-search-regex}.
+
+To match a without regular expression (i.e. as a human would), use
+\link[stringr:coll]{coll()}. For details see \code{\link[stringr:regex]{stringr::regex()}}.}
+
+\item{n}{A vector of integerish values. Must be either length 1 or
+have length equal to the length of \code{string}. Negative indices count from
+the back: while \code{n = 1} and \code{n = 2} correspond to first and second, \code{n = -1} and \code{n = -2} correspond to last and second-last. \code{n = 0} will return
+\code{NA}.}
 }
 \value{
 A two-column matrix. The \eqn{i}th row of this matrix gives the start
@@ -28,7 +34,7 @@ and end indices of the \eqn{n}th instance of \code{pattern} in the \eqn{i}th
 element of \code{string}.
 }
 \description{
-The \eqn{n}th instance of an pattern will cover a series of character
+The \code{n}th instance of an pattern will cover a series of character
 indices. These functions tell you which indices those are. These functions
 are vectorised over all arguments.
 }

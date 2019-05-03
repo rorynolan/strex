@@ -25,11 +25,15 @@ test_that("remove_filename_spaces works", {
   setwd("..")
   expect_true(dir.remove("remove_filename_spaces_test"))
   file.create(c("1litres 1.txt", "1litres1.txt"))
-  expect_error(remove_filename_spaces(),
-               str_c("Not renaming because to do so would also overwrite.*",
-                     "1litres 1.txt.*and.*1litres1.txt.*already exist.*",
-                     "so to rename.*1litres 1.txt.*to.*1litres1.txt.*",
-                     "would be to overwrite.*1litres1.txt"))
+  expect_error(
+    remove_filename_spaces(),
+    str_c(
+      "Not renaming because to do so would also overwrite.*",
+      "1litres 1.txt.*and.*1litres1.txt.*already exist.*",
+      "so to rename.*1litres 1.txt.*to.*1litres1.txt.*",
+      "would be to overwrite.*1litres1.txt"
+    )
+  )
   setwd(cwd)
 })
 
@@ -42,12 +46,18 @@ test_that("rename_with_nums works", {
   expect_equal(file.create(files), rep(TRUE, 3))
   expect_equal(rename_with_nums(pattern = ".txt$"), rep(TRUE, 3))
   expect_equal(list.files(pattern = ".txt$"), paste0(1:3, ".txt"))
-  expect_error(rename_with_nums(),
-               str_c("Some of the names are already in the desired format.*",
-                     "[Uu]nable to proceed as renaming may result in deletion"))
+  expect_error(
+    rename_with_nums(),
+    str_c(
+      "Some of the names are already in the desired format.*",
+      "[Uu]nable to proceed as renaming may result in deletion"
+    )
+  )
   file.create("xyz.csv")
-  expect_error(rename_with_nums(),
-               "Files matching pattern have different extensions.")
+  expect_error(
+    rename_with_nums(),
+    "Files matching pattern have different extensions."
+  )
   file.remove(dir(pattern = ".txt$"))
   file.remove(dir(pattern = ".csv$"))
   expect_error(rename_with_nums(pattern = ".txt$"), "No files found to rename.")
@@ -59,11 +69,14 @@ test_that("rename_with_nums works", {
 test_that("create_dir works", {
   setwd(tempdir())
   expect_equal(create_dir(c("mydir", "yourdir")), rep(TRUE, 2),
-               check.names = FALSE)
+    check.names = FALSE
+  )
   expect_equal(create_dir(c("mydir", "yourdir")), rep(FALSE, 2),
-               check.names = FALSE)
+    check.names = FALSE
+  )
   expect_equal(dir.remove(c("mydir", "yourdir")), rep(TRUE, 2),
-               check.names = FALSE)
+    check.names = FALSE
+  )
 })
 
 test_that("unitize_dirs works", {
@@ -86,18 +99,30 @@ test_that("file.move edge cases work correctly", {
   on.exit(setwd(cwd))
   dir.create("tmpdir0")
   file.create("tmpfile0.R")
-  expect_error(file.move("tmpfile0.R", c("tmpdir0", "tmpdir0")),
-               "number of destinations must.*1 or.*number of files to be moved")
-  expect_error(file.move(c("tmpfile0.R", "tmpfile0.R"),
-                         c("tmpdir0", "tmpdir0")),
-               "must not have.*duplicated elements.*Element 2.*duplicate")
+  expect_error(
+    file.move("tmpfile0.R", c("tmpdir0", "tmpdir0")),
+    "number of destinations must.*1 or.*number of files to be moved"
+  )
+  expect_error(
+    file.move(
+      c("tmpfile0.R", "tmpfile0.R"),
+      c("tmpdir0", "tmpdir0")
+    ),
+    "must not have.*duplicated elements.*Element 2.*duplicate"
+  )
   file.move("tmpfile0.R", "tmpdir0/")
   file.create("tmpfile0.R")
-  expect_message(file.move("tmpfile0.R", "tmpdir0/"),
-                 "To allow overwriting, use `overwrite = TRUE`")
-  expect_message(file.move("tmpfile0.R", "tmpdir0/", overwrite = TRUE),
-                 "1 file moved. 0 failed.")
-  expect_message(file.move(character(0), character(0)),
-                 "0 files moved. 0 failed.")
+  expect_message(
+    file.move("tmpfile0.R", "tmpdir0/"),
+    "To allow overwriting, use `overwrite = TRUE`"
+  )
+  expect_message(
+    file.move("tmpfile0.R", "tmpdir0/", overwrite = TRUE),
+    "1 file moved. 0 failed."
+  )
+  expect_message(
+    file.move(character(0), character(0)),
+    "0 files moved. 0 failed."
+  )
   setwd(cwd)
 })

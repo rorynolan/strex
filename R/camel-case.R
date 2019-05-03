@@ -2,7 +2,7 @@
 #'
 #' Vectorized over `string`.
 #'
-#' @param string A character vector.
+#' @inheritParams str_after_nth
 #' @param lower Do you want the output to be all lower case (or as is)?
 #'
 #' @return A list of character vectors, one list element for each element of

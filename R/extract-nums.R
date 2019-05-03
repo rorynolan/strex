@@ -150,8 +150,8 @@ ambig_warn <- function(string, ambigs, ambig_regex) {
 #'
 #' @return For `str_extract_numbers` and `str_extract_non_numerics`, a list of
 #'   numeric or character vectors, one list element for each element of
-#'   `string`. For `str_nth_number` and `nth_non_numeric`, a vector the same
-#'   length as `string` (as in `length(string)`, not `nchar(string)`).
+#'   `string`. For `str_nth_number` and `str_nth_non_numeric`, a numeric or
+#'   character vector the same length as the vector `string`.
 #' @examples
 #' strings <- c(
 #'   "abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
@@ -227,11 +227,7 @@ str_extract_numbers <- function(string,
 #' [str_extract_numbers()].
 #'
 #' @inheritParams str_extract_numbers
-#' @param n The index of the number (or non-numeric) that you seek. Negative
-#'   indexing is allowed i.e. `n = 1` (the default) will give you the first
-#'   number (or non-numeric) whereas `n = -1` will give you the last number (or
-#'   non-numeric), `n = -2` will give you the second last number and so on. The
-#'   function is vectorized over this argument.
+#' @inheritParams str_after_nth
 #'
 #' @return A numeric vector (or a character vector if `leave_as_string = TRUE`).
 #'
@@ -321,7 +317,7 @@ str_nth_number <- function(string, n, decimals = FALSE,
   as.numeric(out)
 }
 
-#' @rdname str_extract_numbers
+#' @rdname str_nth_number
 #' @export
 str_first_number <- function(string, decimals = FALSE,
                              leading_decimals = decimals, negs = FALSE,
@@ -334,7 +330,7 @@ str_first_number <- function(string, decimals = FALSE,
   )
 }
 
-#' @rdname str_extract_numbers
+#' @rdname str_nth_number
 #' @export
 str_last_number <- function(string, decimals = FALSE,
                             leading_decimals = decimals, negs = FALSE,

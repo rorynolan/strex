@@ -121,14 +121,14 @@ str_nth_non_numeric_no_ambigs <- function(string, num_pattern, n) {
 #' Extract the `n`th non-numeric bit of a string where numbers are optionally
 #' defined with decimals, scientific notation and commas (as separators, not as
 #' an alternative to the decimal point).
+#' \itemize{ \item `str_first_non_numeric(...)` is just
+#' `str_nth_non_numeric(..., n = 1)`. \item `str_last_non_numeric(...)` is
+#' just `str_nth_non_numeric(..., n = -1)`. }
 #'
 #' @inheritParams str_extract_non_numerics
-#' @param n A numeric vector of length 1 or with length equal to the length of
-#'   `string`.
+#' @inheritParams str_after_nth
 #'
-#'   \itemize{ \item `str_first_non_numeric(...)` is just
-#'   `str_nth_non_numeric(..., n = 1)`. \item `str_last_non_numeric(...)` is
-#'   just `str_nth_non_numeric(..., n = -1)`. }
+#'
 #'
 #' @examples
 #' strings <- c(

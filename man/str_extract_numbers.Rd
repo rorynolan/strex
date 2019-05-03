@@ -2,21 +2,11 @@
 % Please edit documentation in R/extract-nums.R
 \name{str_extract_numbers}
 \alias{str_extract_numbers}
-\alias{str_first_number}
-\alias{str_last_number}
 \title{Extract numbers from a string.}
 \usage{
 str_extract_numbers(string, decimals = FALSE,
   leading_decimals = decimals, negs = FALSE, sci = FALSE,
   commas = FALSE, leave_as_string = FALSE)
-
-str_first_number(string, decimals = FALSE, leading_decimals = decimals,
-  negs = FALSE, sci = FALSE, commas = FALSE,
-  leave_as_string = FALSE)
-
-str_last_number(string, decimals = FALSE, leading_decimals = decimals,
-  negs = FALSE, sci = FALSE, commas = FALSE,
-  leave_as_string = FALSE)
 }
 \arguments{
 \item{string}{A string.}
@@ -43,8 +33,8 @@ or as numeric (\code{FALSE}, the default)?}
 \value{
 For \code{str_extract_numbers} and \code{str_extract_non_numerics}, a list of
 numeric or character vectors, one list element for each element of
-\code{string}. For \code{str_nth_number} and \code{nth_non_numeric}, a vector the same
-length as \code{string} (as in \code{length(string)}, not \code{nchar(string)}).
+\code{string}. For \code{str_nth_number} and \code{str_nth_non_numeric}, a numeric or
+character vector the same length as the vector \code{string}.
 }
 \description{
 Extract the numbers from a string, where decimals, scientific notation and

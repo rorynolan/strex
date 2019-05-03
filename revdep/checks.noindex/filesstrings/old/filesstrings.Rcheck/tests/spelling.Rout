@@ -1,6 +1,6 @@
 
-R version 3.5.1 (2018-07-02) -- "Feather Spray"
-Copyright (C) 2018 The R Foundation for Statistical Computing
+R version 3.5.3 (2019-03-11) -- "Great Truth"
+Copyright (C) 2019 The R Foundation for Statistical Computing
 Platform: x86_64-apple-darwin15.6.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -15,10 +15,20 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> if(requireNamespace('spelling', quietly=TRUE))
-+   spelling::spell_check_test(vignettes = TRUE, error = FALSE, skip_on_cran = TRUE)
-NULL
+> if (requireNamespace("spelling", quietly = TRUE)) {
++   spelling::spell_check_test(vignettes = TRUE, error = FALSE,
++                              skip_on_cran = TRUE)
++ }
+Potential spelling errors:
+  WORD          FOUND IN
+Giorgio       NEWS.md:176
+README        NEWS.md:142,158
+Spedicato's   NEWS.md:176
+integerish    NEWS.md:76
+readr         NEWS.md:164
+tidyverse     NEWS.md:100,122
+All Done!
 > 
 > proc.time()
    user  system elapsed 
-  0.178   0.038   0.193 
+  0.825   0.183   1.013 

@@ -3,12 +3,9 @@
 #' Given a string, a pattern and natural numbers `n` and `m`, find the `n`th
 #' number that comes before the `m`th occurrence of the pattern.
 #'
-#' @param string A character vector.
-#' @param n,m Natural numbers.
-#' @inheritParams str_singleize
-#' @inheritParams str_extract_numbers
+#' @inheritParams str_nth_number_after_mth
 #'
-#' @return A numeric vector.
+#' @return A numeric or character vector.
 #'
 #' @examples
 #' string <- c(

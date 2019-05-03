@@ -36,19 +36,16 @@ str_locate_braces <- function(string) {
     tibble::new_tibble(nrow = length(string_num))
 }
 
-#' Locate the indices of the \eqn{n}th instance of a pattern.
+#' Locate the indices of the `n`th instance of a pattern.
 #'
-#' The \eqn{n}th instance of an pattern will cover a series of character
+#' The `n`th instance of an pattern will cover a series of character
 #' indices. These functions tell you which indices those are. These functions
 #' are vectorised over all arguments.
 #'
 #' \itemize{ \item `str_locate_first(...)` is just `str_locate_nth(..., n = 1)`.
 #' \item `str_locate_last(...)` is just `str_locate_nth(..., n = -1)`. }
 #'
-#' @param string A character vector. These functions are vectorized over this
-#'   argument.
-#' @inheritParams str_singleize
-#' @param n A character vector of length 1 or the same length as `string`.
+#' @inheritParams str_after_nth
 #'
 #' @return A two-column matrix. The \eqn{i}th row of this matrix gives the start
 #'   and end indices of the \eqn{n}th instance of `pattern` in the \eqn{i}th

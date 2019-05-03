@@ -5,11 +5,11 @@
 #' position (works if the pattern is duplicated in different parts of a string,
 #' removing all instances of duplication). This is vectorized over string and
 #' pattern.
-#' @param string A character vector. The string(s) to be purged of duplicates.
-#' @param pattern A character vector. Pattern(s) specified like the pattern(s)
-#'   in the stringr package (e.g. look at [stringr::str_locate()]). If
-#'   this has length >1 its length must be the same as that of `string`.
-#' @return The string with the duplicates fixed.
+#'
+#' @inheritParams str_after_nth
+#'
+#' @return A character vector.
+#'
 #' @examples
 #' str_singleize("abc//def", "/")
 #' str_singleize("abababcabab", "ab")

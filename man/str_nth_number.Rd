@@ -2,20 +2,29 @@
 % Please edit documentation in R/extract-nums.R
 \name{str_nth_number}
 \alias{str_nth_number}
+\alias{str_first_number}
+\alias{str_last_number}
 \title{Extract the \code{n}th number from a string.}
 \usage{
 str_nth_number(string, n, decimals = FALSE,
   leading_decimals = decimals, negs = FALSE, sci = FALSE,
   commas = FALSE, leave_as_string = FALSE)
+
+str_first_number(string, decimals = FALSE, leading_decimals = decimals,
+  negs = FALSE, sci = FALSE, commas = FALSE,
+  leave_as_string = FALSE)
+
+str_last_number(string, decimals = FALSE, leading_decimals = decimals,
+  negs = FALSE, sci = FALSE, commas = FALSE,
+  leave_as_string = FALSE)
 }
 \arguments{
 \item{string}{A string.}
 
-\item{n}{The index of the number (or non-numeric) that you seek. Negative
-indexing is allowed i.e. \code{n = 1} (the default) will give you the first
-number (or non-numeric) whereas \code{n = -1} will give you the last number (or
-non-numeric), \code{n = -2} will give you the second last number and so on. The
-function is vectorized over this argument.}
+\item{n}{A vector of integerish values. Must be either length 1 or
+have length equal to the length of \code{string}. Negative indices count from
+the back: while \code{n = 1} and \code{n = 2} correspond to first and second, \code{n = -1} and \code{n = -2} correspond to last and second-last. \code{n = 0} will return
+\code{NA}.}
 
 \item{decimals}{Do you want to include the possibility of decimal numbers
 (\code{TRUE}) or not (\code{FALSE}, the default).}

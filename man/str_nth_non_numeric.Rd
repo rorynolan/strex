@@ -21,12 +21,10 @@ str_last_non_numeric(string, decimals = FALSE,
 \arguments{
 \item{string}{A string.}
 
-\item{n}{A numeric vector of length 1 or with length equal to the length of
-\code{string}.
-
-\itemize{ \item \code{str_first_non_numeric(...)} is just
-\code{str_nth_non_numeric(..., n = 1)}. \item \code{str_last_non_numeric(...)} is
-just \code{str_nth_non_numeric(..., n = -1)}. }}
+\item{n}{A vector of integerish values. Must be either length 1 or
+have length equal to the length of \code{string}. Negative indices count from
+the back: while \code{n = 1} and \code{n = 2} correspond to first and second, \code{n = -1} and \code{n = -2} correspond to last and second-last. \code{n = 0} will return
+\code{NA}.}
 
 \item{decimals}{Do you want to include the possibility of decimal numbers
 (\code{TRUE}) or not (\code{FALSE}, the default).}
@@ -48,6 +46,9 @@ one hundred)).}
 Extract the \code{n}th non-numeric bit of a string where numbers are optionally
 defined with decimals, scientific notation and commas (as separators, not as
 an alternative to the decimal point).
+\itemize{ \item \code{str_first_non_numeric(...)} is just
+\code{str_nth_non_numeric(..., n = 1)}. \item \code{str_last_non_numeric(...)} is
+just \code{str_nth_non_numeric(..., n = -1)}. }
 }
 \examples{
 strings <- c(

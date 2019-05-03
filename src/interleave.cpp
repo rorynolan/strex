@@ -1,6 +1,8 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
+#include "mymath.h"
+
 
 //' Interleave two vectors of strings.
 //'
@@ -24,7 +26,7 @@ CharacterVector interleave_strings(CharacterVector strings1,
                                    CharacterVector strings2) {
   R_xlen_t s1l = strings1.size(), s2l = strings2.size();
   int64_t length_diff = s1l - s2l;
-  if (abs(length_diff) > 1) {
+  if (my_abs(length_diff) > 1) {
     return(NA_STRING);
   } else {
     R_xlen_t l = s1l + s2l;

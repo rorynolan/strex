@@ -2,8 +2,11 @@
 #'
 #' Go from a string to a vector whose \eqn{i}th element is the \eqn{i}th
 #' character in the string.
-#' @param string A string.
+#'
+#' @inheritParams str_after_nth
+#'
 #' @return A character vector.
+#'
 #' @examples
 #' str_to_vec("abcdef")
 #'

@@ -5,13 +5,14 @@
 #' string? This function lets you select which pattern to trim and from which
 #' side(s).
 #'
-#' @param string A string.
+#' @inheritParams str_after_nth
 #' @param pattern A string. The pattern to be trimmed (*not* interpreted as
 #'   regular expression). So to trim a period, use `char = "."` and not
 #'   `char = "\\\\."`).
 #' @param side Which side do you want to trim from? `"both"` is the
 #'   default, but you can also have just either `"left"` or `"right"`
 #'   (or optionally the shortened `"b"`, `"l"` and `"r"`).
+#'
 #' @return A string.
 #' @examples
 #' str_trim_anything("..abcd.", ".", "left")

@@ -51,11 +51,18 @@ str_last_number_after_last(string, pattern, decimals = FALSE,
 \arguments{
 \item{string}{A character vector.}
 
-\item{pattern}{A character vector. Pattern(s) specified like the pattern(s)
-in the stringr package (e.g. look at \code{\link[stringr:str_locate]{stringr::str_locate()}}). If
-this has length >1 its length must be the same as that of \code{string}.}
+\item{pattern}{The pattern to look for.
 
-\item{n, m}{Natural numbers.}
+The default interpretation is a regular expression, as described in
+\link[stringi:stringi-search-regex]{stringi::stringi-search-regex}.
+
+To match a without regular expression (i.e. as a human would), use
+\link[stringr:coll]{coll()}. For details see \code{\link[stringr:regex]{stringr::regex()}}.}
+
+\item{n, m}{Vectors of integerish values. Must be either length 1 or have
+length equal to the length of \code{string}. Negative indices count from the
+back: while \code{1} and \code{2} correspond to first and second, \code{-1} and \code{-2}
+correspond to last and second-last. \code{0} will return \code{NA}.}
 
 \item{decimals}{Do you want to include the possibility of decimal numbers
 (\code{TRUE}) or not (\code{FALSE}, the default).}
@@ -77,7 +84,7 @@ one hundred)).}
 or as numeric (\code{FALSE}, the default)?}
 }
 \value{
-A numeric vector.
+A numeric or character vector.
 }
 \description{
 Given a string, a pattern and natural numbers \code{n} and \code{m}, find the \code{n}th
