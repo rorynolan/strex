@@ -111,7 +111,7 @@ str_nth_currency <- function(string, n) {
       locs <- stringi::stri_locate_last_regex(string, curr_pattern())
     }
   } else {
-    locs <- matrix(NA, ncol = 2, nrow = length(string))
+    locs <- matrix(NA_integer_, ncol = 2, nrow = length(string))
     interim_locs <- str_locate_all(string, curr_pattern())
     interim_locs_n_matches <- lengths(interim_locs) / 2
     good <- interim_locs_n_matches >= abs_n

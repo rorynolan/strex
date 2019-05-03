@@ -14,10 +14,8 @@ test_that("`str_locate_nth()` works", {
   )
   expect_equal(
     str_locate_nth("abc1def2abc", "abc", 3),
-    structure(c(NA, NA), .Dim = 1:2, .Dimnames = list(NULL, c(
-      "start",
-      "end"
-    )))
+    matrix(NA_integer_, ncol = 2, nrow = 1) %>%
+      magrittr::set_colnames(c("start", "end"))
   )
   expect_equal(str_locate_nth(c("This old thing.",
                                 "That beautiful thing there."),
