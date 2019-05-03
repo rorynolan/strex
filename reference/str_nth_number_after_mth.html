@@ -188,13 +188,18 @@ number after the <code>m</code>th occurrence of the pattern.</p>
     </tr>
     <tr>
       <th>pattern</th>
-      <td><p>A character vector. Pattern(s) specified like the pattern(s)
-in the stringr package (e.g. look at <code><a href='https://stringr.tidyverse.org/reference/str_locate.html'>stringr::str_locate()</a></code>). If
-this has length &gt;1 its length must be the same as that of <code>string</code>.</p></td>
+      <td><p>The pattern to look for.</p>
+<p>The default interpretation is a regular expression, as described in
+<a href='https://www.rdocumentation.org/packages/stringi/topics/stringi-search-regex'>stringi::stringi-search-regex</a>.</p>
+<p>To match a without regular expression (i.e. as a human would), use
+<a href='https://stringr.tidyverse.org/reference/modifiers.html'>coll()</a>. For details see <code><a href='https://stringr.tidyverse.org/reference/modifiers.html'>stringr::regex()</a></code>.</p></td>
     </tr>
     <tr>
       <th>n, m</th>
-      <td><p>Natural numbers.</p></td>
+      <td><p>Vectors of integerish values. Must be either length 1 or have
+length equal to the length of <code>string</code>. Negative indices count from the
+back: while <code>1</code> and <code>2</code> correspond to first and second, <code>-1</code> and <code>-2</code>
+correspond to last and second-last. <code>0</code> will return <code>NA</code>.</p></td>
     </tr>
     <tr>
       <th>decimals</th>
@@ -231,7 +236,7 @@ or as numeric (<code>FALSE</code>, the default)?</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A numeric vector.</p>
+    <p>A numeric or character vector.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

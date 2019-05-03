@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Locate the indices of the \(n\)th instance of a pattern. — str_locate_nth • strex</title>
+<title>Locate the indices of the <code>n</code>th instance of a pattern. — str_locate_nth • strex</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,9 +37,9 @@
 
 
 
-<meta property="og:title" content="Locate the indices of the \(n\)th instance of a pattern. — str_locate_nth" />
+<meta property="og:title" content="Locate the indices of the <code>n</code>th instance of a pattern. — str_locate_nth" />
 
-<meta property="og:description" content="The \(n\)th instance of an pattern will cover a series of character
+<meta property="og:description" content="The nth instance of an pattern will cover a series of character
 indices. These functions tell you which indices those are. These functions
 are vectorised over all arguments." />
 
@@ -132,14 +132,14 @@ are vectorised over all arguments." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Locate the indices of the \(n\)th instance of a pattern.</h1>
+    <h1>Locate the indices of the <code>n</code>th instance of a pattern.</h1>
     
     <div class="hidden name"><code>str_locate_nth.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>The \(n\)th instance of an pattern will cover a series of character
+    <p>The <code>n</code>th instance of an pattern will cover a series of character
 indices. These functions tell you which indices those are. These functions
 are vectorised over all arguments.</p>
     
@@ -156,18 +156,22 @@ are vectorised over all arguments.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>string</th>
-      <td><p>A character vector. These functions are vectorized over this
-argument.</p></td>
+      <td><p>A character vector.</p></td>
     </tr>
     <tr>
       <th>pattern</th>
-      <td><p>A character vector. Pattern(s) specified like the pattern(s)
-in the stringr package (e.g. look at <code><a href='https://stringr.tidyverse.org/reference/str_locate.html'>stringr::str_locate()</a></code>). If
-this has length &gt;1 its length must be the same as that of <code>string</code>.</p></td>
+      <td><p>The pattern to look for.</p>
+<p>The default interpretation is a regular expression, as described in
+<a href='https://www.rdocumentation.org/packages/stringi/topics/stringi-search-regex'>stringi::stringi-search-regex</a>.</p>
+<p>To match a without regular expression (i.e. as a human would), use
+<a href='https://stringr.tidyverse.org/reference/modifiers.html'>coll()</a>. For details see <code><a href='https://stringr.tidyverse.org/reference/modifiers.html'>stringr::regex()</a></code>.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>A character vector of length 1 or the same length as <code>string</code>.</p></td>
+      <td><p>A vector of integerish values. Must be either length 1 or
+have length equal to the length of <code>string</code>. Negative indices count from
+the back: while <code>n = 1</code> and <code>n = 2</code> correspond to first and second, <code>n = -1</code> and <code>n = -2</code> correspond to last and second-last. <code>n = 0</code> will return
+<code>NA</code>.</p></td>
     </tr>
     </table>
     

@@ -94,7 +94,7 @@
     <div class="page-header toc-ignore">
       <h1>Numbers Within Strings</h1>
             
-            <h4 class="date">2019-05-01</h4>
+            <h4 class="date">2019-05-03</h4>
       
       
       <div class="hidden name"><code>numbers-in-strings.Rmd</code></div>
@@ -308,7 +308,7 @@
 <a href="#other-number-formats" class="anchor"></a>Other number formats</h2>
 <p><code>strex</code> can also deal with numbers in scientific and comma notation.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">string &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"$1,000"</span>, <span class="st">"$1e6"</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="../reference/str_extract_numbers.html">str_first_number</a></span>(string, <span class="dt">commas =</span> <span class="ot">TRUE</span>, <span class="dt">sci =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="../reference/str_nth_number.html">str_first_number</a></span>(string, <span class="dt">commas =</span> <span class="ot">TRUE</span>, <span class="dt">sci =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; [1] 1e+03 1e+06</span></a></code></pre></div>
 </div>
 </div>

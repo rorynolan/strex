@@ -147,7 +147,15 @@ optionally allowed.</p>
 
     <pre class="usage"><span class='fu'>str_nth_number</span>(<span class='no'>string</span>, <span class='no'>n</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>, <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>str_first_number</span>(<span class='no'>string</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>,
+  <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>str_last_number</span>(<span class='no'>string</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>,
+  <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,11 +166,10 @@ optionally allowed.</p>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>The index of the number (or non-numeric) that you seek. Negative
-indexing is allowed i.e. <code>n = 1</code> (the default) will give you the first
-number (or non-numeric) whereas <code>n = -1</code> will give you the last number (or
-non-numeric), <code>n = -2</code> will give you the second last number and so on. The
-function is vectorized over this argument.</p></td>
+      <td><p>A vector of integerish values. Must be either length 1 or
+have length equal to the length of <code>string</code>. Negative indices count from
+the back: while <code>n = 1</code> and <code>n = 2</code> correspond to first and second, <code>n = -1</code> and <code>n = -2</code> correspond to last and second-last. <code>n = 0</code> will return
+<code>NA</code>.</p></td>
     </tr>
     <tr>
       <th>decimals</th>
@@ -204,8 +211,8 @@ or as numeric (<code>FALSE</code>, the default)?</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <ul>
-<li><p><code><a href='str_extract_numbers.html'>str_first_number(...)</a></code> is just <code>str_nth_number(..., n = 1)</code>.</p></li>
-<li><p><code><a href='str_extract_numbers.html'>str_last_number(...)</a></code> is just <code>str_nth_number(..., n = -1)</code>.</p></li>
+<li><p><code>str_first_number(...)</code> is just <code>str_nth_number(..., n = 1)</code>.</p></li>
+<li><p><code>str_last_number(...)</code> is just <code>str_nth_number(..., n = -1)</code>.</p></li>
 </ul>
     <p>For a detailed explanation of the number extraction, see
 <code><a href='str_extract_numbers.html'>str_extract_numbers()</a></code>.</p>
@@ -222,13 +229,13 @@ or as numeric (<code>FALSE</code>, the default)?</p></td>
   <span class='st'>"abc123def456"</span>, <span class='st'>"abc-0.12def.345"</span>, <span class='st'>"abc.12e4def34.5e9"</span>,
   <span class='st'>"abc1,100def1,230.5"</span>, <span class='st'>"abc1,100e3,215def4e1,000"</span>
 )
-<span class='fu'>str_nth_number</span>(<span class='no'>strings</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 456  12   4 100 100</div><div class='input'><span class='fu'>str_nth_number</span>(<span class='no'>strings</span>, <span class='kw'>n</span> <span class='kw'>=</span> -<span class='fl'>2</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 123.00   0.12  34.50   1.00   1.00</div><div class='input'><span class='fu'><a href='str_extract_numbers.html'>str_first_number</a></span>(<span class='no'>strings</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 123.00   0.12   0.12   1.00   1.00</div><div class='input'><span class='fu'><a href='str_extract_numbers.html'>str_last_number</a></span>(<span class='no'>strings</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1]  456  345    9    5 1000</div><div class='input'><span class='fu'>str_nth_number</span>(<span class='no'>strings</span>,
+<span class='fu'>str_nth_number</span>(<span class='no'>strings</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 456  12   4 100 100</div><div class='input'><span class='fu'>str_nth_number</span>(<span class='no'>strings</span>, <span class='kw'>n</span> <span class='kw'>=</span> -<span class='fl'>2</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 123.00   0.12  34.50   1.00   1.00</div><div class='input'><span class='fu'>str_first_number</span>(<span class='no'>strings</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 123.00   0.12   0.12   1.00   1.00</div><div class='input'><span class='fu'>str_last_number</span>(<span class='no'>strings</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1]  456  345    9    5 1000</div><div class='input'><span class='fu'>str_nth_number</span>(<span class='no'>strings</span>,
   <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; [1]  123.00    0.12 1200.00    1.00    1.00</div><div class='input'><span class='fu'><a href='str_extract_numbers.html'>str_first_number</a></span>(<span class='no'>strings</span>,
+)</div><div class='output co'>#&gt; [1]  123.00    0.12 1200.00    1.00    1.00</div><div class='input'><span class='fu'>str_first_number</span>(<span class='no'>strings</span>,
   <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; [1]  123.00   -0.12 1200.00 1100.00     Inf</div><div class='input'><span class='fu'><a href='str_extract_numbers.html'>str_last_number</a></span>(<span class='no'>strings</span>,
+)</div><div class='output co'>#&gt; [1]  123.00   -0.12 1200.00 1100.00     Inf</div><div class='input'><span class='fu'>str_last_number</span>(<span class='no'>strings</span>,
   <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; [1] "456"     "345"     "9"       "1,230.5" "1,000"  </div><div class='input'>

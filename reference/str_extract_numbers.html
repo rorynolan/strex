@@ -147,15 +147,7 @@ optionally allowed.</p>
 
     <pre class="usage"><span class='fu'>str_extract_numbers</span>(<span class='no'>string</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>, <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='fu'>str_first_number</span>(<span class='no'>string</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>,
-  <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='fu'>str_last_number</span>(<span class='no'>string</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='no'>decimals</span>,
-  <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>leave_as_string</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,8 +193,8 @@ or as numeric (<code>FALSE</code>, the default)?</p></td>
 
     <p>For <code>str_extract_numbers</code> and <code>str_extract_non_numerics</code>, a list of
 numeric or character vectors, one list element for each element of
-<code>string</code>. For <code>str_nth_number</code> and <code>nth_non_numeric</code>, a vector the same
-length as <code>string</code> (as in <code><a href='https://www.rdocumentation.org/packages/base/topics/length'>length(string)</a></code>, not <code><a href='https://www.rdocumentation.org/packages/base/topics/nchar'>nchar(string)</a></code>).</p>
+<code>string</code>. For <code>str_nth_number</code> and <code>str_nth_non_numeric</code>, a numeric or
+character vector the same length as the vector <code>string</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 

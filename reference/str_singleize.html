@@ -156,19 +156,21 @@ pattern.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>string</th>
-      <td><p>A character vector. The string(s) to be purged of duplicates.</p></td>
+      <td><p>A character vector.</p></td>
     </tr>
     <tr>
       <th>pattern</th>
-      <td><p>A character vector. Pattern(s) specified like the pattern(s)
-in the stringr package (e.g. look at <code><a href='https://stringr.tidyverse.org/reference/str_locate.html'>stringr::str_locate()</a></code>). If
-this has length &gt;1 its length must be the same as that of <code>string</code>.</p></td>
+      <td><p>The pattern to look for.</p>
+<p>The default interpretation is a regular expression, as described in
+<a href='https://www.rdocumentation.org/packages/stringi/topics/stringi-search-regex'>stringi::stringi-search-regex</a>.</p>
+<p>To match a without regular expression (i.e. as a human would), use
+<a href='https://stringr.tidyverse.org/reference/modifiers.html'>coll()</a>. For details see <code><a href='https://stringr.tidyverse.org/reference/modifiers.html'>stringr::regex()</a></code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The string with the duplicates fixed.</p>
+    <p>A character vector.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
