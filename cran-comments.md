@@ -1,7 +1,7 @@
 ## Test environments
-- local OS X install, R 3.5.1
-- ubuntu 14.04 (on travis-ci), R 3.5.1
-- Windows server 2012 (on AppVeyor), R 3.5.1
+- local OS X install, R 3.5.3
+- ubuntu 16.04 (on travis-ci), R 3.5.3
+- Windows server 2012 (on AppVeyor), R 3.6.0
 - win-builder (devel and release)
 - R-hub linux-x86_64-rocker-gcc-san (r-devel)
 
