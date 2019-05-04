@@ -9,7 +9,7 @@
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 ## Reverse Dependencies
-* There is 1 reverse dependency: `filesstrings`. This update does not break it. See https://github.com/rorynolan/strex/blob/master/revdep/checks.rds for full check results.
+* There is 1 reverse dependency: `filesstrings`. This update breaks it. I am the maintainer of `filesstrings` and a fixing update is ready to go as soon as this new `strex` makes it onto CRAN.
 
 
 

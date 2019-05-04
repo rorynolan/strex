@@ -11,12 +11,13 @@ Description: There are some things that I wish were easier with the 'stringr'
     other handy functionalities in 'strex'. Contributions to this package are 
     encouraged: it is intended as a miscellany of string manipulation functions 
     that cannot be found in 'stringi' or 'stringr'.
-Depends: stringr
+Depends: R (>= 3.1), 
+    stringr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 LinkingTo: 
-    Rcpp
+    Rcpp (>= 1.0.1)
 Imports: 
     Rcpp (>= 1.0.1),
     magrittr (>= 1.5),

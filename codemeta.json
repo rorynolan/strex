@@ -123,6 +123,12 @@
   "softwareRequirements": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.1"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
       "provider": {
@@ -263,5 +269,5 @@
   ],
   "developmentStatus": "https://www.tidyverse.org/lifecycle/#stable",
   "relatedLink": "https://CRAN.R-project.org/package=strex",
-  "fileSize": "112.816KB"
+  "fileSize": "112.785KB"
 }

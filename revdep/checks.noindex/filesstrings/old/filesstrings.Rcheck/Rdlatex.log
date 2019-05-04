@@ -205,7 +205,7 @@ texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fon
 ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on Rd2.pdf (21 pages, 135022 bytes).
+Output written on Rd2.pdf (21 pages, 135020 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2016] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (104 entries accepted, 0 rejected).
@@ -425,7 +425,7 @@ texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fon
 ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on Rd2.pdf (24 pages, 147605 bytes).
+Output written on Rd2.pdf (24 pages, 147608 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2016] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (104 entries accepted, 0 rejected).
@@ -640,7 +640,7 @@ texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fon
 ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on Rd2.pdf (24 pages, 148261 bytes).
+Output written on Rd2.pdf (24 pages, 148262 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2016] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (104 entries accepted, 0 rejected).
@@ -855,8 +855,8 @@ texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fon
 ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on Rd2.pdf (24 pages, 148261 bytes).
+Output written on Rd2.pdf (24 pages, 148262 bytes).
 Transcript written on Rd2.log.
 Saving output to ‘filesstrings-manual.pdf’ ...
 Done
-You may want to clean up by 'rm -Rf /var/folders/l_/2mwm03p55zg7zjykv084hhvr0000gn/T//RtmpI06WFc/Rd2pdf1051f3a88434b'
+You may want to clean up by 'rm -Rf /var/folders/l_/2mwm03p55zg7zjykv084hhvr0000gn/T//RtmpV97NWV/Rd2pdf1e46368c4def'
