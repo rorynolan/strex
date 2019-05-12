@@ -7,17 +7,17 @@
   "identifier": "strex",
   "description": "There are some things that I wish were easier with the 'stringr' \n    or 'stringi' packages. The foremost of these is the extraction of numbers \n    from strings. 'stringr' and 'stringi' make you figure out the regular \n    expression for yourself; 'strex' takes care of this for you. There are many \n    other handy functionalities in 'strex'. Contributions to this package are \n    encouraged: it is intended as a miscellany of string manipulation functions \n    that cannot be found in 'stringi' or 'stringr'.",
   "name": "strex: Extra String Manipulation Functions",
-  "codeRepository": "https://rorynolan.github.io/strex/",
+  "codeRepository": "https://github.com/rorynolan/strex",
   "issueTracker": "https://github.com/rorynolan/strex/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.3",
+    "version": "3.6.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.3 (2019-03-11)",
+  "runtimePlatform": "R version 3.6.0 (2019-04-26)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -268,6 +268,6 @@
     "https://codecov.io/github/rorynolan/strex?branch=master"
   ],
   "developmentStatus": "https://www.tidyverse.org/lifecycle/#stable",
-  "relatedLink": "https://CRAN.R-project.org/package=strex",
-  "fileSize": "112.785KB"
+  "relatedLink": ["https://CRAN.R-project.org/package=strex", "https://rorynolan.github.io/strex"],
+  "fileSize": "112.657KB"
 }

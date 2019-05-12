@@ -56,7 +56,7 @@ str_extract_non_numerics <- function(string, decimals = FALSE,
   checkmate::assert_flag(negs)
   checkmate::assert_flag(sci)
   checkmate::assert_flag(commas)
-  if (all_equal(string, character())) return(list())
+  if (is_l0_char(string)) return(list())
   num_pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
     negs = negs, sci = sci, commas = commas
@@ -153,7 +153,7 @@ str_nth_non_numeric_no_ambigs <- function(string, num_pattern, n) {
 str_nth_non_numeric <- function(string, n, decimals = FALSE,
                                 leading_decimals = decimals, negs = FALSE,
                                 sci = FALSE, commas = FALSE) {
-  if (all_equal(string, character())) return(character())
+  if (is_l0_char(string)) return(character())
   verify_string_n(string, n)
   checkmate::assert_flag(decimals)
   checkmate::assert_flag(leading_decimals)

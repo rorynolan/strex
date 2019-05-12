@@ -37,7 +37,7 @@ str_split_by_numbers_no_ambigs <- function(string, num_pattern) {
 str_split_by_numbers <- function(string, decimals = FALSE,
                                  leading_decimals = FALSE, negs = FALSE,
                                  sci = FALSE, commas = FALSE) {
-  if (all_equal(string, character())) return(list())
+  if (is_l0_char(string)) return(list())
   checkmate::assert_character(string)
   checkmate::assert_flag(decimals)
   checkmate::assert_flag(leading_decimals)

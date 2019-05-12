@@ -16,7 +16,7 @@
 #' @export
 str_locate_braces <- function(string) {
   checkmate::assert_character(string)
-  if (all_equal(string, character())) {
+  if (is_l0_char(string)) {
     out <- list(string_num = integer(),
                 string = character(),
                 position = integer(),

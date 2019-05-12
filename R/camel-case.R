@@ -17,6 +17,7 @@
 #' @family splitters
 #' @export
 str_split_camel_case <- function(string, lower = FALSE) {
+  if (is_l0_char(string)) return(list())
   checkmate::assert_character(string)
   checkmate::assert_flag(lower)
   string %<>% gsub("^[^[:alnum:]]+|[^[:alnum:]]+$", "", .) %>%

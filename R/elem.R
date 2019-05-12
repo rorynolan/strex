@@ -17,7 +17,7 @@
 #' @family single element extractors
 #' @export
 str_elem <- function(string, index) {
-  if (all_equal(string, character())) return(character())
+  if (is_l0_char(string)) return(character())
   verify_string_n(string, index, "index")
   str_sub(string, index, index)
 }
@@ -68,7 +68,7 @@ str_elems_helper <- function(string, indices, insist_bycol = FALSE) {
 #' @export
 str_elems <- function(string, indices, byrow = TRUE) {
   checkmate::assert_flag(byrow)
-  if (all_equal(string, character())) {
+  if (is_l0_char(string)) {
     out <- matrix(character(), ncol = length(indices))
     if (!byrow) out %<>% t()
     return(out)
@@ -104,7 +104,7 @@ str_elems <- function(string, indices, byrow = TRUE) {
 #' @family single element extractors
 #' @export
 str_paste_elems <- function(string, indices, sep = "") {
-  if (all_equal(string, character())) return(character())
+  if (is_l0_char(string)) return(character())
   checkmate::assert_character(string, min.len = 1)
   checkmate::assert_integerish(indices, min.len = 1)
   checkmate::assert_string(sep)

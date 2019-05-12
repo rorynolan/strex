@@ -1,3 +1,9 @@
+# `strex` 1.0.1
+
+## BUG FIXES  
+* There was a pervasive bug related to handling of zero-length inputs.
+
+
 # `strex` 1.0.0
 
 ## BREAKING CHANGES

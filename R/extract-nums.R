@@ -187,7 +187,7 @@ str_extract_numbers <- function(string,
   checkmate::assert_flag(negs)
   checkmate::assert_flag(sci)
   checkmate::assert_flag(commas)
-  if (all_equal(string, character())) return(list())
+  if (is_l0_char(string)) return(list())
   pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
     negs = negs, sci = sci, commas = commas
@@ -260,7 +260,7 @@ str_nth_number <- function(string, n, decimals = FALSE,
                            sci = FALSE, commas = FALSE,
                            leave_as_string = FALSE) {
   checkmate::assert_flag(leave_as_string)
-  if (all_equal(string, character()))
+  if (is_l0_char(string))
     return(vector(mode = ifelse(leave_as_string, "character", "numeric")))
   verify_string_n(string, n)
   checkmate::assert_flag(decimals)

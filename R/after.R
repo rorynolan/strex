@@ -42,7 +42,7 @@ NULL
 #' @rdname before-and-after
 #' @export
 str_after_nth <- function(string, pattern, n) {
-  if (all_equal(string, character())) return(character())
+  if (is_l0_char(string)) return(character())
   verify_string_pattern_n(string, pattern, n)
   nth_instance_indices <- str_locate_nth(string, pattern, n)
   str_sub(string, nth_instance_indices[, "end"] + 1)

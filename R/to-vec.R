@@ -13,7 +13,7 @@
 #' @family converters
 #' @export
 str_to_vec <- function(string) {
-  if (all_equal(string, character())) return(character())
+  if (is_l0_char(string)) return(character())
   checkmate::assert_character(string)
   strsplit(string, NULL)[[1]]
 }

@@ -80,7 +80,7 @@ NULL
 #' @rdname currency
 #' @export
 str_extract_currencies <- function(string) {
-  if (all_equal(string, character())) {
+  if (is_l0_char(string)) {
     return(extract_curr_helper(integer(), character(),
                                matrix(ncol = 2, nrow = 0)))
   }
@@ -97,7 +97,7 @@ str_extract_currencies <- function(string) {
 #' @rdname currency
 #' @export
 str_nth_currency <- function(string, n) {
-  if (all_equal(string, character())) {
+  if (is_l0_char(string)) {
     checkmate::assert_integerish(n)
     return(extract_curr_helper(integer(), character(),
                                matrix(ncol = 2, nrow = 0)))

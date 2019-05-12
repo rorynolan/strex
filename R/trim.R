@@ -22,7 +22,7 @@
 #' @family removers
 #' @export
 str_trim_anything <- function(string, pattern, side = "both") {
-  if (all_equal(string, character())) return(character())
+  if (is_l0_char(string)) return(character())
   verify_string_pattern(string, pattern)
   checkmate::assert_string(side)
   side %<>% match_arg(c("both", "left", "right"), ignore_case = TRUE)

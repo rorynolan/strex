@@ -15,7 +15,7 @@
 #' @family removers
 #' @export
 str_remove_quoted <- function(string) {
-  if (all_equal(string, character())) return(character())
+  if (is_l0_char(string)) return(character())
   checkmate::assert_character(string)
   string <- str_replace_all(string, "(?:\".*?\")", "")
   string <- str_replace_all(string, "(?:\'.*?\')", "")

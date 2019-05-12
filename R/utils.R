@@ -188,3 +188,5 @@ verify_string_pattern_n_m <- function(string, pattern, n, m) {
   }
   invisible(TRUE)
 }
+
+is_l0_char <- function(x) isTRUE(checkmate::check_character(x, max.len = 0))

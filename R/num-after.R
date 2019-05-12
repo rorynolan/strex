@@ -28,7 +28,7 @@ str_nth_number_after_mth <- function(string, pattern, n, m,
                                      negs = FALSE, sci = FALSE, commas = FALSE,
                                      leave_as_string = FALSE) {
   checkmate::assert_flag(leave_as_string)
-  if (all_equal(string, character()))
+  if (is_l0_char(string))
     return(vector(mode = ifelse(leave_as_string, "character", "numeric")))
   verify_string_pattern_n_m(string, pattern, n, m)
   checkmate::assert_flag(decimals)

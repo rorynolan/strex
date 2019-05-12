@@ -19,7 +19,7 @@
 #' @family appenders
 #' @export
 str_give_ext <- function(string, ext, replace = FALSE) {
-  if (all_equal(string, character())) return(character())
+  if (is_l0_char(string)) return(character())
   checkmate::assert_character(string)
   checkmate::assert_string(ext)
   checkmate::assert_flag(replace)

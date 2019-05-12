@@ -19,7 +19,7 @@
 #' @family removers
 #' @export
 str_singleize <- function(string, pattern) {
-  if (all_equal(string, character())) return(character())
+  if (is_l0_char(string)) return(character())
   verify_string_pattern(string, pattern)
   dup_patt <- str_c("(", pattern, ")+")
   str_replace_all(string, dup_patt, pattern)
