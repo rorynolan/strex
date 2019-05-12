@@ -1,4 +1,4 @@
-# `strex` 1.0.1
+# `strex` 1.0.2
 
 ## BUG FIXES  
 * C++ sanitizer issues.
