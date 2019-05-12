@@ -1,5 +1,5 @@
 
-R version 3.5.3 (2019-03-11) -- "Great Truth"
+R version 3.6.0 (2019-04-26) -- "Planting of a Tree"
 Copyright (C) 2019 The R Foundation for Statistical Computing
 Platform: x86_64-apple-darwin15.6.0 (64-bit)
 
@@ -53,7 +53,7 @@ Loading required package: stringr
 [1] FALSE
 > all_equal(list(1:2))
 [1] TRUE
-> all_equal(1:4, matrix(1:4, nrow = 2))  # note that this gives TRUE
+> all_equal(1:4, matrix(1:4, nrow = 2)) # note that this gives TRUE
 [1] FALSE
 > 
 > 
@@ -85,7 +85,7 @@ Loading required package: stringr
 > 
 > ### Name: extend_char_vec
 > ### Title: Pad a character vector with empty strings.
-> ### Aliases: extend_char_vec
+> ### Aliases: extend_char_vec str_extend_char_vec
 > 
 > ### ** Examples
 > 
@@ -206,46 +206,6 @@ Loading required package: stringr
 > 
 > 
 > cleanEx()
-> nameEx("nth_number_before_mth")
-> ### * nth_number_before_mth
-> 
-> flush(stderr()); flush(stdout())
-> 
-> ### Name: nth_number_before_mth
-> ### Title: Find the nth number before the mth occurrence of a pattern.
-> ### Aliases: nth_number_before_mth nth_number_before_first
-> ###   nth_number_before_last first_number_before_mth last_number_before_mth
-> ###   first_number_before_first first_number_before_last
-> ###   last_number_before_first last_number_before_last
-> 
-> ### ** Examples
-> 
-> string <- c("abc1abc2abc3abc4def5abc6abc7abc8abc9",
-+             "abc1def2ghi3abc4def5ghi6abc7def8ghi9")
-> nth_number_before_mth(string, "def", 1, 1)
-[1] 1 1
-> nth_number_before_mth(string, "abc", 2, 3)
-[1] 2 2
-> nth_number_before_first(string, "def", 2)
-[1]  2 NA
-> nth_number_before_last(string, "def", -1)
-[1] 4 7
-> first_number_before_mth(string, "abc", 2)
-[1] 1 1
-> last_number_before_mth(string, "def", 1)
-[1] 4 1
-> first_number_before_first(string, "def")
-[1] 1 1
-> first_number_before_last(string, "def")
-[1] 1 1
-> last_number_before_first(string, "def")
-[1] 4 1
-> last_number_before_last(string, "def")
-[1] 4 7
-> 
-> 
-> 
-> cleanEx()
 > nameEx("put_in_pos")
 > ### * put_in_pos
 > 
@@ -254,7 +214,7 @@ Loading required package: stringr
 > ### Name: put_in_pos
 > ### Title: Put specified strings in specified positions in an otherwise
 > ###   empty character vector.
-> ### Aliases: put_in_pos
+> ### Aliases: put_in_pos str_put_in_pos
 > 
 > ### ** Examples
 > 
@@ -365,7 +325,7 @@ Loading required package: stringr
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.242 0.022 0.264 0 0 
+Time elapsed:  0.12 0.013 0.133 0 0 
 > grDevices::dev.off()
 null device 
           1 

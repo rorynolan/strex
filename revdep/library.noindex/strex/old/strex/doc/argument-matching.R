@@ -29,3 +29,24 @@ choices <- c(choices, "Pears")
 match.arg("P", choices)
 strex::match_arg("P", choices)
 
+## ----NULL-choices--------------------------------------------------------
+myword <- function(w = c("abacus", "baseball", "candy")) {
+  w <- strex::match_arg(w)
+  w
+}
+myword()
+myword("b")
+myword("c")
+
+## ----NULL-choices-errors, error=TRUE-------------------------------------
+myword <- function(w = c("abacus", "baseball", "candy")) {
+  w <- strex::match_arg(identity(w))
+  w
+}
+myword("b")
+myword <- function(w = c("abacus", "baseball", "candy")) {
+  w <- strex::match_arg(as.character(w))
+  w
+}
+myword("b")
+

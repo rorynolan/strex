@@ -46,6 +46,10 @@ tibble::tibble(img_names,
                                                 decimals = TRUE)
 )
 
+## ----scicom--------------------------------------------------------------
+string <- c("$1,000", "$1e6")
+str_first_number(string, commas = TRUE, sci = TRUE)
+
 ## ----all-number-functions------------------------------------------------
 str_subset(ls("package:strex"), "number")
 

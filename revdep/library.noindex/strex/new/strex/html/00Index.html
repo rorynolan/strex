@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>R: Extra String Manipulation Functions</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+<h1> Extra String Manipulation Functions
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]" />
+</h1>
+<hr/>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
+</div><h2>Documentation for package &lsquo;strex&rsquo; version 1.0.1</h2>
+
+<ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="strex.html">strex-package</a></td>
+<td>'strex': extra string manipulation functions</td></tr>
+<tr><td style="width: 25%;"><a href="before-and-after.html">before-and-after</a></td>
+<td>Extract text before or after 'n'th occurrence of pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="currency.html">currency</a></td>
+<td>Extract currency amounts from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_match_arg.html">match_arg</a></td>
+<td>Argument Matching.</td></tr>
+<tr><td style="width: 25%;"><a href="strex.html">strex</a></td>
+<td>'strex': extra string manipulation functions</td></tr>
+<tr><td style="width: 25%;"><a href="before-and-after.html">str_after_first</a></td>
+<td>Extract text before or after 'n'th occurrence of pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="before-and-after.html">str_after_last</a></td>
+<td>Extract text before or after 'n'th occurrence of pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="before-and-after.html">str_after_nth</a></td>
+<td>Extract text before or after 'n'th occurrence of pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_alphord_nums.html">str_alphord_nums</a></td>
+<td>Make string numbers comply with alphabetical order.</td></tr>
+<tr><td style="width: 25%;"><a href="before-and-after.html">str_before_first</a></td>
+<td>Extract text before or after 'n'th occurrence of pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="before-and-after.html">str_before_last</a></td>
+<td>Extract text before or after 'n'th occurrence of pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_before_last_dot.html">str_before_last_dot</a></td>
+<td>Extract the part of a string before the last period.</td></tr>
+<tr><td style="width: 25%;"><a href="before-and-after.html">str_before_nth</a></td>
+<td>Extract text before or after 'n'th occurrence of pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_can_be_numeric.html">str_can_be_numeric</a></td>
+<td>Check if a string could be considered as numeric.</td></tr>
+<tr><td style="width: 25%;"><a href="str_elem.html">str_elem</a></td>
+<td>Extract a single character from a string, using its index.</td></tr>
+<tr><td style="width: 25%;"><a href="str_elems.html">str_elems</a></td>
+<td>Extract several single elements from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="currency.html">str_extract_currencies</a></td>
+<td>Extract currency amounts from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_extract_non_numerics.html">str_extract_non_numerics</a></td>
+<td>Extract non-numbers from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_extract_numbers.html">str_extract_numbers</a></td>
+<td>Extract numbers from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="currency.html">str_first_currency</a></td>
+<td>Extract currency amounts from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_non_numeric.html">str_first_non_numeric</a></td>
+<td>Extract the 'n'th non-numeric substring from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number.html">str_first_number</a></td>
+<td>Extract the 'n'th number from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_after_mth.html">str_first_number_after_first</a></td>
+<td>Find the 'n'th number after the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_after_mth.html">str_first_number_after_last</a></td>
+<td>Find the 'n'th number after the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_after_mth.html">str_first_number_after_mth</a></td>
+<td>Find the 'n'th number after the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_before_mth.html">str_first_number_before_first</a></td>
+<td>Find the 'n'th number before the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_before_mth.html">str_first_number_before_last</a></td>
+<td>Find the 'n'th number before the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_before_mth.html">str_first_number_before_mth</a></td>
+<td>Find the 'n'th number before the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_give_ext.html">str_give_ext</a></td>
+<td>Ensure a file name has the intended extension.</td></tr>
+<tr><td style="width: 25%;"><a href="currency.html">str_last_currency</a></td>
+<td>Extract currency amounts from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_non_numeric.html">str_last_non_numeric</a></td>
+<td>Extract the 'n'th non-numeric substring from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number.html">str_last_number</a></td>
+<td>Extract the 'n'th number from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_after_mth.html">str_last_number_after_first</a></td>
+<td>Find the 'n'th number after the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_after_mth.html">str_last_number_after_last</a></td>
+<td>Find the 'n'th number after the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_after_mth.html">str_last_number_after_mth</a></td>
+<td>Find the 'n'th number after the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_before_mth.html">str_last_number_before_first</a></td>
+<td>Find the 'n'th number before the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_before_mth.html">str_last_number_before_last</a></td>
+<td>Find the 'n'th number before the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_before_mth.html">str_last_number_before_mth</a></td>
+<td>Find the 'n'th number before the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_locate_braces.html">str_locate_braces</a></td>
+<td>Locate the braces in a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_locate_nth.html">str_locate_first</a></td>
+<td>Locate the indices of the 'n'th instance of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_locate_nth.html">str_locate_last</a></td>
+<td>Locate the indices of the 'n'th instance of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_locate_nth.html">str_locate_nth</a></td>
+<td>Locate the indices of the 'n'th instance of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_match_arg.html">str_match_arg</a></td>
+<td>Argument Matching.</td></tr>
+<tr><td style="width: 25%;"><a href="currency.html">str_nth_currency</a></td>
+<td>Extract currency amounts from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_non_numeric.html">str_nth_non_numeric</a></td>
+<td>Extract the 'n'th non-numeric substring from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number.html">str_nth_number</a></td>
+<td>Extract the 'n'th number from a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_after_mth.html">str_nth_number_after_first</a></td>
+<td>Find the 'n'th number after the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_after_mth.html">str_nth_number_after_last</a></td>
+<td>Find the 'n'th number after the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_after_mth.html">str_nth_number_after_mth</a></td>
+<td>Find the 'n'th number after the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_before_mth.html">str_nth_number_before_first</a></td>
+<td>Find the 'n'th number before the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_before_mth.html">str_nth_number_before_last</a></td>
+<td>Find the 'n'th number before the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_nth_number_before_mth.html">str_nth_number_before_mth</a></td>
+<td>Find the 'n'th number before the 'm'th occurrence of a pattern.</td></tr>
+<tr><td style="width: 25%;"><a href="str_paste_elems.html">str_paste_elems</a></td>
+<td>Extract single elements of a string and paste them together.</td></tr>
+<tr><td style="width: 25%;"><a href="str_remove_quoted.html">str_remove_quoted</a></td>
+<td>Remove the quoted parts of a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_singleize.html">str_singleize</a></td>
+<td>Remove back-to-back duplicates of a pattern in a string.</td></tr>
+<tr><td style="width: 25%;"><a href="str_split_by_numbers.html">str_split_by_numbers</a></td>
+<td>Split a string by its numeric characters.</td></tr>
+<tr><td style="width: 25%;"><a href="str_split_camel_case.html">str_split_camel_case</a></td>
+<td>Split a string based on CamelCase.</td></tr>
+<tr><td style="width: 25%;"><a href="str_to_vec.html">str_to_vec</a></td>
+<td>Convert a string to a vector of characters</td></tr>
+<tr><td style="width: 25%;"><a href="str_trim_anything.html">str_trim_anything</a></td>
+<td>Trim something other than whitespace</td></tr>
+</table>
+</body></html>

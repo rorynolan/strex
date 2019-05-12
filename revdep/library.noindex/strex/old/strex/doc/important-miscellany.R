@@ -12,11 +12,11 @@ str_can_be_numeric(c("1a", "abc", "5", "2e7", "seven"))
 
 ## ---- error=TRUE---------------------------------------------------------
 string <- c("Alan paid £5", "Joe paid $7")
-str_get_currency(string)
+str_first_currency(string)
 string <- c("€1 is $1.17", "£1 is $1.29")
-str_get_currency(string)  # only gets the first mentioned
-str_get_currencies(string[1])
-purrr::map(string, str_get_currencies)
+str_nth_currency(string, n = c(1, 2))
+str_last_currency(string)  # only gets the first mentioned
+str_extract_currencies(string)
 
 ## ----str-elem------------------------------------------------------------
 string = "abcdefg"
@@ -28,9 +28,9 @@ string <- c("aa1bbb2ccc3", "xyz7ayc8jzk99elephant")
 str_extract_numbers(string)
 str_extract_non_numerics(string)
 
-## ----split-by-nums-------------------------------------------------------
+## ----split-by-numbers----------------------------------------------------
 string <- c("aa1bbb2ccc3", "xyz7ayc8jzk99elephant")
-str_split_by_nums(string)
+str_split_by_numbers(string)
 
 ## ----giv-ext-------------------------------------------------------------
 string <- c("spreadsheet1.csv", "spreadsheet2")
@@ -50,13 +50,8 @@ cat(string)
 str_remove_quoted(string)
 
 ## ----camel---------------------------------------------------------------
-library(magrittr)
 string <- c("CamelVar1", c("CamelVar2"))
 str_split_camel_case(string)
-string %>% 
-  str_split_camel_case() %>% 
-  purrr::map_chr(str_c, collapse = "_") %>% 
-  str_to_lower()
 
 ## ----to-vec--------------------------------------------------------------
 string <- "R is good."

@@ -10,19 +10,18 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="author" content="Rory Nolan" />
 
-<meta name="date" content="2018-11-30" />
+<meta name="date" content="2019-05-04" />
 
 <title>Numbers Within Strings</title>
 
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -35,13 +34,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
   { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,7 +80,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -271,6 +290,9 @@ code > span.al { color: #ff0000; font-weight: bold; }
 code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
+
+
+
 </head>
 
 <body>
@@ -279,8 +301,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 <h1 class="title toc-ignore">Numbers Within Strings</h1>
-<h4 class="author"><em>Rory Nolan</em></h4>
-<h4 class="date"><em>2018-11-30</em></h4>
+<h4 class="date">2019-05-04</h4>
 
 
 
@@ -464,7 +485,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb9-7" data-line-number="7">)</a>
 <a class="sourceLine" id="cb9-8" data-line-number="8"><span class="co">#&gt; # A tibble: 12 x 4</span></a>
 <a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt;    img_names                                patient  cell hrs_after_biop</span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt;    &lt;chr&gt;                                      &lt;int&gt; &lt;int&gt;          &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt;    &lt;chr&gt;                                      &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;</span></a>
 <a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co">#&gt;  1 patient1-cell1-0hours-after-biopsy.tif         1     1            0  </span></a>
 <a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co">#&gt;  2 patient1-cell1-2.5hours-after-biopsy.tif       1     1            2.5</span></a>
 <a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt;  3 patient1-cell2-0hours-after-biopsy.tif         1     2            0  </span></a>
@@ -478,46 +499,54 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co">#&gt; 11 patient2-cell3-0hours-after-biopsy.tif         2     3            0  </span></a>
 <a class="sourceLine" id="cb9-22" data-line-number="22"><span class="co">#&gt; 12 patient2-cell3-2.5hours-after-biopsy.tif       2     3            2.5</span></a></code></pre></div>
 </div>
+<div id="other-number-formats" class="section level2">
+<h2>Other number formats</h2>
+<p><code>strex</code> can also deal with numbers in scientific and comma notation.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">string &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;$1,000&quot;</span>, <span class="st">&quot;$1e6&quot;</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">str_first_number</span>(string, <span class="dt">commas =</span> <span class="ot">TRUE</span>, <span class="dt">sci =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; [1] 1e+03 1e+06</span></a></code></pre></div>
+</div>
 </div>
 <div id="all-of-the-number-functions" class="section level1">
 <h1>All of the number functions</h1>
 <p>There are a whole host of functions for extracting numbers from strings in the <code>strex</code> package:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">str_subset</span>(<span class="kw">ls</span>(<span class="st">&quot;package:strex&quot;</span>), <span class="st">&quot;number&quot;</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;str_extract_numbers&quot;           &quot;str_first_number&quot;             </span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt;  [3] &quot;str_first_number_after_first&quot;  &quot;str_first_number_after_last&quot;  </span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt;  [5] &quot;str_first_number_after_mth&quot;    &quot;str_first_number_before_first&quot;</span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt;  [7] &quot;str_first_number_before_last&quot;  &quot;str_first_number_before_mth&quot;  </span></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co">#&gt;  [9] &quot;str_last_number&quot;               &quot;str_last_number_after_first&quot;  </span></a>
-<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co">#&gt; [11] &quot;str_last_number_after_last&quot;    &quot;str_last_number_after_mth&quot;    </span></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co">#&gt; [13] &quot;str_last_number_before_first&quot;  &quot;str_last_number_before_last&quot;  </span></a>
-<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">#&gt; [15] &quot;str_last_number_before_mth&quot;    &quot;str_nth_number&quot;               </span></a>
-<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="co">#&gt; [17] &quot;str_nth_number_after_first&quot;    &quot;str_nth_number_after_last&quot;    </span></a>
-<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">#&gt; [19] &quot;str_nth_number_after_mth&quot;      &quot;str_nth_number_before_first&quot;  </span></a>
-<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="co">#&gt; [21] &quot;str_nth_number_before_last&quot;    &quot;str_nth_number_before_mth&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">str_subset</span>(<span class="kw">ls</span>(<span class="st">&quot;package:strex&quot;</span>), <span class="st">&quot;number&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;str_extract_numbers&quot;           &quot;str_first_number&quot;             </span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt;  [3] &quot;str_first_number_after_first&quot;  &quot;str_first_number_after_last&quot;  </span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt;  [5] &quot;str_first_number_after_mth&quot;    &quot;str_first_number_before_first&quot;</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt;  [7] &quot;str_first_number_before_last&quot;  &quot;str_first_number_before_mth&quot;  </span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt;  [9] &quot;str_last_number&quot;               &quot;str_last_number_after_first&quot;  </span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; [11] &quot;str_last_number_after_last&quot;    &quot;str_last_number_after_mth&quot;    </span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; [13] &quot;str_last_number_before_first&quot;  &quot;str_last_number_before_last&quot;  </span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; [15] &quot;str_last_number_before_mth&quot;    &quot;str_nth_number&quot;               </span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; [17] &quot;str_nth_number_after_first&quot;    &quot;str_nth_number_after_last&quot;    </span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">#&gt; [19] &quot;str_nth_number_after_mth&quot;      &quot;str_nth_number_before_first&quot;  </span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">#&gt; [21] &quot;str_nth_number_before_last&quot;    &quot;str_nth_number_before_mth&quot;    </span></a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co">#&gt; [23] &quot;str_split_by_numbers&quot;</span></a></code></pre></div>
 </div>
 <div id="regular-expression" class="section level1">
 <h1>Regular expression</h1>
 <p>Of course, all of the above is possible with regular expression using <code>stringr</code>, it’s just more difficult and less expressive:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">tibble<span class="op">::</span><span class="kw">tibble</span>(img_names,</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="dt">patient =</span> <span class="kw">str_match</span>(img_names, <span class="st">&quot;patient(</span><span class="ch">\\</span><span class="st">d+)&quot;</span>)[, <span class="dv">2</span>],</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">  <span class="dt">cell =</span> <span class="kw">str_match</span>(img_names, <span class="st">&quot;cell(</span><span class="ch">\\</span><span class="st">d+)&quot;</span>)[, <span class="dv">2</span>],</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="dt">hrs_after_biop =</span> <span class="kw">str_match</span>(img_names, <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">d*</span><span class="ch">\\</span><span class="st">.*</span><span class="ch">\\</span><span class="st">d+)hour&quot;</span>)[, <span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; # A tibble: 12 x 4</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt;    img_names                                patient cell  hrs_after_biop</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt;    &lt;chr&gt;                                    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;         </span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt;  1 patient1-cell1-0hours-after-biopsy.tif   1       1     0             </span></a>
-<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt;  2 patient1-cell1-2.5hours-after-biopsy.tif 1       1     2.5           </span></a>
-<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">#&gt;  3 patient1-cell2-0hours-after-biopsy.tif   1       2     0             </span></a>
-<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">#&gt;  4 patient1-cell2-2.5hours-after-biopsy.tif 1       2     2.5           </span></a>
-<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co">#&gt;  5 patient1-cell3-0hours-after-biopsy.tif   1       3     0             </span></a>
-<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co">#&gt;  6 patient1-cell3-2.5hours-after-biopsy.tif 1       3     2.5           </span></a>
-<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">#&gt;  7 patient2-cell1-0hours-after-biopsy.tif   2       1     0             </span></a>
-<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#&gt;  8 patient2-cell1-2.5hours-after-biopsy.tif 2       1     2.5           </span></a>
-<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#&gt;  9 patient2-cell2-0hours-after-biopsy.tif   2       2     0             </span></a>
-<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="co">#&gt; 10 patient2-cell2-2.5hours-after-biopsy.tif 2       2     2.5           </span></a>
-<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="co">#&gt; 11 patient2-cell3-0hours-after-biopsy.tif   2       3     0             </span></a>
-<a class="sourceLine" id="cb11-20" data-line-number="20"><span class="co">#&gt; 12 patient2-cell3-2.5hours-after-biopsy.tif 2       3     2.5</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">tibble<span class="op">::</span><span class="kw">tibble</span>(img_names,</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">  <span class="dt">patient =</span> <span class="kw">str_match</span>(img_names, <span class="st">&quot;patient(</span><span class="ch">\\</span><span class="st">d+)&quot;</span>)[, <span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">  <span class="dt">cell =</span> <span class="kw">str_match</span>(img_names, <span class="st">&quot;cell(</span><span class="ch">\\</span><span class="st">d+)&quot;</span>)[, <span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">  <span class="dt">hrs_after_biop =</span> <span class="kw">str_match</span>(img_names, <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">d*</span><span class="ch">\\</span><span class="st">.*</span><span class="ch">\\</span><span class="st">d+)hour&quot;</span>)[, <span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt; # A tibble: 12 x 4</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt;    img_names                                patient cell  hrs_after_biop</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt;    &lt;chr&gt;                                    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;         </span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt;  1 patient1-cell1-0hours-after-biopsy.tif   1       1     0             </span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt;  2 patient1-cell1-2.5hours-after-biopsy.tif 1       1     2.5           </span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt;  3 patient1-cell2-0hours-after-biopsy.tif   1       2     0             </span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt;  4 patient1-cell2-2.5hours-after-biopsy.tif 1       2     2.5           </span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt;  5 patient1-cell3-0hours-after-biopsy.tif   1       3     0             </span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt;  6 patient1-cell3-2.5hours-after-biopsy.tif 1       3     2.5           </span></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co">#&gt;  7 patient2-cell1-0hours-after-biopsy.tif   2       1     0             </span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt;  8 patient2-cell1-2.5hours-after-biopsy.tif 2       1     2.5           </span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17"><span class="co">#&gt;  9 patient2-cell2-0hours-after-biopsy.tif   2       2     0             </span></a>
+<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="co">#&gt; 10 patient2-cell2-2.5hours-after-biopsy.tif 2       2     2.5           </span></a>
+<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="co">#&gt; 11 patient2-cell3-0hours-after-biopsy.tif   2       3     0             </span></a>
+<a class="sourceLine" id="cb12-20" data-line-number="20"><span class="co">#&gt; 12 patient2-cell3-2.5hours-after-biopsy.tif 2       3     2.5</span></a></code></pre></div>
 </div>
 
 
