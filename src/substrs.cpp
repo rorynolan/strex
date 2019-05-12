@@ -13,7 +13,7 @@ using namespace Rcpp;
 //'
 //' @noRd
 CharacterVector substrs(const std::string& s,
-                        const std::vector<std::size_t>& locs) {
+                        const std::vector<int>& locs) {
   std::size_t ls = locs.size(), i = 0;
   CharacterVector out(ls / 2);
   while (i != ls) {

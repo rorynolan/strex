@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 
 CharacterVector substrs(const std::string&,
-                        const std::vector<std::size_t>&);
+                        const std::vector<int>&);
 
 
 #endif  // STREX_SUBSTRS_

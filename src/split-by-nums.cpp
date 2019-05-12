@@ -22,10 +22,10 @@ using namespace Rcpp;
 //' (this is ideal for feeding into C++'s `string::substr()`).
 //'
 //' @noRd
-std::vector<std::size_t> str_fullocate(IntegerMatrix x,
-                                       std::size_t string_length) {
+std::vector<int> str_fullocate(IntegerMatrix x,
+                               int string_length) {
   if (x.nrow() == 0) return {0, string_length};
-  std::vector<std::size_t> locs;
+  std::vector<int> locs;
   if (x(0, 0) != 1) {
     locs.push_back(0);
     locs.push_back(x(0, 0) - 1);
@@ -65,9 +65,8 @@ std::vector<std::size_t> str_fullocate(IntegerMatrix x,
 List fullocated_substrs(CharacterVector strings, List locations) {
   std::size_t n = strings.length();
   List out(n);
-  for (int i = 0; i != n; ++i) {
-    std::vector<std::size_t> locs = str_fullocate(locations[i],
-                                                 strings[i].size());
+  for (R_xlen_t i = 0; i != n; ++i) {
+    std::vector<int> locs = str_fullocate(locations[i], strings[i].size());
     out[i] = substrs(as<std::string>(strings[i]), locs);
   }
   return out;
