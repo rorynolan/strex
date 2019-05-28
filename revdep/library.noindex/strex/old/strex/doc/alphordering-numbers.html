@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="date" content="2019-05-04" />
+<meta name="date" content="2019-05-12" />
 
 <title>Alphordering Numbers</title>
 
@@ -301,7 +301,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 <h1 class="title toc-ignore">Alphordering Numbers</h1>
-<h4 class="date">2019-05-04</h4>
+<h4 class="date">2019-05-12</h4>
 
 
 
@@ -309,12 +309,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>Numbers don’t comply with alphabetical order</h2>
 <p><code>poorly_ordered</code> is a vector of file names of images of patient samples from different days.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">poorly_ordered</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;patient102-day9.png&quot;  &quot;patient98-day10.png&quot;  &quot;patient101-day10.png&quot;</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">#&gt;  [4] &quot;patient99-day11.png&quot;  &quot;patient100-day9.png&quot;  &quot;patient103-day10.png&quot;</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt;  [7] &quot;patient98-day11.png&quot;  &quot;patient99-day10.png&quot;  &quot;patient102-day11.png&quot;</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt; [10] &quot;patient98-day9.png&quot;   &quot;patient99-day9.png&quot;   &quot;patient102-day10.png&quot;</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; [13] &quot;patient103-day11.png&quot; &quot;patient101-day11.png&quot; &quot;patient101-day9.png&quot; </span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt; [16] &quot;patient103-day9.png&quot;  &quot;patient100-day11.png&quot; &quot;patient100-day10.png&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;patient101-day9.png&quot;  &quot;patient98-day10.png&quot;  &quot;patient98-day9.png&quot;  </span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">#&gt;  [4] &quot;patient99-day9.png&quot;   &quot;patient98-day11.png&quot;  &quot;patient102-day11.png&quot;</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt;  [7] &quot;patient102-day10.png&quot; &quot;patient100-day11.png&quot; &quot;patient100-day9.png&quot; </span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt; [10] &quot;patient101-day11.png&quot; &quot;patient102-day9.png&quot;  &quot;patient99-day10.png&quot; </span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; [13] &quot;patient103-day10.png&quot; &quot;patient103-day9.png&quot;  &quot;patient101-day10.png&quot;</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt; [16] &quot;patient100-day10.png&quot; &quot;patient103-day11.png&quot; &quot;patient99-day11.png&quot;</span></a></code></pre></div>
 <p>How do we get this vector into order? Well, alphabetical order doesn’t work:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">sort</span>(poorly_ordered)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;patient100-day10.png&quot; &quot;patient100-day11.png&quot; &quot;patient100-day9.png&quot; </span></a>
@@ -329,12 +329,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>Alphordering numbers</h2>
 <p>It’s possible to <em>alphorder</em> the numbers by prefixing them with zeroes:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">strex<span class="op">::</span><span class="kw">str_alphord_nums</span>(poorly_ordered)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;patient102-day09.png&quot; &quot;patient098-day10.png&quot; &quot;patient101-day10.png&quot;</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt;  [4] &quot;patient099-day11.png&quot; &quot;patient100-day09.png&quot; &quot;patient103-day10.png&quot;</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;  [7] &quot;patient098-day11.png&quot; &quot;patient099-day10.png&quot; &quot;patient102-day11.png&quot;</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; [10] &quot;patient098-day09.png&quot; &quot;patient099-day09.png&quot; &quot;patient102-day10.png&quot;</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; [13] &quot;patient103-day11.png&quot; &quot;patient101-day11.png&quot; &quot;patient101-day09.png&quot;</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; [16] &quot;patient103-day09.png&quot; &quot;patient100-day11.png&quot; &quot;patient100-day10.png&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;patient101-day09.png&quot; &quot;patient098-day10.png&quot; &quot;patient098-day09.png&quot;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt;  [4] &quot;patient099-day09.png&quot; &quot;patient098-day11.png&quot; &quot;patient102-day11.png&quot;</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;  [7] &quot;patient102-day10.png&quot; &quot;patient100-day11.png&quot; &quot;patient100-day09.png&quot;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; [10] &quot;patient101-day11.png&quot; &quot;patient102-day09.png&quot; &quot;patient099-day10.png&quot;</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; [13] &quot;patient103-day10.png&quot; &quot;patient103-day09.png&quot; &quot;patient101-day10.png&quot;</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; [16] &quot;patient100-day10.png&quot; &quot;patient103-day11.png&quot; &quot;patient099-day11.png&quot;</span></a></code></pre></div>
 <p>Having done this, the alphabetical order is the one we want:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">sort</span>(strex<span class="op">::</span><span class="kw">str_alphord_nums</span>(poorly_ordered))</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;patient098-day09.png&quot; &quot;patient098-day10.png&quot; &quot;patient098-day11.png&quot;</span></a>

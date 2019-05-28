@@ -20,9 +20,9 @@ Type 'q()' to quit R.
 Loading required package: stringr
 > 
 > test_check("filesstrings")
-══ testthat results  ═══════════════════════════════════════════════════════════════════════════
+══ testthat results  ════════════════════════════════════════════════════════════════════════
 OK: 174 SKIPPED: 0 WARNINGS: 0 FAILED: 0
 > 
 > proc.time()
    user  system elapsed 
-  0.951   0.081   1.056 
+  0.941   0.078   1.059 

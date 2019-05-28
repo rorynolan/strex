@@ -1,6 +1,6 @@
 Package: strex
 Title: Extra String Manipulation Functions
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: person("Rory", "Nolan", email = "rorynoolan@gmail.com", 
                   role = c("aut", "cre"), 
                   comment = c(ORCID = "0000-0002-5239-4043"))
@@ -23,14 +23,15 @@ RoxygenNote: 6.1.1
 Suggests: testthat (>= 2.1.0), knitr, rmarkdown, pacman, covr, spelling
 SystemRequirements: C++11
 VignetteBuilder: knitr
-URL: https://rorynolan.github.io/strex/
+URL: https://rorynolan.github.io/strex,
+        https://github.com/rorynolan/strex
 BugReports: https://github.com/rorynolan/strex/issues
 Language: en-US
 NeedsCompilation: yes
-Packaged: 2019-05-04 11:06:22 UTC; rnolan
+Packaged: 2019-05-12 16:45:59 UTC; rnolan
 Author: Rory Nolan [aut, cre] (<https://orcid.org/0000-0002-5239-4043>)
 Maintainer: Rory Nolan <rorynoolan@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-05-04 14:30:03 UTC
-Built: R 3.6.0; x86_64-apple-darwin15.6.0; 2019-05-05 14:49:25 UTC; unix
+Date/Publication: 2019-05-12 17:10:03 UTC
+Built: R 3.6.0; x86_64-apple-darwin15.6.0; 2019-05-13 14:41:01 UTC; unix
 Archs: strex.so.dSYM

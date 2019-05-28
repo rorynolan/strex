@@ -1,6 +1,6 @@
 ## Test environments
-- local OS X install, R 3.5.3
-- ubuntu 16.04 (on travis-ci), R 3.5.3
+- local OS X install, R 3.6.0
+- ubuntu 16.04 (on travis-ci), R 3.6.0
 - Windows server 2012 (on AppVeyor), R 3.6.0
 - win-builder (devel and release)
 - R-hub linux-x86_64-rocker-gcc-san (r-devel)

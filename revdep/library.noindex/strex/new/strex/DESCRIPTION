@@ -1,6 +1,6 @@
 Package: strex
 Title: Extra String Manipulation Functions
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: person("Rory", "Nolan", email = "rorynoolan@gmail.com", 
                   role = c("aut", "cre"), 
                   comment = c(ORCID = "0000-0002-5239-4043"))
@@ -31,7 +31,7 @@ Language: en-US
 RemoteType: local
 RemoteUrl: /Users/rnolan/Dropbox/R/strex
 NeedsCompilation: yes
-Packaged: 2019-05-12 16:38:23 UTC; rnolan
+Packaged: 2019-05-28 10:39:21 UTC; rnolan
 Author: Rory Nolan [aut, cre] (<https://orcid.org/0000-0002-5239-4043>)
 Maintainer: Rory Nolan <rorynoolan@gmail.com>
-Built: R 3.6.0; x86_64-apple-darwin15.6.0; 2019-05-12 16:38:24 UTC; unix
+Built: R 3.6.0; x86_64-apple-darwin15.6.0; 2019-05-28 10:39:21 UTC; unix
