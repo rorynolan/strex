@@ -75,6 +75,5 @@ myword <- function(w = c("abacus", "baseball", "candy")) {
 }
 myword("c")
 myword()
-
 }
 \concept{argument matchers}

@@ -76,7 +76,6 @@ str_extract_numbers(strings,
   decimals = TRUE, leading_decimals = FALSE,
   sci = FALSE, commas = TRUE, leave_as_string = TRUE
 )
-
 }
 \seealso{
 Other numeric extractors: \code{\link{str_nth_number_after_mth}},

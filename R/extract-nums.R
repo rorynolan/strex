@@ -56,7 +56,9 @@ num_regex <- function(decimals = FALSE, leading_decimals = decimals,
 ambig_num_regex <- function(decimals = FALSE, leading_decimals = decimals,
                             sci = FALSE, commas = FALSE) {
   out <- character(1)
-  if (!any(decimals, leading_decimals, sci)) return(out)
+  if (!any(decimals, leading_decimals, sci)) {
+    return(out)
+  }
   if (decimals) {
     if (commas) {
       out <- ifelse(leading_decimals, "\\.(?:\\d+,?)+\\.\\d",
@@ -87,7 +89,9 @@ ambig_num_regex <- function(decimals = FALSE, leading_decimals = decimals,
 
 num_ambigs <- function(string, decimals = FALSE, leading_decimals = decimals,
                        sci = FALSE, commas = FALSE) {
-  if (!any(c(decimals, sci))) return(FALSE)
+  if (!any(c(decimals, sci))) {
+    return(FALSE)
+  }
   str_detect(string, ambig_num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
     sci = sci, commas = commas
@@ -173,7 +177,6 @@ ambig_warn <- function(string, ambigs, ambig_regex) {
 #'   decimals = TRUE, leading_decimals = FALSE,
 #'   sci = FALSE, commas = TRUE, leave_as_string = TRUE
 #' )
-#'
 #' @family numeric extractors
 #' @export
 str_extract_numbers <- function(string,
@@ -187,7 +190,9 @@ str_extract_numbers <- function(string,
   checkmate::assert_flag(negs)
   checkmate::assert_flag(sci)
   checkmate::assert_flag(commas)
-  if (is_l0_char(string)) return(list())
+  if (is_l0_char(string)) {
+    return(list())
+  }
   pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
     negs = negs, sci = sci, commas = commas
@@ -210,7 +215,9 @@ str_extract_numbers <- function(string,
   } else {
     out[] <- str_extract_all(string, pattern)
   }
-  if (leave_as_string) return(out)
+  if (leave_as_string) {
+    return(out)
+  }
   lst_char_to_num(out, commas = commas)
 }
 
@@ -252,7 +259,6 @@ str_extract_numbers <- function(string,
 #'   decimals = TRUE, leading_decimals = FALSE,
 #'   sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE
 #' )
-#'
 #' @family numeric extractors
 #' @export
 str_nth_number <- function(string, n, decimals = FALSE,
@@ -260,8 +266,9 @@ str_nth_number <- function(string, n, decimals = FALSE,
                            sci = FALSE, commas = FALSE,
                            leave_as_string = FALSE) {
   checkmate::assert_flag(leave_as_string)
-  if (is_l0_char(string))
+  if (is_l0_char(string)) {
     return(vector(mode = ifelse(leave_as_string, "character", "numeric")))
+  }
   verify_string_n(string, n)
   checkmate::assert_flag(decimals)
   checkmate::assert_flag(leading_decimals)
@@ -312,7 +319,9 @@ str_nth_number <- function(string, n, decimals = FALSE,
     )
     out <- str_list_nth_elems(numbers, n)
   }
-  if (leave_as_string) return(out)
+  if (leave_as_string) {
+    return(out)
+  }
   if (commas) out %<>% str_replace_all(",", "")
   as.numeric(out)
 }

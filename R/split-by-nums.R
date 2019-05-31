@@ -12,7 +12,6 @@
 #'
 #' @noRd
 str_split_by_numbers_no_ambigs <- function(string, num_pattern) {
-  string_lengths <- str_length(string)
   num_locs <- str_locate_all(string, num_pattern)
   fullocated_substrs(string, num_locs)
 }
@@ -31,13 +30,14 @@ str_split_by_numbers_no_ambigs <- function(string, num_pattern) {
 #' str_split_by_numbers(c("abc123def456.789gh", "a1b2c344"))
 #' str_split_by_numbers("abc123def456.789gh", decimals = TRUE)
 #' str_split_by_numbers("22")
-#'
 #' @family splitters
 #' @export
 str_split_by_numbers <- function(string, decimals = FALSE,
                                  leading_decimals = FALSE, negs = FALSE,
                                  sci = FALSE, commas = FALSE) {
-  if (is_l0_char(string)) return(list())
+  if (is_l0_char(string)) {
+    return(list())
+  }
   checkmate::assert_character(string)
   checkmate::assert_flag(decimals)
   checkmate::assert_flag(leading_decimals)

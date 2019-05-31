@@ -61,7 +61,6 @@ str_before_nth(rep(string, 2), "..x", -3)
 string <- c("abc", "xyz.zyx")
 str_after_first(string, ".") # using regex
 str_after_first(string, coll(".")) # using human matching
-
 }
 \seealso{
 Other bisectors: \code{\link{str_before_last_dot}}

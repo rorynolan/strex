@@ -81,7 +81,6 @@ str_last_number(strings,
   decimals = TRUE, leading_decimals = FALSE,
   sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE
 )
-
 }
 \seealso{
 Other numeric extractors: \code{\link{str_extract_numbers}},

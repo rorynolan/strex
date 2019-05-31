@@ -13,11 +13,12 @@
 #' @examples
 #' str_elem(c("abcd", "xyz"), 3)
 #' str_elem("abcd", -2)
-#'
 #' @family single element extractors
 #' @export
 str_elem <- function(string, index) {
-  if (is_l0_char(string)) return(character())
+  if (is_l0_char(string)) {
+    return(character())
+  }
   verify_string_n(string, index, "index")
   str_sub(string, index, index)
 }
@@ -33,7 +34,7 @@ str_elems_helper <- function(string, indices, insist_bycol = FALSE) {
   indices %<>% as.integer()
   # The following lapplys can only be easily and efficiently replaced if Rcpp
   # starts dealing with UTF-8 strings well.
-  if ((!insist_bycol) && (length(indices) > length(string))) {
+  if (!insist_bycol && length(indices) > length(string)) {
     out <- lapply(indices, function(x) str_elem(string, x))
     attr(out, "strex__str_elems_helper__orientation") <- "byrow"
   } else {
@@ -63,7 +64,6 @@ str_elems_helper <- function(string, indices, insist_bycol = FALSE) {
 #' str_elems(string, 1:2)
 #' str_elems(string, 1:2, byrow = FALSE)
 #' str_elems(string, c(1, 2, 3, 4, -1))
-#'
 #' @family single element extractors
 #' @export
 str_elems <- function(string, indices, byrow = TRUE) {
@@ -100,11 +100,12 @@ str_elems <- function(string, indices, byrow = TRUE) {
 #' str_paste_elems(string, 1:2)
 #' str_paste_elems(string, c(1, 2, 3, 4, -1))
 #' str_paste_elems("abc", c(1, 5, 55, 43, 3))
-#'
 #' @family single element extractors
 #' @export
 str_paste_elems <- function(string, indices, sep = "") {
-  if (is_l0_char(string)) return(character())
+  if (is_l0_char(string)) {
+    return(character())
+  }
   checkmate::assert_character(string, min.len = 1)
   checkmate::assert_integerish(indices, min.len = 1)
   checkmate::assert_string(sep)

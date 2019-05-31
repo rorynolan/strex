@@ -26,6 +26,5 @@ end of it. This is vectorized over the first argument.
 str_give_ext(c("abc", "abc.csv"), "csv")
 str_give_ext("abc.csv", "pdf")
 str_give_ext("abc.csv", "pdf", replace = TRUE)
-
 }
 \concept{appenders}

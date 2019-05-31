@@ -14,7 +14,6 @@
 #' )
 #' str_nth_number_before_mth(string, "def", 1, 1)
 #' str_nth_number_before_mth(string, "abc", 2, 3)
-#'
 #' @family numeric extractors
 #' @export
 str_nth_number_before_mth <- function(string, pattern, n, m,
@@ -24,8 +23,9 @@ str_nth_number_before_mth <- function(string, pattern, n, m,
                                       sci = FALSE, commas = FALSE,
                                       leave_as_string = FALSE) {
   checkmate::assert_flag(leave_as_string)
-  if (is_l0_char(string))
+  if (is_l0_char(string)) {
     return(vector(mode = ifelse(leave_as_string, "character", "numeric")))
+  }
   verify_string_pattern_n_m(string, pattern, n, m)
   checkmate::assert_flag(decimals)
   checkmate::assert_flag(leading_decimals)

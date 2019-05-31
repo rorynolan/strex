@@ -44,7 +44,6 @@ str_extract_non_numerics_no_ambigs <- function(string, num_pattern) {
 #'   decimals = TRUE, leading_decimals = TRUE,
 #'   sci = TRUE, commas = TRUE, negs = TRUE
 #' )
-#'
 #' @family non-numeric extractors
 #' @export
 str_extract_non_numerics <- function(string, decimals = FALSE,
@@ -56,7 +55,9 @@ str_extract_non_numerics <- function(string, decimals = FALSE,
   checkmate::assert_flag(negs)
   checkmate::assert_flag(sci)
   checkmate::assert_flag(commas)
-  if (is_l0_char(string)) return(list())
+  if (is_l0_char(string)) {
+    return(list())
+  }
   num_pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
     negs = negs, sci = sci, commas = commas
@@ -101,7 +102,9 @@ str_extract_non_numerics <- function(string, decimals = FALSE,
 #'
 #' @noRd
 str_nth_non_numeric_no_ambigs <- function(string, num_pattern, n) {
-  if (length(string) == 0) return(character())
+  if (length(string) == 0) {
+    return(character())
+  }
   if (length(n) == 1 && n >= 0) {
     out <- stringi::stri_split_regex(string, num_pattern,
       n = n + 1,
@@ -147,13 +150,14 @@ str_nth_non_numeric_no_ambigs <- function(string, num_pattern, n) {
 #'   decimals = TRUE, leading_decimals = TRUE,
 #'   sci = TRUE, commas = TRUE, negs = TRUE
 #' )
-#'
 #' @family non-numeric extractors
 #' @export
 str_nth_non_numeric <- function(string, n, decimals = FALSE,
                                 leading_decimals = decimals, negs = FALSE,
                                 sci = FALSE, commas = FALSE) {
-  if (is_l0_char(string)) return(character())
+  if (is_l0_char(string)) {
+    return(character())
+  }
   verify_string_n(string, n)
   checkmate::assert_flag(decimals)
   checkmate::assert_flag(leading_decimals)

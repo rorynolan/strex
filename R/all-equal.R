@@ -62,8 +62,8 @@ all_equal <- function(a, b = NULL) {
     }
     if (is.list(a)) {
       a %<>% lapply(function(x) x %T>% {
-        mostattributes(.) <- NULL
-      })
+          mostattributes(.) <- NULL
+        })
     }
     return(length(unique(a)) == 1)
   }

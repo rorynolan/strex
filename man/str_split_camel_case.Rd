@@ -20,7 +20,6 @@ Vectorized over \code{string}.
 }
 \examples{
 str_split_camel_case(c("RoryNolan", "NaomiFlagg", "DepartmentOfSillyHats"))
-
 }
 \references{
 Adapted from Ramnath Vaidyanathan's answer at

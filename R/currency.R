@@ -81,8 +81,10 @@ NULL
 #' @export
 str_extract_currencies <- function(string) {
   if (is_l0_char(string)) {
-    return(extract_curr_helper(integer(), character(),
-                               matrix(ncol = 2, nrow = 0)))
+    return(extract_curr_helper(
+      integer(), character(),
+      matrix(ncol = 2, nrow = 0)
+    ))
   }
   checkmate::assert_character(string)
   locs <- str_locate_all(string, curr_pattern())
@@ -99,8 +101,10 @@ str_extract_currencies <- function(string) {
 str_nth_currency <- function(string, n) {
   if (is_l0_char(string)) {
     checkmate::assert_integerish(n)
-    return(extract_curr_helper(integer(), character(),
-                               matrix(ncol = 2, nrow = 0)))
+    return(extract_curr_helper(
+      integer(), character(),
+      matrix(ncol = 2, nrow = 0)
+    ))
   }
   verify_string_n(string, n)
   abs_n <- abs(n)

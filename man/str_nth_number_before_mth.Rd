@@ -102,7 +102,6 @@ string <- c(
 )
 str_nth_number_before_mth(string, "def", 1, 1)
 str_nth_number_before_mth(string, "abc", 2, 3)
-
 str_nth_number_before_first(string, "def", 2)
 str_nth_number_before_last(string, "def", -1)
 str_first_number_before_mth(string, "abc", 2)

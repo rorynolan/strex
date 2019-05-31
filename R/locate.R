@@ -76,7 +76,8 @@ str_locate_nth <- function(string, pattern, n) {
       n[n_negs] <- locs_n_matches[n_negs] + n[n_negs] + 1
     }
   }
-  out <- matrix(NA_integer_, nrow = max(lengths(list(string, pattern, n))), ncol = 2) %>%
+  out <- matrix(NA_integer_,
+                nrow = max(lengths(list(string, pattern, n))), ncol = 2) %>%
     magrittr::set_colnames(c("start", "end"))
   good <- (abs(n) <= locs_n_matches) & (n != 0)
   if (any(good)) {

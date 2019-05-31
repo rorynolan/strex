@@ -97,7 +97,6 @@ string <- c(
 )
 str_nth_number_after_mth(string, "abc", 1, 3)
 str_nth_number_after_mth(string, "abc", 2, 3)
-
 str_nth_number_after_first(string, "abc", 2)
 str_nth_number_after_last(string, "abc", -1)
 str_first_number_after_mth(string, "abc", 2)

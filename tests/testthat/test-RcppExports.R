@@ -47,30 +47,43 @@ test_that("num_list_nth_elems works", {
 test_that("char_to_num() errors correctly", {
   skip_on_cran()
   expect_error(char_to_num("1,000a", TRUE),
-               "Could not convert '1,000a' to numeric.", fixed = TRUE,
-               class = "std::invalid_argument")
+    "Could not convert '1,000a' to numeric.",
+    fixed = TRUE,
+    class = "std::invalid_argument"
+  )
   expect_error(char_to_num("a1,000", TRUE),
-               "Could not convert 'a1,000' to numeric.", fixed = TRUE,
-               class = "std::invalid_argument")
+    "Could not convert 'a1,000' to numeric.",
+    fixed = TRUE,
+    class = "std::invalid_argument"
+  )
   expect_error(char_to_num("1000a", FALSE),
-               "Could not convert '1000a' to numeric.", fixed = TRUE,
-               class = "std::invalid_argument")
+    "Could not convert '1000a' to numeric.",
+    fixed = TRUE,
+    class = "std::invalid_argument"
+  )
   expect_error(char_to_num("", FALSE),
-               "Empty string passed to `char_to_num()`.", fixed = TRUE,
-               class = "std::invalid_argument")
+    "Empty string passed to `char_to_num()`.",
+    fixed = TRUE,
+    class = "std::invalid_argument"
+  )
 })
 
 test_that("interleave_strings() works", {
   expect_equal(interleave_strings("a", as.character(1:3)), NA_character_)
-  expect_equal(interleave_strings(as.character(1:3), as.character(1:4)),
-               interleave_strings(as.character(1:4), as.character(1:3)))
+  expect_equal(
+    interleave_strings(as.character(1:3), as.character(1:4)),
+    interleave_strings(as.character(1:4), as.character(1:3))
+  )
 })
 
 test_that("interleave_char_lists() works", {
   skip_on_cran()
   expect_error(interleave_char_lists(as.list(1:2), list(1)),
-               paste("`interleave_char_lists()` expects two lists of",
-                     "the same length. You have passed arguments of",
-                     "length 2 and 1."),
-               fixed = TRUE, class = "std::invalid_argument")
+    paste(
+      "`interleave_char_lists()` expects two lists of",
+      "the same length. You have passed arguments of",
+      "length 2 and 1."
+    ),
+    fixed = TRUE, class = "std::invalid_argument"
+  )
 })

@@ -21,6 +21,5 @@ argument.
 str_can_be_numeric("3")
 str_can_be_numeric("5 ")
 str_can_be_numeric(c("1a", "abc"))
-
 }
 \concept{type converters}

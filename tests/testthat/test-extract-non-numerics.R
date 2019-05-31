@@ -27,67 +27,88 @@ test_that("str_extract_non_numerics() works", {
       "e", ",", "def", "e", ","
     ))
   )
-  expect_equal(str_extract_non_numerics(strings, decimals = TRUE, leading_decimals = FALSE), list(c("abc", "def"), c("abc-", "def."), c(
-    "abc.", "e", "def",
-    "e"
-  ), c("abc", ",", "def", ","), c(
-    "abc", ",", "e", ",", "def",
-    "e", ","
-  )))
-  expect_equal(str_extract_non_numerics(strings, decimals = TRUE), list(c("abc", "def"), c("abc-", "def"), c(
-    "abc", "e", "def",
-    "e"
-  ), c("abc", ",", "def", ","), c(
-    "abc", ",", "e", ",", "def",
-    "e", ","
-  )))
-  expect_equal(str_extract_non_numerics(strings, commas = TRUE), list(c("abc", "def"), c("abc-", ".", "def."), c(
-    "abc.", "e",
-    "def", ".", "e"
-  ), c("abc", "def", "."), c(
-    "abc", "e", "def",
-    "e"
-  )))
+  expect_equal(
+    str_extract_non_numerics(strings,
+      decimals = TRUE, leading_decimals = FALSE
+    ),
+    list(c("abc", "def"), c("abc-", "def."), c(
+      "abc.", "e", "def",
+      "e"
+    ), c("abc", ",", "def", ","), c(
+      "abc", ",", "e", ",", "def",
+      "e", ","
+    ))
+  )
+  expect_equal(
+    str_extract_non_numerics(strings, decimals = TRUE),
+    list(c("abc", "def"), c("abc-", "def"), c(
+      "abc", "e", "def",
+      "e"
+    ), c("abc", ",", "def", ","), c(
+      "abc", ",", "e", ",", "def",
+      "e", ","
+    ))
+  )
+  expect_equal(
+    str_extract_non_numerics(strings, commas = TRUE),
+    list(c("abc", "def"), c("abc-", ".", "def."), c(
+      "abc.", "e",
+      "def", ".", "e"
+    ), c("abc", "def", "."), c(
+      "abc", "e", "def",
+      "e"
+    ))
+  )
   expect_equal(str_extract_non_numerics(strings,
-                                        decimals = TRUE, leading_decimals = TRUE,
-                                        sci = TRUE
+    decimals = TRUE, leading_decimals = TRUE,
+    sci = TRUE
   ), list(c("abc", "def"), c("abc-", "def"), c("abc", "def"), c(
     "abc",
     ",", "def", ","
   ), c("abc", ",", ",", "def", ",")))
   expect_equal(str_extract_non_numerics(strings,
-                                        decimals = TRUE, leading_decimals = TRUE,
-                                        sci = TRUE, commas = TRUE, negs = TRUE
+    decimals = TRUE, leading_decimals = TRUE,
+    sci = TRUE, commas = TRUE, negs = TRUE
   ), list(c("abc", "def"), c("abc", "def"), c("abc", "def"), c(
     "abc",
     "def"
   ), c("abc", "def")))
-  expect_equal(str_nth_non_numeric(strings, n = 2), c("def", ".", "e", ",", ","))
+  expect_equal(
+    str_nth_non_numeric(strings, n = 2),
+    c("def", ".", "e", ",", ",")
+  )
   expect_equal(
     str_nth_non_numeric(strings, n = -2, decimals = TRUE),
     c("abc", "abc-", "def", "def", "e")
   )
   expect_equal(str_first_non_numeric(strings,
-                                     decimals = TRUE,
-                                     leading_decimals = FALSE
+    decimals = TRUE,
+    leading_decimals = FALSE
   ), c("abc", "abc-", "abc.", "abc", "abc"))
-  expect_equal(str_last_non_numeric(strings, commas = TRUE), c("def", "def.", "e", ".", "e"))
+  expect_equal(
+    str_last_non_numeric(strings, commas = TRUE),
+    c("def", "def.", "e", ".", "e")
+  )
   expect_equal(str_nth_non_numeric(strings,
-                                   n = 1, decimals = TRUE, leading_decimals = TRUE,
-                                   sci = TRUE
+    n = 1, decimals = TRUE, leading_decimals = TRUE,
+    sci = TRUE
   ), c("abc", "abc-", "abc", "abc", "abc"))
   expect_equal(str_first_non_numeric(strings,
-                                     decimals = TRUE, leading_decimals = TRUE,
-                                     sci = TRUE, commas = TRUE, negs = TRUE
+    decimals = TRUE, leading_decimals = TRUE,
+    sci = TRUE, commas = TRUE, negs = TRUE
   ), c("abc", "abc", "abc", "abc", "abc"))
   expect_equal(
     suppressWarnings(str_extract_non_numerics("abc25.25.25def",
-                                              decimals = TRUE)),
-    list(NA_character_))
+      decimals = TRUE
+    )),
+    list(NA_character_)
+  )
   expect_equal(
     suppressWarnings(str_last_non_numeric("abc25.25.25def",
-                                          decimals = TRUE)),
-    NA_character_)
+      decimals = TRUE
+    )),
+    NA_character_
+  )
   expect_equal(str_extract_non_numerics(character()), list())
   expect_equal(str_last_non_numeric(character()), character())
 })

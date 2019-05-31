@@ -30,7 +30,6 @@ side(s).
 str_trim_anything("..abcd.", ".", "left")
 str_trim_anything("-ghi--", "-")
 str_trim_anything("-ghi--", "--")
-
 }
 \seealso{
 Other removers: \code{\link{str_remove_quoted}},

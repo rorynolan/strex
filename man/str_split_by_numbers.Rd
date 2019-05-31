@@ -39,7 +39,6 @@ vice-versa. Keep the whole string, just split it up. Vectorised over
 str_split_by_numbers(c("abc123def456.789gh", "a1b2c344"))
 str_split_by_numbers("abc123def456.789gh", decimals = TRUE)
 str_split_by_numbers("22")
-
 }
 \seealso{
 Other splitters: \code{\link{str_split_camel_case}}

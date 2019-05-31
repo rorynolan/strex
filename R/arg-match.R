@@ -59,7 +59,6 @@
 #' }
 #' myword("c")
 #' myword()
-#'
 #' @family argument matchers
 #' @export
 str_match_arg <- function(arg, choices = NULL, index = FALSE,
@@ -77,9 +76,11 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
       if (matrixStats::anyValue(default_arg_names, value = arg_sym)) {
         choices <- eval(formal_args[[arg_sym]], envir = sys.frame(sys_p))
         if (is.character(choices)) {
-          return(str_match_arg(arg, choices = choices, index = index,
-                               several_ok = several_ok,
-                               ignore_case = ignore_case))
+          return(str_match_arg(arg,
+            choices = choices, index = index,
+            several_ok = several_ok,
+            ignore_case = ignore_case
+          ))
         } else {
           null_choice_err <- TRUE
         }
@@ -137,8 +138,10 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
     }
   }
   arg_len <- length(arg)
-  if ((!several_ok) && arg_len > 1) {
-    if (all_equal(arg, choices)) return(choices[[1]])
+  if (!several_ok && arg_len > 1) {
+    if (all_equal(arg, choices)) {
+      return(choices[[1]])
+    }
     custom_stop(
       "`arg` must have length 1.",
       "Your `arg` has length {arg_len}.",
@@ -155,7 +158,7 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
   if (any(bads)) {
     first_bad_index <- match(T, bads)
     first_bad_type <- indices[first_bad_index]
-    stopifnot(first_bad_type %in% -(1:2)) # should never happen
+    stopifnot(first_bad_type %in% (-(1:2))) # should never happen
     if (first_bad_type == -1) {
       lch <- length(choices)
       if (lch > 50) {
@@ -195,7 +198,9 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
     }
   }
   indices <- indices + 1
-  if (index) return(indices)
+  if (index) {
+    return(indices)
+  }
   choices[indices]
 }
 

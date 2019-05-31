@@ -27,7 +27,9 @@
 #' @family alphorderers
 #' @export
 str_alphord_nums <- function(string) {
-  if (all_equal(string, character())) return(character())
+  if (all_equal(string, character())) {
+    return(character())
+  }
   checkmate::assert(
     checkmate::check_numeric(string, min.len = 1),
     checkmate::check_character(string, min.len = 1)

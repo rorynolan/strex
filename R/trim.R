@@ -18,11 +18,12 @@
 #' str_trim_anything("..abcd.", ".", "left")
 #' str_trim_anything("-ghi--", "-")
 #' str_trim_anything("-ghi--", "--")
-#'
 #' @family removers
 #' @export
 str_trim_anything <- function(string, pattern, side = "both") {
-  if (is_l0_char(string)) return(character())
+  if (is_l0_char(string)) {
+    return(character())
+  }
   verify_string_pattern(string, pattern)
   checkmate::assert_string(side)
   side %<>% match_arg(c("both", "left", "right"), ignore_case = TRUE)

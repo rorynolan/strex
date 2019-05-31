@@ -6,22 +6,22 @@ test_that("match_arg() works", {
     "Abcdef"
   )
   expect_equal(match_arg("ab", c("xyz", "Abcdef", "defgh"),
-                         ignore_case = TRUE, index = TRUE
+    ignore_case = TRUE, index = TRUE
   ), 2)
   choices <- c("Apples", "Pears", "Bananas", "Oranges")
   expect_equal(match_arg("A", choices), "Apples")
   expect_equal(match_arg("B", choices, index = TRUE), 3)
   expect_equal(
     match_arg(c("b", "a"), choices,
-              several_ok = TRUE,
-              ignore_case = TRUE
+      several_ok = TRUE,
+      ignore_case = TRUE
     ),
     c("Bananas", "Apples")
   )
   expect_equal(
     match_arg(c("b", "a"), choices,
-              ignore_case = TRUE, index = TRUE,
-              several_ok = TRUE
+      ignore_case = TRUE, index = TRUE,
+      several_ok = TRUE
     ),
     c(3, 1)
   )
@@ -94,17 +94,19 @@ test_that("match_arg() works", {
   word <- function(w = c("abacus", "baseball", "candy")) {
     match_arg(as.character(w), several_ok = TRUE)
   }
-  word_err_msg <- paste("You have used `match_arg()` without specifying a",
-                        "`choices`\nargument.\n    * The only way to do this",
-                        "is from another function where\n      `arg` has a",
-                        "default setting. This is the same as\n     ",
-                        "`base::match.arg()`.\n    * See the man page for",
-                        "`match_arg()`, particularly the\n      examples:",
-                        "enter `help(\"match_arg\", package = \"strex\")`\n   ",
-                        "  at the R console.\n    * See also the vignette on",
-                        "argument matching: enter\n     ",
-                        "`vignette(\"argument-matching\", package =",
-                        "\"strex\")` at\n      the R console.")
+  word_err_msg <- paste(
+    "You have used `match_arg()` without specifying a",
+    "`choices`\nargument.\n    * The only way to do this",
+    "is from another function where\n      `arg` has a",
+    "default setting. This is the same as\n     ",
+    "`base::match.arg()`.\n    * See the man page for",
+    "`match_arg()`, particularly the\n      examples:",
+    "enter `help(\"match_arg\", package = \"strex\")`\n   ",
+    "  at the R console.\n    * See also the vignette on",
+    "argument matching: enter\n     ",
+    "`vignette(\"argument-matching\", package =",
+    "\"strex\")` at\n      the R console."
+  )
   expect_error(word(), word_err_msg, fixed = TRUE)
   word <- function(w = 1:3) {
     match_arg(w, several_ok = TRUE)

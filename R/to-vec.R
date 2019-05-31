@@ -9,11 +9,12 @@
 #'
 #' @examples
 #' str_to_vec("abcdef")
-#'
 #' @family converters
 #' @export
 str_to_vec <- function(string) {
-  if (is_l0_char(string)) return(character())
+  if (is_l0_char(string)) {
+    return(character())
+  }
   checkmate::assert_character(string)
   strsplit(string, NULL)[[1]]
 }

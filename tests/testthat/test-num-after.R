@@ -14,12 +14,18 @@ test_that("`nth_number_after_mth()` works", {
   expect_equal(str_last_number_after_first(string, "abc"), c(9, 9))
   expect_equal(str_last_number_after_last(string, "abc"), c(9, 9))
   expect_equal(str_last_number_after_last(character(), "abc"), numeric())
-  expect_equal(str_last_number_after_last(character(), "abc",
-                                          leave_as_string = TRUE),
-               character())
+  expect_equal(
+    str_last_number_after_last(character(), "abc",
+      leave_as_string = TRUE
+    ),
+    character()
+  )
   expect_error(str_nth_number_after_mth("abc", "123", 1:2, 1:3),
-               paste("If `n` and `m` both have length greater than 1,",
-                     "their lengths\nmust be equal.\n    * Your `n` has",
-                     "length 2.\n    * Your `m` has length 3."),
-               fixed = TRUE)
+    paste(
+      "If `n` and `m` both have length greater than 1,",
+      "their lengths\nmust be equal.\n    * Your `n` has",
+      "length 2.\n    * Your `m` has length 3."
+    ),
+    fixed = TRUE
+  )
 })

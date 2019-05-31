@@ -18,6 +18,5 @@ character in the string.
 }
 \examples{
 str_to_vec("abcdef")
-
 }
 \concept{converters}

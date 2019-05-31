@@ -133,7 +133,6 @@ err_string_len <- function(string, sym, replacement_sym = NULL) {
     ",
     "Your `string` has length {length(string)}.",
     "Your `{sym_str}` has length {sym_len}."
-
   )
 }
 
@@ -141,8 +140,9 @@ verify_string_pattern <- function(string, pattern) {
   checkmate::assert_character(string, min.len = 1)
   checkmate::assert_character(pattern, min.len = 1)
   if (length(pattern) > 1 && length(string) > 1 &&
-      length(pattern) != length(string))
+    length(pattern) != length(string)) {
     err_string_len(string, pattern)
+  }
   invisible(TRUE)
 }
 
@@ -150,8 +150,9 @@ verify_string_n <- function(string, n, replacement_n_sym = NULL) {
   checkmate::assert_character(string, min.len = 1)
   checkmate::assert_integerish(n, min.len = 1)
   if (length(n) > 1 && length(string) > 1 &&
-      length(n) != length(string))
+    length(n) != length(string)) {
     err_string_len(string, n, replacement_n_sym)
+  }
   invisible(TRUE)
 }
 
@@ -162,13 +163,15 @@ verify_string_pattern_n <- function(string, pattern, n,
   n_sym_str <- "n"
   if (!is.null(replacement_n_sym)) n_sym_str <- replacement_n_sym
   if (length(pattern) > 1 && length(n) > 1 &&
-      length(pattern) != length(n)) {
-    custom_stop("
+    length(pattern) != length(n)) {
+    custom_stop(
+      "
                 If `pattern` and `{n_sym_str}` both have length greater than 1,
                 their lengths must be equal.
                 ",
-                "Your `pattern` has length {length(pattern)}.",
-                "Your `{n_sym_str}` has length {length(n)}.")
+      "Your `pattern` has length {length(pattern)}.",
+      "Your `{n_sym_str}` has length {length(n)}."
+    )
   }
   invisible(TRUE)
 }
@@ -178,13 +181,15 @@ verify_string_pattern_n_m <- function(string, pattern, n, m) {
   checkmate::assert_integerish(m, min.len = 1)
   verify_string_pattern_n(string, pattern, m, "m")
   if (length(n) > 1 && length(m) > 1 &&
-      length(n) != length(m)) {
-    custom_stop("
+    length(n) != length(m)) {
+    custom_stop(
+      "
                 If `n` and `m` both have length greater than 1,
                 their lengths must be equal.
                 ",
-                "Your `n` has length {length(n)}.",
-                "Your `m` has length {length(m)}.")
+      "Your `n` has length {length(n)}.",
+      "Your `m` has length {length(m)}."
+    )
   }
   invisible(TRUE)
 }

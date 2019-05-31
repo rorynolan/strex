@@ -23,7 +23,7 @@ test_that("str_extract_numbers works", {
     decimals = TRUE,
     leading_decimals = TRUE,
     leave_as_string = TRUE
-  ), list((c("1", ".23", "456"))))
+  ), list(c("1", ".23", "456")))
   expect_equal(str_extract_numbers("-123abc456"), list(c(123, 456)))
   expect_equal(
     str_extract_numbers("-123abc456", negs = TRUE),
@@ -100,9 +100,11 @@ test_that("str_extract_numbers works", {
     "is in string number 1 which is.+'abc1.+2.+3'."
   ))
   expect_equal(
-    suppressWarnings(str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"),
-      decimals = TRUE
-    )),
+    suppressWarnings(
+      str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"),
+        decimals = TRUE
+      )
+    ),
     c(as.list(rep(NA_real_, 3)), list(c(5, 6)))
   )
   expect_equal(str_nth_number("abc1.23abc456", 2), 23)
@@ -243,6 +245,8 @@ test_that("str_extract_numbers works", {
   ), c("1,100", "1,230.5"), c("1,100", "3,215", "4", "1,000")))
   expect_equal(str_extract_numbers(character()), list())
   expect_equal(str_first_number(character()), numeric())
-  expect_equal(str_last_number(character(), leave_as_string = TRUE),
-               character())
+  expect_equal(
+    str_last_number(character(), leave_as_string = TRUE),
+    character()
+  )
 })
