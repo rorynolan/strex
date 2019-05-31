@@ -1,4 +1,4 @@
-#' A more flexible version of [all.equal] for vectors.
+#' An alternative version of [base::all.equal()].
 #'
 #' @description
 #' This function will return `TRUE` whenever [base::all.equal()]
@@ -9,6 +9,8 @@
 #' if every element in `b` is equal to `a`.
 #' * If `a` is a vector or array and `b` is a scalar, `TRUE` will be returned
 #' if every element in `a` is equal to `b`.
+#'
+#' This function ignores names and attributes (except for `dim`).
 #'
 #' When this function does not return `TRUE`, it returns `FALSE` (unless it
 #' errors). This is unlike [base::all.equal()].
@@ -55,24 +57,45 @@ all_equal <- function(a, b = NULL) {
     a %<>% array(dim = dim(b))
   }
   if (is.null(b)) {
-    if (rlang::is_atomic(a)) return(isTRUE(all(a == a[[1]])) || all(is.na(a)))
+    if (rlang::is_atomic(a)) {
+      return(isTRUE(all(a == a[[1]])) || all(is.na(a)))
+    }
+    if (is.list(a)) {
+      a %<>% lapply(function(x) x %T>% {
+        mostattributes(.) <- NULL
+      })
+    }
     return(length(unique(a)) == 1)
   }
   if (is.array(a)) {
-    if (!is.array(b)) return(FALSE)
-    if (!all_equal(dim(a), dim(b))) return(FALSE)
+    if (!is.array(b)) {
+      return(FALSE)
+    }
+    if (!all_equal(dim(a), dim(b))) {
+      return(FALSE)
+    }
     a %<>% as.vector()
     b %<>% as.vector()
   }
-  if (is.array(b)) if (!is.array(a)) return(FALSE)
-  if (is.null(a) && (!is.null(b))) return(FALSE)
+  if (is.array(b)) {
+    if (!is.array(a)) {
+      return(FALSE)
+    }
+  }
+  if (is.null(a) && (!is.null(b))) {
+    return(FALSE)
+  }
   if (length(a) == 1) {
-    if (length(b) == 0) return(FALSE)
+    if (length(b) == 0) {
+      return(FALSE)
+    }
     a <- rep(a, length(b))
   }
   if (length(b) == 1) {
-    if (length(a) == 0) return(FALSE)
+    if (length(a) == 0) {
+      return(FALSE)
+    }
     b <- rep(b, length(a))
   }
-  return(isTRUE(all.equal(a, b)))
+  return(isTRUE(all.equal(a, b, check.names = FALSE, check.attributes = FALSE)))
 }

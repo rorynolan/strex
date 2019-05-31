@@ -1,3 +1,9 @@
+# `strex` 1.0.3
+
+## BUG FIXES  
+* Make internal function `all_equal()` more consistent.
+
+
 # `strex` 1.0.2
 
 ## BUG FIXES  
