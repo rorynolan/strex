@@ -23,7 +23,7 @@ test_that("`nth_number_after_mth()` works", {
   expect_error(str_nth_number_after_mth("abc", "123", 1:2, 1:3),
     paste(
       "If `n` and `m` both have length greater than 1,",
-      "their lengths\nmust be equal.\n    * Your `n` has",
+      "their lengths must be equal.\n    * Your `n` has",
       "length 2.\n    * Your `m` has length 3."
     ),
     fixed = TRUE

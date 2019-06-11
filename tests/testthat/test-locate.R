@@ -34,7 +34,7 @@ test_that("`str_locate_nth()` works", {
   expect_error(str_locate_first(c("a", "b"), c("c", "d", "e")),
     paste(
       "When `string` has length greater than 1,",
-      "`pattern` must either\nbe length 1 or have the",
+      "`pattern` must either be length 1 or have the",
       "same length as `string`.\n    * Your `string` has",
       "length 2.\n    * Your `pattern` has length 3."
     ),
@@ -43,7 +43,7 @@ test_that("`str_locate_nth()` works", {
   expect_error(str_locate_nth(c("a", "b"), c("a", "b"), 1:5),
     paste(
       "When `string` has length greater than 1, `n` must",
-      "either be\nlength 1 or have the same length as",
+      "either be length 1 or have the same length as",
       "`string`.\n    * Your `string` has length 2.\n    *",
       "Your `n` has length 5."
     ),

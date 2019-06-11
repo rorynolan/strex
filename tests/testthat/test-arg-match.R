@@ -96,16 +96,16 @@ test_that("match_arg() works", {
   }
   word_err_msg <- paste(
     "You have used `match_arg()` without specifying a",
-    "`choices`\nargument.\n    * The only way to do this",
-    "is from another function where\n      `arg` has a",
-    "default setting. This is the same as\n     ",
+    "`choices` argument.\n    * The only way to do this",
+    "is from another function where `arg` has a",
+    "default setting. This is the same as",
     "`base::match.arg()`.\n    * See the man page for",
-    "`match_arg()`, particularly the\n      examples:",
-    "enter `help(\"match_arg\", package = \"strex\")`\n   ",
-    "  at the R console.\n    * See also the vignette on",
-    "argument matching: enter\n     ",
+    "`match_arg()`, particularly the examples:",
+    "enter `help(\"match_arg\", package = \"strex\")`",
+    "at the R console.\n    * See also the vignette on",
+    "argument matching: enter",
     "`vignette(\"argument-matching\", package =",
-    "\"strex\")` at\n      the R console."
+    "\"strex\")` at the R console."
   )
   expect_error(word(), word_err_msg, fixed = TRUE)
   word <- function(w = 1:3) {

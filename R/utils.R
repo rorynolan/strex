@@ -65,29 +65,28 @@ num_list_nth_elems <- function(num_list, n) {
 #' @noRd
 custom_bullet <- function(string) {
   checkmate::assert_string(string)
-  string %<>% strwrap(width = 57)
-  string[1] %<>% {
-    glue::glue("    * {.}")
-  }
-  if (length(string) > 1) {
-    string[-1] %<>% {
-      glue::glue("      {.}")
+  string %>%
+    stringr::str_replace_all("\\s+", " ") %>%
+    {
+      glue::glue("    * {.}")
     }
-  }
-  glue::glue_collapse(string, sep = "\n")
 }
 
 custom_condition_prep <- function(main_message, ..., .envir = parent.frame()) {
   checkmate::assert_string(main_message)
-  main_message %<>% glue::glue(.envir = .envir)
-  out <- strwrap(main_message, width = 63)
+  main_message %<>%
+    stringr::str_replace_all("\\s+", " ") %>%
+    glue::glue(.envir = .envir) %>%
+    stringr::str_trim()
+  out <- main_message
   dots <- unlist(list(...))
   if (length(dots)) {
     if (!is.character(dots)) {
       stop("\nThe arguments in ... must all be of character type.")
     }
-    dots %<>% vapply(glue::glue, character(1), .envir = .envir) %>%
-      vapply(custom_bullet, character(1))
+    dots %<>%
+      purrr::map_chr(glue::glue, .envir = .envir) %>%
+      purrr::map_chr(custom_bullet)
     out %<>% {
       glue::glue_collapse(c(., dots), sep = "\n")
     }

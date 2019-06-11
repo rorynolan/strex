@@ -1,3 +1,9 @@
+# `strex` 1.1.0
+
+## MINOR IMPROVEMENTS
+* The `pattern` argument of `str_trim_anything()` now supports regular expression.
+
+
 # `strex` 1.0.3
 
 ## BUG FIXES  

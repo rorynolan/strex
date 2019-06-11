@@ -21,7 +21,7 @@ test_that("str_alphord_nums works", {
     paste(
       "The non-number bits of every string must be the",
       "same.\n    * The first pair of strings with",
-      "different non-number bits\n      are strings 1 and",
+      "different non-number bits are strings 1 and",
       "3.\n    * They are \"abc9def55\" and \"abc10xyz7\""
     ),
     fixed = TRUE

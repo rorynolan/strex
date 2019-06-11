@@ -22,7 +22,7 @@ test_that("str_after_nth works", {
   expect_error(str_after_nth(c("a"), c("a", "b"), 1:3),
     paste0(
       "If `pattern` and `n` both have length greater than",
-      " 1, their\nlengths must be equal.\n    * Your `patte",
+      " 1, their lengths must be equal.\n    * Your `patte",
       "rn` has length 2.\n    * Your `n` has length 3."
     ),
     fixed = TRUE

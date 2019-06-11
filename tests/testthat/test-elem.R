@@ -5,7 +5,7 @@ test_that("str_elem() works", {
   expect_error(str_elem(c("a", "b"), 1:3),
     paste(
       "When `string` has length greater than 1, `index`",
-      "must either\nbe length 1 or have the same length",
+      "must either be length 1 or have the same length",
       "as `string`.\n    * Your `string` has length 2.\n  ",
       " * Your `index` has length 3."
     ),

@@ -104,7 +104,7 @@ test_that("`str_nth_currency()` works", {
   expect_error(str_nth_currency(as.character(1:3), 1:7),
     paste(
       "When `string` has length greater than 1, `n` must",
-      "either be\nlength 1 or have the same length as",
+      "either be length 1 or have the same length as",
       "`string`.\n    * Your `string` has length 3.\n    *",
       "Your `n` has length 7."
     ),
