@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -101,7 +101,7 @@
     <div class="page-header toc-ignore">
       <h1>Important Miscellany</h1>
             
-            <h4 class="date">2019-05-31</h4>
+            <h4 class="date">2019-06-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rorynolan/strex/blob/master/vignettes/important-miscellany.Rmd"><code>vignettes/important-miscellany.Rmd</code></a></small>
       <div class="hidden name"><code>important-miscellany.Rmd</code></div>
@@ -251,10 +251,9 @@
 <p>What if something is needlessly surrounded by parentheses and we want to get rid of them?</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">string &lt;-<span class="st"> "(((Why all the parentheses?)))"</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">string <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/str_trim_anything.html">str_trim_anything</a></span>(<span class="st">"("</span>, <span class="dt">side =</span> <span class="st">"left"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/str_trim_anything.html">str_trim_anything</a></span>(<span class="st">")"</span>, <span class="dt">side =</span> <span class="st">"r"</span>)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/str_trim_anything.html">str_trim_anything</a></span>(<span class="kw">coll</span>(<span class="st">"("</span>), <span class="dt">side =</span> <span class="st">"left"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/str_trim_anything.html">str_trim_anything</a></span>(<span class="kw">coll</span>(<span class="st">")"</span>), <span class="dt">side =</span> <span class="st">"r"</span>)</a>
 <a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; [1] "Why all the parentheses?"</span></a></code></pre></div>
-<p>Note that the <code>pattern</code> argument here isn’t regular expression, just plain.</p>
 </div>
 <div id="remove-duplicated-bits-of-strings" class="section level2">
 <h2 class="hasAnchor">

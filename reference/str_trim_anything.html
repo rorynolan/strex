@@ -75,7 +75,7 @@ side(s)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -163,9 +163,11 @@ side(s).</p>
     </tr>
     <tr>
       <th>pattern</th>
-      <td><p>A string. The pattern to be trimmed (<em>not</em> interpreted as
-regular expression). So to trim a period, use <code>char = "."</code> and not
-<code>char = "\\."</code>).</p></td>
+      <td><p>The pattern to look for.</p>
+<p>The default interpretation is a regular expression, as described in
+<a href='https://www.rdocumentation.org/packages/stringi/topics/stringi-search-regex'>stringi::stringi-search-regex</a>.</p>
+<p>To match a without regular expression (i.e. as a human would), use
+<a href='https://stringr.tidyverse.org/reference/modifiers.html'>coll()</a>. For details see <code><a href='https://stringr.tidyverse.org/reference/modifiers.html'>stringr::regex()</a></code>.</p></td>
     </tr>
     <tr>
       <th>side</th>
@@ -186,7 +188,7 @@ default, but you can also have just either <code>"left"</code> or <code>"right"<
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>str_trim_anything</span>(<span class='st'>"..abcd."</span>, <span class='st'>"."</span>, <span class='st'>"left"</span>)</div><div class='output co'>#&gt; [1] "abcd."</div><div class='input'><span class='fu'>str_trim_anything</span>(<span class='st'>"-ghi--"</span>, <span class='st'>"-"</span>)</div><div class='output co'>#&gt; [1] "ghi"</div><div class='input'><span class='fu'>str_trim_anything</span>(<span class='st'>"-ghi--"</span>, <span class='st'>"--"</span>)</div><div class='output co'>#&gt; [1] "-ghi"</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>str_trim_anything</span>(<span class='st'>"..abcd."</span>, <span class='st'>"."</span>, <span class='st'>"left"</span>)</div><div class='output co'>#&gt; [1] ""</div><div class='input'><span class='fu'>str_trim_anything</span>(<span class='st'>"..abcd."</span>, <span class='fu'>coll</span>(<span class='st'>"."</span>), <span class='st'>"left"</span>)</div><div class='output co'>#&gt; [1] "abcd."</div><div class='input'><span class='fu'>str_trim_anything</span>(<span class='st'>"-ghi--"</span>, <span class='st'>"-"</span>)</div><div class='output co'>#&gt; [1] "ghi"</div><div class='input'><span class='fu'>str_trim_anything</span>(<span class='st'>"-ghi--"</span>, <span class='st'>"--"</span>)</div><div class='output co'>#&gt; [1] "-ghi"</div><div class='input'><span class='fu'>str_trim_anything</span>(<span class='st'>"-ghi--"</span>, <span class='st'>"i-+"</span>)</div><div class='output co'>#&gt; [1] "-gh"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
