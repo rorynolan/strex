@@ -85,8 +85,8 @@ custom_condition_prep <- function(main_message, ..., .envir = parent.frame()) {
       stop("\nThe arguments in ... must all be of character type.")
     }
     dots %<>%
-      purrr::map_chr(glue::glue, .envir = .envir) %>%
-      purrr::map_chr(custom_bullet)
+      vapply(glue::glue, character(1), .envir = .envir) %>%
+      vapply(custom_bullet, character(1))
     out %<>% {
       glue::glue_collapse(c(., dots), sep = "\n")
     }
