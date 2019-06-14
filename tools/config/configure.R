@@ -16,7 +16,7 @@ replace_R_fun <- function(orig_lines, fun_name, new_fun_body) {
   fun_def_start_line <- stringr::str_which(orig_lines, fun_pattern)[[1]]
   if (Sys.getenv("TRAVIS") == "true" && is.na(fun_def_start_line)) {
     cat(paste0("Didn't find function ", fun_name, ".\n"))
-    return(invisible(FALSE))
+    return(orig_lines)
   }
   fun_def_end_line <- fun_def_start_line +
     stringr::str_which(orig_lines[-seq_len(fun_def_start_line)], "^\\}\\s*$")
@@ -41,7 +41,7 @@ remove_C_fun <- function(orig_lines, fun_sig) {
                                            stringr::fixed(fun_sig))[[1]]
   if (Sys.getenv("TRAVIS") == "true" && is.na(fun_def_start_line)) {
     cat(paste0("Didn't find function ", fun_sig, ".\n"))
-    return(invisible(FALSE))
+    return(orig_lines)
   }
   while (fun_def_start_line > 1) {
     if (startsWith(orig_lines[fun_def_start_line - 1], "//")) {
