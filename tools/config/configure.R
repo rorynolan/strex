@@ -98,9 +98,13 @@ file_remove_matching_lines <- function(path, patterns) {
 if (!is.na(gcc_version()) && gcc_version() < "4.9") {
   cat("Making allowances for GCC < 4.9.\n")
   cat("Replacing R fun.\n")
-  file_replace_R_fun("R/RcppExports.R", "lst_char_to_num",
-                     c("  if (commas) x %<>% lapply(str_replace_all, ',', '')",
-                       "  lapply(x, as.numeric)"))
+  file_replace_R_funs(
+    "R/RcppExports.R",
+    c("char_to_num", "lst_char_to_num"),
+    list(c("  if (commas) x %<>% str_replace_all(',', '')",
+           "  as.numeric(x)"),
+         "  lapply(x, char_to_num, commas = commas)")
+  )
   cat("Removing C fun.\n")
   file_remove_C_fun("src/list-utils.cpp",
                     "List lst_char_to_num(List x, bool commas)")
