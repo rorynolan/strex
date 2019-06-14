@@ -14,5 +14,9 @@ matrix:
         provider: script
         script: Rscript -e 'pkgdown::deploy_site_github()'
         skip_cleanup: true
+    - os: linux
+      dist: trusty
+    - os: linux
+      dist: precise
     - os: osx
       env: _R_CHECK_LENGTH_1_CONDITION_=true

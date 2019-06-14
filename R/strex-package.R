@@ -1,5 +1,6 @@
 #' @import stringr
 #' @importFrom magrittr '%>%' '%<>%' '%T>%'
+#' @importFrom processx curl_fds
 NULL
 
 ## usethis namespace: start

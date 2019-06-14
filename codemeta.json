@@ -269,6 +269,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "processx",
+      "name": "processx",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=processx"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "https://sysreqs.r-hub.io/get/cxx11"
     }
   ],
@@ -283,6 +295,6 @@
     "https://CRAN.R-project.org/package=strex",
     "https://rorynolan.github.io/strex"
   ],
-  "fileSize": "112.678KB",
+  "fileSize": "117.698KB",
   "readme": "https://github.com/rorynolan/strex/blob/master/README.md"
 }

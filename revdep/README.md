@@ -3,20 +3,26 @@
 |field    |value                        |
 |:--------|:----------------------------|
 |version  |R version 3.6.0 (2019-04-26) |
-|os       |macOS Mojave 10.14.4         |
+|os       |macOS Mojave 10.14.5         |
 |system   |x86_64, darwin15.6.0         |
-|ui       |RStudio                      |
+|ui       |X11                          |
 |language |(EN)                         |
 |collate  |en_GB.UTF-8                  |
 |ctype    |en_GB.UTF-8                  |
 |tz       |Europe/London                |
-|date     |2019-05-28                   |
+|date     |2019-06-12                   |
 
 # Dependencies
 
 |package |old   |new   |Δ  |
 |:-------|:-----|:-----|:--|
-|strex   |1.0.1 |1.0.2 |*  |
+|strex   |1.0.3 |1.1.0 |*  |
 
 # Revdeps
+
+## New problems (1)
+
+|package                                  |version |error  |warning |note |
+|:----------------------------------------|:-------|:------|:-------|:----|
+|[filesstrings](problems.md#filesstrings) |3.1.3   |__+1__ |        |     |
 
