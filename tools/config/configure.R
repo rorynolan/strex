@@ -35,7 +35,7 @@ file_replace_R_fun <- function(path, fun_name, new_fun_body) {
 }
 file_replace_R_funs <- function(path, fun_names, new_fun_bodies) {
   for (i in seq_along(fun_names)) {
-    file_replace_R_fun(fun_names[[i]], new_fun_bodies[[i]])
+    file_replace_R_fun(path, fun_names[[i]], new_fun_bodies[[i]])
   }
 }
 
