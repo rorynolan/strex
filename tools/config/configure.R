@@ -86,6 +86,8 @@ if (!is.na(gcc_version()) && gcc_version() < "4.9") {
   file_replace_R_fun("R/RcppExports.R", "lst_char_to_num",
                      c("  if (commas) x %<>% lapply(str_replace_all, ',', '')",
                        "  lapply(x, as.numeric)"))
+  cat("Printing list-utils.cpp.\n")
+  cat(readLines("src/list-utils.cpp"), sep = "\n")
   cat("Removing C fun.\n")
   file_remove_C_fun("src/list-utils.cpp",
                     "List lst_char_to_num(List x, bool commas)")
