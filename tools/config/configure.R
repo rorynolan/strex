@@ -108,7 +108,7 @@ if (!is.na(gcc_version()) && gcc_version() < "4.9") {
            "  } else {",
            "    y <- x",
            "  }",
-           "  out <- suppressWarnings(as.numeric(x))",
+           "  out <- suppressWarnings(as.numeric(y))",
            "  if (anyNA(out)) {",
            "    first_offending_index <- match(TRUE, is.na(x))",
            "    err_msg <- paste('Could not convert',",
