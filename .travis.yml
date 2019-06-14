@@ -16,5 +16,11 @@ matrix:
         skip_cleanup: true
     - os: linux
       dist: trusty  # GCC v4.8.4
+      env:
+        - TRAVIS_ALLOW_FAILURE=true
+    - os: linux
+      dist: trusty  # GCC v4.8.4
+      env:
+        - TRAVIS_ALLOW_FAILURE=false
     - os: osx
       env: _R_CHECK_LENGTH_1_CONDITION_=true
