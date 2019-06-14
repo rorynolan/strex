@@ -9,7 +9,7 @@ matrix:
     - os: linux
       dist: xenial
       env:
-        - Ubuntu_Nickname=xenial16
+        - Ubuntu_Nickname=xenial16 GCC_Version=5.4.0 Regex_Supported=true  # just to make travis results easy to read
       after_success: Rscript -e 'covr::codecov()'
       before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
       deploy:
@@ -19,10 +19,6 @@ matrix:
     - os: linux
       dist: trusty  # GCC v4.8.4
       env:
-        - TRAVIS_ALLOW_FAILURE=true Ubuntu_Nickname=trusty14
-    - os: linux
-      dist: trusty  # GCC v4.8.4
-      env:
-        - TRAVIS_ALLOW_FAILURE=false Ubuntu_Nickname=trusty14
+        - Ubuntu_Nickname=trusty14 GCC_Version=4.8.4 Regex_Supported=false  # just to make travis results easy to read
     - os: osx
       env: _R_CHECK_LENGTH_1_CONDITION_=true

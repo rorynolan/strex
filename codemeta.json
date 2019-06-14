@@ -281,6 +281,11 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "stats",
+      "name": "stats"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "https://sysreqs.r-hub.io/get/cxx11"
     }
   ],
@@ -295,6 +300,6 @@
     "https://CRAN.R-project.org/package=strex",
     "https://rorynolan.github.io/strex"
   ],
-  "fileSize": "117.698KB",
+  "fileSize": "119.878KB",
   "readme": "https://github.com/rorynolan/strex/blob/master/README.md"
 }

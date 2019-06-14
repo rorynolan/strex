@@ -1,6 +1,7 @@
 #' @import stringr
 #' @importFrom magrittr '%>%' '%<>%' '%T>%'
 #' @importFrom processx curl_fds
+#' @importFrom stats as.dendrogram
 NULL
 
 ## usethis namespace: start

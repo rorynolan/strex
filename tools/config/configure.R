@@ -103,7 +103,11 @@ if (!is.na(gcc_version()) && gcc_version() < "4.9") {
   file_replace_R_funs(
     "R/RcppExports.R",
     c("char_to_num", "lst_char_to_num"),
-    list(c("  if (commas) {",
+    list(c("  if (any(nchar(stats::na.omit(x)) == 0)) {",
+           "    rlang::abort('Empty string passed to `char_to_num()`.',",
+           "                 .subclass = 'std::invalid_argument')",
+           "  }",
+           "  if (commas) {",
            "    y <- str_replace_all(x, ',', '')",
            "  } else {",
            "    y <- x",
