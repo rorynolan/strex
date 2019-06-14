@@ -12,8 +12,10 @@ gcc_version <- function() {
 }
 
 replace_R_fun <- function(orig_lines, fun_name, new_fun_body) {
-  fun_pattern <- stringr::coll(paste0(fun_name, " <- function("))
-  fun_def_start_lines <- stringr::str_which(orig_lines, fun_pattern)
+  fun_pattern <- paste0(fun_name, " <- function(")
+  fun_def_start_lines <- which(
+    startsWith(stringr::str_trim(orig_lines), fun_pattern)
+  )
   if (!length(fun_def_start_lines)) {
     if (Sys.getenv("TRAVIS") == "true" || interactive())
       cat(paste0("Didn't find function '", fun_sig, "'.\n"))
@@ -40,8 +42,9 @@ file_replace_R_funs <- function(path, fun_names, new_fun_bodies) {
 }
 
 remove_C_fun <- function(orig_lines, fun_sig) {
-  fun_def_start_lines <- stringr::str_which(orig_lines,
-                                            stringr::coll(fun_sig))
+  fun_def_start_lines <- fun_def_start_lines <- which(
+    startsWith(stringr::str_trim(orig_lines), fun_sig)
+  )
   if (!length(fun_def_start_lines)) {
     if (Sys.getenv("TRAVIS") == "true" || interactive())
       cat(paste0("Didn't find function '", fun_sig, "'.\n"))
@@ -92,7 +95,6 @@ file_remove_matching_lines <- function(path, patterns) {
   new_lines <- remove_matching_lines(orig_lines, patterns)
   writeLines(new_lines, path)
 }
-
 
 
 if (!is.na(gcc_version()) && gcc_version() < "4.9") {
