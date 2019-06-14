@@ -71,10 +71,16 @@ file_remove_matching_lines <- function(path, patterns) {
 
 
 if (!is.na(gcc_version()) && gcc_version() < "4.9") {
+  cat("Making allowances for GCC < 4.9.")
   file_replace_R_fun("R/RcppExports.R", "lst_char_to_num",
                      c("  if (commas) x %<>% lapply(str_replace_all, ',', '')",
                        "  lapply(x, as.numeric)"))
   file_remove_C_fun("src/list-utils.cpp",
                     "List lst_char_to_num(List x, bool commas)")
   file.remove("src/stod.cpp")
+  file_remove_matching_lines("src/RcppExports.cpp",
+                             "List lst_char_to_num(List x, bool commas);")
+  file_remove_C_fun(
+    "RcppExport SEXP _strex_lst_char_to_num(SEXP xSEXP, SEXP commasSEXP)"
+  )
 }
