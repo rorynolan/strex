@@ -30,6 +30,10 @@ interleave_char_lists <- function(strings1, strings2) {
     .Call(`_strex_interleave_char_lists`, strings1, strings2)
 }
 
+lst_char_to_num <- function(x, commas) {
+    .Call(`_strex_lst_char_to_num`, x, commas)
+}
+
 #' Remove empty strings from a character list.
 #'
 #' @param char_list A list of character vectors.
@@ -76,10 +80,6 @@ str_list_nth_elems_helper <- function(char_list, n) {
 #' @noRd
 num_list_nth_elems_ <- function(num_list, n) {
     .Call(`_strex_num_list_nth_elems_`, num_list, n)
-}
-
-lst_char_to_num <- function(x, commas) {
-    .Call(`_strex_lst_char_to_num`, x, commas)
 }
 
 int_lst_first_col <- function(x) {

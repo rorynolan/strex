@@ -12,7 +12,7 @@ gcc_version <- function() {
 }
 
 replace_R_fun <- function(orig_lines, fun_name, new_fun_body) {
-  fun_pattern <- stringr::coll(paste0(fun_name, " <- function("))
+  fun_pattern <- stringr::fixed(paste0(fun_name, " <- function("))
   fun_def_start_line <- match(TRUE,
                               stringr::str_detect(orig_lines, fun_pattern))
   fun_def_end_line <- fun_def_start_line +
@@ -37,7 +37,7 @@ file_replace_R_funs <- function(path, fun_names, new_fun_bodies) {
 remove_C_fun <- function(orig_lines, fun_sig) {
   fun_def_start_line <- match(
     TRUE,
-    stringr::str_detect(orig_lines, stringr::coll(fun_sig))
+    stringr::str_detect(orig_lines, stringr::fixed(fun_sig))
   )
   while (fun_def_start_line > 1) {
     if (startsWith(orig_lines[fun_def_start_line - 1], "//")) {
@@ -67,7 +67,7 @@ remove_matching_lines <- function(orig_lines, patterns) {
   matching_lines <- lapply(
     patterns,
     function(pattern) {
-      stringr::str_which(orig_lines, stringr::coll(pattern))
+      stringr::str_which(orig_lines, stringr::fixed(pattern))
     }
   )
   matching_lines <- unique(unlist(matching_lines))

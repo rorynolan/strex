@@ -41,6 +41,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// lst_char_to_num
+List lst_char_to_num(List x, bool commas);
+RcppExport SEXP _strex_lst_char_to_num(SEXP xSEXP, SEXP commasSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type x(xSEXP);
+    Rcpp::traits::input_parameter< bool >::type commas(commasSEXP);
+    rcpp_result_gen = Rcpp::wrap(lst_char_to_num(x, commas));
+    return rcpp_result_gen;
+END_RCPP
+}
 // str_list_remove_empties
 List str_list_remove_empties(List char_list);
 RcppExport SEXP _strex_str_list_remove_empties(SEXP char_listSEXP) {
@@ -73,18 +85,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< List >::type num_list(num_listSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type n(nSEXP);
     rcpp_result_gen = Rcpp::wrap(num_list_nth_elems_(num_list, n));
-    return rcpp_result_gen;
-END_RCPP
-}
-// lst_char_to_num
-List lst_char_to_num(List x, bool commas);
-RcppExport SEXP _strex_lst_char_to_num(SEXP xSEXP, SEXP commasSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< List >::type x(xSEXP);
-    Rcpp::traits::input_parameter< bool >::type commas(commasSEXP);
-    rcpp_result_gen = Rcpp::wrap(lst_char_to_num(x, commas));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -152,10 +152,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_strex_match_arg_index", (DL_FUNC) &_strex_match_arg_index, 2},
     {"_strex_interleave_strings", (DL_FUNC) &_strex_interleave_strings, 2},
     {"_strex_interleave_char_lists", (DL_FUNC) &_strex_interleave_char_lists, 2},
+    {"_strex_lst_char_to_num", (DL_FUNC) &_strex_lst_char_to_num, 2},
     {"_strex_str_list_remove_empties", (DL_FUNC) &_strex_str_list_remove_empties, 1},
     {"_strex_str_list_nth_elems_helper", (DL_FUNC) &_strex_str_list_nth_elems_helper, 2},
     {"_strex_num_list_nth_elems_", (DL_FUNC) &_strex_num_list_nth_elems_, 2},
-    {"_strex_lst_char_to_num", (DL_FUNC) &_strex_lst_char_to_num, 2},
     {"_strex_int_lst_first_col", (DL_FUNC) &_strex_int_lst_first_col, 1},
     {"_strex_lst_rbind", (DL_FUNC) &_strex_lst_rbind, 2},
     {"_strex_lst_rbind_nth_rows", (DL_FUNC) &_strex_lst_rbind_nth_rows, 2},

@@ -2,10 +2,19 @@
 using namespace Rcpp;
 
 #include <string>
-#include <regex>
 #include <exception>
 
 #include "stod.h"
+
+
+// [[Rcpp::export]]
+List lst_char_to_num(List x, bool commas) {
+  std::size_t n = x.size();
+  List out(n);
+  for (std::size_t i = 0; i != n; ++i)
+    out[i] = char_to_num(x[i], commas);
+  return out;
+}
 
 //' Remove empty strings from a character list.
 //'
@@ -140,15 +149,6 @@ NumericVector num_list_nth_elems_(List num_list, IntegerVector n) {
     }
   }
   return(nths);
-}
-
-// [[Rcpp::export]]
-List lst_char_to_num(List x, bool commas) {
-  std::size_t n = x.size();
-  List out(n);
-  for (std::size_t i = 0; i != n; ++i)
-    out[i] = char_to_num(x[i], commas);
-  return out;
 }
 
 // [[Rcpp::export]]
