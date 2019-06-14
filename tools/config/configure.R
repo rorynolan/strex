@@ -103,8 +103,20 @@ if (!is.na(gcc_version()) && gcc_version() < "4.9") {
   file_replace_R_funs(
     "R/RcppExports.R",
     c("char_to_num", "lst_char_to_num"),
-    list(c("  if (commas) x %<>% str_replace_all(',', '')",
-           "  as.numeric(x)"),
+    list(c("  if (commas) {",
+           "    y <- str_replace_all(x, ',', '')",
+           "  } else {",
+           "    y <- x",
+           "  }",
+           "  out <- suppressWarnings(as.numeric(x))",
+           "  if (anyNA(out)) {",
+           "    first_offending_index <- match(TRUE, is.na(x))",
+           "    err_msg <- paste('Could not convert',",
+           "                     x[first_offending_index],",
+           "                     'to numeric.')",
+           "    rlang::abort(err_msg, .subclass = 'std::invalid_argument')",
+           "  }",
+           "  out"),
          "  lapply(x, char_to_num, commas = commas)")
   )
   cat("Removing C fun.\n")
