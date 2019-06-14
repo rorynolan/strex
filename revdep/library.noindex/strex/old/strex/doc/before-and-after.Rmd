@@ -1,0 +1,72 @@
+---
+title: "Before and After"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Before and After}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Often, we want the part of a string that comes before or after a given pattern. 
+
+```{r load}
+library(strex)
+```
+
+
+## Before
+
+`str_before_nth()` gives you the part of a string before the `n`^th^ appearance of a pattern. It has the friends `str_before_first()` and `str_before_last()`.
+
+```{r before}
+string <- "ab..cd..de..fg..h"
+str_before_first(string, "e")
+str_before_nth(string, "\\.", 3)
+str_before_last(string, "\\.")
+str_before_nth(string, ".", -3)
+str_before_nth(rep(string, 2), fixed("."), -3)
+```
+
+
+## After
+
+`str_after_nth()` gives you the part of a string after the `n`^th^ appearance of a pattern. It has the friends `str_after_first()` and `str_after_last()`.
+
+```{r after}
+string <- "ab..cd..de..fg..h"
+str_after_first(string, "e")
+str_after_nth(string, "\\.", 3)
+str_after_last(string, "\\.")
+str_after_nth(string, ".", -3)
+str_after_nth(rep(string, 2), fixed("."), -3)
+```
+
+
+## A more concrete example
+
+```{r james-harry}
+string <- "James did the cooking, Harry did the cleaning."
+```
+
+Let's write a function to figure out which task each of the lads did.
+
+```{r get-task}
+library(magrittr)
+get_task <- function(string, name) {
+  str_c(name, " did the ") %>% 
+    str_after_first(string, .) %>% 
+    str_before_first("[\\.,]")
+}
+get_task(string, "James")
+get_task(string, "Harry")
+```
+
+`get_task()` would have been more difficult to write without `str_after_first()` and `str_before_first()`.

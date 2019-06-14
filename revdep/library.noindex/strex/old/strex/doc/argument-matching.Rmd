@@ -1,0 +1,106 @@
+---
+title: "Argument Matching"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Argument Matching}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# Ignoring case
+
+
+## `base`
+
+The base function `match.arg()` is good, but it doesn't offer the possiblity to ignore case during argument matching. Sometimes it's good to ignore case; for example, if you're matching the arguments `c("yes", "no")`, there's no need to worry about case. 
+
+```{r base-ignore-case, error=TRUE}
+base::match.arg("Y", c("yes", "no"))
+```
+
+
+## `strex`
+
+The default behaviour of `strex::match_arg()` is to observe case, but case ignorance can be turned on with `ignore_case = TRUE`.
+    
+```{r strex-ignore-case, error=TRUE}
+strex::match_arg("Y", c("yes", "no"))
+strex::match_arg("Y", c("yes", "no"), ignore_case = TRUE)
+```
+
+
+# Error Messages
+
+You can begin to see above that the error message from `strex::match_arg()` are more informative and nicely formatted. Here are a few more examples.
+
+
+## No matches 
+
+```{r no-matches, error=TRUE}
+choices <- c("Apples", "Pears", "Bananas", "Oranges", "Avocados", "Apricots")
+match.arg("Q", choices)
+strex::match_arg("Q", choices)
+```
+
+
+## Multiple matches
+
+```{r multiple-matches, error=TRUE}
+match.arg("A", choices)
+strex::match_arg("A", choices)
+```
+
+
+## Wrong `arg` length
+
+```{r arg-too-long, error=TRUE}
+match.arg(c("A", "a"), choices)
+strex::match_arg(c("A", "a"), choices)
+```
+
+
+## Duplicate elements in `choices`
+```{r choices-duplicate, error=TRUE}
+choices <- c(choices, "Pears")
+match.arg("P", choices)
+strex::match_arg("P", choices)
+```
+
+
+## Not specifying `choices`
+
+It's OK not to specify choices in one circumstance: when `arg` is passed as a default argument of another function.
+
+```{r NULL-choices}
+myword <- function(w = c("abacus", "baseball", "candy")) {
+  w <- strex::match_arg(w)
+  w
+}
+myword()
+myword("b")
+myword("c")
+```
+
+This is very strict though, only the _symbol_ for the default argument can be passed, not any variant of it, not even something which evaluates to the same thing.
+
+```{r NULL-choices-errors, error=TRUE}
+myword <- function(w = c("abacus", "baseball", "candy")) {
+  w <- strex::match_arg(identity(w))
+  w
+}
+myword("b")
+myword <- function(w = c("abacus", "baseball", "candy")) {
+  w <- strex::match_arg(as.character(w))
+  w
+}
+myword("b")
+```

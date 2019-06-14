@@ -1,0 +1,39 @@
+before-and-after        Extract text before or after 'n'th occurrence
+                        of pattern.
+currency                Extract currency amounts from a string.
+str_alphord_nums        Make string numbers comply with alphabetical
+                        order.
+str_before_last_dot     Extract the part of a string before the last
+                        period.
+str_can_be_numeric      Check if a string could be considered as
+                        numeric.
+str_elem                Extract a single character from a string, using
+                        its index.
+str_elems               Extract several single elements from a string.
+str_extract_non_numerics
+                        Extract non-numbers from a string.
+str_extract_numbers     Extract numbers from a string.
+str_give_ext            Ensure a file name has the intended extension.
+str_locate_braces       Locate the braces in a string.
+str_locate_nth          Locate the indices of the 'n'th instance of a
+                        pattern.
+str_match_arg           Argument Matching.
+str_nth_non_numeric     Extract the 'n'th non-numeric substring from a
+                        string.
+str_nth_number          Extract the 'n'th number from a string.
+str_nth_number_after_mth
+                        Find the 'n'th number after the 'm'th
+                        occurrence of a pattern.
+str_nth_number_before_mth
+                        Find the 'n'th number before the 'm'th
+                        occurrence of a pattern.
+str_paste_elems         Extract single elements of a string and paste
+                        them together.
+str_remove_quoted       Remove the quoted parts of a string.
+str_singleize           Remove back-to-back duplicates of a pattern in
+                        a string.
+str_split_by_numbers    Split a string by its numeric characters.
+str_split_camel_case    Split a string based on CamelCase.
+str_to_vec              Convert a string to a vector of characters
+str_trim_anything       Trim something other than whitespace
+strex                   'strex': extra string manipulation functions

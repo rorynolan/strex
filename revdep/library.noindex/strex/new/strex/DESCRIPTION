@@ -1,0 +1,39 @@
+Package: strex
+Title: Extra String Manipulation Functions
+Version: 1.1.0
+Authors@R: person("Rory", "Nolan", email = "rorynoolan@gmail.com", 
+                  role = c("aut", "cre"), 
+                  comment = c(ORCID = "0000-0002-5239-4043"))
+Description: There are some things that I wish were easier with the 'stringr' 
+    or 'stringi' packages. The foremost of these is the extraction of numbers 
+    from strings. 'stringr' and 'stringi' make you figure out the regular 
+    expression for yourself; 'strex' takes care of this for you. There are many 
+    other handy functionalities in 'strex'. Contributions to this package are 
+    encouraged: it is intended as a miscellany of string manipulation functions 
+    that cannot be found in 'stringi' or 'stringr'.
+Depends: R (>= 3.1), stringr
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+LinkingTo: Rcpp (>= 1.0.1)
+Imports: Rcpp (>= 1.0.1), magrittr (>= 1.5), checkmate (>= 1.9.1),
+        matrixStats (>= 0.50.0), ore (>= 1.4.0), rlang (>= 0.3.3),
+        tibble (>= 2.0.1), glue (>= 1.3.0), stringi, processx
+RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)
+Suggests: testthat (>= 2.1.0), knitr, rmarkdown, pacman, covr,
+        spelling, purrr
+SystemRequirements: C++11
+VignetteBuilder: knitr
+URL: https://rorynolan.github.io/strex,
+        https://github.com/rorynolan/strex
+BugReports: https://github.com/rorynolan/strex/issues
+Language: en-US
+Biarch: TRUE
+RemoteType: local
+RemoteUrl: /Users/rnolan/Dropbox/R/strex
+NeedsCompilation: yes
+Packaged: 2019-06-14 17:27:07 UTC; rnolan
+Author: Rory Nolan [aut, cre] (<https://orcid.org/0000-0002-5239-4043>)
+Maintainer: Rory Nolan <rorynoolan@gmail.com>
+Built: R 3.6.0; x86_64-apple-darwin15.6.0; 2019-06-14 17:27:07 UTC; unix

@@ -5,12 +5,12 @@
 |version  |R version 3.6.0 (2019-04-26) |
 |os       |macOS Mojave 10.14.5         |
 |system   |x86_64, darwin15.6.0         |
-|ui       |X11                          |
+|ui       |RStudio                      |
 |language |(EN)                         |
 |collate  |en_GB.UTF-8                  |
 |ctype    |en_GB.UTF-8                  |
 |tz       |Europe/London                |
-|date     |2019-06-12                   |
+|date     |2019-06-14                   |
 
 # Dependencies
 
@@ -19,10 +19,4 @@
 |strex   |1.0.3 |1.1.0 |*  |
 
 # Revdeps
-
-## New problems (1)
-
-|package                                  |version |error  |warning |note |
-|:----------------------------------------|:-------|:------|:-------|:----|
-|[filesstrings](problems.md#filesstrings) |3.1.3   |__+1__ |        |     |
 
