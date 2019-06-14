@@ -28,6 +28,11 @@ file_replace_R_fun <- function(path, fun_name, new_fun_body) {
   new_lines <- replace_R_fun(orig_lines, fun_name, new_fun_body)
   writeLines(new_lines, path)
 }
+file_replace_R_funs <- function(path, fun_names, new_fun_bodies) {
+  for (i in seq_along(fun_names)) {
+    file_replace_R_fun(fun_names[[i]], new_fun_bodies[[i]])
+  }
+}
 
 remove_C_fun <- function(orig_lines, fun_sig) {
   fun_def_start_line <- match(
@@ -51,6 +56,11 @@ file_remove_C_fun <- function(path, fun_sig) {
   orig_lines <- readLines(path)
   new_lines <- remove_C_fun(orig_lines, fun_sig)
   writeLines(new_lines, path)
+}
+file_remove_C_funs <- function(path, fun_sigs) {
+  for (i in seq_along(fun_sigs)) {
+    file_remove_C_fun(path, fun_sigs[[i]])
+  }
 }
 
 remove_matching_lines <- function(orig_lines, patterns) {
@@ -78,15 +88,18 @@ if (!is.na(gcc_version()) && gcc_version() < "4.9") {
   file_remove_C_fun("src/list-utils.cpp",
                     "List lst_char_to_num(List x, bool commas)")
   file.remove("src/stod.cpp")
-  file_remove_matching_lines("src/RcppExports.cpp",
-                             c("List lst_char_to_num(List x, bool commas);",
-                               "(DL_FUNC) &_strex_lst_char_to_num"))
-  file_remove_C_fun(
+  file_remove_matching_lines(
     "src/RcppExports.cpp",
-    "RcppExport SEXP _strex_lst_char_to_num(SEXP xSEXP, SEXP commasSEXP)"
+    c("List lst_char_to_num(List x, bool commas);",
+      "(DL_FUNC) &_strex_lst_char_to_num",
+      "NumericVector char_to_num(CharacterVector x, bool commas);",
+      "(DL_FUNC) &_strex_char_to_num"))
+  file_remove_C_funs(
+    "src/RcppExports.cpp",
+    c("RcppExport SEXP _strex_lst_char_to_num(SEXP xSEXP, SEXP commasSEXP)",
+      "RcppExport SEXP _strex_char_to_num(SEXP xSEXP, SEXP commasSEXP)")
   )
-  file_remove_matching_lines("src/RcppExports.cpp",
-                             "(DL_FUNC) &_strex_lst_char_to_num")
+
   cat("Finished making allowances for GCC < 4.9.")
   cat("RcppExports.R")
   cat(readLines("R/RcppExports.R"), sep = "\n")
