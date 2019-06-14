@@ -79,11 +79,17 @@ if (!is.na(gcc_version()) && gcc_version() < "4.9") {
                     "List lst_char_to_num(List x, bool commas)")
   file.remove("src/stod.cpp")
   file_remove_matching_lines("src/RcppExports.cpp",
-                             "List lst_char_to_num(List x, bool commas);")
+                             c("List lst_char_to_num(List x, bool commas);",
+                               "(DL_FUNC) &_strex_lst_char_to_num"))
   file_remove_C_fun(
     "src/RcppExports.cpp",
     "RcppExport SEXP _strex_lst_char_to_num(SEXP xSEXP, SEXP commasSEXP)"
   )
   file_remove_matching_lines("src/RcppExports.cpp",
                              "(DL_FUNC) &_strex_lst_char_to_num")
+  cat("Finished making allowances for GCC < 4.9.")
+  cat("RcppExports.R")
+  cat(readLines("R/RcppExports.R"), sep = "\n")
+  cat("RcppExports.cpp")
+  cat(readLines("src/RcppExports.cpp"), sep = "\n")
 }
