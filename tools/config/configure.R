@@ -12,12 +12,14 @@ gcc_version <- function() {
 }
 
 replace_R_fun <- function(orig_lines, fun_name, new_fun_body) {
-  fun_pattern <- stringr::fixed(paste0(fun_name, " <- function("))
-  fun_def_start_line <- stringr::str_which(orig_lines, fun_pattern)[[1]]
-  if (Sys.getenv("TRAVIS") == "true" && is.na(fun_def_start_line)) {
-    cat(paste0("Didn't find function ", fun_name, ".\n"))
+  fun_pattern <- stringr::coll(paste0(fun_name, " <- function("))
+  fun_def_start_lines <- stringr::str_which(orig_lines, fun_pattern)
+  if (!length(fun_def_start_lines)) {
+    if (Sys.getenv("TRAVIS") == "true" || interactive())
+      cat(paste0("Didn't find function '", fun_sig, "'.\n"))
     return(orig_lines)
   }
+  fun_def_start_line <- fun_def_start_lines[[1]]
   fun_def_end_line <- fun_def_start_line +
     stringr::str_which(orig_lines[-seq_len(fun_def_start_line)],
                        "^\\}\\s*$")[[1]]
@@ -38,12 +40,14 @@ file_replace_R_funs <- function(path, fun_names, new_fun_bodies) {
 }
 
 remove_C_fun <- function(orig_lines, fun_sig) {
-  fun_def_start_line <- stringr::str_which(orig_lines,
-                                           stringr::fixed(fun_sig))[[1]]
-  if (Sys.getenv("TRAVIS") == "true" && is.na(fun_def_start_line)) {
-    cat(paste0("Didn't find function ", fun_sig, ".\n"))
+  fun_def_start_lines <- stringr::str_which(orig_lines,
+                                            stringr::coll(fun_sig))
+  if (!length(fun_def_start_lines)) {
+    if (Sys.getenv("TRAVIS") == "true" || interactive())
+      cat(paste0("Didn't find function '", fun_sig, "'.\n"))
     return(orig_lines)
   }
+  fun_def_start_line <- fun_def_start_lines[[1]]
   while (fun_def_start_line > 1) {
     if (startsWith(orig_lines[fun_def_start_line - 1], "//")) {
       fun_def_start_line <- fun_def_start_line - 1
@@ -73,7 +77,7 @@ remove_matching_lines <- function(orig_lines, patterns) {
   matching_lines <- lapply(
     patterns,
     function(pattern) {
-      stringr::str_which(orig_lines, stringr::fixed(pattern))
+      stringr::str_which(orig_lines, stringr::coll(pattern))
     }
   )
   matching_lines <- unique(unlist(matching_lines))
@@ -90,6 +94,7 @@ file_remove_matching_lines <- function(path, patterns) {
 }
 
 
+
 if (!is.na(gcc_version()) && gcc_version() < "4.9") {
   cat("Making allowances for GCC < 4.9.\n")
   cat("Replacing R fun.\n")
@@ -100,7 +105,7 @@ if (!is.na(gcc_version()) && gcc_version() < "4.9") {
   file_remove_C_fun("src/list-utils.cpp",
                     "List lst_char_to_num(List x, bool commas)")
   cat("Removing stod.cpp.\n")
-  file.remove("src/stod.cpp")
+  if (file.exists("src/stod.cpp")) file.remove("src/stod.cpp")
   cat("Removing matching lines.\n")
   file_remove_matching_lines(
     "src/RcppExports.cpp",
@@ -114,10 +119,5 @@ if (!is.na(gcc_version()) && gcc_version() < "4.9") {
     c("RcppExport SEXP _strex_lst_char_to_num(SEXP xSEXP, SEXP commasSEXP)",
       "RcppExport SEXP _strex_char_to_num(SEXP xSEXP, SEXP commasSEXP)")
   )
-
-  cat("Finished making allowances for GCC < 4.9.")
-  cat("RcppExports.R")
-  cat(readLines("R/RcppExports.R"), sep = "\n")
-  cat("RcppExports.cpp")
-  cat(readLines("src/RcppExports.cpp"), sep = "\n")
+  cat("Finished making allowances for GCC < 4.9.\n")
 }
