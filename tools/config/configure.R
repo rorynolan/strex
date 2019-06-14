@@ -19,7 +19,8 @@ replace_R_fun <- function(orig_lines, fun_name, new_fun_body) {
     return(orig_lines)
   }
   fun_def_end_line <- fun_def_start_line +
-    stringr::str_which(orig_lines[-seq_len(fun_def_start_line)], "^\\}\\s*$")
+    stringr::str_which(orig_lines[-seq_len(fun_def_start_line)],
+                       "^\\}\\s*$")[[1]]
   c(orig_lines[seq_len(fun_def_start_line)],
     new_fun_body,
     orig_lines[seq(fun_def_end_line, length(orig_lines))])
@@ -107,8 +108,6 @@ if (!is.na(gcc_version()) && gcc_version() < "4.9") {
       "(DL_FUNC) &_strex_lst_char_to_num",
       "NumericVector char_to_num(CharacterVector x, bool commas);",
       "(DL_FUNC) &_strex_char_to_num"))
-  cat("Printing RcppExports.cpp.\n")
-  cat(readLines("src/RcppExports.cpp"), sep = "\n")
   cat("\nRemoving C funs.\n")
   file_remove_C_funs(
     "src/RcppExports.cpp",
