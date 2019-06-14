@@ -84,4 +84,6 @@ if (!is.na(gcc_version()) && gcc_version() < "4.9") {
     "src/RcppExports.cpp",
     "RcppExport SEXP _strex_lst_char_to_num(SEXP xSEXP, SEXP commasSEXP)"
   )
+  file_remove_matching_lines("src/RcppExports.cpp",
+                             "(DL_FUNC) &_strex_lst_char_to_num")
 }
