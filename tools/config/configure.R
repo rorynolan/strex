@@ -3,10 +3,9 @@
 # Use 'configure_file()' to substitute configuration values.
 
 gcc_version <- function() {
-  out <- tryCatch(processx::run("gcc", "-v"),
-                  error = function(cnd) list(stdout = "", stderr = ""))
-  out <- tolower(paste(out$stdout, out$stderr))
-  out <- stringr::str_match(out, "gcc version (\\d+(?:\\.\\d+)*)")[1, 2]
+  out <- tryCatch(processx::run("gcc", "-v", stderr_to_stdout = TRUE),
+                  error = function(cnd) list(stdout = ""))
+  out <- stringr::str_match(out$stdout, "gcc version (\\d+(?:\\.\\d+)*)")[1, 2]
   if (!is.na(out)) out <- numeric_version(out)
   out
 }

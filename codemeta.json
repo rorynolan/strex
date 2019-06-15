@@ -181,7 +181,7 @@
       "@type": "SoftwareApplication",
       "identifier": "checkmate",
       "name": "checkmate",
-      "version": ">= 1.9.1",
+      "version": ">= 1.9.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -259,6 +259,7 @@
       "@type": "SoftwareApplication",
       "identifier": "stringi",
       "name": "stringi",
+      "version": ">= 1.3.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -271,6 +272,7 @@
       "@type": "SoftwareApplication",
       "identifier": "processx",
       "name": "processx",
+      "version": ">= 3.3.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -300,6 +302,6 @@
     "https://CRAN.R-project.org/package=strex",
     "https://rorynolan.github.io/strex"
   ],
-  "fileSize": "120.061KB",
+  "fileSize": "120.075KB",
   "readme": "https://github.com/rorynolan/strex/blob/master/README.md"
 }
