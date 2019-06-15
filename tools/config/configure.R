@@ -12,9 +12,9 @@ gcc_version <- function() {
 }
 
 replace_R_fun <- function(orig_lines, fun_name, new_fun_body) {
-  fun_pattern <- paste0(fun_name, " <- function(")
+  fun_pattern <- stringr::coll(paste0(fun_name, " <- function("))
   fun_def_start_lines <- which(
-    startsWith(stringr::str_trim(orig_lines), fun_pattern)
+    stringr::str_starts(stringr::str_trim(orig_lines), fun_pattern)
   )
   if (!length(fun_def_start_lines)) {
     if (Sys.getenv("TRAVIS") == "true" || interactive())
@@ -30,7 +30,8 @@ replace_R_fun <- function(orig_lines, fun_name, new_fun_body) {
     orig_lines[seq(fun_def_end_line, length(orig_lines))])
 }
 file_replace_R_fun <- function(path, fun_name, new_fun_body) {
-  if (Sys.getenv("TRAVIS") == "true") cat(paste0("File: ", path, ".\n"))
+  if (Sys.getenv("TRAVIS") == "true" || interactive())
+    cat(paste0("File: ", path, ".\n"))
   orig_lines <- readLines(path)
   new_lines <- replace_R_fun(orig_lines, fun_name, new_fun_body)
   writeLines(new_lines, path)
@@ -42,8 +43,9 @@ file_replace_R_funs <- function(path, fun_names, new_fun_bodies) {
 }
 
 remove_C_fun <- function(orig_lines, fun_sig) {
+  fun_sig <- stringr::coll(fun_sig)
   fun_def_start_lines <- fun_def_start_lines <- which(
-    startsWith(stringr::str_trim(orig_lines), fun_sig)
+    stringr::str_starts(stringr::str_trim(orig_lines), fun_sig)
   )
   if (!length(fun_def_start_lines)) {
     if (Sys.getenv("TRAVIS") == "true" || interactive())
@@ -52,20 +54,21 @@ remove_C_fun <- function(orig_lines, fun_sig) {
   }
   fun_def_start_line <- fun_def_start_lines[[1]]
   while (fun_def_start_line > 1) {
-    if (startsWith(orig_lines[fun_def_start_line - 1], "//")) {
+    if (stringr::str_starts(orig_lines[fun_def_start_line - 1],
+                            stringr::coll("//"))) {
       fun_def_start_line <- fun_def_start_line - 1
     } else {
       break
     }
   }
   fun_def_end_line <- fun_def_start_line +
-    match(TRUE,
-          stringr::str_detect(orig_lines[-seq_len(fun_def_start_line)],
-                              "^\\}\\s*$"))
+    stringr::str_which(orig_lines[-seq_len(fun_def_start_line)],
+                       "^\\}\\s*$")[[1]]
   c(orig_lines[-seq(fun_def_start_line, fun_def_end_line)])
 }
 file_remove_C_fun <- function(path, fun_sig) {
-  if (Sys.getenv("TRAVIS") == "true") cat(paste0("File: ", path, ".\n"))
+  if (Sys.getenv("TRAVIS") == "true" || interactive())
+    cat(paste0("File: ", path, ".\n"))
   orig_lines <- readLines(path)
   new_lines <- remove_C_fun(orig_lines, fun_sig)
   writeLines(new_lines, path)
@@ -91,6 +94,8 @@ remove_matching_lines <- function(orig_lines, patterns) {
   }
 }
 file_remove_matching_lines <- function(path, patterns) {
+  if (Sys.getenv("TRAVIS") == "true" || interactive())
+    cat(paste0("File: ", path, ".\n"))
   orig_lines <- readLines(path)
   new_lines <- remove_matching_lines(orig_lines, patterns)
   writeLines(new_lines, path)
@@ -103,28 +108,10 @@ if (!is.na(gcc_version()) && gcc_version() < "4.9") {
   file_replace_R_funs(
     "R/RcppExports.R",
     c("char_to_num", "lst_char_to_num"),
-    list(c("  if (any(nchar(stats::na.omit(x)) == 0)) {",
-           "    rlang::abort('Empty string passed to `char_to_num()`.',",
-           "                 .subclass = 'std::invalid_argument')",
-           "  }",
-           "  if (commas) {",
-           "    y <- str_replace_all(x, ',', '')",
-           "  } else {",
-           "    y <- x",
-           "  }",
-           "  out <- suppressWarnings(as.numeric(y))",
-           "  if (sum(is.na(out)) > sum(is.na(x))) {",
-           "    first_offending_index <- match(",
-           "      TRUE,",
-           "      is.na(out) & !is.na(x)",
-           "    )",
-           "    err_msg <- paste0(\"Could not convert '\",",
-           "                      x[first_offending_index],",
-           "                      \"' to numeric.\")",
-           "    rlang::abort(err_msg, .subclass = 'std::invalid_argument')",
-           "  }",
-           "  out"),
-         "  lapply(x, char_to_num, commas = commas)")
+    lapply(paste0("tools/misc/alternative-",
+                  c("char-to-num", "lst-char-to-num"),
+                  "-body.R"),
+           readLines)
   )
   cat("Removing C fun.\n")
   file_remove_C_fun("src/list-utils.cpp",
