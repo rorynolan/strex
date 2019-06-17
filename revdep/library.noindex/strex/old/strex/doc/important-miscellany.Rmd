@@ -136,12 +136,9 @@ What if something is needlessly surrounded by parentheses and we want to get rid
 ```{r trim-anything}
 string <- "(((Why all the parentheses?)))"
 string %>% 
-  str_trim_anything("(", side = "left") %>% 
-  str_trim_anything(")", side = "r")
+  str_trim_anything(coll("("), side = "left") %>% 
+  str_trim_anything(coll(")"), side = "r")
 ```
-
-Note that the `pattern` argument here isn't regular expression, just plain.
-
 
 ## Remove duplicated bits of strings
 

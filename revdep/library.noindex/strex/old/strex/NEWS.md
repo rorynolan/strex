@@ -1,3 +1,12 @@
+# `strex` 1.1.0
+
+## MINOR IMPROVEMENTS
+* The `pattern` argument of `str_trim_anything()` now supports regular expression.
+
+## BUG FIXES
+* The new `configure` step opens up the package to people with GCC < 4.9; previously installation failed for them.
+
+
 # `strex` 1.0.3
 
 ## BUG FIXES  

@@ -60,8 +60,8 @@ str_to_vec(string)
 ## ----trim-anything-------------------------------------------------------
 string <- "(((Why all the parentheses?)))"
 string %>% 
-  str_trim_anything("(", side = "left") %>% 
-  str_trim_anything(")", side = "r")
+  str_trim_anything(coll("("), side = "left") %>% 
+  str_trim_anything(coll(")"), side = "r")
 
 ## ----singleize-----------------------------------------------------------
 string <- c("I often write the word *my* twice in a row in my my sentences.")

@@ -11,14 +11,15 @@ Description: There are some things that I wish were easier with the 'stringr'
     other handy functionalities in 'strex'. Contributions to this package are 
     encouraged: it is intended as a miscellany of string manipulation functions 
     that cannot be found in 'stringi' or 'stringr'.
-Depends: R (>= 3.1), stringr
+Depends: R (>= 3.1), stringr (>= 1.2.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 LinkingTo: Rcpp (>= 1.0.1)
-Imports: Rcpp (>= 1.0.1), magrittr (>= 1.5), checkmate (>= 1.9.1),
+Imports: Rcpp (>= 1.0.1), magrittr (>= 1.5), checkmate (>= 1.9.3),
         matrixStats (>= 0.50.0), ore (>= 1.4.0), rlang (>= 0.3.3),
-        tibble (>= 2.0.1), glue (>= 1.3.0), stringi, processx
+        tibble (>= 2.0.1), glue (>= 1.3.0), stringi (>= 1.3.1),
+        processx (>= 3.3.1), stats
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Suggests: testthat (>= 2.1.0), knitr, rmarkdown, pacman, covr,
@@ -33,7 +34,7 @@ Biarch: TRUE
 RemoteType: local
 RemoteUrl: /Users/rnolan/Dropbox/R/strex
 NeedsCompilation: yes
-Packaged: 2019-06-14 17:27:07 UTC; rnolan
+Packaged: 2019-06-17 16:39:59 UTC; rnolan
 Author: Rory Nolan [aut, cre] (<https://orcid.org/0000-0002-5239-4043>)
 Maintainer: Rory Nolan <rorynoolan@gmail.com>
-Built: R 3.6.0; x86_64-apple-darwin15.6.0; 2019-06-14 17:27:07 UTC; unix
+Built: R 3.6.0; x86_64-apple-darwin15.6.0; 2019-06-17 16:40:00 UTC; unix

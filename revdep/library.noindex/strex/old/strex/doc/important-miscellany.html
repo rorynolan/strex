@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="date" content="2019-06-04" />
+<meta name="date" content="2019-06-15" />
 
 <title>Important Miscellany</title>
 
@@ -301,7 +301,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 <h1 class="title toc-ignore">Important Miscellany</h1>
-<h4 class="date">2019-06-04</h4>
+<h4 class="date">2019-06-15</h4>
 
 
 
@@ -433,10 +433,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>What if something is needlessly surrounded by parentheses and we want to get rid of them?</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">string &lt;-<span class="st"> &quot;(((Why all the parentheses?)))&quot;</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">string <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">str_trim_anything</span>(<span class="st">&quot;(&quot;</span>, <span class="dt">side =</span> <span class="st">&quot;left&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw">str_trim_anything</span>(<span class="st">&quot;)&quot;</span>, <span class="dt">side =</span> <span class="st">&quot;r&quot;</span>)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">str_trim_anything</span>(<span class="kw">coll</span>(<span class="st">&quot;(&quot;</span>), <span class="dt">side =</span> <span class="st">&quot;left&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw">str_trim_anything</span>(<span class="kw">coll</span>(<span class="st">&quot;)&quot;</span>), <span class="dt">side =</span> <span class="st">&quot;r&quot;</span>)</a>
 <a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; [1] &quot;Why all the parentheses?&quot;</span></a></code></pre></div>
-<p>Note that the <code>pattern</code> argument here isn’t regular expression, just plain.</p>
 </div>
 <div id="remove-duplicated-bits-of-strings" class="section level2">
 <h2>Remove duplicated bits of strings</h2>

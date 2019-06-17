@@ -1,3 +1,10 @@
+# `strex` 1.1.1
+
+## BUG FIXES
+* Insist on necessary versions of `stringr` and `processx`.
+* Fix a sanitizer warning.
+
+
 # `strex` 1.1.0
 
 ## MINOR IMPROVEMENTS

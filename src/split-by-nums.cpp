@@ -63,7 +63,7 @@ std::vector<int> str_fullocate(IntegerMatrix x,
 //' @noRd
 // [[Rcpp::export]]
 List fullocated_substrs(CharacterVector strings, List locations) {
-  std::size_t n = strings.length();
+  R_xlen_t n = strings.length();
   List out(n);
   for (R_xlen_t i = 0; i != n; ++i) {
     std::vector<int> locs = str_fullocate(locations[i], strings[i].size());
