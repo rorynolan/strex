@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/rorynolan/strex",
   "issueTracker": "https://github.com/rorynolan/strex/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -303,6 +303,6 @@
     "https://CRAN.R-project.org/package=strex",
     "https://rorynolan.github.io/strex"
   ],
-  "fileSize": "120.121KB",
+  "fileSize": "120.122KB",
   "readme": "https://github.com/rorynolan/strex/blob/master/README.md"
 }

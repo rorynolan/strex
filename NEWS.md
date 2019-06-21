@@ -2,7 +2,7 @@
 
 ## BUG FIXES
 * Insist on necessary versions of `stringr` and `processx`.
-* Fix a sanitizer warning.
+* Fix a C++ sanitizer warning.
 
 
 # `strex` 1.1.0

@@ -325,7 +325,7 @@ Loading required package: stringr
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.28 0.022 0.305 0 0 
+Time elapsed:  0.245 0.021 0.377 0 0 
 > grDevices::dev.off()
 null device 
           1 
