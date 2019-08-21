@@ -74,7 +74,7 @@ string." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -206,8 +206,13 @@ one hundred)).</p></td>
 #&gt; [1] "a"   "1"   "b"   "2"   "c"   "344"
 #&gt; </div><div class='input'><span class='fu'>str_split_by_numbers</span>(<span class='st'>"abc123def456.789gh"</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [[1]]
 #&gt; [1] "abc"     "123"     "def"     "456.789" "gh"     
-#&gt; </div><div class='input'><span class='fu'>str_split_by_numbers</span>(<span class='st'>"22"</span>)</div><div class='output co'>#&gt; [[1]]
+#&gt; </div><div class='input'><span class='fu'>str_split_by_numbers</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"22"</span>, <span class='st'>"1.2.3"</span>), <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by ambiguity.</span>
+#&gt; <span class='warning'>    * The first such ambiguity is in string number 2 which is '1.2.3'.</span>
+#&gt; <span class='warning'>    * The offending part of that string is '1.2.3'.</span></div><div class='output co'>#&gt; [[1]]
 #&gt; [1] "22"
+#&gt; 
+#&gt; [[2]]
+#&gt; [1] NA
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

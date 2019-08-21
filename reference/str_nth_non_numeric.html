@@ -79,7 +79,7 @@ just str_nth_non_numeric(..., n = -1).
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -230,7 +230,9 @@ one hundred)).</p></td>
 )</div><div class='output co'>#&gt; [1] "abc"  "abc-" "abc"  "abc"  "abc" </div><div class='input'><span class='fu'>str_first_non_numeric</span>(<span class='no'>strings</span>,
   <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>leading_decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>sci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>commas</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>negs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; [1] "abc" "abc" "abc" "abc" "abc"</div></pre>
+)</div><div class='output co'>#&gt; [1] "abc" "abc" "abc" "abc" "abc"</div><div class='input'><span class='fu'>str_first_non_numeric</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"22"</span>, <span class='st'>"1.2.3"</span>), <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by ambiguity.</span>
+#&gt; <span class='warning'>    * The first such ambiguity is in string number 2 which is '1.2.3'.</span>
+#&gt; <span class='warning'>    * The offending part of that string is '.2.3'.</span></div><div class='output co'>#&gt; [1] NA NA</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
