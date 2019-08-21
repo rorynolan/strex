@@ -61,9 +61,11 @@ all_equal <- function(a, b = NULL) {
       return(isTRUE(all(a == a[[1]])) || all(is.na(a)))
     }
     if (is.list(a)) {
-      a %<>% lapply(function(x) x %T>% {
+      a %<>% lapply(function(x) {
+        x %T>% {
           mostattributes(.) <- NULL
-        })
+        }
+      })
     }
     return(length(unique(a)) == 1)
   }

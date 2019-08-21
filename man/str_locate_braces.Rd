@@ -20,7 +20,6 @@ Give the positions of \code{(}, \code{)}, \code{[}, \code{]}, \code{\{}, \code{\
 }
 \examples{
 str_locate_braces(c("a{](kkj)})", "ab(]c{}"))
-
 }
 \seealso{
 Other locators: \code{\link{str_locate_nth}}

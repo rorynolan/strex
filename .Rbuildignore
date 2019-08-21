@@ -17,3 +17,5 @@
 ^pkgdown$
 ^codemeta\.json$
 ^\.covrignore$
+^CODE_OF_CONDUCT\.md$
+^\.pre-commit-config\.yaml$

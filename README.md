@@ -51,3 +51,11 @@ devtools::install_github("rorynolan/strex")
 ## How to use the package
 
 See the package website at <https://rorynolan.github.io/strex>.
+
+## Contribution
+
+The preferred method of contribution is by GitHub pull request.
+
+Please note that the `strex` project is released with a [Contributor
+Code of Conduct](inst/CODE_OF_CONDUCT.md). By contributing to this
+project, you agree to abide by its terms.

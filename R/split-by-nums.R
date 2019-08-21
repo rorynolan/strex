@@ -29,7 +29,7 @@ str_split_by_numbers_no_ambigs <- function(string, num_pattern) {
 #' @examples
 #' str_split_by_numbers(c("abc123def456.789gh", "a1b2c344"))
 #' str_split_by_numbers("abc123def456.789gh", decimals = TRUE)
-#' str_split_by_numbers("22")
+#' str_split_by_numbers(c("22", "1.2.3"), decimals = TRUE)
 #' @family splitters
 #' @export
 str_split_by_numbers <- function(string, decimals = FALSE,

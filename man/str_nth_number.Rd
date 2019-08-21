@@ -81,6 +81,7 @@ str_last_number(strings,
   decimals = TRUE, leading_decimals = FALSE,
   sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE
 )
+str_first_number(c("22", "1.2.3"), decimals = TRUE)
 }
 \seealso{
 Other numeric extractors: \code{\link{str_extract_numbers}},

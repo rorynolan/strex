@@ -177,6 +177,7 @@ ambig_warn <- function(string, ambigs, ambig_regex) {
 #'   decimals = TRUE, leading_decimals = FALSE,
 #'   sci = FALSE, commas = TRUE, leave_as_string = TRUE
 #' )
+#' str_extract_numbers(c("22", "1.2.3"), decimals = TRUE)
 #' @family numeric extractors
 #' @export
 str_extract_numbers <- function(string,
@@ -259,6 +260,7 @@ str_extract_numbers <- function(string,
 #'   decimals = TRUE, leading_decimals = FALSE,
 #'   sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE
 #' )
+#' str_first_number(c("22", "1.2.3"), decimals = TRUE)
 #' @family numeric extractors
 #' @export
 str_nth_number <- function(string, n, decimals = FALSE,

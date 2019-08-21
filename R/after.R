@@ -31,9 +31,12 @@
 #' str_before_nth(string, "xx", -3)
 #' str_before_nth(string, ".", -3)
 #' str_before_nth(rep(string, 2), "..x", -3)
+#' str_before_first(string, "d")
+#' str_before_last(string, "x")
 #' string <- c("abc", "xyz.zyx")
 #' str_after_first(string, ".") # using regex
 #' str_after_first(string, coll(".")) # using human matching
+#' str_after_last(c("xy", "xz"), "x")
 #' @name before-and-after
 #' @family bisectors
 NULL

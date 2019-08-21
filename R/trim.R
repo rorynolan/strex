@@ -14,7 +14,9 @@
 #' @examples
 #' str_trim_anything("..abcd.", ".", "left")
 #' str_trim_anything("..abcd.", coll("."), "left")
+#' str_trim_anything("-ghi--", "-", "both")
 #' str_trim_anything("-ghi--", "-")
+#' str_trim_anything("-ghi--", "-", "right")
 #' str_trim_anything("-ghi--", "--")
 #' str_trim_anything("-ghi--", "i-+")
 #' @family removers
@@ -32,7 +34,7 @@ str_trim_anything <- function(string, pattern, side = "both") {
   checkmate::assert_string(side)
   side %<>% match_arg(c("both", "left", "right"), ignore_case = TRUE)
   if (any(c("coll", "fixed") %in% class(pattern)) &&
-      "pattern" %in% class(pattern)) {
+    "pattern" %in% class(pattern)) {
     pattern %<>% ore::ore.escape()
   }
   pattern %<>% str_c("(", ., ")")

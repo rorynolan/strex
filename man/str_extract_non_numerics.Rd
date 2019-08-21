@@ -54,6 +54,7 @@ str_extract_non_numerics(strings,
   decimals = TRUE, leading_decimals = TRUE,
   sci = TRUE, commas = TRUE, negs = TRUE
 )
+str_extract_non_numerics(c("22", "1.2.3"), decimals = TRUE)
 }
 \seealso{
 Other non-numeric extractors: \code{\link{str_nth_non_numeric}}

@@ -44,6 +44,7 @@ str_extract_non_numerics_no_ambigs <- function(string, num_pattern) {
 #'   decimals = TRUE, leading_decimals = TRUE,
 #'   sci = TRUE, commas = TRUE, negs = TRUE
 #' )
+#' str_extract_non_numerics(c("22", "1.2.3"), decimals = TRUE)
 #' @family non-numeric extractors
 #' @export
 str_extract_non_numerics <- function(string, decimals = FALSE,
@@ -150,6 +151,7 @@ str_nth_non_numeric_no_ambigs <- function(string, num_pattern, n) {
 #'   decimals = TRUE, leading_decimals = TRUE,
 #'   sci = TRUE, commas = TRUE, negs = TRUE
 #' )
+#' str_first_non_numeric(c("22", "1.2.3"), decimals = TRUE)
 #' @family non-numeric extractors
 #' @export
 str_nth_non_numeric <- function(string, n, decimals = FALSE,

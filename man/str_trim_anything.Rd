@@ -33,7 +33,9 @@ side(s).
 \examples{
 str_trim_anything("..abcd.", ".", "left")
 str_trim_anything("..abcd.", coll("."), "left")
+str_trim_anything("-ghi--", "-", "both")
 str_trim_anything("-ghi--", "-")
+str_trim_anything("-ghi--", "-", "right")
 str_trim_anything("-ghi--", "--")
 str_trim_anything("-ghi--", "i-+")
 }

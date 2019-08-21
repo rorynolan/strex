@@ -13,6 +13,9 @@
 #'
 #' @examples
 #' str_split_camel_case(c("RoryNolan", "NaomiFlagg", "DepartmentOfSillyHats"))
+#' str_split_camel_case(c("RoryNolan", "NaomiFlagg", "DepartmentOfSillyHats",
+#'   lower = TRUE
+#' ))
 #' @family splitters
 #' @export
 str_split_camel_case <- function(string, lower = FALSE) {

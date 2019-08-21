@@ -67,6 +67,7 @@ str_first_non_numeric(strings,
   decimals = TRUE, leading_decimals = TRUE,
   sci = TRUE, commas = TRUE, negs = TRUE
 )
+str_first_non_numeric(c("22", "1.2.3"), decimals = TRUE)
 }
 \seealso{
 Other non-numeric extractors: \code{\link{str_extract_non_numerics}}

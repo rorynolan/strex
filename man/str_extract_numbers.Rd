@@ -76,6 +76,7 @@ str_extract_numbers(strings,
   decimals = TRUE, leading_decimals = FALSE,
   sci = FALSE, commas = TRUE, leave_as_string = TRUE
 )
+str_extract_numbers(c("22", "1.2.3"), decimals = TRUE)
 }
 \seealso{
 Other numeric extractors: \code{\link{str_nth_number_after_mth}},

@@ -11,16 +11,17 @@
 #'
 #' @examples
 #' str_locate_braces(c("a{](kkj)})", "ab(]c{}"))
-#'
 #' @family locators
 #' @export
 str_locate_braces <- function(string) {
   checkmate::assert_character(string)
   if (is_l0_char(string)) {
-    out <- list(string_num = integer(),
-                string = character(),
-                position = integer(),
-                brace = character()) %>%
+    out <- list(
+      string_num = integer(),
+      string = character(),
+      position = integer(),
+      brace = character()
+    ) %>%
       tibble::new_tibble(nrow = 0)
     return(out)
   }
@@ -53,10 +54,13 @@ str_locate_braces <- function(string) {
 #'
 #' @examples
 #' str_locate_nth(c("abcdabcxyz", "abcabc"), "abc", 2)
-#' str_locate_nth(c("This old thing.", "That beautiful thing there."),
-#' "\\w+", c(2, -2))
+#' str_locate_nth(
+#'   c("This old thing.", "That beautiful thing there."),
+#'   "\\w+", c(2, -2)
+#' )
 #' str_locate_nth("abc", "b", c(0, 1, 1, 2))
-#'
+#' str_locate_first("abcxyzabc", "abc")
+#' str_locate_last("abcxyzabc", "abc")
 #' @family locators
 #' @export
 str_locate_nth <- function(string, pattern, n) {
@@ -77,7 +81,8 @@ str_locate_nth <- function(string, pattern, n) {
     }
   }
   out <- matrix(NA_integer_,
-                nrow = max(lengths(list(string, pattern, n))), ncol = 2) %>%
+    nrow = max(lengths(list(string, pattern, n))), ncol = 2
+  ) %>%
     magrittr::set_colnames(c("start", "end"))
   good <- (abs(n) <= locs_n_matches) & (n != 0)
   if (any(good)) {
