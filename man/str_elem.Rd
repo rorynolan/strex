@@ -25,7 +25,8 @@ str_elem(c("abcd", "xyz"), 3)
 str_elem("abcd", -2)
 }
 \seealso{
-Other single element extractors: \code{\link{str_elems}},
-  \code{\link{str_paste_elems}}
+Other single element extractors: 
+\code{\link{str_elems}()},
+\code{\link{str_paste_elems}()}
 }
 \concept{single element extractors}

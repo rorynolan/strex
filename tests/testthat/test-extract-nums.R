@@ -153,11 +153,11 @@ test_that("str_extract_numbers works", {
   expect_error(str_extract_numbers("a.23", leading_decimals = T))
   expect_equal(str_first_number("abc"), NA_integer_)
   expect_equal(
-    strex:::num_list_nth_elems(list(c(1, 2)), c(-1, 3)),
+    strex:::dbl_lst_nth_elems(list(c(1, 2)), c(-1, 3)),
     c(2, NA)
   )
-  expect_equal(strex:::num_list_nth_elems(list(1:2, 3:4), -1), c(2, 4))
-  expect_equal(strex:::num_list_nth_elems(list(1:2, 3:4), c(-1, 1)), 2:3)
+  expect_equal(strex:::dbl_lst_nth_elems(list(c(1, 2), c(3, 4)), -1), c(2, 4))
+  expect_equal(strex:::dbl_lst_nth_elems(list(c(1, 2), c(3, 4)), c(-1, 1)), 2:3)
   strings <- c(
     "abc123def456", "abc-0.12def.345", "abc.12e4def34.5e9",
     "abc1,100def1,230.5", "abc1,100e3,215def4e1,000"

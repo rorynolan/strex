@@ -27,7 +27,7 @@
 #' @family alphorderers
 #' @export
 str_alphord_nums <- function(string) {
-  if (all_equal(string, character())) {
+  if (is_l0_char(string)) {
     return(character())
   }
   checkmate::assert(
@@ -47,9 +47,9 @@ str_alphord_nums <- function(string) {
     )
   }
   non_nums <- str_extract_non_numerics(string)
-  if (!all_equal(non_nums)) {
+  if (length(unique(non_nums)) > 1) {
     bad_index <- 2
-    while (all_equal(non_nums[[1]], non_nums[[bad_index]])) {
+    while (isTRUE(all.equal(non_nums[[1]], non_nums[[bad_index]]))) {
       bad_index %<>% {
         . + 1
       }
@@ -66,7 +66,7 @@ str_alphord_nums <- function(string) {
   }
   nums <- str_extract_numbers(string, leave_as_string = TRUE)
   nums_lengths <- lengths(nums)
-  if (!all_equal(nums_lengths)) {
+  if (length(unique(nums_lengths)) > 1) {
     bad_index <- match(F, nums_lengths == nums_lengths[1])
     custom_stop(
       "The strings must all have the same number of numbers.",
@@ -82,7 +82,7 @@ str_alphord_nums <- function(string) {
   ncn <- nums %>% {
     array(str_length(.), dim = dim(.))
   }
-  max_lengths <- matrixStats::rowMaxs(ncn)
+  max_lengths <- int_mat_row_maxs(ncn)
   min_length <- min(ncn)
   to_prefix <- rep("0", max(max_lengths) - min_length) %>% str_c(collapse = "")
   nums %<>% str_c(to_prefix, .)
@@ -90,7 +90,7 @@ str_alphord_nums <- function(string) {
   nums %<>% str_sub(starts, -1) %>%
     split(rep(seq_len(ncol(ncn)), each = nrow(ncn)))
   num_first <- str_elem(string, 1) %>% str_can_be_numeric()
-  if (!all_equal(num_first)) {
+  if (length(unique(num_first)) > 1) {
     bad_index <- match(!num_first[1], num_first)
     custom_stop(
       "
@@ -106,9 +106,9 @@ str_alphord_nums <- function(string) {
     )
   }
   if (num_first[1]) {
-    interleaves <- interleave_char_lists(nums, non_nums)
+    interleaves <- interleave_chr_lsts(nums, non_nums)
   } else {
-    interleaves <- interleave_char_lists(non_nums, nums)
+    interleaves <- interleave_chr_lsts(non_nums, nums)
   }
   stringi::stri_paste_list(interleaves)
 }

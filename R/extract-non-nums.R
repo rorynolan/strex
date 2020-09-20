@@ -11,7 +11,7 @@
 #' @return A list of character vectors.
 #'
 #' @noRd
-str_extract_non_numerics_no_ambigs <- function(string, num_pattern) {
+str_extract_non_nums_no_ambigs <- function(string, num_pattern) {
   stringi::stri_split_regex(string, num_pattern, omit_empty = TRUE)
 }
 
@@ -78,12 +78,12 @@ str_extract_non_numerics <- function(string, decimals = FALSE,
     ambig_warn(string, ambigs, ambig_regex = ambig_pattern)
     out[ambigs] <- NA_character_
     not_ambigs <- !ambigs
-    out[not_ambigs] <- str_extract_non_numerics_no_ambigs(
+    out[not_ambigs] <- str_extract_non_nums_no_ambigs(
       string[not_ambigs],
       num_pattern
     )
   } else {
-    out[] <- str_extract_non_numerics_no_ambigs(string, num_pattern)
+    out[] <- str_extract_non_nums_no_ambigs(string, num_pattern)
   }
   out
 }
@@ -116,7 +116,7 @@ str_nth_non_numeric_no_ambigs <- function(string, num_pattern, n) {
     }
   } else {
     stringi::stri_split_regex(string, num_pattern, omit_empty = TRUE) %>%
-      str_list_nth_elems(n)
+      chr_lst_nth_elems(n)
   }
 }
 

@@ -13,7 +13,10 @@
 #' @noRd
 str_split_by_numbers_no_ambigs <- function(string, num_pattern) {
   num_locs <- str_locate_all(string, num_pattern)
-  fullocated_substrs(string, num_locs)
+  fullocated_locs <- lst_fullocate(num_locs,
+    start = 1, end = stringr::str_length(string)
+  )
+  stringi::stri_sub_all(string, fullocated_locs)
 }
 
 #' Split a string by its numeric characters.

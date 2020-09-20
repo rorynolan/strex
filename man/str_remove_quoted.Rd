@@ -18,12 +18,13 @@ parts of the string, including the quotes. Run the examples and you'll know
 exactly how this function works.
 }
 \examples{
-string <- "\\"abc\\"67a\\'dk\\'f"
+string <- "\"abc\"67a\'dk\'f"
 cat(string)
 str_remove_quoted(string)
 }
 \seealso{
-Other removers: \code{\link{str_singleize}},
-  \code{\link{str_trim_anything}}
+Other removers: 
+\code{\link{str_singleize}()},
+\code{\link{str_trim_anything}()}
 }
 \concept{removers}

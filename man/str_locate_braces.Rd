@@ -10,18 +10,19 @@ str_locate_braces(string)
 \item{string}{A character vector}
 }
 \value{
-A \link[tibble:tibble-package]{tibble} with 4 columns: \code{string_num},
-\code{string}, \code{position} and \code{brace}. Every extracted brace amount gets its
-own row in the tibble detailing the string number and string that it was
-extracted from, the position in its string and the brace.
+A data frame with 4 columns: \code{string_num}, \code{string}, \code{position} and
+\code{brace}. Every extracted brace amount gets its own row in the tibble
+detailing the string number and string that it was extracted from, the
+position in its string and the brace.
 }
 \description{
-Give the positions of \code{(}, \code{)}, \code{[}, \code{]}, \code{\{}, \code{\}} within a string.
+Give the positions of \code{(}, \verb{)}, \code{[}, \verb{]}, \verb{\\\{}, \verb{\\\}} within a string.
 }
 \examples{
 str_locate_braces(c("a{](kkj)})", "ab(]c{}"))
 }
 \seealso{
-Other locators: \code{\link{str_locate_nth}}
+Other locators: 
+\code{\link{str_locate_nth}()}
 }
 \concept{locators}

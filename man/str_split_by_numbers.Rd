@@ -4,9 +4,14 @@
 \alias{str_split_by_numbers}
 \title{Split a string by its numeric characters.}
 \usage{
-str_split_by_numbers(string, decimals = FALSE,
-  leading_decimals = FALSE, negs = FALSE, sci = FALSE,
-  commas = FALSE)
+str_split_by_numbers(
+  string,
+  decimals = FALSE,
+  leading_decimals = FALSE,
+  negs = FALSE,
+  sci = FALSE,
+  commas = FALSE
+)
 }
 \arguments{
 \item{string}{A string.}
@@ -41,6 +46,7 @@ str_split_by_numbers("abc123def456.789gh", decimals = TRUE)
 str_split_by_numbers(c("22", "1.2.3"), decimals = TRUE)
 }
 \seealso{
-Other splitters: \code{\link{str_split_camel_case}}
+Other splitters: 
+\code{\link{str_split_camel_case}()}
 }
 \concept{splitters}

@@ -22,7 +22,7 @@ status](https://codecov.io/gh/rorynolan/strex/branch/master/graph/badge.svg)](ht
 
 ![Project Status: Active – The project has reached a stable, usable
 state and is being actively
-developed.](http://www.repostatus.org/badges/latest/active.svg)
+developed.](https://www.repostatus.org/badges/latest/active.svg)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
 [![CRAN
@@ -30,7 +30,7 @@ status](https://www.r-pkg.org/badges/version/strex)](https://cran.r-project.org/
 ![RStudio CRAN
 downloads](http://cranlogs.r-pkg.org/badges/grand-total/strex) ![RStudio
 CRAN monthly downloads](http://cranlogs.r-pkg.org/badges/strex)
-[![Rdocumentation](http://www.rdocumentation.org/badges/version/strex)](http://www.rdocumentation.org/packages/strex)
+[![Rdocumentation](https://www.rdocumentation.org/badges/version/strex)](https://www.rdocumentation.org/packages/strex)
 
 ## Installation
 
@@ -50,7 +50,7 @@ devtools::install_github("rorynolan/strex")
 
 ## How to use the package
 
-See the package website at <https://rorynolan.github.io/strex>.
+See the package website at <https://rorynolan.github.io/strex/>.
 
 ## Contribution
 

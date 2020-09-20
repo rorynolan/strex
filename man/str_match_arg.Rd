@@ -5,11 +5,21 @@
 \alias{match_arg}
 \title{Argument Matching.}
 \usage{
-str_match_arg(arg, choices = NULL, index = FALSE, several_ok = FALSE,
-  ignore_case = FALSE)
+str_match_arg(
+  arg,
+  choices = NULL,
+  index = FALSE,
+  several_ok = FALSE,
+  ignore_case = FALSE
+)
 
-match_arg(arg, choices = NULL, index = FALSE, several_ok = FALSE,
-  ignore_case = FALSE)
+match_arg(
+  arg,
+  choices = NULL,
+  index = FALSE,
+  several_ok = FALSE,
+  ignore_case = FALSE
+)
 }
 \arguments{
 \item{arg}{A character vector (of length one unless \code{several_ok = TRUE}).}

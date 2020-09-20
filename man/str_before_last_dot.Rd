@@ -21,6 +21,7 @@ file extension. It is vectorized over \code{string}. If there is no period in
 str_before_last_dot(c("spreadsheet1.csv", "doc2.doc", ".R"))
 }
 \seealso{
-Other bisectors: \code{\link{before-and-after}}
+Other bisectors: 
+\code{\link{before-and-after}}
 }
 \concept{bisectors}

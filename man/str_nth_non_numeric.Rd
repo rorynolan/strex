@@ -6,17 +6,33 @@
 \alias{str_last_non_numeric}
 \title{Extract the \code{n}th non-numeric substring from a string.}
 \usage{
-str_nth_non_numeric(string, n, decimals = FALSE,
-  leading_decimals = decimals, negs = FALSE, sci = FALSE,
-  commas = FALSE)
+str_nth_non_numeric(
+  string,
+  n,
+  decimals = FALSE,
+  leading_decimals = decimals,
+  negs = FALSE,
+  sci = FALSE,
+  commas = FALSE
+)
 
-str_first_non_numeric(string, decimals = FALSE,
-  leading_decimals = decimals, negs = FALSE, sci = FALSE,
-  commas = FALSE)
+str_first_non_numeric(
+  string,
+  decimals = FALSE,
+  leading_decimals = decimals,
+  negs = FALSE,
+  sci = FALSE,
+  commas = FALSE
+)
 
-str_last_non_numeric(string, decimals = FALSE,
-  leading_decimals = decimals, negs = FALSE, sci = FALSE,
-  commas = FALSE)
+str_last_non_numeric(
+  string,
+  decimals = FALSE,
+  leading_decimals = decimals,
+  negs = FALSE,
+  sci = FALSE,
+  commas = FALSE
+)
 }
 \arguments{
 \item{string}{A string.}
@@ -70,6 +86,7 @@ str_first_non_numeric(strings,
 str_first_non_numeric(c("22", "1.2.3"), decimals = TRUE)
 }
 \seealso{
-Other non-numeric extractors: \code{\link{str_extract_non_numerics}}
+Other non-numeric extractors: 
+\code{\link{str_extract_non_numerics}()}
 }
 \concept{non-numeric extractors}

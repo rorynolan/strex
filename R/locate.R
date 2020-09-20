@@ -4,10 +4,10 @@
 #'
 #' @param string A character vector
 #'
-#' @return A [tibble][tibble::tibble-package] with 4 columns: `string_num`,
-#'   `string`, `position` and `brace`. Every extracted brace amount gets its
-#'   own row in the tibble detailing the string number and string that it was
-#'   extracted from, the position in its string and the brace.
+#' @return A data frame with 4 columns: `string_num`, `string`, `position` and
+#'   `brace`. Every extracted brace amount gets its own row in the tibble
+#'   detailing the string number and string that it was extracted from, the
+#'   position in its string and the brace.
 #'
 #' @examples
 #' str_locate_braces(c("a{](kkj)})", "ab(]c{}"))
@@ -16,25 +16,23 @@
 str_locate_braces <- function(string) {
   checkmate::assert_character(string)
   if (is_l0_char(string)) {
-    out <- list(
+    out <- data.frame(
       string_num = integer(),
       string = character(),
       position = integer(),
       brace = character()
-    ) %>%
-      tibble::new_tibble(nrow = 0)
+    )
     return(out)
   }
   pattern <- "[\\(\\)\\[\\]\\{\\}]"
   locations <- str_locate_all(string, pattern) %>%
-    int_lst_first_col()
+    int_mat_lst_nth_cols(1L)
   braces <- str_extract_all(string, pattern)
   string_num <- rep(seq_along(string), lengths(braces))
-  list(
+  data.frame(
     string_num = string_num, string = string[string_num],
     position = unlist(locations), brace = unlist(braces)
-  ) %>%
-    tibble::new_tibble(nrow = length(string_num))
+  )
 }
 
 #' Locate the indices of the `n`th instance of a pattern.
@@ -64,7 +62,7 @@ str_locate_braces <- function(string) {
 #' @family locators
 #' @export
 str_locate_nth <- function(string, pattern, n) {
-  if (all_equal(string, character(0))) {
+  if (is_l0_char(string)) {
     out <- matrix(character(), ncol = 2) %>%
       magrittr::set_colnames(c("start", "end"))
     return(out)
@@ -87,10 +85,10 @@ str_locate_nth <- function(string, pattern, n) {
   good <- (abs(n) <= locs_n_matches) & (n != 0)
   if (any(good)) {
     if (length(locs) == 1) {
-      out[good, ] <- lst_rbind_nth_rows(locs, n[good])
+      out[good, ] <- int_mat_lst_rbind_nth_rows(locs, n[good])
     } else {
       if (length(n) > 1) n <- n[good]
-      out[good, ] <- lst_rbind_nth_rows(locs[good], n)
+      out[good, ] <- int_mat_lst_rbind_nth_rows(locs[good], n)
     }
   }
   out

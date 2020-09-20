@@ -10,13 +10,13 @@ curr_pattern <- function() {
 #' Helper for currency extration.
 #'
 #' Given string numbers, strings and amount locations, output the required
-#' tibble.
+#' data frame.
 #'
 #' @param string_num The string number.
 #' @param string A character vector.
 #' @param locs An integer matrix. The amount locations.
 #'
-#' @return A tibble.
+#' @return A data frame.
 #'
 #' @noRd
 extract_curr_helper <- function(string_num, string, locs) {
@@ -29,11 +29,9 @@ extract_curr_helper <- function(string_num, string, locs) {
   sign_sym_pos <- ifelse(curr_sym_pos == 0, 0, curr_sym_pos - 1)
   curr_sym_sign <- ifelse(str_elem(string, sign_sym_pos) == "-", -1, 1)
   amount <- amount * curr_sym_sign
-  tibble::new_tibble(list(
+  data.frame(
     string_num = string_num, string = string,
     curr_sym = curr_sym, amount = amount
-  ),
-  nrow = length(string)
   )
 }
 
@@ -60,10 +58,10 @@ extract_curr_helper <- function(string_num, string, locs) {
 #'
 #' @inheritParams str_after_nth
 #'
-#' @return A [tibble][tibble::tibble-package] with 4 columns: `string_num`,
-#'   `string`, `curr_sym` and `amount`. Every extracted currency amount gets its
-#'   own row in the tibble detailing the string number and string that it was
-#'   extracted from, the currency symbol and the amount.
+#' @return A data frame with 4 columns: `string_num`, `string`, `curr_sym` and
+#'   `amount`. Every extracted currency amount gets its own row in the data
+#'   frame detailing the string number and string that it was extracted from,
+#'   the currency symbol and the amount.
 #'
 #' @examples
 #' string <- c("ab3 13", "$1", "35.00 $1.14", "abc5 $3.8", "stuff")
@@ -91,7 +89,7 @@ str_extract_currencies <- function(string) {
   locs_lens <- lengths(locs)
   string_num <- rep(seq_along(string), locs_lens / 2)
   string <- string[string_num]
-  locs %<>% lst_rbind(locs_lens)
+  locs %<>% do.call(rbind, .)
   extract_curr_helper(string_num, string, locs)
 }
 
@@ -130,7 +128,7 @@ str_nth_currency <- function(string, n) {
     if (any(good)) {
       if (length(n) > 1) n <- n[good]
       locs[good, ] <- interim_locs[good] %>%
-        lst_rbind_nth_rows(n)
+        int_mat_lst_rbind_nth_rows(n)
     }
   }
   extract_curr_helper(seq_along(string), string, locs)

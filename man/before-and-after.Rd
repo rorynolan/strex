@@ -28,10 +28,10 @@ str_before_last(string, pattern)
 \item{pattern}{The pattern to look for.
 
 The default interpretation is a regular expression, as described in
-\link[stringi:stringi-search-regex]{stringi::stringi-search-regex}.
+\link[stringi:about_search_regex]{stringi::stringi-search-regex}.
 
 To match a without regular expression (i.e. as a human would), use
-\link[stringr:coll]{coll()}. For details see \code{\link[stringr:regex]{stringr::regex()}}.}
+\link[stringr:modifiers]{coll()}. For details see \code{\link[stringr:modifiers]{stringr::regex()}}.}
 
 \item{n}{A vector of integerish values. Must be either length 1 or
 have length equal to the length of \code{string}. Negative indices count from
@@ -66,6 +66,7 @@ str_after_first(string, coll(".")) # using human matching
 str_after_last(c("xy", "xz"), "x")
 }
 \seealso{
-Other bisectors: \code{\link{str_before_last_dot}}
+Other bisectors: 
+\code{\link{str_before_last_dot}()}
 }
 \concept{bisectors}

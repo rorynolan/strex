@@ -1,11 +1,11 @@
 * using log directory ‘/Users/rnolan/Dropbox/R/strex/revdep/checks.noindex/filesstrings/new/filesstrings.Rcheck’
-* using R version 3.6.0 (2019-04-26)
-* using platform: x86_64-apple-darwin15.6.0 (64-bit)
+* using R version 4.0.2 (2020-06-22)
+* using platform: x86_64-apple-darwin17.0 (64-bit)
 * using session charset: UTF-8
 * using options ‘--no-manual --no-build-vignettes’
 * checking for file ‘filesstrings/DESCRIPTION’ ... OK
 * checking extension type ... Package
-* this is package ‘filesstrings’ version ‘3.1.4’
+* this is package ‘filesstrings’ version ‘3.1.6’
 * package encoding: UTF-8
 * checking package namespace information ... OK
 * checking package dependencies ... OK
@@ -31,7 +31,9 @@
 * checking whether the package can be unloaded cleanly ... OK
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
-* checking dependencies in R code ... OK
+* checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘tibble’
+  All declared Imports should be used.
 * checking S3 generic/method consistency ... OK
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
@@ -55,6 +57,7 @@
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK
 * checking running R code from vignettes ... NONE
+  ‘files.Rmd’ using ‘UTF-8’... OK
 * checking re-building of vignette outputs ... SKIPPED
 * DONE
-Status: OK
+Status: 1 NOTE

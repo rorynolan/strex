@@ -29,6 +29,7 @@ Adapted from Ramnath Vaidyanathan's answer at
 http://stackoverflow.com/questions/8406974/splitting-camelcase-in-r.
 }
 \seealso{
-Other splitters: \code{\link{str_split_by_numbers}}
+Other splitters: 
+\code{\link{str_split_by_numbers}()}
 }
 \concept{splitters}

@@ -6,17 +6,36 @@
 \alias{str_last_number}
 \title{Extract the \code{n}th number from a string.}
 \usage{
-str_nth_number(string, n, decimals = FALSE,
-  leading_decimals = decimals, negs = FALSE, sci = FALSE,
-  commas = FALSE, leave_as_string = FALSE)
+str_nth_number(
+  string,
+  n,
+  decimals = FALSE,
+  leading_decimals = decimals,
+  negs = FALSE,
+  sci = FALSE,
+  commas = FALSE,
+  leave_as_string = FALSE
+)
 
-str_first_number(string, decimals = FALSE, leading_decimals = decimals,
-  negs = FALSE, sci = FALSE, commas = FALSE,
-  leave_as_string = FALSE)
+str_first_number(
+  string,
+  decimals = FALSE,
+  leading_decimals = decimals,
+  negs = FALSE,
+  sci = FALSE,
+  commas = FALSE,
+  leave_as_string = FALSE
+)
 
-str_last_number(string, decimals = FALSE, leading_decimals = decimals,
-  negs = FALSE, sci = FALSE, commas = FALSE,
-  leave_as_string = FALSE)
+str_last_number(
+  string,
+  decimals = FALSE,
+  leading_decimals = decimals,
+  negs = FALSE,
+  sci = FALSE,
+  commas = FALSE,
+  leave_as_string = FALSE
+)
 }
 \arguments{
 \item{string}{A string.}
@@ -84,8 +103,9 @@ str_last_number(strings,
 str_first_number(c("22", "1.2.3"), decimals = TRUE)
 }
 \seealso{
-Other numeric extractors: \code{\link{str_extract_numbers}},
-  \code{\link{str_nth_number_after_mth}},
-  \code{\link{str_nth_number_before_mth}}
+Other numeric extractors: 
+\code{\link{str_extract_numbers}()},
+\code{\link{str_nth_number_after_mth}()},
+\code{\link{str_nth_number_before_mth}()}
 }
 \concept{numeric extractors}

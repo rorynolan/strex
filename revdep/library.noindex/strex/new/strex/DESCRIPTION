@@ -1,40 +1,41 @@
 Package: strex
 Title: Extra String Manipulation Functions
-Version: 1.1.0
-Authors@R: person("Rory", "Nolan", email = "rorynoolan@gmail.com", 
-                  role = c("aut", "cre"), 
-                  comment = c(ORCID = "0000-0002-5239-4043"))
-Description: There are some things that I wish were easier with the 'stringr' 
-    or 'stringi' packages. The foremost of these is the extraction of numbers 
-    from strings. 'stringr' and 'stringi' make you figure out the regular 
-    expression for yourself; 'strex' takes care of this for you. There are many 
-    other handy functionalities in 'strex'. Contributions to this package are 
-    encouraged: it is intended as a miscellany of string manipulation functions 
-    that cannot be found in 'stringi' or 'stringr'.
-Depends: R (>= 3.1), stringr (>= 1.2.0)
+Version: 1.3.0
+Authors@R: 
+    person(given = "Rory",
+           family = "Nolan",
+           role = c("aut", "cre"),
+           email = "rorynoolan@gmail.com",
+           comment = c(ORCID = "0000-0002-5239-4043"))
+Description: There are some things that I wish were easier with
+    the 'stringr' or 'stringi' packages. The foremost of these is the
+    extraction of numbers from strings. 'stringr' and 'stringi' make you
+    figure out the regular expression for yourself; 'strex' takes care of
+    this for you. There are many other handy functionalities in 'strex'.
+    Contributions to this package are encouraged: it is intended as a
+    miscellany of string manipulation functions that cannot be found in
+    'stringi' or 'stringr'.
 License: GPL-3
-Encoding: UTF-8
-LazyData: true
-LinkingTo: Rcpp (>= 1.0.1)
-Imports: Rcpp (>= 1.0.1), magrittr (>= 1.5), checkmate (>= 1.9.3),
-        matrixStats (>= 0.50.0), ore (>= 1.4.0), rlang (>= 0.3.3),
-        tibble (>= 2.0.1), glue (>= 1.3.0), stringi (>= 1.3.1),
-        processx (>= 3.3.1), stats
-RoxygenNote: 6.1.1
-Roxygen: list(markdown = TRUE)
-Suggests: testthat (>= 2.1.0), knitr, rmarkdown, pacman, covr,
-        spelling, purrr
-SystemRequirements: C++11
-VignetteBuilder: knitr
 URL: https://rorynolan.github.io/strex,
         https://github.com/rorynolan/strex
 BugReports: https://github.com/rorynolan/strex/issues
-Language: en-US
+Depends: R (>= 3.1), stringr (>= 1.2.0)
+Imports: checkmate (>= 1.9.3), glue (>= 1.3.0), magrittr (>= 1.5),
+        rlang (>= 0.3.3), stats, stringi (>= 1.3.1), utils
+Suggests: covr, knitr, matrixStats (>= 0.12), pacman, purrr, rmarkdown,
+        spelling, testthat (>= 2.1.0), vctrs (>= 0.2.2)
+VignetteBuilder: knitr
 Biarch: TRUE
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+SystemRequirements: C++11
 RemoteType: local
 RemoteUrl: /Users/rnolan/Dropbox/R/strex
 NeedsCompilation: yes
-Packaged: 2019-06-21 11:19:38 UTC; rnolan
+Packaged: 2020-09-16 18:04:34 UTC; rnolan
 Author: Rory Nolan [aut, cre] (<https://orcid.org/0000-0002-5239-4043>)
 Maintainer: Rory Nolan <rorynoolan@gmail.com>
-Built: R 3.6.0; x86_64-apple-darwin15.6.0; 2019-06-21 11:19:39 UTC; unix
+Built: R 4.0.2; x86_64-apple-darwin17.0; 2020-09-16 18:04:35 UTC; unix

@@ -44,12 +44,12 @@ num_regex <- function(decimals = FALSE, leading_decimals = decimals,
     pattern <- ifelse(leading_decimals, leading_dec_pattern, dec_pattern)
   }
   if (sci) {
-    pattern <- glue::glue(
+    pattern <- stringr::str_glue(
       "(?:(?:{pattern}[eE][+-]?{non_dec_pattern})|",
       "(?:{pattern}))"
     )
   }
-  if (negs) pattern <- glue::glue("-?(?:{pattern})")
+  if (negs) pattern <- stringr::str_glue("-?(?:{pattern})")
   pattern
 }
 
@@ -82,7 +82,7 @@ ambig_num_regex <- function(decimals = FALSE, leading_decimals = decimals,
         "\\d[eE]\\d+[eE]\\d"
       )
     }
-    out <- ifelse(decimals, glue::glue("({sci_bit})|({out})"), sci_bit)
+    out <- ifelse(decimals, stringr::str_glue("({sci_bit})|({out})"), sci_bit)
   }
   out
 }
@@ -219,7 +219,7 @@ str_extract_numbers <- function(string,
   if (leave_as_string) {
     return(out)
   }
-  lst_char_to_num(out, commas = commas)
+  lst_chr_to_dbl(out, commas = commas)
 }
 
 #' Extract the `n`th number from a string.
@@ -278,8 +278,7 @@ str_nth_number <- function(string, n, decimals = FALSE,
   checkmate::assert_flag(sci)
   checkmate::assert_flag(commas)
   out <- character(length(string))
-  if (matrixStats::allValue(n, value = 1) ||
-    matrixStats::allValue(n, value = -1)) {
+  if (int_vec_all_value(n, 1) || int_vec_all_value(n, -1)) {
     pattern <- num_regex(
       decimals = decimals, leading_decimals = leading_decimals,
       negs = negs, sci = sci, commas = commas
@@ -319,7 +318,7 @@ str_nth_number <- function(string, n, decimals = FALSE,
       decimals = decimals,
       leading_decimals = leading_decimals, commas = commas
     )
-    out <- str_list_nth_elems(numbers, n)
+    out <- chr_lst_nth_elems(numbers, n)
   }
   if (leave_as_string) {
     return(out)

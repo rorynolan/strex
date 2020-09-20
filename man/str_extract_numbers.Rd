@@ -4,9 +4,15 @@
 \alias{str_extract_numbers}
 \title{Extract numbers from a string.}
 \usage{
-str_extract_numbers(string, decimals = FALSE,
-  leading_decimals = decimals, negs = FALSE, sci = FALSE,
-  commas = FALSE, leave_as_string = FALSE)
+str_extract_numbers(
+  string,
+  decimals = FALSE,
+  leading_decimals = decimals,
+  negs = FALSE,
+  sci = FALSE,
+  commas = FALSE,
+  leave_as_string = FALSE
+)
 }
 \arguments{
 \item{string}{A string.}
@@ -42,12 +48,12 @@ commas (as separators, not as an alternative to the decimal point) are
 optionally allowed.
 }
 \details{
-If any part of a string contains an ambiguous number (e.g. \code{1.2.3} would be
+If any part of a string contains an ambiguous number (e.g. \verb{1.2.3} would be
 ambiguous if \code{decimals = TRUE} (but not otherwise)), the value returned for
 that string will be \code{NA} and a \code{warning} will be issued.
 
 With scientific notation, it is assumed that the exponent is not a decimal
-number e.g. \code{2e2.4} is unacceptable. Commas, however, are acceptable in the
+number e.g. \verb{2e2.4} is unacceptable. Commas, however, are acceptable in the
 exponent, so 2e1,100 is fine and equal to 2e1100 if the option to allow
 commas in numbers has been turned on.
 
@@ -79,8 +85,9 @@ str_extract_numbers(strings,
 str_extract_numbers(c("22", "1.2.3"), decimals = TRUE)
 }
 \seealso{
-Other numeric extractors: \code{\link{str_nth_number_after_mth}},
-  \code{\link{str_nth_number_before_mth}},
-  \code{\link{str_nth_number}}
+Other numeric extractors: 
+\code{\link{str_nth_number_after_mth}()},
+\code{\link{str_nth_number_before_mth}()},
+\code{\link{str_nth_number}()}
 }
 \concept{numeric extractors}

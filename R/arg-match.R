@@ -73,14 +73,17 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
       default_arg_names <- formal_args %>% {
         names(.)[as.logical(str_length(as.character(.)))]
       }
-      if (matrixStats::anyValue(default_arg_names, value = arg_sym)) {
+      if (arg_sym %in% default_arg_names) {
         choices <- eval(formal_args[[arg_sym]], envir = sys.frame(sys_p))
         if (is.character(choices)) {
-          return(str_match_arg(arg,
-            choices = choices, index = index,
-            several_ok = several_ok,
-            ignore_case = ignore_case
-          ))
+          return(
+            str_match_arg(arg,
+              choices = choices,
+              index = index,
+              several_ok = several_ok,
+              ignore_case = ignore_case
+            )
+          )
         } else {
           null_choice_err <- TRUE
         }
@@ -89,7 +92,6 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
       }
     }
     if (null_choice_err) {
-      fun <- as.character(match.call())[[1]]
       custom_stop(
         "You have used `{fun}()` without specifying a `choices` argument. ",
         "
@@ -102,10 +104,25 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
         See also the vignette on argument matching:
         enter `vignette(\"argument-matching\", package = \"strex\")`
         at the R console.
-        "
+        ",
+        .envir = list(fun = as.character(match.call())[[1]])
       )
     }
   }
+  str_match_arg_basic(
+    arg = arg,
+    choices = choices,
+    index = index,
+    several_ok = several_ok,
+    ignore_case = ignore_case
+  )
+}
+
+#' @rdname str_match_arg
+#' @export
+match_arg <- str_match_arg
+
+str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case) {
   checkmate::assert_character(arg, min.len = 1)
   checkmate::assert_character(choices, min.len = 1)
   checkmate::assert_flag(index)
@@ -128,18 +145,21 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
         match(lower_choices[first_dup], lower_choices),
         first_dup
       )
-      dupair <- choices[dupair_indices]
       custom_stop(
         "`choices` must not have duplicate elements. ",
         "Since you have set `ignore_case = TRUE`, elements
          {dupair_indices[1]} and {dupair_indices[2]} of your `choices`
-         (\"{dupair[1]}\" and \"{dupair[2]}\") are effectively duplicates."
+         (\"{dupair[1]}\" and \"{dupair[2]}\") are effectively duplicates.",
+        .envir = list(
+          dupair = choices[dupair_indices],
+          dupair_indices = dupair_indices
+        )
       )
     }
   }
   arg_len <- length(arg)
   if (!several_ok && arg_len > 1) {
-    if (all_equal(arg, choices)) {
+    if (isTRUE(all.equal(arg, choices))) {
       return(choices[[1]])
     }
     custom_stop(
@@ -154,25 +174,22 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
   } else {
     indices <- match_arg_index(arg, choices)
   }
-  bads <- indices < 0
+  bads <- indices <= 0
   if (any(bads)) {
-    first_bad_index <- match(T, bads)
+    first_bad_index <- match(TRUE, bads)
     first_bad_type <- indices[first_bad_index]
-    stopifnot(first_bad_type %in% (-(1:2))) # should never happen
+    stopifnot(first_bad_type %in% (-seq_len(2))) # should never happen
     if (first_bad_type == -1) {
-      lch <- length(choices)
-      if (lch > 50) {
-        choices %<>% {
-          .[1:50]
-        }
-      }
       custom_stop(
         "`arg` must be a prefix of exactly one element of `choices`.",
         "Your{ifelse(lch > 50, \" first 50 \", \" \")}`choices` are
-         \"{glue::glue_collapse(choices, sep = \"\\\", \\\"\",
-         last = \"\\\" and \\\"\")}\".",
+         \"{paste(utils::head(choices, 50), collapse = \"\\\", \\\"\")}\".",
         "Your `arg` \"{arg[first_bad_index]}\" is not a prefix
-         of any of your `choices`."
+         of any of your `choices`.",
+        .envir = list(
+          lch = length(choices), choices = choices, arg = arg,
+          first_bad_index = first_bad_index
+        )
       )
     } else {
       if (ignore_case) {
@@ -183,11 +200,11 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
       } else {
         two_ambigs <- str_detect(choices, str_c("^", arg[first_bad_index]))
       }
-      two_ambigs %<>% {
-        choices[.]
-      } %>% {
-        .[1:2]
-      }
+      two_ambigs %<>%
+        {
+          choices[.]
+        } %>%
+        utils::head(2)
       custom_stop(
         "`arg` must be a prefix of exactly one element of `choices`.",
         "Your `arg` \"{arg[first_bad_index]}\" is a prefix of two or more
@@ -197,13 +214,8 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
       )
     }
   }
-  indices <- indices + 1
   if (index) {
     return(indices)
   }
   choices[indices]
 }
-
-#' @rdname str_match_arg
-#' @export
-match_arg <- str_match_arg

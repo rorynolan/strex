@@ -4,9 +4,14 @@
 \alias{str_extract_non_numerics}
 \title{Extract non-numbers from a string.}
 \usage{
-str_extract_non_numerics(string, decimals = FALSE,
-  leading_decimals = decimals, negs = FALSE, sci = FALSE,
-  commas = FALSE)
+str_extract_non_numerics(
+  string,
+  decimals = FALSE,
+  leading_decimals = decimals,
+  negs = FALSE,
+  sci = FALSE,
+  commas = FALSE
+)
 }
 \arguments{
 \item{string}{A string.}
@@ -57,6 +62,7 @@ str_extract_non_numerics(strings,
 str_extract_non_numerics(c("22", "1.2.3"), decimals = TRUE)
 }
 \seealso{
-Other non-numeric extractors: \code{\link{str_nth_non_numeric}}
+Other non-numeric extractors: 
+\code{\link{str_nth_non_numeric}()}
 }
 \concept{non-numeric extractors}

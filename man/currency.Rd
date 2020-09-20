@@ -25,10 +25,10 @@ the back: while \code{n = 1} and \code{n = 2} correspond to first and second, \c
 \code{NA}.}
 }
 \value{
-A \link[tibble:tibble-package]{tibble} with 4 columns: \code{string_num},
-\code{string}, \code{curr_sym} and \code{amount}. Every extracted currency amount gets its
-own row in the tibble detailing the string number and string that it was
-extracted from, the currency symbol and the amount.
+A data frame with 4 columns: \code{string_num}, \code{string}, \code{curr_sym} and
+\code{amount}. Every extracted currency amount gets its own row in the data
+frame detailing the string number and string that it was extracted from,
+the currency symbol and the amount.
 }
 \description{
 The currency of a number is defined as the character coming before the number

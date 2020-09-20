@@ -1,8 +1,14 @@
+# `strex` 1.2.0
+
+## MINOR IMPROVEMENTS
+* Include more examples to cover all common functionality.
+
+
 # `strex` 1.1.1
 
 ## BUG FIXES
 * Insist on necessary versions of `stringr` and `processx`.
-* Fix a sanitizer warning.
+* Fix a C++ sanitizer warning.
 
 
 # `strex` 1.1.0

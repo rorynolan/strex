@@ -1,15 +1,10 @@
+#' @useDynLib strex, .registration = TRUE
 #' @import stringr
+#' @importFrom stringi stri_write_lines
 #' @importFrom magrittr '%>%' '%<>%' '%T>%'
-#' @importFrom processx curl_fds
 #' @importFrom stats as.dendrogram
 NULL
 
-## usethis namespace: start
-#' @useDynLib strex, .registration = TRUE
-#' @importFrom Rcpp sourceCpp
-#' @importFrom tibble tibble
-## usethis namespace: end
-NULL
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
 if (getRversion() >= "2.15.1") {

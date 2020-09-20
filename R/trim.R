@@ -31,17 +31,70 @@ str_trim_anything <- function(string, pattern, side = "both") {
     )
   }
   verify_string_pattern(string, pattern)
+
+  out <- string
   checkmate::assert_string(side)
   side %<>% match_arg(c("both", "left", "right"), ignore_case = TRUE)
-  if (any(c("coll", "fixed") %in% class(pattern)) &&
-    "pattern" %in% class(pattern)) {
-    pattern %<>% ore::ore.escape()
+  type <- "regex"
+  if (all(c("fixed", "pattern") %in% class(pattern))) {
+    type <- "fixed"
+  } else if (all(c("coll", "pattern") %in% class(pattern))) {
+    type <- "coll"
+  } else {
+    pattern <- str_c("(", pattern, ")+")
   }
-  pattern %<>% str_c("(", ., ")")
-  switch(side,
-    both = str_replace(string, str_c("^", pattern, "*"), "") %>%
-      str_replace(str_c(pattern, "*$"), ""),
-    left = str_replace(string, str_c("^", pattern, "*"), ""),
-    right = str_replace(string, str_c(pattern, "*$"), "")
-  )
+  if (side == "left") {
+    starts <- which(str_starts(out, pattern))
+    while (any(starts)) {
+      out[starts] <- switch(
+        type,
+        regex = stringi::stri_replace_first_regex(
+          out[starts],
+          pattern[ifelse(length(pattern) == 1, 1, starts)],
+          ""
+        ),
+        fixed = stringi::stri_replace_first_fixed(
+          out[starts],
+          pattern[ifelse(length(pattern) == 1, 1, starts)],
+          ""
+        ),
+        coll = stringi::stri_replace_first_coll(
+          out[starts],
+          pattern[ifelse(length(pattern) == 1, 1, starts)],
+          ""
+        ),
+      )
+      starts <- starts[str_starts(out[starts], pattern)]
+    }
+  }
+  if (side == "right") {
+    ends <- which(str_ends(out, pattern))
+    while (any(ends)) {
+      out[ends] <- switch(
+        type,
+        regex = stringi::stri_replace_last_regex(
+          out[ends],
+          pattern[ifelse(length(pattern) == 1, 1, starts)],
+          ""
+        ),
+        fixed = stringi::stri_replace_last_fixed(
+          out[ends],
+          pattern[ifelse(length(pattern) == 1, 1, starts)],
+          ""
+        ),
+        coll = stringi::stri_replace_last_coll(
+          out[ends],
+          pattern[ifelse(length(pattern) == 1, 1, starts)],
+          ""
+        ),
+      )
+      ends <- ends[str_ends(out[ends], pattern)]
+    }
+  }
+  if (side == "both") {
+    out <- string %>%
+      str_trim_anything(pattern, "left") %>%
+      str_trim_anything(pattern, "right")
+  }
+  out
 }

@@ -77,7 +77,7 @@ test_that("match_arg() works", {
     str_c(
       "`arg` must be a prefix of exactly one element of `choices`.+",
       ". Your first 50 `choices` are \\\"1\\\", \\\"2\\\", \\\"3\\\", .+",
-      "47\\\", \\\"48\\\", \\\"49\\\" and \\\"50\\\".+",
+      "47\\\", \\\"48\\\", \\\"49\\\", \\\"50\\\".+",
       ". Your `arg` \\\"a\\\" is not a prefix of any of your `choices`."
     )
   )

@@ -18,10 +18,10 @@ str_locate_last(string, pattern)
 \item{pattern}{The pattern to look for.
 
 The default interpretation is a regular expression, as described in
-\link[stringi:stringi-search-regex]{stringi::stringi-search-regex}.
+\link[stringi:about_search_regex]{stringi::stringi-search-regex}.
 
 To match a without regular expression (i.e. as a human would), use
-\link[stringr:coll]{coll()}. For details see \code{\link[stringr:regex]{stringr::regex()}}.}
+\link[stringr:modifiers]{coll()}. For details see \code{\link[stringr:modifiers]{stringr::regex()}}.}
 
 \item{n}{A vector of integerish values. Must be either length 1 or
 have length equal to the length of \code{string}. Negative indices count from
@@ -53,6 +53,7 @@ str_locate_first("abcxyzabc", "abc")
 str_locate_last("abcxyzabc", "abc")
 }
 \seealso{
-Other locators: \code{\link{str_locate_braces}}
+Other locators: 
+\code{\link{str_locate_braces}()}
 }
 \concept{locators}

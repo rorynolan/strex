@@ -12,10 +12,10 @@ str_singleize(string, pattern)
 \item{pattern}{The pattern to look for.
 
 The default interpretation is a regular expression, as described in
-\link[stringi:stringi-search-regex]{stringi::stringi-search-regex}.
+\link[stringi:about_search_regex]{stringi::stringi-search-regex}.
 
 To match a without regular expression (i.e. as a human would), use
-\link[stringr:coll]{coll()}. For details see \code{\link[stringr:regex]{stringr::regex()}}.}
+\link[stringr:modifiers]{coll()}. For details see \code{\link[stringr:modifiers]{stringr::regex()}}.}
 }
 \value{
 A character vector.
@@ -34,7 +34,8 @@ str_singleize(c("abab", "cdcd"), "cd")
 str_singleize(c("abab", "cdcd"), c("ab", "cd"))
 }
 \seealso{
-Other removers: \code{\link{str_remove_quoted}},
-  \code{\link{str_trim_anything}}
+Other removers: 
+\code{\link{str_remove_quoted}()},
+\code{\link{str_trim_anything}()}
 }
 \concept{removers}
