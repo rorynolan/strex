@@ -17,8 +17,8 @@ matrix:
         script: Rscript -e 'pkgdown::deploy_site_github()'
         skip_cleanup: true
     - os: linux
-      dist: trusty  # GCC v4.8.4
+      dist: bionic
       env:
-        - Ubuntu_Nickname=trusty14 GCC_Version=4.8.4 Regex_Supported=false  # just to make travis results easy to read
+        - Ubuntu_Nickname=bionic18 GCC_Version=7.4.0  # just to make travis results easy to read
     - os: osx
       env: _R_CHECK_LENGTH_1_CONDITION_=true
