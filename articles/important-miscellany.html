@@ -12,19 +12,20 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Important Miscellany">
-<meta property="og:description" content="">
+<meta property="og:description" content="strex">
 <meta property="og:image" content="/logo.png">
-<meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
       </span>
     </div>
 
@@ -45,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -82,8 +83,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/rorynolan/strex">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/rorynolan/strex/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -96,12 +97,13 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+
+      </header><script src="important-miscellany_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Important Miscellany</h1>
+      <h1 data-toc-skip>Important Miscellany</h1>
             
-            <h4 class="date">2019-08-21</h4>
+            <h4 class="date">2020-09-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rorynolan/strex/blob/master/vignettes/important-miscellany.Rmd"><code>vignettes/important-miscellany.Rmd</code></a></small>
       <div class="hidden name"><code>important-miscellany.Rmd</code></div>
@@ -114,179 +116,183 @@
 <h2 class="hasAnchor">
 <a href="#the-importance-of-this-miscellany" class="anchor"></a>The Importance of this miscellany</h2>
 <p>The features of <code>strex</code> that were deemed the <em>most</em> interesting have been given their own vignettes. However, the package was intended as a miscellany of useful functions, so the functions demonstrated here encapsulate the spirit of this package, i.e. functions that save R string manipulators time.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(strex)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; Loading required package: stringr</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://rorynolan.github.io/strex">strex</a></span>)
+<span class="co">#&gt; Loading required package: stringr</span>
+</pre></div>
 </div>
 <div id="could-this-be-numeric" class="section level2">
 <h2 class="hasAnchor">
 <a href="#could-this-be-numeric" class="anchor"></a>Could this be numeric?</h2>
 <p>Sometimes you don’t want to know whether something is numeric, just whether or not it could be. Now you can find out with <code><a href="../reference/str_can_be_numeric.html">str_can_be_numeric()</a></code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/str_can_be_numeric.html">str_can_be_numeric</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1a"</span>, <span class="st">"abc"</span>, <span class="st">"5"</span>, <span class="st">"2e7"</span>, <span class="st">"seven"</span>))</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; [1] FALSE FALSE  TRUE  TRUE FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="../reference/str_can_be_numeric.html">str_can_be_numeric</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"1a"</span>, <span class="st">"abc"</span>, <span class="st">"5"</span>, <span class="st">"2e7"</span>, <span class="st">"seven"</span>))
+<span class="co">#&gt; [1] FALSE FALSE  TRUE  TRUE FALSE</span>
+</pre></div>
 </div>
 <div id="currency" class="section level2">
 <h2 class="hasAnchor">
 <a href="#currency" class="anchor"></a>Currency</h2>
 <p>To get currencies and amounts mentioned in strings, there are <code><a href="../reference/currency.html">str_extract_currencies()</a></code> and <code><a href="../reference/currency.html">str_nth_currency()</a></code>, <code><a href="../reference/currency.html">str_first_currency()</a></code> and <code><a href="../reference/currency.html">str_last_currency()</a></code>. <code><a href="../reference/currency.html">str_first_currency()</a></code> just returns the first currency amount. <code><a href="../reference/currency.html">str_last_currency()</a></code> returns the last. <code><a href="../reference/currency.html">str_nth_currency()</a></code> allows you to get the second, third and so on. <code><a href="../reference/currency.html">str_extract_currencies()</a></code> returns all currency amounts mentioned in a string.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">string &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Alan paid £5"</span>, <span class="st">"Joe paid $7"</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="../reference/currency.html">str_first_currency</a></span>(string)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; # A tibble: 2 x 4</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;   string_num string       curr_sym amount</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; 1          1 Alan paid £5 £             5</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; 2          2 Joe paid $7  $             7</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">string &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"€1 is $1.17"</span>, <span class="st">"£1 is $1.29"</span>)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw"><a href="../reference/currency.html">str_nth_currency</a></span>(string, <span class="dt">n =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; # A tibble: 2 x 4</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;   string_num string      curr_sym amount</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; 1          1 €1 is $1.17 €          1   </span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; 2          2 £1 is $1.29 $          1.29</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="kw"><a href="../reference/currency.html">str_last_currency</a></span>(string)  <span class="co"># only gets the first mentioned</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; # A tibble: 2 x 4</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt;   string_num string      curr_sym amount</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; 1          1 €1 is $1.17 $          1.17</span></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; 2          2 £1 is $1.29 $          1.29</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="kw"><a href="../reference/currency.html">str_extract_currencies</a></span>(string)</a>
-<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt; # A tibble: 4 x 4</span></a>
-<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt;   string_num string      curr_sym amount</span></a>
-<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">#&gt; 1          1 €1 is $1.17 €          1   </span></a>
-<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt; 2          1 €1 is $1.17 $          1.17</span></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">#&gt; 3          2 £1 is $1.29 £          1   </span></a>
-<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co">#&gt; 4          2 £1 is $1.29 $          1.29</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Alan paid £5"</span>, <span class="st">"Joe paid $7"</span>)
+<span class="fu"><a href="../reference/currency.html">str_first_currency</a></span>(<span class="kw">string</span>)
+<span class="co">#&gt;   string_num       string curr_sym amount</span>
+<span class="co">#&gt; 1          1 Alan paid £5        £      5</span>
+<span class="co">#&gt; 2          2  Joe paid $7        $      7</span>
+<span class="kw">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"€1 is $1.17"</span>, <span class="st">"£1 is $1.29"</span>)
+<span class="fu"><a href="../reference/currency.html">str_nth_currency</a></span>(<span class="kw">string</span>, n = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>))
+<span class="co">#&gt;   string_num      string curr_sym amount</span>
+<span class="co">#&gt; 1          1 €1 is $1.17        €   1.00</span>
+<span class="co">#&gt; 2          2 £1 is $1.29        $   1.29</span>
+<span class="fu"><a href="../reference/currency.html">str_last_currency</a></span>(<span class="kw">string</span>)  <span class="co"># only gets the first mentioned</span>
+<span class="co">#&gt;   string_num      string curr_sym amount</span>
+<span class="co">#&gt; 1          1 €1 is $1.17        $   1.17</span>
+<span class="co">#&gt; 2          2 £1 is $1.29        $   1.29</span>
+<span class="fu"><a href="../reference/currency.html">str_extract_currencies</a></span>(<span class="kw">string</span>)
+<span class="co">#&gt;   string_num      string curr_sym amount</span>
+<span class="co">#&gt; 1          1 €1 is $1.17        €   1.00</span>
+<span class="co">#&gt; 2          1 €1 is $1.17        $   1.17</span>
+<span class="co">#&gt; 3          2 £1 is $1.29        £   1.00</span>
+<span class="co">#&gt; 4          2 £1 is $1.29        $   1.29</span>
+</pre></div>
 </div>
 <div id="extract-a-single-element-of-a-string" class="section level2">
 <h2 class="hasAnchor">
 <a href="#extract-a-single-element-of-a-string" class="anchor"></a>Extract a single element of a string</h2>
 <p>This is a simple wrapper around <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">stringr::str_sub()</a></code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">string =<span class="st"> "abcdefg"</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">str_sub</span>(string, <span class="dv">3</span>, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; [1] "c"</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw"><a href="../reference/str_elem.html">str_elem</a></span>(string, <span class="dv">3</span>)  <span class="co"># simpler and more exressive</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; [1] "c"</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">string</span> <span class="op">=</span> <span class="st">"abcdefg"</span>
+<span class="fu">str_sub</span>(<span class="kw">string</span>, <span class="fl">3</span>, <span class="fl">3</span>)
+<span class="co">#&gt; [1] "c"</span>
+<span class="fu"><a href="../reference/str_elem.html">str_elem</a></span>(<span class="kw">string</span>, <span class="fl">3</span>)  <span class="co"># simpler and more exressive</span>
+<span class="co">#&gt; [1] "c"</span>
+</pre></div>
 </div>
 <div id="extract-numbers-and-non-numeric-elements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#extract-numbers-and-non-numeric-elements" class="anchor"></a>Extract numbers and non-numeric elements</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">string &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"aa1bbb2ccc3"</span>, <span class="st">"xyz7ayc8jzk99elephant"</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="../reference/str_extract_numbers.html">str_extract_numbers</a></span>(string)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; [1] 1 2 3</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; [1]  7  8 99</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw"><a href="../reference/str_extract_non_numerics.html">str_extract_non_numerics</a></span>(string)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [1] "aa"  "bbb" "ccc"</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; [1] "xyz"      "ayc"      "jzk"      "elephant"</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"aa1bbb2ccc3"</span>, <span class="st">"xyz7ayc8jzk99elephant"</span>)
+<span class="fu"><a href="../reference/str_extract_numbers.html">str_extract_numbers</a></span>(<span class="kw">string</span>)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 1 2 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1]  7  8 99</span>
+<span class="fu"><a href="../reference/str_extract_non_numerics.html">str_extract_non_numerics</a></span>(<span class="kw">string</span>)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] "aa"  "bbb" "ccc"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] "xyz"      "ayc"      "jzk"      "elephant"</span>
+</pre></div>
 </div>
 <div id="split-a-string-by-its-numbers" class="section level2">
 <h2 class="hasAnchor">
 <a href="#split-a-string-by-its-numbers" class="anchor"></a>Split a string by its numbers</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">string &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"aa1bbb2ccc3"</span>, <span class="st">"xyz7ayc8jzk99elephant"</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="../reference/str_split_by_numbers.html">str_split_by_numbers</a></span>(string)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; [1] "aa"  "1"   "bbb" "2"   "ccc" "3"  </span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; [1] "xyz"      "7"        "ayc"      "8"        "jzk"      "99"      </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; [7] "elephant"</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"aa1bbb2ccc3"</span>, <span class="st">"xyz7ayc8jzk99elephant"</span>)
+<span class="fu"><a href="../reference/str_split_by_numbers.html">str_split_by_numbers</a></span>(<span class="kw">string</span>)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] "aa"  "1"   "bbb" "2"   "ccc" "3"  </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] "xyz"      "7"        "ayc"      "8"        "jzk"      "99"       "elephant"</span>
+</pre></div>
 </div>
 <div id="force-a-file-name-to-have-an-extension" class="section level2">
 <h2 class="hasAnchor">
 <a href="#force-a-file-name-to-have-an-extension" class="anchor"></a>Force a file name to have an extension</h2>
 <p>We can give files a given extension, leaving them alone if they already have it.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">string &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"spreadsheet1.csv"</span>, <span class="st">"spreadsheet2"</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw"><a href="../reference/str_give_ext.html">str_give_ext</a></span>(string, <span class="st">"csv"</span>)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt; [1] "spreadsheet1.csv" "spreadsheet2.csv"</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"spreadsheet1.csv"</span>, <span class="st">"spreadsheet2"</span>)
+<span class="fu"><a href="../reference/str_give_ext.html">str_give_ext</a></span>(<span class="kw">string</span>, <span class="st">"csv"</span>)
+<span class="co">#&gt; [1] "spreadsheet1.csv" "spreadsheet2.csv"</span>
+</pre></div>
 <p>If the file already has an extension, we can append one or replace it.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="../reference/str_give_ext.html">str_give_ext</a></span>(string, <span class="st">"xls"</span>)  <span class="co"># append</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#&gt; [1] "spreadsheet1.csv.xls" "spreadsheet2.xls"</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw"><a href="../reference/str_give_ext.html">str_give_ext</a></span>(string, <span class="st">"csv"</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)  <span class="co"># replace</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#&gt; [1] "spreadsheet1.csv" "spreadsheet2.csv"</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="../reference/str_give_ext.html">str_give_ext</a></span>(<span class="kw">string</span>, <span class="st">"xls"</span>)  <span class="co"># append</span>
+<span class="co">#&gt; [1] "spreadsheet1.csv.xls" "spreadsheet2.xls"</span>
+<span class="fu"><a href="../reference/str_give_ext.html">str_give_ext</a></span>(<span class="kw">string</span>, <span class="st">"csv"</span>, replace = <span class="fl">TRUE</span>)  <span class="co"># replace</span>
+<span class="co">#&gt; [1] "spreadsheet1.csv" "spreadsheet2.csv"</span>
+</pre></div>
 </div>
 <div id="strip-away-a-file-extension" class="section level2">
 <h2 class="hasAnchor">
 <a href="#strip-away-a-file-extension" class="anchor"></a>Strip away a file extension</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">string &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"spreadsheet1.csv"</span>, <span class="st">"spreadsheet2"</span>)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="../reference/str_before_last_dot.html">str_before_last_dot</a></span>(string)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; [1] "spreadsheet1" "spreadsheet2"</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="kw">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"spreadsheet1.csv"</span>, <span class="st">"spreadsheet2"</span>)
+<span class="fu"><a href="../reference/str_before_last_dot.html">str_before_last_dot</a></span>(<span class="kw">string</span>)
+<span class="co">#&gt; [1] "spreadsheet1" "spreadsheet2"</span>
+</pre></div>
 </div>
 <div id="remove-quoted-bits-from-a-string" class="section level2">
 <h2 class="hasAnchor">
 <a href="#remove-quoted-bits-from-a-string" class="anchor"></a>Remove quoted bits from a string</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">string &lt;-<span class="st"> "I hate having these </span><span class="ch">\"</span><span class="st">quotes</span><span class="ch">\"</span><span class="st"> in the middle of my strings."</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(string)</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; I hate having these "quotes" in the middle of my strings.</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw"><a href="../reference/str_remove_quoted.html">str_remove_quoted</a></span>(string)</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt; [1] "I hate having these  in the middle of my strings."</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="kw">string</span> <span class="op">&lt;-</span> <span class="st">"I hate having these \"quotes\" in the middle of my strings."</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="kw">string</span>)
+<span class="co">#&gt; I hate having these "quotes" in the middle of my strings.</span>
+<span class="fu"><a href="../reference/str_remove_quoted.html">str_remove_quoted</a></span>(<span class="kw">string</span>)
+<span class="co">#&gt; [1] "I hate having these  in the middle of my strings."</span>
+</pre></div>
 </div>
 <div id="split-camel-case" class="section level2">
 <h2 class="hasAnchor">
 <a href="#split-camel-case" class="anchor"></a>Split camel case</h2>
 <p>I’m not mad on CamelCase, I often want to deconstruct it.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">string &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"CamelVar1"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"CamelVar2"</span>))</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="../reference/str_split_camel_case.html">str_split_camel_case</a></span>(string)</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; [1] "Camel" "Var1" </span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; [1] "Camel" "Var2"</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="kw">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CamelVar1"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CamelVar2"</span>))
+<span class="fu"><a href="../reference/str_split_camel_case.html">str_split_camel_case</a></span>(<span class="kw">string</span>)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] "Camel" "Var1" </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] "Camel" "Var2"</span>
+</pre></div>
 </div>
 <div id="convert-a-string-to-a-vector" class="section level2">
 <h2 class="hasAnchor">
 <a href="#convert-a-string-to-a-vector" class="anchor"></a>Convert a string to a vector</h2>
 <p>This is something I did a lot to avoid using regular expression. Don’t do it for that purpose. Learn regex. <a href="https://regexone.com/" class="uri">https://regexone.com/</a> is a very good start.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">string &lt;-<span class="st"> "R is good."</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="../reference/str_to_vec.html">str_to_vec</a></span>(string)</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt;  [1] "R" " " "i" "s" " " "g" "o" "o" "d" "."</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="kw">string</span> <span class="op">&lt;-</span> <span class="st">"R is good."</span>
+<span class="fu"><a href="../reference/str_to_vec.html">str_to_vec</a></span>(<span class="kw">string</span>)
+<span class="co">#&gt;  [1] "R" " " "i" "s" " " "g" "o" "o" "d" "."</span>
+</pre></div>
 </div>
 <div id="trim-anything-not-just-whitespace" class="section level2">
 <h2 class="hasAnchor">
 <a href="#trim-anything-not-just-whitespace" class="anchor"></a>Trim anything, not just whitespace</h2>
 <p>What if something is needlessly surrounded by parentheses and we want to get rid of them?</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">string &lt;-<span class="st"> "(((Why all the parentheses?)))"</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">string <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/str_trim_anything.html">str_trim_anything</a></span>(<span class="kw">coll</span>(<span class="st">"("</span>), <span class="dt">side =</span> <span class="st">"left"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/str_trim_anything.html">str_trim_anything</a></span>(<span class="kw">coll</span>(<span class="st">")"</span>), <span class="dt">side =</span> <span class="st">"r"</span>)</a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; [1] "Why all the parentheses?"</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="kw">string</span> <span class="op">&lt;-</span> <span class="st">"(((Why all the parentheses?)))"</span>
+<span class="kw">string</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/str_trim_anything.html">str_trim_anything</a></span>(<span class="fu">coll</span>(<span class="st">"("</span>), side = <span class="st">"left"</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/str_trim_anything.html">str_trim_anything</a></span>(<span class="fu">coll</span>(<span class="st">")"</span>), side = <span class="st">"r"</span>)
+<span class="co">#&gt; [1] "Why all the parentheses?"</span>
+</pre></div>
 </div>
 <div id="remove-duplicated-bits-of-strings" class="section level2">
 <h2 class="hasAnchor">
 <a href="#remove-duplicated-bits-of-strings" class="anchor"></a>Remove duplicated bits of strings</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">string &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"I often write the word *my* twice in a row in my my sentences."</span>)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw"><a href="../reference/str_singleize.html">str_singleize</a></span>(string, <span class="st">" my"</span>)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt; [1] "I often write the word *my* twice in a row in my sentences."</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="kw">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"I often write the word *my* twice in a row in my my sentences."</span>)
+<span class="fu"><a href="../reference/str_singleize.html">str_singleize</a></span>(<span class="kw">string</span>, <span class="st">" my"</span>)
+<span class="co">#&gt; [1] "I often write the word *my* twice in a row in my sentences."</span>
+</pre></div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#the-importance-of-this-miscellany">The Importance of this miscellany</a></li>
-      <li><a href="#could-this-be-numeric">Could this be numeric?</a></li>
-      <li><a href="#currency">Currency</a></li>
-      <li><a href="#extract-a-single-element-of-a-string">Extract a single element of a string</a></li>
-      <li><a href="#extract-numbers-and-non-numeric-elements">Extract numbers and non-numeric elements</a></li>
-      <li><a href="#split-a-string-by-its-numbers">Split a string by its numbers</a></li>
-      <li><a href="#force-a-file-name-to-have-an-extension">Force a file name to have an extension</a></li>
-      <li><a href="#strip-away-a-file-extension">Strip away a file extension</a></li>
-      <li><a href="#remove-quoted-bits-from-a-string">Remove quoted bits from a string</a></li>
-      <li><a href="#split-camel-case">Split camel case</a></li>
-      <li><a href="#convert-a-string-to-a-vector">Convert a string to a vector</a></li>
-      <li><a href="#trim-anything-not-just-whitespace">Trim anything, not just whitespace</a></li>
-      <li><a href="#remove-duplicated-bits-of-strings">Remove duplicated bits of strings</a></li>
-      </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -294,12 +300,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

@@ -15,21 +15,29 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,8 +45,8 @@
 
 
 
-<meta property="og:title" content="Make string numbers comply with alphabetical order. — str_alphord_nums" />
 
+<meta property="og:title" content="Make string numbers comply with alphabetical order. — str_alphord_nums" />
 <meta property="og:description" content="If strings are numbered, their numbers may not comply with alphabetical
 order, e.g. &quot;abc2&quot; comes after &quot;abc10&quot; in alphabetical order. We might (for
 whatever reason) wish to change them such that they come in the order that
@@ -47,9 +55,8 @@ alphabetical order, so here &quot;abc2&quot; would be renamed to &quot;abc02&quo
 file names with more than one number in them e.g. &quot;abc01def3&quot; (a string
 with 2 numbers). All the strings in the character vector string must have
 the same number of numbers, and the non-number bits must be the same." />
-
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -63,9 +70,10 @@ the same number of numbers, and the non-number bits must be the same." />
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,7 +87,7 @@ the same number of numbers, and the non-number bits must be the same." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
       </span>
     </div>
 
@@ -87,7 +95,7 @@ the same number of numbers, and the non-number bits must be the same." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -122,11 +130,10 @@ the same number of numbers, and the non-number bits must be the same." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/rorynolan/strex">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/rorynolan/strex/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -137,6 +144,7 @@ the same number of numbers, and the non-number bits must be the same." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -148,7 +156,6 @@ the same number of numbers, and the non-number bits must be the same." />
     </div>
 
     <div class="ref-description">
-    
     <p>If strings are numbered, their numbers may not <em>comply</em> with alphabetical
 order, e.g. "abc2" comes after <code>"abc10"</code> in alphabetical order. We might (for
 whatever reason) wish to change them such that they come in the order <em>that
@@ -157,11 +164,10 @@ alphabetical order, so here <code>"abc2"</code> would be renamed to "abc02". It 
 file names with more than one number in them e.g. <code>"abc01def3"</code> (a string
 with 2 numbers). All the strings in the character vector <code>string</code> must have
 the same number of numbers, and the non-number bits must be the same.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>str_alphord_nums</span>(<span class='no'>string</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>str_alphord_nums</span>(<span class='kw'>string</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -170,33 +176,33 @@ the same number of numbers, and the non-number bits must be the same.</p>
       <td><p>A character vector.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A character vector.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>string</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"abc"</span>, <span class='fl'>1</span>:<span class='fl'>12</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>string</span>)</div><div class='output co'>#&gt;  [1] "abc1"  "abc2"  "abc3"  "abc4"  "abc5"  "abc6"  "abc7"  "abc8"  "abc9" 
-#&gt; [10] "abc10" "abc11" "abc12"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='no'>string</span>)</div><div class='output co'>#&gt;  [1] "abc01" "abc02" "abc03" "abc04" "abc05" "abc06" "abc07" "abc08" "abc09"
-#&gt; [10] "abc10" "abc11" "abc12"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abc9def55"</span>, <span class='st'>"abc10def7"</span>))</div><div class='output co'>#&gt; [1] "abc09def55" "abc10def07"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"01abc9def55"</span>, <span class='st'>"5abc10def777"</span>, <span class='st'>"99abc4def4"</span>))</div><div class='output co'>#&gt; [1] "01abc09def055" "05abc10def777" "99abc04def004"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='fl'>1</span>:<span class='fl'>10</span>)</div><div class='output co'>#&gt;  [1] "01" "02" "03" "04" "05" "06" "07" "08" "09" "10"</div><span class='co'># NOT RUN {</span>
-<span class='fu'>str_alphord_nums</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"abc9def55"</span>, <span class='st'>"abc10xyz7"</span>)) <span class='co'># error</span>
-<span class='co'># }</span><div class='input'>
+    <pre class="examples"><div class='input'><span class='kw'>string</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"abc"</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>12</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>string</span>)
+</div><div class='output co'>#&gt;  [1] "abc1"  "abc2"  "abc3"  "abc4"  "abc5"  "abc6"  "abc7"  "abc8"  "abc9" 
+#&gt; [10] "abc10" "abc11" "abc12"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='kw'>string</span>)
+</div><div class='output co'>#&gt;  [1] "abc01" "abc02" "abc03" "abc04" "abc05" "abc06" "abc07" "abc08" "abc09"
+#&gt; [10] "abc10" "abc11" "abc12"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"abc9def55"</span>, <span class='st'>"abc10def7"</span>))
+</div><div class='output co'>#&gt; [1] "abc09def55" "abc10def07"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"01abc9def55"</span>, <span class='st'>"5abc10def777"</span>, <span class='st'>"99abc4def4"</span>))
+</div><div class='output co'>#&gt; [1] "01abc09def055" "05abc10def777" "99abc04def004"</div><div class='input'><span class='fu'>str_alphord_nums</span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>)
+</div><div class='output co'>#&gt;  [1] "01" "02" "03" "04" "05" "06" "07" "08" "09" "10"</div><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>str_alphord_nums</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"abc9def55"</span>, <span class='st'>"abc10xyz7"</span>)) <span class='co'># error</span>
+}
+
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -204,13 +210,16 @@ the same number of numbers, and the non-number bits must be the same.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
