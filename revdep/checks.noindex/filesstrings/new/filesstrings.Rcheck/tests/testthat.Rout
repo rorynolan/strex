@@ -25,4 +25,4 @@ Loading required package: stringr
 > 
 > proc.time()
    user  system elapsed 
-  1.381   0.130   1.506 
+  2.217   0.200   2.589 

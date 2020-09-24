@@ -12,7 +12,7 @@
 #' @param pattern The pattern to look for.
 #'
 #'   The default interpretation is a regular expression, as described in
-#'   [stringi::stringi-search-regex].
+#'   [stringi::about_search_regex].
 #'
 #'   To match a without regular expression (i.e. as a human would), use
 #'   [coll()][stringr::coll]. For details see [stringr::regex()].

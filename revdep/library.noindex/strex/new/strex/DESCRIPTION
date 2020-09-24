@@ -16,14 +16,14 @@ Description: There are some things that I wish were easier with
     miscellany of string manipulation functions that cannot be found in
     'stringi' or 'stringr'.
 License: GPL-3
-URL: https://rorynolan.github.io/strex,
+URL: https://rorynolan.github.io/strex/,
         https://github.com/rorynolan/strex
 BugReports: https://github.com/rorynolan/strex/issues
 Depends: R (>= 3.1), stringr (>= 1.2.0)
-Imports: checkmate (>= 1.9.3), glue (>= 1.3.0), magrittr (>= 1.5),
-        rlang (>= 0.3.3), stats, stringi (>= 1.3.1), utils
-Suggests: covr, knitr, matrixStats (>= 0.12), pacman, purrr, rmarkdown,
-        spelling, testthat (>= 2.1.0), vctrs (>= 0.2.2)
+Imports: checkmate (>= 1.9.3), magrittr (>= 1.5), rlang (>= 0.3.3),
+        stats, stringi (>= 1.3.1), utils
+Suggests: covr, knitr, pacman, purrr, rmarkdown, spelling, testthat (>=
+        2.1.0)
 VignetteBuilder: knitr
 Biarch: TRUE
 Encoding: UTF-8
@@ -35,7 +35,7 @@ SystemRequirements: C++11
 RemoteType: local
 RemoteUrl: /Users/rnolan/Dropbox/R/strex
 NeedsCompilation: yes
-Packaged: 2020-09-16 18:04:34 UTC; rnolan
+Packaged: 2020-09-23 01:52:00 UTC; rnolan
 Author: Rory Nolan [aut, cre] (<https://orcid.org/0000-0002-5239-4043>)
 Maintainer: Rory Nolan <rorynoolan@gmail.com>
-Built: R 4.0.2; x86_64-apple-darwin17.0; 2020-09-16 18:04:35 UTC; unix
+Built: R 4.0.2; x86_64-apple-darwin17.0; 2020-09-23 01:52:00 UTC; unix
