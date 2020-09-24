@@ -9,7 +9,7 @@ matrix:
     - os: linux
       dist: xenial
       env:
-        - Ubuntu_Nickname=xenial16 GCC_Version=5.4.0 Regex_Supported=true  # just to make travis results easy to read
+        - Ubuntu_Nickname=xenial16 GCC_Version=5.4.0  # just to make travis results easy to read
       after_success: Rscript -e 'covr::codecov()'
       before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
       deploy:
