@@ -47,7 +47,6 @@ SEXP C_fullocate(SEXP int_mat, int start, int end) {
     UNPROTECT(1);
     ++prlst_len;
   }
-  UNPROTECT(1);
   if (INTEGER(CAR(prlst_tail))[1] < end) {
     SEXP next_car = PROTECT(C_make_len2_int_vec(last + 1, end));
     SEXP next = PROTECT(Rf_list1(next_car));
@@ -56,7 +55,7 @@ SEXP C_fullocate(SEXP int_mat, int start, int end) {
     ++prlst_len;
   }
   SEXP out = PROTECT(C_int_prlst_rbind(prlst, prlst_len));
-  UNPROTECT(2);
+  UNPROTECT(3);
   return out;
 }
 
