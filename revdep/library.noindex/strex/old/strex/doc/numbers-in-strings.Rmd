@@ -43,7 +43,7 @@ library(strex)
 str_extract_numbers(img_names)
 ```
 
-It seems to have missed the fact that 2.5 is a number and not two numbers 2 and 5. This is because the default is `decimals = FALSE`. To recognise decimals, set `decimals = TRUE`. Also note that there is no option to recognise scientific notation. 
+It seems to have missed the fact that 2.5 is a number and not two numbers 2 and 5. This is because the default is `decimals = FALSE`. To recognise decimals, set `decimals = TRUE`. Also, note that there is an option to recognise scientific notation. More on that below.
 
 ```{r extract-all-numbers-use-decimals}
 str_extract_numbers(img_names, decimals = TRUE)
@@ -95,10 +95,10 @@ str_last_number_before_first(img_names, "biopsy", decimals = TRUE)
 
 ## Tidy number extraction
 
-To extract all of this information tidily, use a `tibble`:
+To extract all of this information tidily, use a data frame:
 
-```{r tibble}
-tibble::tibble(img_names,
+```{r dataframe}
+data.frame(img_names,
   patient = str_first_number_after_first(img_names, "patient"),
   cell = str_first_number_after_first(img_names, "cell"),
   hrs_after_biop = str_last_number_before_first(img_names, "biop", 
@@ -130,7 +130,7 @@ str_subset(ls("package:strex"), "number")
 Of course, all of the above is possible with regular expression using `stringr`, it's just more difficult and less expressive:
 
 ```{r regex}
-tibble::tibble(img_names,
+data.frame(img_names,
   patient = str_match(img_names, "patient(\\d+)")[, 2],
   cell = str_match(img_names, "cell(\\d+)")[, 2],
   hrs_after_biop = str_match(img_names, "(\\d*\\.*\\d+)hour")[, 2]

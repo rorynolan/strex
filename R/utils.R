@@ -10,9 +10,7 @@ custom_bullet <- function(string) {
   checkmate::assert_string(string)
   string %>%
     stringr::str_replace_all("\\s+", " ") %>%
-    {
-      stringr::str_glue("    * {.}")
-    }
+    paste("    *", .)
 }
 
 custom_condition_prep <- function(main_message, ..., .envir = parent.frame()) {

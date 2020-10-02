@@ -6,7 +6,7 @@
 ^\.github$
 ^docs$
 ^_pkgdown\.yml$
-^README\.Rmd$
+^README.+$
 ^LICENSE\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$

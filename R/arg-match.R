@@ -193,24 +193,19 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case) {
       )
     } else {
       if (ignore_case) {
-        two_ambigs <- str_detect(
-          tolower(choices),
-          str_c("^", tolower(arg)[first_bad_index])
-        )
+        ambigs <- choices[
+          str_starts(tolower(choices),
+                     str_c("^", tolower(arg)[first_bad_index]))
+        ]
       } else {
-        two_ambigs <- str_detect(choices, str_c("^", arg[first_bad_index]))
+        ambigs <- str_subset(choices, str_c("^", arg[first_bad_index]))
       }
-      two_ambigs %<>%
-        {
-          choices[.]
-        } %>%
-        utils::head(2)
       custom_stop(
         "`arg` must be a prefix of exactly one element of `choices`.",
         "Your `arg` \"{arg[first_bad_index]}\" is a prefix of two or more
          elements of `choices`.",
         "The first two of these are
-         \"{two_ambigs[1]}\" and \"{two_ambigs[2]}\"."
+         \"{ambigs[1]}\" and \"{ambigs[2]}\"."
       )
     }
   }

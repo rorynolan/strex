@@ -5,7 +5,8 @@ test_that("`str_extract_currencies()` works", {
     data.frame(
       string_num = 1, string = string,
       curr_sym = c("", "$", "c", "$", " "),
-      amount = c(35, 1.14, 5, 3.8, 77)
+      amount = c(35, 1.14, 5, 3.8, 77),
+      stringsAsFactors = FALSE
     )
   )
   string <- c(
@@ -19,7 +20,8 @@ test_that("`str_extract_currencies()` works", {
       string_num = rep(seq_along(string), reps),
       string = rep(string, reps),
       curr_sym = c("", "$", "c", "$", " ", "$", "£"),
-      amount = c(35, 1.14, 5, 3.8, 77, -1.5e6, 1000)
+      amount = c(35, 1.14, 5, 3.8, 77, -1.5e6, 1000),
+      stringsAsFactors = FALSE
     )
   )
   expect_equal(
@@ -37,7 +39,8 @@ test_that("`str_nth_currency()` works", {
     str_nth_currency(string, n = 2),
     data.frame(
       string_num = seq_along(string), string = string,
-      curr_sym = c(" ", NA), amount = c(13, NA)
+      curr_sym = c(" ", NA), amount = c(13, NA),
+      stringsAsFactors = FALSE
     )
   )
   string <- c("35.00 $1.14", "abc5 $3.8", "stuff")
@@ -46,7 +49,8 @@ test_that("`str_nth_currency()` works", {
     2, 1
   )), data.frame(
     string_num = seq_along(string), string = string,
-    curr_sym = c("", "$", NA), amount = c(35, 3.8, NA)
+    curr_sym = c("", "$", NA), amount = c(35, 3.8, NA),
+    stringsAsFactors = FALSE
   ))
   string <- c("ab3 13", "$1", "35.00 $1.14", "abc5 $3.8", "stuff")
   expect_equal(
@@ -55,7 +59,8 @@ test_that("`str_nth_currency()` works", {
       string_num = 1:5,
       string = c("ab3 13", "$1", "35.00 $1.14", "abc5 $3.8", "stuff"),
       curr_sym = c(" ", NA, "$", "$", NA),
-      amount = c(13, NA, 1.14, 3.8, NA)
+      amount = c(13, NA, 1.14, 3.8, NA),
+      stringsAsFactors = FALSE
     )
   )
   expect_equal(
@@ -64,18 +69,23 @@ test_that("`str_nth_currency()` works", {
       string_num = 1:5,
       string = c("ab3 13", "$1", "35.00 $1.14", "abc5 $3.8", "stuff"),
       curr_sym = c("b", NA, "", "$", NA),
-      amount = c(3, NA, 35, 3.8, NA)
+      amount = c(3, NA, 35, 3.8, NA),
+      stringsAsFactors = FALSE
     )
   )
   expect_equal(
     str_first_currency(string),
-    data.frame(string_num = 1:5, string = c(
+    data.frame(
+      string_num = 1:5,
+      string = c(
       "ab3 13", "$1", "35.00 $1.14",
       "abc5 $3.8", "stuff"
-    ), curr_sym = c("b", "$", "", "c", NA), amount = c(
+    ),
+    curr_sym = c("b", "$", "", "c", NA),
+    amount = c(
       3,
       1, 35, 5, NA
-    ))
+    ), stringsAsFactors = FALSE)
   )
   expect_equal(
     str_last_currency(string),
@@ -84,7 +94,8 @@ test_that("`str_nth_currency()` works", {
         "ab3 13", "$1", "35.00 $1.14",
         "abc5 $3.8", "stuff"
       ), curr_sym = c(" ", "$", "$", "$", NA),
-      amount = c(13, 1, 1.14, 3.8, NA)
+      amount = c(13, 1, 1.14, 3.8, NA),
+      stringsAsFactors = FALSE
     )
   )
   expect_error(str_nth_currency(as.character(1:3), 1:7),

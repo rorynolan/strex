@@ -1,13 +1,13 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ----load----------------------------------------------------------------
+## ----load---------------------------------------------------------------------
 library(strex)
 
-## ----before--------------------------------------------------------------
+## ----before-------------------------------------------------------------------
 string <- "ab..cd..de..fg..h"
 str_before_first(string, "e")
 str_before_nth(string, "\\.", 3)
@@ -15,7 +15,7 @@ str_before_last(string, "\\.")
 str_before_nth(string, ".", -3)
 str_before_nth(rep(string, 2), fixed("."), -3)
 
-## ----after---------------------------------------------------------------
+## ----after--------------------------------------------------------------------
 string <- "ab..cd..de..fg..h"
 str_after_first(string, "e")
 str_after_nth(string, "\\.", 3)
@@ -23,10 +23,10 @@ str_after_last(string, "\\.")
 str_after_nth(string, ".", -3)
 str_after_nth(rep(string, 2), fixed("."), -3)
 
-## ----james-harry---------------------------------------------------------
+## ----james-harry--------------------------------------------------------------
 string <- "James did the cooking, Harry did the cleaning."
 
-## ----get-task------------------------------------------------------------
+## ----get-task-----------------------------------------------------------------
 library(magrittr)
 get_task <- function(string, name) {
   str_c(name, " did the ") %>% 

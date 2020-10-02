@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2019-09-12" />
+<meta name="date" content="2020-09-25" />
 
 <title>Argument Matching</title>
 
@@ -117,9 +116,6 @@ padding-right: 2em;
 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 line-height: 1.35;
-}
-#header {
-text-align: center;
 }
 #TOC {
 clear: both;
@@ -288,7 +284,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -302,7 +299,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 <h1 class="title toc-ignore">Argument Matching</h1>
-<h4 class="date">2019-09-12</h4>
+<h4 class="date">2020-09-25</h4>
 
 
 
@@ -318,8 +315,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2><code>strex</code></h2>
 <p>The default behaviour of <code>strex::match_arg()</code> is to observe case, but case ignorance can be turned on with <code>ignore_case = TRUE</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">strex<span class="op">::</span><span class="kw">match_arg</span>(<span class="st">&quot;Y&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>))</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; `arg` must be a prefix of exactly one element of `choices`.</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt;     * Your `choices` are &quot;yes&quot; and &quot;no&quot;.</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; Error: `arg` must be a prefix of exactly one element of `choices`.</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt;     * Your `choices` are &quot;yes&quot;, &quot;no&quot;.</span></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt;     * Your `arg` &quot;Y&quot; is not a prefix of any of your `choices`.</span></a>
 <a class="sourceLine" id="cb2-5" data-line-number="5">strex<span class="op">::</span><span class="kw">match_arg</span>(<span class="st">&quot;Y&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>), <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; [1] &quot;yes&quot;</span></a></code></pre></div>
@@ -334,8 +331,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">match.arg</span>(<span class="st">&quot;Q&quot;</span>, choices)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; Error in match.arg(&quot;Q&quot;, choices): 'arg' should be one of &quot;Apples&quot;, &quot;Pears&quot;, &quot;Bananas&quot;, &quot;Oranges&quot;, &quot;Avocados&quot;, &quot;Apricots&quot;</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">strex<span class="op">::</span><span class="kw">match_arg</span>(<span class="st">&quot;Q&quot;</span>, choices)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; `arg` must be a prefix of exactly one element of `choices`.</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;     * Your `choices` are &quot;Apples&quot;, &quot;Pears&quot;, &quot;Bananas&quot;, &quot;Oranges&quot;, &quot;Avocados&quot; and &quot;Apricots&quot;.</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; Error: `arg` must be a prefix of exactly one element of `choices`.</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;     * Your `choices` are &quot;Apples&quot;, &quot;Pears&quot;, &quot;Bananas&quot;, &quot;Oranges&quot;, &quot;Avocados&quot;, &quot;Apricots&quot;.</span></a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;     * Your `arg` &quot;Q&quot; is not a prefix of any of your `choices`.</span></a></code></pre></div>
 </div>
 <div id="multiple-matches" class="section level2">
@@ -343,7 +340,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">match.arg</span>(<span class="st">&quot;A&quot;</span>, choices)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; Error in match.arg(&quot;A&quot;, choices): 'arg' should be one of &quot;Apples&quot;, &quot;Pears&quot;, &quot;Bananas&quot;, &quot;Oranges&quot;, &quot;Avocados&quot;, &quot;Apricots&quot;</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">strex<span class="op">::</span><span class="kw">match_arg</span>(<span class="st">&quot;A&quot;</span>, choices)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; `arg` must be a prefix of exactly one element of `choices`.</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; Error: `arg` must be a prefix of exactly one element of `choices`.</span></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt;     * Your `arg` &quot;A&quot; is a prefix of two or more elements of `choices`.</span></a>
 <a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt;     * The first two of these are &quot;Apples&quot; and &quot;Avocados&quot;.</span></a></code></pre></div>
 </div>
@@ -352,7 +349,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">match.arg</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;a&quot;</span>), choices)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; Error in match.arg(c(&quot;A&quot;, &quot;a&quot;), choices): 'arg' must be of length 1</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">strex<span class="op">::</span><span class="kw">match_arg</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;a&quot;</span>), choices)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; `arg` must have length 1.</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; Error: `arg` must have length 1.</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;     * Your `arg` has length 2.</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;     * To use an `arg` with length greater than one, use `several_ok = TRUE`.</span></a></code></pre></div>
 </div>
@@ -362,7 +359,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">match.arg</span>(<span class="st">&quot;P&quot;</span>, choices)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; Error in match.arg(&quot;P&quot;, choices): 'arg' should be one of &quot;Apples&quot;, &quot;Pears&quot;, &quot;Bananas&quot;, &quot;Oranges&quot;, &quot;Avocados&quot;, &quot;Apricots&quot;, &quot;Pears&quot;</span></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4">strex<span class="op">::</span><span class="kw">match_arg</span>(<span class="st">&quot;P&quot;</span>, choices)</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; `choices` must not have duplicate elements.</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; Error: `choices` must not have duplicate elements.</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;     * Element 7, of your `choices` (&quot;Pears&quot;) is a duplicate.</span></a></code></pre></div>
 </div>
 <div id="not-specifying-choices" class="section level2">
@@ -384,7 +381,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb8-3" data-line-number="3">  w</a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">}</a>
 <a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">myword</span>(<span class="st">&quot;b&quot;</span>)</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt; You have used `strex::match_arg()` without specifying a `choices` argument.</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt; Error: You have used `strex::match_arg()` without specifying a `choices` argument.</span></a>
 <a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt;     * The only way to do this is from another function where `arg` has a default setting. This is the same as `base::match.arg()`.</span></a>
 <a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt;     * See the man page for `strex::match_arg()`, particularly the examples: enter `help(&quot;strex::match_arg&quot;, package = &quot;strex&quot;)` at the R console.</span></a>
 <a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt;     * See also the vignette on argument matching: enter `vignette(&quot;argument-matching&quot;, package = &quot;strex&quot;)` at the R console.</span></a>
@@ -393,7 +390,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb8-12" data-line-number="12">  w</a>
 <a class="sourceLine" id="cb8-13" data-line-number="13">}</a>
 <a class="sourceLine" id="cb8-14" data-line-number="14"><span class="kw">myword</span>(<span class="st">&quot;b&quot;</span>)</a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt; You have used `strex::match_arg()` without specifying a `choices` argument.</span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt; Error: You have used `strex::match_arg()` without specifying a `choices` argument.</span></a>
 <a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt;     * The only way to do this is from another function where `arg` has a default setting. This is the same as `base::match.arg()`.</span></a>
 <a class="sourceLine" id="cb8-17" data-line-number="17"><span class="co">#&gt;     * See the man page for `strex::match_arg()`, particularly the examples: enter `help(&quot;strex::match_arg&quot;, package = &quot;strex&quot;)` at the R console.</span></a>
 <a class="sourceLine" id="cb8-18" data-line-number="18"><span class="co">#&gt;     * See also the vignette on argument matching: enter `vignette(&quot;argument-matching&quot;, package = &quot;strex&quot;)` at the R console.</span></a></code></pre></div>

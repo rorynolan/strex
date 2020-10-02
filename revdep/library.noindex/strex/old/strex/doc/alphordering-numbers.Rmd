@@ -39,7 +39,7 @@ Patient 100 comes before patient 99. This is because 1 comes before 9 in alphabe
 
 ## Alphordering numbers
 
-It's possible to _alphorder_ the numbers by prefixing them with zeroes:
+It's possible to _alphord_ the numbers by prefixing them with zeroes:
 
 ```{r alphordering}
 strex::str_alphord_nums(poorly_ordered)

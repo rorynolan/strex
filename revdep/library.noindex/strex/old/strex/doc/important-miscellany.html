@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2019-09-12" />
+<meta name="date" content="2020-09-25" />
 
 <title>Important Miscellany</title>
 
@@ -117,9 +116,6 @@ padding-right: 2em;
 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 line-height: 1.35;
-}
-#header {
-text-align: center;
 }
 #TOC {
 clear: both;
@@ -288,7 +284,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -302,7 +299,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 <h1 class="title toc-ignore">Important Miscellany</h1>
-<h4 class="date">2019-09-12</h4>
+<h4 class="date">2020-09-25</h4>
 
 
 
@@ -322,32 +319,24 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>To get currencies and amounts mentioned in strings, there are <code>str_extract_currencies()</code> and <code>str_nth_currency()</code>, <code>str_first_currency()</code> and <code>str_last_currency()</code>. <code>str_first_currency()</code> just returns the first currency amount. <code>str_last_currency()</code> returns the last. <code>str_nth_currency()</code> allows you to get the second, third and so on. <code>str_extract_currencies()</code> returns all currency amounts mentioned in a string.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">string &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Alan paid £5&quot;</span>, <span class="st">&quot;Joe paid $7&quot;</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">str_first_currency</span>(string)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; # A tibble: 2 x 4</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;   string_num string       curr_sym amount</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; 1          1 Alan paid £5 £             5</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; 2          2 Joe paid $7  $             7</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">string &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;€1 is $1.17&quot;</span>, <span class="st">&quot;£1 is $1.29&quot;</span>)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">str_nth_currency</span>(string, <span class="dt">n =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; # A tibble: 2 x 4</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;   string_num string      curr_sym amount</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; 1          1 €1 is $1.17 €          1   </span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; 2          2 £1 is $1.29 $          1.29</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="kw">str_last_currency</span>(string)  <span class="co"># only gets the first mentioned</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; # A tibble: 2 x 4</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt;   string_num string      curr_sym amount</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; 1          1 €1 is $1.17 $          1.17</span></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; 2          2 £1 is $1.29 $          1.29</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="kw">str_extract_currencies</span>(string)</a>
-<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt; # A tibble: 4 x 4</span></a>
-<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt;   string_num string      curr_sym amount</span></a>
-<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt;        &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">#&gt; 1          1 €1 is $1.17 €          1   </span></a>
-<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt; 2          1 €1 is $1.17 $          1.17</span></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">#&gt; 3          2 £1 is $1.29 £          1   </span></a>
-<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co">#&gt; 4          2 £1 is $1.29 $          1.29</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt;   string_num       string curr_sym amount</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; 1          1 Alan paid £5        £      5</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; 2          2  Joe paid $7        $      7</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">string &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;€1 is $1.17&quot;</span>, <span class="st">&quot;£1 is $1.29&quot;</span>)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">str_nth_currency</span>(string, <span class="dt">n =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;   string_num      string curr_sym amount</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 1          1 €1 is $1.17        €   1.00</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 2          2 £1 is $1.29        $   1.29</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw">str_last_currency</span>(string)  <span class="co"># only gets the first mentioned</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;   string_num      string curr_sym amount</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; 1          1 €1 is $1.17        $   1.17</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; 2          2 £1 is $1.29        $   1.29</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="kw">str_extract_currencies</span>(string)</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt;   string_num      string curr_sym amount</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; 1          1 €1 is $1.17        €   1.00</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; 2          1 €1 is $1.17        $   1.17</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; 3          2 £1 is $1.29        £   1.00</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; 4          2 £1 is $1.29        $   1.29</span></a></code></pre></div>
 </div>
 <div id="extract-a-single-element-of-a-string" class="section level2">
 <h2>Extract a single element of a string</h2>
@@ -382,8 +371,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; [1] &quot;aa&quot;  &quot;1&quot;   &quot;bbb&quot; &quot;2&quot;   &quot;ccc&quot; &quot;3&quot;  </span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; [1] &quot;xyz&quot;      &quot;7&quot;        &quot;ayc&quot;      &quot;8&quot;        &quot;jzk&quot;      &quot;99&quot;      </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; [7] &quot;elephant&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; [1] &quot;xyz&quot;      &quot;7&quot;        &quot;ayc&quot;      &quot;8&quot;        &quot;jzk&quot;      &quot;99&quot;       &quot;elephant&quot;</span></a></code></pre></div>
 </div>
 <div id="force-a-file-name-to-have-an-extension" class="section level2">
 <h2>Force a file name to have an extension</h2>

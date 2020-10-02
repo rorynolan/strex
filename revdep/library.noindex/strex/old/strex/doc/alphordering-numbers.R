@@ -1,4 +1,4 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -9,15 +9,15 @@ poorly_ordered <- expand.grid(98:103, 9:11) %>%
   apply(1, function(x) paste0("patient", x[1], "-day", x[2], ".png")) %>% 
   sample(size = length(.))
 
-## ----poorly-ordered------------------------------------------------------
+## ----poorly-ordered-----------------------------------------------------------
 poorly_ordered
 
-## ----sort-attempt--------------------------------------------------------
+## ----sort-attempt-------------------------------------------------------------
 sort(poorly_ordered)
 
-## ----alphordering--------------------------------------------------------
+## ----alphordering-------------------------------------------------------------
 strex::str_alphord_nums(poorly_ordered)
 
-## ----good-sort-----------------------------------------------------------
+## ----good-sort----------------------------------------------------------------
 sort(strex::str_alphord_nums(poorly_ordered))
 

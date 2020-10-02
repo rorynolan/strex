@@ -20,7 +20,8 @@ str_locate_braces <- function(string) {
       string_num = integer(),
       string = character(),
       position = integer(),
-      brace = character()
+      brace = character(),
+      stringsAsFactors = FALSE
     )
     return(out)
   }
@@ -31,7 +32,8 @@ str_locate_braces <- function(string) {
   string_num <- rep(seq_along(string), lengths(braces))
   data.frame(
     string_num = string_num, string = string[string_num],
-    position = unlist(locations), brace = unlist(braces)
+    position = unlist(locations), brace = unlist(braces),
+    stringsAsFactors = FALSE
   )
 }
 
