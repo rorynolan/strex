@@ -1,3 +1,25 @@
+# `strex` 1.4.0
+
+## MINOR IMPROVEMENTS
+* `str_trim_anything()` got a speedup.
+* `str_match_arg()` now has better error messaging.
+
+## BUG FIXES
+* `utils` was wrongly imported.
+
+
+# `strex` 1.3.1
+
+## BUG FIXES
+* Fix a garbage collection issue.
+
+
+# `strex` 1.3.0
+
+## MINOR IMPROVEMENTS
+* Move from `Rcpp` to `C`.
+
+
 # `strex` 1.2.0
 
 ## MINOR IMPROVEMENTS

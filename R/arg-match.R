@@ -109,12 +109,15 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
       )
     }
   }
+  arg_sym <- tryCatch(as.character(rlang::ensym(arg)),
+                      error = function(e) NA_character_)
   str_match_arg_basic(
     arg = arg,
     choices = choices,
     index = index,
     several_ok = several_ok,
-    ignore_case = ignore_case
+    ignore_case = ignore_case,
+    arg_sym = arg_sym
   )
 }
 
@@ -122,13 +125,16 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
 #' @export
 match_arg <- str_match_arg
 
-str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case) {
+str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
+                                arg_sym) {
   checkmate::assert_character(arg, min.len = 1)
   checkmate::assert_character(choices, min.len = 1)
   checkmate::assert_flag(index)
   checkmate::assert_flag(several_ok)
   checkmate::assert_flag(ignore_case)
   checkmate::assert_character(arg, min.len = 1)
+  checkmate::assert_string(arg_sym, na.ok = TRUE)
+  if (is.na(arg_sym)) arg_sym <- "arg"
   first_dup <- anyDuplicated(choices)
   if (first_dup) {
     custom_stop(
@@ -163,9 +169,9 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case) {
       return(choices[[1]])
     }
     custom_stop(
-      "`arg` must have length 1.",
-      "Your `arg` has length {arg_len}.",
-      "To use an `arg` with length greater than one,
+      "`{arg_sym}` must have length 1.",
+      "Your `{arg_sym}` has length {arg_len}.",
+      "To use an `{arg_sym}` with length greater than one,
        use `several_ok = TRUE`."
     )
   }
@@ -181,14 +187,14 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case) {
     stopifnot(first_bad_type %in% (-seq_len(2))) # should never happen
     if (first_bad_type == -1) {
       custom_stop(
-        "`arg` must be a prefix of exactly one element of `choices`.",
+        "`{arg_sym}` must be a prefix of exactly one element of `choices`.",
         "Your{ifelse(lch > 50, \" first 50 \", \" \")}`choices` are
          \"{paste(utils::head(choices, 50), collapse = \"\\\", \\\"\")}\".",
-        "Your `arg` \"{arg[first_bad_index]}\" is not a prefix
+        "Your `{arg_sym}` \"{arg[first_bad_index]}\" is not a prefix
          of any of your `choices`.",
         .envir = list(
           lch = length(choices), choices = choices, arg = arg,
-          first_bad_index = first_bad_index
+          first_bad_index = first_bad_index, arg_sym = arg_sym
         )
       )
     } else {
@@ -201,8 +207,8 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case) {
         ambigs <- str_subset(choices, str_c("^", arg[first_bad_index]))
       }
       custom_stop(
-        "`arg` must be a prefix of exactly one element of `choices`.",
-        "Your `arg` \"{arg[first_bad_index]}\" is a prefix of two or more
+        "`{arg_sym}` must be a prefix of exactly one element of `choices`.",
+        "Your `{arg_sym}` \"{arg[first_bad_index]}\" is a prefix of two or more
          elements of `choices`.",
         "The first two of these are
          \"{ambigs[1]}\" and \"{ambigs[2]}\"."

@@ -29,17 +29,18 @@ test_that("match_arg() works", {
   expect_error(
     match_arg("A", choices, ignore_case = FALSE),
     str_c(
-      "`arg` must be a prefix.+of exactly one element of `choices`.+",
-      ". Your `arg` \\\"A\\\" is a prefix of two or more elements.+",
+      "`A` must be a prefix.+of exactly one element of `choices`.+",
+      ". Your `A` \\\"A\\\" is a prefix of two or more elements.+",
       "`choices`.+",
       ". The first two of these are \\\"Apples\\\" and \\\"Avocados\\\"."
     )
   )
+  x <- "a"
   expect_error(
-    match_arg("a", choices, ignore_case = TRUE),
+    match_arg(x, choices, ignore_case = TRUE),
     str_c(
-      "`arg` must be a prefix of exactly one element of `choices`.+",
-      ". Your `arg` \\\"a\\\" is a prefix of two or more elements of.+",
+      "`x` must be a prefix of exactly one element of `choices`.+",
+      ". Your `x` \\\"a\\\" is a prefix of two or more elements of.+",
       "`choices`.+",
       ". The first two of these are \\\"Apples\\\" and \\\"Avocados\\\"."
     )
@@ -72,13 +73,14 @@ test_that("match_arg() works", {
     )
   )
   expect_equal(match_arg("ab", c("ab", "abc")), "ab")
+  y <- "a"
   expect_error(
-    match_arg("a", as.character(1:51)),
+    match_arg(y, as.character(1:51)),
     str_c(
-      "`arg` must be a prefix of exactly one element of `choices`.+",
+      "`y` must be a prefix of exactly one element of `choices`.+",
       ". Your first 50 `choices` are \\\"1\\\", \\\"2\\\", \\\"3\\\", .+",
       "47\\\", \\\"48\\\", \\\"49\\\", \\\"50\\\".+",
-      ". Your `arg` \\\"a\\\" is not a prefix of any of your `choices`."
+      ". Your `y` \\\"a\\\" is not a prefix of any of your `choices`."
     )
   )
   word <- function(w = c("abacus", "baseball", "candy")) {

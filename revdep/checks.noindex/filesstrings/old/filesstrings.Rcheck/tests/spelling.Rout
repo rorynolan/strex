@@ -25,4 +25,4 @@ All Done!
 > 
 > proc.time()
    user  system elapsed 
-  1.585   0.388   2.262 
+  1.377   0.331   1.766 

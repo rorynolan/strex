@@ -31,7 +31,8 @@ extract_curr_helper <- function(string_num, string, locs) {
   amount <- amount * curr_sym_sign
   data.frame(
     string_num = string_num, string = string,
-    curr_sym = curr_sym, amount = amount
+    curr_sym = curr_sym, amount = amount,
+    stringsAsFactors = FALSE
   )
 }
 

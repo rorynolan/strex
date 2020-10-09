@@ -10,13 +10,14 @@
 |collate  |en_GB.UTF-8                  |
 |ctype    |en_GB.UTF-8                  |
 |tz       |Europe/London                |
-|date     |2020-09-26                   |
+|date     |2020-10-10                   |
 
 # Dependencies
 
 |package |old   |new   |Δ  |
 |:-------|:-----|:-----|:--|
-|strex   |1.3.0 |1.3.0 |NA |
+|strex   |1.3.1 |1.4.0 |*  |
+|rlang   |NA    |0.4.7 |*  |
 
 # Revdeps
 

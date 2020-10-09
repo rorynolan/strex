@@ -8,6 +8,12 @@ test_that("str_trim_anything works", {
     str_trim_anything("..abcd.", coll("."), "Ri"),
     str_trim_anything("..abcd.", coll("."), "r")
   )
+  expect_equal(str_trim_anything(c("abcx", "abcy"), c("x", "y")),
+               rep("abc", 2))
+  expect_equal(str_trim_anything(c("abcx", "abcy"), coll(c("x", "y"))),
+               rep("abc", 2))
+  expect_equal(str_trim_anything(c("abcx", "abcy"), fixed(c("x", "y"))),
+               rep("abc", 2))
   expect_equal(str_trim_anything("..abcd.", ".", "left"), "")
   expect_equal(str_trim_anything("-ghi--", "-"), "ghi")
   expect_equal(str_trim_anything("-ghi--", "--"), "-ghi")
@@ -26,4 +32,8 @@ test_that("str_trim_anything works", {
     "`str_trim_anything()` cannot handle a `pattern` of type 'boundary'.",
     fixed = TRUE
   )
+  expect_error(str_trim_anything(c("a", "b"), c("a", "^a")),
+               "don.+start.+reg.+ex.+with.+\\^.+Element 2.+\\^a")
+  expect_error(str_trim_anything(c("a", "b"), c("a", "a$")),
+               "don.+end.+reg.+ex.+with.+\\$.+Element 2.+a\\$")
 })

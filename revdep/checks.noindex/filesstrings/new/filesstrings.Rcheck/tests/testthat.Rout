@@ -21,8 +21,8 @@ Loading required package: stringr
 > 
 > test_check("filesstrings")
 ══ testthat results  ═══════════════════════════════════════════════════════════
-[ OK: 65 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 0 ]
+[ OK: 66 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 0 ]
 > 
 > proc.time()
    user  system elapsed 
-  1.599   0.143   1.820 
+  1.083   0.111   1.201 
