@@ -35,7 +35,7 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
           install.packages("pkgdown")
         shell: |
-          brew install harfbuzz fribidi
+          brew install harfbuzz
           Rscript {0}
 
       - name: Install package
