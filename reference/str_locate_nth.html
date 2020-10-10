@@ -82,7 +82,7 @@ are vectorised over all arguments." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -156,11 +156,11 @@ indices. These functions tell you which indices those are. These functions
 are vectorised over all arguments.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>str_locate_nth</span>(<span class='kw'>string</span>, <span class='kw'>pattern</span>, <span class='kw'>n</span>)
+    <pre class="usage"><span class='fu'>str_locate_nth</span><span class='op'>(</span><span class='va'>string</span>, <span class='va'>pattern</span>, <span class='va'>n</span><span class='op'>)</span>
 
-<span class='fu'>str_locate_first</span>(<span class='kw'>string</span>, <span class='kw'>pattern</span>)
+<span class='fu'>str_locate_first</span><span class='op'>(</span><span class='va'>string</span>, <span class='va'>pattern</span><span class='op'>)</span>
 
-<span class='fu'>str_locate_last</span>(<span class='kw'>string</span>, <span class='kw'>pattern</span>)</pre>
+<span class='fu'>str_locate_last</span><span class='op'>(</span><span class='va'>string</span>, <span class='va'>pattern</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -205,23 +205,23 @@ element of <code>string</code>.</p>
 <code><a href='str_locate_braces.html'>str_locate_braces</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>str_locate_nth</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"abcdabcxyz"</span>, <span class='st'>"abcabc"</span>), <span class='st'>"abc"</span>, <span class='fl'>2</span>)
+    <pre class="examples"><div class='input'><span class='fu'>str_locate_nth</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"abcdabcxyz"</span>, <span class='st'>"abcabc"</span><span class='op'>)</span>, <span class='st'>"abc"</span>, <span class='fl'>2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;      start end
 #&gt; [1,]     5   7
-#&gt; [2,]     4   6</div><div class='input'><span class='fu'>str_locate_nth</span>(
-  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"This old thing."</span>, <span class='st'>"That beautiful thing there."</span>),
-  <span class='st'>"\\w+"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='op'>-</span><span class='fl'>2</span>)
-)
+#&gt; [2,]     4   6</div><div class='input'><span class='fu'>str_locate_nth</span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"This old thing."</span>, <span class='st'>"That beautiful thing there."</span><span class='op'>)</span>,
+  <span class='st'>"\\w+"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='op'>-</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='op'>)</span>
 </div><div class='output co'>#&gt;      start end
 #&gt; [1,]     6   8
-#&gt; [2,]    16  20</div><div class='input'><span class='fu'>str_locate_nth</span>(<span class='st'>"abc"</span>, <span class='st'>"b"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>))
+#&gt; [2,]    16  20</div><div class='input'><span class='fu'>str_locate_nth</span><span class='op'>(</span><span class='st'>"abc"</span>, <span class='st'>"b"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;      start end
 #&gt; [1,]    NA  NA
 #&gt; [2,]     2   2
 #&gt; [3,]     2   2
-#&gt; [4,]    NA  NA</div><div class='input'><span class='fu'>str_locate_first</span>(<span class='st'>"abcxyzabc"</span>, <span class='st'>"abc"</span>)
+#&gt; [4,]    NA  NA</div><div class='input'><span class='fu'>str_locate_first</span><span class='op'>(</span><span class='st'>"abcxyzabc"</span>, <span class='st'>"abc"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;      start end
-#&gt; [1,]     1   3</div><div class='input'><span class='fu'>str_locate_last</span>(<span class='st'>"abcxyzabc"</span>, <span class='st'>"abc"</span>)
+#&gt; [1,]     1   3</div><div class='input'><span class='fu'>str_locate_last</span><span class='op'>(</span><span class='st'>"abcxyzabc"</span>, <span class='st'>"abc"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;      start end
 #&gt; [1,]     7   9</div></pre>
   </div>

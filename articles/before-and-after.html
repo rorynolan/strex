@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Before and After</h1>
             
-            <h4 class="date">2020-10-02</h4>
+            <h4 class="date">2020-10-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rorynolan/strex/blob/master/vignettes/before-and-after.Rmd"><code>vignettes/before-and-after.Rmd</code></a></small>
       <div class="hidden name"><code>before-and-after.Rmd</code></div>
@@ -114,64 +114,59 @@
     
 <p>Often, we want the part of a string that comes before or after a given pattern.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://rorynolan.github.io/strex">strex</a></span>)
-<span class="co">#&gt; Loading required package: stringr</span>
-</pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rorynolan.github.io/strex/">strex</a></span><span class="op">)</span>
+<span class="co">#&gt; Loading required package: stringr</span></pre></div>
 <div id="before" class="section level2">
 <h2 class="hasAnchor">
 <a href="#before" class="anchor"></a>Before</h2>
 <p><code><a href="../reference/before-and-after.html">str_before_nth()</a></code> gives you the part of a string before the <code>n</code><sup>th</sup> appearance of a pattern. It has the friends <code><a href="../reference/before-and-after.html">str_before_first()</a></code> and <code><a href="../reference/before-and-after.html">str_before_last()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">string</span> <span class="op">&lt;-</span> <span class="st">"ab..cd..de..fg..h"</span>
-<span class="fu"><a href="../reference/before-and-after.html">str_before_first</a></span>(<span class="kw">string</span>, <span class="st">"e"</span>)
+<span class="va">string</span> <span class="op">&lt;-</span> <span class="st">"ab..cd..de..fg..h"</span>
+<span class="fu"><a href="../reference/before-and-after.html">str_before_first</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"e"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "ab..cd..d"</span>
-<span class="fu"><a href="../reference/before-and-after.html">str_before_nth</a></span>(<span class="kw">string</span>, <span class="st">"\\."</span>, <span class="fl">3</span>)
+<span class="fu"><a href="../reference/before-and-after.html">str_before_nth</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"\\."</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="co">#&gt; [1] "ab..cd"</span>
-<span class="fu"><a href="../reference/before-and-after.html">str_before_last</a></span>(<span class="kw">string</span>, <span class="st">"\\."</span>)
+<span class="fu"><a href="../reference/before-and-after.html">str_before_last</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"\\."</span><span class="op">)</span>
 <span class="co">#&gt; [1] "ab..cd..de..fg."</span>
-<span class="fu"><a href="../reference/before-and-after.html">str_before_nth</a></span>(<span class="kw">string</span>, <span class="st">"."</span>, <span class="op">-</span><span class="fl">3</span>)
+<span class="fu"><a href="../reference/before-and-after.html">str_before_nth</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"."</span>, <span class="op">-</span><span class="fl">3</span><span class="op">)</span>
 <span class="co">#&gt; [1] "ab..cd..de..fg"</span>
-<span class="fu"><a href="../reference/before-and-after.html">str_before_nth</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">string</span>, <span class="fl">2</span>), <span class="fu">fixed</span>(<span class="st">"."</span>), <span class="op">-</span><span class="fl">3</span>)
-<span class="co">#&gt; [1] "ab..cd..de." "ab..cd..de."</span>
-</pre></div>
+<span class="fu"><a href="../reference/before-and-after.html">str_before_nth</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">string</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu">fixed</span><span class="op">(</span><span class="st">"."</span><span class="op">)</span>, <span class="op">-</span><span class="fl">3</span><span class="op">)</span>
+<span class="co">#&gt; [1] "ab..cd..de." "ab..cd..de."</span></pre></div>
 </div>
 <div id="after" class="section level2">
 <h2 class="hasAnchor">
 <a href="#after" class="anchor"></a>After</h2>
 <p><code><a href="../reference/before-and-after.html">str_after_nth()</a></code> gives you the part of a string after the <code>n</code><sup>th</sup> appearance of a pattern. It has the friends <code><a href="../reference/before-and-after.html">str_after_first()</a></code> and <code><a href="../reference/before-and-after.html">str_after_last()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">string</span> <span class="op">&lt;-</span> <span class="st">"ab..cd..de..fg..h"</span>
-<span class="fu"><a href="../reference/before-and-after.html">str_after_first</a></span>(<span class="kw">string</span>, <span class="st">"e"</span>)
+<span class="va">string</span> <span class="op">&lt;-</span> <span class="st">"ab..cd..de..fg..h"</span>
+<span class="fu"><a href="../reference/before-and-after.html">str_after_first</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"e"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "..fg..h"</span>
-<span class="fu"><a href="../reference/before-and-after.html">str_after_nth</a></span>(<span class="kw">string</span>, <span class="st">"\\."</span>, <span class="fl">3</span>)
+<span class="fu"><a href="../reference/before-and-after.html">str_after_nth</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"\\."</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="co">#&gt; [1] ".de..fg..h"</span>
-<span class="fu"><a href="../reference/before-and-after.html">str_after_last</a></span>(<span class="kw">string</span>, <span class="st">"\\."</span>)
+<span class="fu"><a href="../reference/before-and-after.html">str_after_last</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"\\."</span><span class="op">)</span>
 <span class="co">#&gt; [1] "h"</span>
-<span class="fu"><a href="../reference/before-and-after.html">str_after_nth</a></span>(<span class="kw">string</span>, <span class="st">"."</span>, <span class="op">-</span><span class="fl">3</span>)
+<span class="fu"><a href="../reference/before-and-after.html">str_after_nth</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"."</span>, <span class="op">-</span><span class="fl">3</span><span class="op">)</span>
 <span class="co">#&gt; [1] ".h"</span>
-<span class="fu"><a href="../reference/before-and-after.html">str_after_nth</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">string</span>, <span class="fl">2</span>), <span class="fu">fixed</span>(<span class="st">"."</span>), <span class="op">-</span><span class="fl">3</span>)
-<span class="co">#&gt; [1] "fg..h" "fg..h"</span>
-</pre></div>
+<span class="fu"><a href="../reference/before-and-after.html">str_after_nth</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">string</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu">fixed</span><span class="op">(</span><span class="st">"."</span><span class="op">)</span>, <span class="op">-</span><span class="fl">3</span><span class="op">)</span>
+<span class="co">#&gt; [1] "fg..h" "fg..h"</span></pre></div>
 </div>
 <div id="a-more-concrete-example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#a-more-concrete-example" class="anchor"></a>A more concrete example</h2>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">string</span> <span class="op">&lt;-</span> <span class="st">"James did the cooking, Harry did the cleaning."</span>
-</pre></div>
+<span class="va">string</span> <span class="op">&lt;-</span> <span class="st">"James did the cooking, Harry did the cleaning."</span></pre></div>
 <p>Let’s write a function to figure out which task each of the lads did.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">magrittr</span>)
-<span class="kw">get_task</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">string</span>, <span class="kw">name</span>) {
-  <span class="fu">str_c</span>(<span class="kw">name</span>, <span class="st">" did the "</span>) <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="../reference/before-and-after.html">str_after_first</a></span>(<span class="kw">string</span>, <span class="kw">.</span>) <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="../reference/before-and-after.html">str_before_first</a></span>(<span class="st">"[\\.,]"</span>)
-}
-<span class="fu">get_task</span>(<span class="kw">string</span>, <span class="st">"James"</span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">magrittr</span><span class="op">)</span>
+<span class="va">get_task</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">string</span>, <span class="va">name</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu">str_c</span><span class="op">(</span><span class="va">name</span>, <span class="st">" did the "</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/before-and-after.html">str_after_first</a></span><span class="op">(</span><span class="va">string</span>, <span class="va">.</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/before-and-after.html">str_before_first</a></span><span class="op">(</span><span class="st">"[\\.,]"</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu">get_task</span><span class="op">(</span><span class="va">string</span>, <span class="st">"James"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "cooking"</span>
-<span class="fu">get_task</span>(<span class="kw">string</span>, <span class="st">"Harry"</span>)
-<span class="co">#&gt; [1] "cleaning"</span>
-</pre></div>
+<span class="fu">get_task</span><span class="op">(</span><span class="va">string</span>, <span class="st">"Harry"</span><span class="op">)</span>
+<span class="co">#&gt; [1] "cleaning"</span></pre></div>
 <p><code>get_task()</code> would have been more difficult to write without <code><a href="../reference/before-and-after.html">str_after_first()</a></code> and <code><a href="../reference/before-and-after.html">str_before_first()</a></code>.</p>
 </div>
   </div>

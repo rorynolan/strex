@@ -81,7 +81,7 @@ element of choices if arg is a prefix of that element." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -154,21 +154,21 @@ element of choices if arg is a prefix of that element." />
 element of <code>choices</code> if <code>arg</code> is a prefix of that element.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>str_match_arg</span>(
-  <span class='kw'>arg</span>,
-  choices = <span class='kw'>NULL</span>,
-  index = <span class='fl'>FALSE</span>,
-  several_ok = <span class='fl'>FALSE</span>,
-  ignore_case = <span class='fl'>FALSE</span>
-)
+    <pre class="usage"><span class='fu'>str_match_arg</span><span class='op'>(</span>
+  <span class='va'>arg</span>,
+  choices <span class='op'>=</span> <span class='cn'>NULL</span>,
+  index <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  several_ok <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  ignore_case <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>match_arg</span>(
-  <span class='kw'>arg</span>,
-  choices = <span class='kw'>NULL</span>,
-  index = <span class='fl'>FALSE</span>,
-  several_ok = <span class='fl'>FALSE</span>,
-  ignore_case = <span class='fl'>FALSE</span>
-)</pre>
+<span class='fu'>match_arg</span><span class='op'>(</span>
+  <span class='va'>arg</span>,
+  choices <span class='op'>=</span> <span class='cn'>NULL</span>,
+  index <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  several_ok <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  ignore_case <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -221,26 +221,26 @@ its original case). <code>RSAGA</code> is a heavy package to depend upon so
 use it for other purposes, but the error messages might be a bit weird.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>choices</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Apples"</span>, <span class='st'>"Pears"</span>, <span class='st'>"Bananas"</span>, <span class='st'>"Oranges"</span>)
-<span class='fu'>match_arg</span>(<span class='st'>"A"</span>, <span class='kw'>choices</span>)
-</div><div class='output co'>#&gt; [1] "Apples"</div><div class='input'><span class='fu'>match_arg</span>(<span class='st'>"B"</span>, <span class='kw'>choices</span>, index = <span class='fl'>TRUE</span>)
-</div><div class='output co'>#&gt; [1] 3</div><div class='input'><span class='fu'>match_arg</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>), <span class='kw'>choices</span>, several_ok = <span class='fl'>TRUE</span>, ignore_case = <span class='fl'>TRUE</span>)
-</div><div class='output co'>#&gt; [1] "Apples"  "Bananas"</div><div class='input'><span class='fu'>match_arg</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"b"</span>, <span class='st'>"a"</span>), <span class='kw'>choices</span>,
-  ignore_case = <span class='fl'>TRUE</span>, index = <span class='fl'>TRUE</span>,
-  several_ok = <span class='fl'>TRUE</span>
-)
-</div><div class='output co'>#&gt; [1] 3 1</div><div class='input'><span class='kw'>myword</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>w</span> = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"abacus"</span>, <span class='st'>"baseball"</span>, <span class='st'>"candy"</span>)) {
-  <span class='kw'>w</span> <span class='op'>&lt;-</span> <span class='fu'>match_arg</span>(<span class='kw'>w</span>)
-  <span class='kw'>w</span>
-}
-<span class='fu'>myword</span>(<span class='st'>"b"</span>)
-</div><div class='output co'>#&gt; [1] "baseball"</div><div class='input'><span class='fu'>myword</span>()
-</div><div class='output co'>#&gt; [1] "abacus"</div><div class='input'><span class='kw'>myword</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>w</span> = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"abacus"</span>, <span class='st'>"baseball"</span>, <span class='st'>"candy"</span>)) {
-  <span class='kw'>w</span> <span class='op'>&lt;-</span> <span class='fu'>match_arg</span>(<span class='kw'>w</span>, several_ok = <span class='fl'>TRUE</span>)
-  <span class='kw'>w</span>
-}
-<span class='fu'>myword</span>(<span class='st'>"c"</span>)
-</div><div class='output co'>#&gt; [1] "candy"</div><div class='input'><span class='fu'>myword</span>()
+    <pre class="examples"><div class='input'><span class='va'>choices</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Apples"</span>, <span class='st'>"Pears"</span>, <span class='st'>"Bananas"</span>, <span class='st'>"Oranges"</span><span class='op'>)</span>
+<span class='fu'>match_arg</span><span class='op'>(</span><span class='st'>"A"</span>, <span class='va'>choices</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "Apples"</div><div class='input'><span class='fu'>match_arg</span><span class='op'>(</span><span class='st'>"B"</span>, <span class='va'>choices</span>, index <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 3</div><div class='input'><span class='fu'>match_arg</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='st'>"b"</span><span class='op'>)</span>, <span class='va'>choices</span>, several_ok <span class='op'>=</span> <span class='cn'>TRUE</span>, ignore_case <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "Apples"  "Bananas"</div><div class='input'><span class='fu'>match_arg</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"b"</span>, <span class='st'>"a"</span><span class='op'>)</span>, <span class='va'>choices</span>,
+  ignore_case <span class='op'>=</span> <span class='cn'>TRUE</span>, index <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  several_ok <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 3 1</div><div class='input'><span class='va'>myword</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>w</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"abacus"</span>, <span class='st'>"baseball"</span>, <span class='st'>"candy"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'>match_arg</span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>
+  <span class='va'>w</span>
+<span class='op'>}</span>
+<span class='fu'>myword</span><span class='op'>(</span><span class='st'>"b"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "baseball"</div><div class='input'><span class='fu'>myword</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "abacus"</div><div class='input'><span class='va'>myword</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>w</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"abacus"</span>, <span class='st'>"baseball"</span>, <span class='st'>"candy"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'>match_arg</span><span class='op'>(</span><span class='va'>w</span>, several_ok <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+  <span class='va'>w</span>
+<span class='op'>}</span>
+<span class='fu'>myword</span><span class='op'>(</span><span class='st'>"c"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "candy"</div><div class='input'><span class='fu'>myword</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "abacus"   "baseball" "candy"   </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
