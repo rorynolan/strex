@@ -1,6 +1,6 @@
 Package: strex
 Title: Extra String Manipulation Functions
-Version: 1.4.0
+Version: 1.4.1
 Authors@R: 
     person(given = "Rory",
            family = "Nolan",
@@ -20,14 +20,14 @@ URL: https://rorynolan.github.io/strex/,
     https://github.com/rorynolan/strex
 BugReports: https://github.com/rorynolan/strex/issues
 Depends: 
-    R (>= 3.1),
+    R (>= 3.5),
     stringr (>= 1.4)
 Imports: 
     checkmate (>= 1.9.3),
     magrittr (>= 1.5),
     rlang (>= 0.3.3),
     stats,
-    stringi (>= 1.5)
+    stringi (>= 1.4.6)
 Suggests: 
     covr,
     knitr,

@@ -1,3 +1,9 @@
+# `strex` 1.4.1
+
+## BUG FIXES
+* R version 3.5 or greater is needed because `INTEGER_GET_REGION` is used, which was introduced with R's `ALTREP` stuff.
+
+
 # `strex` 1.4.0
 
 ## MINOR IMPROVEMENTS
