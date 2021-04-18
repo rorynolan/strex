@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.2</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -84,7 +84,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/rorynolan/strex/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -103,7 +103,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Numbers Within Strings</h1>
             
-            <h4 class="date">2020-10-17</h4>
+            <h4 class="date">2021-04-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rorynolan/strex/blob/master/vignettes/numbers-in-strings.Rmd"><code>vignettes/numbers-in-strings.Rmd</code></a></small>
       <div class="hidden name"><code>numbers-in-strings.Rmd</code></div>
@@ -116,8 +116,8 @@
 <h1 class="hasAnchor">
 <a href="#a-common-way-to-encode-numerical-data" class="anchor"></a>A common way to encode numerical data</h1>
 <p>It’s common for a lot of numerical information to be encoded in strings, particularly in file names. Consider a series of microscope images of cells from different patients detailing the patient number, the cell number and the number of hours after biopsy that the image was taken. They might be named like:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="va">img_names</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">img_names</span>
 <span class="co">#&gt;  [1] "patient1-cell1-0hours-after-biopsy.tif"  </span>
 <span class="co">#&gt;  [2] "patient1-cell1-2.5hours-after-biopsy.tif"</span>
 <span class="co">#&gt;  [3] "patient1-cell2-0hours-after-biopsy.tif"  </span>
@@ -129,14 +129,14 @@
 <span class="co">#&gt;  [9] "patient2-cell2-0hours-after-biopsy.tif"  </span>
 <span class="co">#&gt; [10] "patient2-cell2-2.5hours-after-biopsy.tif"</span>
 <span class="co">#&gt; [11] "patient2-cell3-0hours-after-biopsy.tif"  </span>
-<span class="co">#&gt; [12] "patient2-cell3-2.5hours-after-biopsy.tif"</span></pre></div>
+<span class="co">#&gt; [12] "patient2-cell3-2.5hours-after-biopsy.tif"</span></code></pre></div>
 </div>
 <div id="all-of-the-numbers" class="section level1">
 <h1 class="hasAnchor">
 <a href="#all-of-the-numbers" class="anchor"></a>All of the numbers</h1>
 <p>For some crude reason, you might just want all of the numbers:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rorynolan.github.io/strex/">strex</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rorynolan.github.io/strex/">strex</a></span><span class="op">)</span>
 <span class="fu"><a href="../reference/str_extract_numbers.html">str_extract_numbers</a></span><span class="op">(</span><span class="va">img_names</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; [1] 1 1 0</span>
@@ -172,10 +172,10 @@
 <span class="co">#&gt; [1] 2 3 0</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[12]]</span>
-<span class="co">#&gt; [1] 2 3 2 5</span></pre></div>
+<span class="co">#&gt; [1] 2 3 2 5</span></code></pre></div>
 <p>It seems to have missed the fact that 2.5 is a number and not two numbers 2 and 5. This is because the default is <code>decimals = FALSE</code>. To recognise decimals, set <code>decimals = TRUE</code>. Also, note that there is an option to recognise scientific notation. More on that below.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="../reference/str_extract_numbers.html">str_extract_numbers</a></span><span class="op">(</span><span class="va">img_names</span>, decimals <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/str_extract_numbers.html">str_extract_numbers</a></span><span class="op">(</span><span class="va">img_names</span>, decimals <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; [1] 1 1 0</span>
 <span class="co">#&gt; </span>
@@ -210,10 +210,10 @@
 <span class="co">#&gt; [1] 2 3 0</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[12]]</span>
-<span class="co">#&gt; [1] 2.0 3.0 2.5</span></pre></div>
+<span class="co">#&gt; [1] 2.0 3.0 2.5</span></code></pre></div>
 <p>It’s also possible to extract the non-numeric parts of the strings:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="../reference/str_extract_non_numerics.html">str_extract_non_numerics</a></span><span class="op">(</span><span class="va">img_names</span>, decimals <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/str_extract_non_numerics.html">str_extract_non_numerics</a></span><span class="op">(</span><span class="va">img_names</span>, decimals <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; [1] "patient"                "-cell"                  "-"                     </span>
 <span class="co">#&gt; [4] "hours-after-biopsy.tif"</span>
@@ -260,7 +260,7 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[12]]</span>
 <span class="co">#&gt; [1] "patient"                "-cell"                  "-"                     </span>
-<span class="co">#&gt; [4] "hours-after-biopsy.tif"</span></pre></div>
+<span class="co">#&gt; [4] "hours-after-biopsy.tif"</span></code></pre></div>
 </div>
 <div id="extract-specific-numbers" class="section level1">
 <h1 class="hasAnchor">
@@ -270,36 +270,36 @@
 <h2 class="hasAnchor">
 <a href="#the-nth-number" class="anchor"></a>The <code>n</code><sup>th</sup> number</h2>
 <p>We know the cell number is always the second number, so we can use the <code><a href="../reference/str_nth_number.html">str_nth_number()</a></code> function with <code>n = 2</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="../reference/str_nth_number.html">str_nth_number</a></span><span class="op">(</span><span class="va">img_names</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="co">#&gt;  [1] 1 1 2 2 3 3 1 1 2 2 3 3</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/str_nth_number.html">str_nth_number</a></span><span class="op">(</span><span class="va">img_names</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="co">#&gt;  [1] 1 1 2 2 3 3 1 1 2 2 3 3</span></code></pre></div>
 </div>
 <div id="numbers-after-patterns" class="section level2">
 <h2 class="hasAnchor">
 <a href="#numbers-after-patterns" class="anchor"></a>Numbers after patterns</h2>
 <p>To be more specific, you could say the cell number is the first number after the first instance of the word “cell”. To go this route, <code>strex</code> provides <code><a href="../reference/str_nth_number_after_mth.html">str_nth_number_after_mth()</a></code> which gives the <code>n</code><sup>th</sup> number after the <code>m</code><sup>th</sup> appearance of a given pattern:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="../reference/str_nth_number_after_mth.html">str_nth_number_after_mth</a></span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"cell"</span>, n <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt;  [1] 1 1 2 2 3 3 1 1 2 2 3 3</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/str_nth_number_after_mth.html">str_nth_number_after_mth</a></span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"cell"</span>, n <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="co">#&gt;  [1] 1 1 2 2 3 3 1 1 2 2 3 3</span></code></pre></div>
 <p>There’s also a convenient wrapper for getting the first number after the first appearance of a pattern:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="../reference/str_nth_number_after_mth.html">str_first_number_after_first</a></span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"cell"</span><span class="op">)</span>
-<span class="co">#&gt;  [1] 1 1 2 2 3 3 1 1 2 2 3 3</span></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/str_nth_number_after_mth.html">str_first_number_after_first</a></span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"cell"</span><span class="op">)</span>
+<span class="co">#&gt;  [1] 1 1 2 2 3 3 1 1 2 2 3 3</span></code></pre></div>
 </div>
 <div id="numbers-before-patterns" class="section level2">
 <h2 class="hasAnchor">
 <a href="#numbers-before-patterns" class="anchor"></a>Numbers before patterns</h2>
 <p>Now what if we want the number of hours after biopsy for each image? Looking at the image file names, we’d need the last number <em>before</em> the first occurrence of the word “biopsy”.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="../reference/str_nth_number_before_mth.html">str_last_number_before_first</a></span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"biopsy"</span>, decimals <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt;  [1] 0.0 2.5 0.0 2.5 0.0 2.5 0.0 2.5 0.0 2.5 0.0 2.5</span></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/str_nth_number_before_mth.html">str_last_number_before_first</a></span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"biopsy"</span>, decimals <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt;  [1] 0.0 2.5 0.0 2.5 0.0 2.5 0.0 2.5 0.0 2.5 0.0 2.5</span></code></pre></div>
 </div>
 <div id="tidy-number-extraction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tidy-number-extraction" class="anchor"></a>Tidy number extraction</h2>
 <p>To extract all of this information tidily, use a data frame:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">img_names</span>,
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">img_names</span>,
   patient <span class="op">=</span> <span class="fu"><a href="../reference/str_nth_number_after_mth.html">str_first_number_after_first</a></span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"patient"</span><span class="op">)</span>,
   cell <span class="op">=</span> <span class="fu"><a href="../reference/str_nth_number_after_mth.html">str_first_number_after_first</a></span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"cell"</span><span class="op">)</span>,
   hrs_after_biop <span class="op">=</span> <span class="fu"><a href="../reference/str_nth_number_before_mth.html">str_last_number_before_first</a></span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"biop"</span>, 
@@ -317,24 +317,24 @@
 <span class="co">#&gt; 9    patient2-cell2-0hours-after-biopsy.tif       2    2            0.0</span>
 <span class="co">#&gt; 10 patient2-cell2-2.5hours-after-biopsy.tif       2    2            2.5</span>
 <span class="co">#&gt; 11   patient2-cell3-0hours-after-biopsy.tif       2    3            0.0</span>
-<span class="co">#&gt; 12 patient2-cell3-2.5hours-after-biopsy.tif       2    3            2.5</span></pre></div>
+<span class="co">#&gt; 12 patient2-cell3-2.5hours-after-biopsy.tif       2    3            2.5</span></code></pre></div>
 </div>
 <div id="other-number-formats" class="section level2">
 <h2 class="hasAnchor">
 <a href="#other-number-formats" class="anchor"></a>Other number formats</h2>
 <p><code>strex</code> can also deal with numbers in scientific and comma notation.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="va">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"$1,000"</span>, <span class="st">"$1e6"</span><span class="op">)</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"$1,000"</span>, <span class="st">"$1e6"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/str_nth_number.html">str_first_number</a></span><span class="op">(</span><span class="va">string</span>, commas <span class="op">=</span> <span class="cn">TRUE</span>, sci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1e+03 1e+06</span></pre></div>
+<span class="co">#&gt; [1] 1e+03 1e+06</span></code></pre></div>
 </div>
 </div>
 <div id="all-of-the-number-functions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#all-of-the-number-functions" class="anchor"></a>All of the number functions</h1>
 <p>There are a whole host of functions for extracting numbers from strings in the <code>strex</code> package:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu">str_subset</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="st">"package:strex"</span><span class="op">)</span>, <span class="st">"number"</span><span class="op">)</span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">str_subset</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="st">"package:strex"</span><span class="op">)</span>, <span class="st">"number"</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "str_extract_numbers"           "str_first_number"             </span>
 <span class="co">#&gt;  [3] "str_first_number_after_first"  "str_first_number_after_last"  </span>
 <span class="co">#&gt;  [5] "str_first_number_after_mth"    "str_first_number_before_first"</span>
@@ -346,14 +346,14 @@
 <span class="co">#&gt; [17] "str_nth_number_after_first"    "str_nth_number_after_last"    </span>
 <span class="co">#&gt; [19] "str_nth_number_after_mth"      "str_nth_number_before_first"  </span>
 <span class="co">#&gt; [21] "str_nth_number_before_last"    "str_nth_number_before_mth"    </span>
-<span class="co">#&gt; [23] "str_split_by_numbers"</span></pre></div>
+<span class="co">#&gt; [23] "str_split_by_numbers"</span></code></pre></div>
 </div>
 <div id="regular-expression" class="section level1">
 <h1 class="hasAnchor">
 <a href="#regular-expression" class="anchor"></a>Regular expression</h1>
 <p>Of course, all of the above is possible with regular expression using <code>stringr</code>, it’s just more difficult and less expressive:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">img_names</span>,
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">img_names</span>,
   patient <span class="op">=</span> <span class="fu">str_match</span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"patient(\\d+)"</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,
   cell <span class="op">=</span> <span class="fu">str_match</span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"cell(\\d+)"</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,
   hrs_after_biop <span class="op">=</span> <span class="fu">str_match</span><span class="op">(</span><span class="va">img_names</span>, <span class="st">"(\\d*\\.*\\d+)hour"</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>
@@ -370,7 +370,7 @@
 <span class="co">#&gt; 9    patient2-cell2-0hours-after-biopsy.tif       2    2              0</span>
 <span class="co">#&gt; 10 patient2-cell2-2.5hours-after-biopsy.tif       2    2            2.5</span>
 <span class="co">#&gt; 11   patient2-cell3-0hours-after-biopsy.tif       2    3              0</span>
-<span class="co">#&gt; 12 patient2-cell3-2.5hours-after-biopsy.tif       2    3            2.5</span></pre></div>
+<span class="co">#&gt; 12 patient2-cell3-2.5hours-after-biopsy.tif       2    3            2.5</span></code></pre></div>
 </div>
   </div>
 
