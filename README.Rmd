@@ -27,7 +27,6 @@ There are some things that I wish were easier with the `stringr` or `stringi` pa
 [![CRAN status](https://www.r-pkg.org/badges/version/strex)](https://cran.r-project.org/package=strex)
 ![RStudio CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/strex)
 ![RStudio CRAN monthly downloads](http://cranlogs.r-pkg.org/badges/strex)
-[![Rdocumentation](https://www.rdocumentation.org/badges/version/strex)](https://www.rdocumentation.org/packages/strex)
 
 
 

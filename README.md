@@ -30,7 +30,6 @@ status](https://www.r-pkg.org/badges/version/strex)](https://cran.r-project.org/
 ![RStudio CRAN
 downloads](http://cranlogs.r-pkg.org/badges/grand-total/strex) ![RStudio
 CRAN monthly downloads](http://cranlogs.r-pkg.org/badges/strex)
-[![Rdocumentation](https://www.rdocumentation.org/badges/version/strex)](https://www.rdocumentation.org/packages/strex)
 
 ## Installation
 
