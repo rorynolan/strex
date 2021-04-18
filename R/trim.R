@@ -20,7 +20,6 @@
 #' str_trim_anything("-ghi--", "-", "right")
 #' str_trim_anything("-ghi--", "--")
 #' str_trim_anything("-ghi--", "i-+")
-#'
 #' @family removers
 #'
 #' @export
@@ -28,12 +27,7 @@ str_trim_anything <- function(string, pattern, side = "both") {
   if (is_l0_char(string)) {
     return(character())
   }
-  if (all(c("boundary", "pattern") %in% class(pattern))) {
-    custom_stop(
-      "`str_trim_anything()` cannot handle a `pattern` of type 'boundary'."
-    )
-  }
-  verify_string_pattern(string, pattern)
+  verify_string_pattern(string, pattern, boundary_allowed = FALSE)
   out <- string
   checkmate::assert_string(side)
   side %<>% match_arg(c("both", "left", "right"), ignore_case = TRUE)
@@ -46,30 +40,31 @@ str_trim_anything <- function(string, pattern, side = "both") {
     bad_starts <- str_starts(pattern, "\\(*\\^")
     bad_ends <- str_ends(pattern, "\\$\\)*")
     if (any(bad_starts)) {
-      first_bad <- which.max(bad_starts)
       custom_stop(
         "In `str_trim_anything()`, don't start your regular expression patterns
          with '^' to match the start of the string. The trimming by definition
          is happening at the edges.",
         "Element {first_bad} of your pattern, '{pattern[first_bad]}' is the
-         first offender."
+         first offender.",
+        .envir = list(pattern = pattern, first_bad = which.max(bad_starts))
       )
     } else if (any(bad_ends)) {
-      first_bad <- which.max(bad_ends)
       custom_stop(
         "In `str_trim_anything()`, don't end your regular expression patterns
          with '$' to match the end of the string. The trimming by definition
          is happening at the edges.",
         "Element {first_bad} of your pattern, '{pattern[first_bad]}' is the
-         first offender."
+         first offender.",
+        .envir = list(pattern = pattern, first_bad = which.max(bad_ends))
       )
     }
     pattern <- str_c("(", pattern, ")+")
-    if (side == "left") {
-      pattern <- str_c("^", pattern)
-    } else if (side == "right") {
-      pattern <- str_c(pattern, "$")
-    }
+    pattern <- switch(
+      side,
+      left = str_c("^", pattern),
+      right = str_c(pattern, "$"),
+      pattern
+    )
   }
   if (side == "both") {
     out <- string %>%

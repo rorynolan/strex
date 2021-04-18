@@ -23,7 +23,7 @@ status](https://codecov.io/gh/rorynolan/strex/branch/master/graph/badge.svg)](ht
 ![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/strex)](https://cran.r-project.org/package=strex)

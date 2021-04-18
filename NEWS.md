@@ -1,3 +1,9 @@
+# `strex` 1.4.2
+
+## BUG FIXES
+* Remove `LazyData` from `DESCRIPTION` (was causing CRAN note).
+
+
 # `strex` 1.4.1
 
 ## BUG FIXES
@@ -100,6 +106,3 @@
 # `strex` 0.1.0
 
 * The first incarnation.
-
-
-

@@ -110,7 +110,8 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
     }
   }
   arg_sym <- tryCatch(as.character(rlang::ensym(arg)),
-                      error = function(e) NA_character_)
+    error = function(e) NA_character_
+  )
   str_match_arg_basic(
     arg = arg,
     choices = choices,
@@ -134,7 +135,7 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
   checkmate::assert_flag(ignore_case)
   checkmate::assert_character(arg, min.len = 1)
   checkmate::assert_string(arg_sym, na.ok = TRUE)
-  if (is.na(arg_sym)) arg_sym <- "arg"
+  arg_sym <- ifelse(is.na(arg_sym), "arg", arg_sym)
   first_dup <- anyDuplicated(choices)
   if (first_dup) {
     custom_stop(
@@ -200,8 +201,10 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
     } else {
       if (ignore_case) {
         ambigs <- choices[
-          str_starts(tolower(choices),
-                     str_c("^", tolower(arg)[first_bad_index]))
+          str_starts(
+            tolower(choices),
+            str_c("^", tolower(arg)[first_bad_index])
+          )
         ]
       } else {
         ambigs <- str_subset(choices, str_c("^", arg[first_bad_index]))

@@ -38,7 +38,6 @@ str_trim_anything("-ghi--", "-")
 str_trim_anything("-ghi--", "-", "right")
 str_trim_anything("-ghi--", "--")
 str_trim_anything("-ghi--", "i-+")
-
 }
 \seealso{
 Other removers: 

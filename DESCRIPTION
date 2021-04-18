@@ -1,6 +1,6 @@
 Package: strex
 Title: Extra String Manipulation Functions
-Version: 1.4.1
+Version: 1.4.2
 Authors@R: 
     person(given = "Rory",
            family = "Nolan",
@@ -40,6 +40,5 @@ VignetteBuilder:
 Biarch: TRUE
 Encoding: UTF-8
 Language: en-US
-LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1

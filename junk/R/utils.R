@@ -39,7 +39,8 @@ interleave_char_lists <- function(strings1, strings2) {
   checkmate::assert_list(strings2)
   checkmate::assert_true(length(strings1) == length(strings2))
   .Call("interleave_char_lists_C", strings1, strings2,
-        PACKAGE = "strex")
+    PACKAGE = "strex"
+  )
 }
 
 #' Remove empty strings from a character list.
@@ -50,7 +51,6 @@ interleave_char_lists <- function(strings1, strings2) {
 #'
 #' @examples
 #' str_list_remove_empties(list(c("a", "", "b"), "gg", c("", 1, "")))
-#'
 #' @noRd
 str_list_remove_empties <- function(char_list) {
   checkmate::assert_list(char_list)
@@ -158,12 +158,16 @@ err_string_len <- function(string, sym, replacement_sym = NULL) {
   )
 }
 
-verify_string_pattern <- function(string, pattern) {
+verify_string_pattern <- function(string, pattern, boundary_allowed = TRUE) {
   checkmate::assert_character(string, min.len = 1)
   checkmate::assert_character(pattern, min.len = 1)
+  checkmate::assert_flag(boundary_allowed)
   if (length(pattern) > 1 && length(string) > 1 &&
     length(pattern) != length(string)) {
     err_string_len(string, pattern)
+  }
+  if (!boundary_allowed && all(c("boundary", "pattern") %in% class(pattern))) {
+    "Function cannot handle a `pattern` of type 'boundary'."
   }
   invisible(TRUE)
 }

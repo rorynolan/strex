@@ -136,9 +136,20 @@ err_string_len <- function(string, sym, replacement_sym = NULL) {
   )
 }
 
-verify_string_pattern <- function(string, pattern) {
+verify_string_pattern <- function(string, pattern, boundary_allowed = TRUE) {
   checkmate::assert_character(string, min.len = 1)
-  checkmate::assert_character(pattern, min.len = 1)
+  checkmate::assert_flag(boundary_allowed)
+  if (boundary_allowed) {
+    if (all(c("boundary", "pattern") %in% class(pattern))) {
+      checkmate::assert_character(pattern, min.len = 0)
+    } else {
+      checkmate::assert_character(pattern, min.len = 1)
+    }
+  } else if (all(c("boundary", "pattern") %in% class(pattern))) {
+    custom_stop("Function cannot handle a `pattern` of type 'boundary'.")
+  } else {
+    checkmate::assert_character(pattern, min.len = 1)
+  }
   if (length(pattern) > 1 && length(string) > 1 &&
     length(pattern) != length(string)) {
     err_string_len(string, pattern)
