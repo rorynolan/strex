@@ -9,7 +9,4 @@
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 ## Reverse Dependencies
-* There are two reverse dependencies and this update causes no changes.
-
-
-
+* There are two reverse dependencies; this update does not break anything.
