@@ -1,7 +1,7 @@
 ## Test environments
-- local OS X install, R 4.0.2
-- ubuntu 16.04 (on travis-ci), R 4.0.2
-- Windows server 2012 (on AppVeyor), R 4.0.2
+- local OS X install, R 4.2.1
+- ubuntu 20.04 (on GitHub Actions), R 4.2.1
+- Windows server 2022 (on GitHub Actions), R 4.2.1
 - win-builder (devel and release)
 - rhub::check_for_cran()
 
