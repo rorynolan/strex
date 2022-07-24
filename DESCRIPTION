@@ -1,14 +1,11 @@
 Package: strex
 Title: Extra String Manipulation Functions
-Version: 1.4.2
+Version: 1.4.3
 Authors@R: 
-    person(given = "Rory",
-           family = "Nolan",
-           role = c("aut", "cre"),
-           email = "rorynoolan@gmail.com",
+    person("Rory", "Nolan", , "rorynoolan@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5239-4043"))
-Description: There are some things that I wish were easier with
-    the 'stringr' or 'stringi' packages. The foremost of these is the
+Description: There are some things that I wish were easier with the
+    'stringr' or 'stringi' packages. The foremost of these is the
     extraction of numbers from strings. 'stringr' and 'stringi' make you
     figure out the regular expression for yourself; 'strex' takes care of
     this for you. There are many other handy functionalities in 'strex'.
@@ -27,7 +24,7 @@ Imports:
     magrittr (>= 1.5),
     rlang (>= 0.3.3),
     stats,
-    stringi (>= 1.4.6)
+    stringi (>= 1.7.8)
 Suggests: 
     covr,
     knitr,
@@ -41,4 +38,4 @@ Biarch: TRUE
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1

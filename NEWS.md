@@ -1,3 +1,9 @@
+# `strex` 1.4.3
+
+## BUG FIXES
+* Insist on latest, bug-fixed `stringi` v1.7.8.
+
+
 # `strex` 1.4.2
 
 ## BUG FIXES

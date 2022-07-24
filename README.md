@@ -13,10 +13,7 @@ Contributions to this package are encouraged: it is intended as a
 miscellany of string manipulation functions which cannot be found in
 `stringi` or `stringr`.
 
-[![Travis-CI Build
-Status](https://travis-ci.org/rorynolan/strex.svg?branch=master)](https://travis-ci.org/rorynolan/strex)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/rorynolan/strex?branch=master&svg=true)](https://ci.appveyor.com/project/rorynolan/strex)
+[![R-CMD-check](https://github.com/rorynolan/strex/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rorynolan/strex/actions/workflows/R-CMD-check.yaml)
 [![Coverage
 status](https://codecov.io/gh/rorynolan/strex/branch/master/graph/badge.svg)](https://codecov.io/github/rorynolan/strex?branch=master)
 

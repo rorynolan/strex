@@ -128,12 +128,7 @@ The default interpretation is a regular expression, as described in
 To match a without regular expression (i.e. as a human would), use
 \link[stringr:modifiers]{coll()}. For details see \code{\link[stringr:modifiers]{stringr::regex()}}.}
 
-\item{n}{Vectors of integerish values. Must be either length 1 or have
-length equal to the length of \code{string}. Negative indices count from the
-back: while \code{1} and \code{2} correspond to first and second, \code{-1} and \code{-2}
-correspond to last and second-last. \code{0} will return \code{NA}.}
-
-\item{m}{Vectors of integerish values. Must be either length 1 or have
+\item{n, m}{Vectors of integerish values. Must be either length 1 or have
 length equal to the length of \code{string}. Negative indices count from the
 back: while \code{1} and \code{2} correspond to first and second, \code{-1} and \code{-2}
 correspond to last and second-last. \code{0} will return \code{NA}.}
