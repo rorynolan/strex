@@ -140,12 +140,12 @@ verify_string_pattern <- function(string, pattern, boundary_allowed = TRUE) {
   checkmate::assert_character(string, min.len = 1)
   checkmate::assert_flag(boundary_allowed)
   if (boundary_allowed) {
-    if (all(c("boundary", "pattern") %in% class(pattern))) {
+    if (inherits(pattern, "boundary") || inherits(pattern, "stringr_boundary")) {
       checkmate::assert_character(pattern, min.len = 0)
     } else {
       checkmate::assert_character(pattern, min.len = 1)
     }
-  } else if (all(c("boundary", "pattern") %in% class(pattern))) {
+  } else if (inherits(pattern, "boundary") || inherits(pattern, "stringr_boundary")) {
     custom_stop("Function cannot handle a `pattern` of type 'boundary'.")
   } else {
     checkmate::assert_character(pattern, min.len = 1)
