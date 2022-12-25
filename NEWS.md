@@ -1,7 +1,7 @@
 # `strex` 1.4.4
 
 ## BUG FIXES
-* Fix for dev version of `stringr`..
+* Fix for dev version of `stringr`.
 
 
 # `strex` 1.4.3
