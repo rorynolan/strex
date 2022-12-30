@@ -1,3 +1,9 @@
+# `strex` 1.5.0
+
+## NEW FEATURES
+* `str_detect_all()` and `str_detect_any()`.
+
+
 # `strex` 1.4.4
 
 ## BUG FIXES

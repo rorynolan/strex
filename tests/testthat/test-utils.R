@@ -33,3 +33,7 @@ test_that("assert_lst_elems_common_length() works", {
     "Elements.+do not have a common length"
   )
 })
+
+test_that("verify_string_pattern() edge cases are OK", {
+  expect_true(verify_string_pattern("a", boundary()))
+})

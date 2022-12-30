@@ -1,6 +1,6 @@
 Package: strex
 Title: Extra String Manipulation Functions
-Version: 1.4.4
+Version: 1.5.0
 Authors@R: 
     person("Rory", "Nolan", , "rorynoolan@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5239-4043"))
@@ -18,17 +18,17 @@ URL: https://rorynolan.github.io/strex/,
 BugReports: https://github.com/rorynolan/strex/issues
 Depends: 
     R (>= 3.5),
-    stringr (>= 1.4)
+    stringr (>= 1.5)
 Imports: 
     checkmate (>= 1.9.3),
     magrittr (>= 1.5),
+    purrr,
     rlang (>= 0.3.3),
     stats,
     stringi (>= 1.7.8)
 Suggests: 
     covr,
     knitr,
-    purrr,
     rmarkdown,
     spelling,
     testthat (>= 2.1)
@@ -38,4 +38,4 @@ Biarch: TRUE
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3

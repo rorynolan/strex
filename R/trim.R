@@ -32,9 +32,9 @@ str_trim_anything <- function(string, pattern, side = "both") {
   checkmate::assert_string(side)
   side %<>% match_arg(c("both", "left", "right"), ignore_case = TRUE)
   type <- "regex"
-  if (inherits(pattern, "fixed") || inherits(pattern, "stringr_fixed")) {
+  if (inherits(pattern, "stringr_fixed")) {
     type <- "fixed"
-  } else if (inherits(pattern, "coll") || inherits(pattern, "stringr_coll")) {
+  } else if (inherits(pattern, "stringr_coll")) {
     type <- "coll"
   } else {
     bad_starts <- str_starts(pattern, "\\(*\\^")

@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/rorynolan/strex",
   "issueTracker": "https://github.com/rorynolan/strex/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.4.4",
+  "version": "1.5.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -66,18 +66,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "purrr",
-      "name": "purrr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=purrr"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "rmarkdown",
       "name": "rmarkdown",
       "provider": {
@@ -125,7 +113,7 @@
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
-      "version": ">= 1.4",
+      "version": ">= 1.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -162,6 +150,18 @@
     },
     "5": {
       "@type": "SoftwareApplication",
+      "identifier": "purrr",
+      "name": "purrr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=purrr"
+    },
+    "6": {
+      "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
       "version": ">= 0.3.3",
@@ -173,12 +173,12 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "6": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
     },
-    "7": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "stringi",
       "name": "stringi",
@@ -193,7 +193,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "493.849KB",
+  "fileSize": "501.081KB",
   "releaseNotes": "https://github.com/rorynolan/strex/blob/master/NEWS.md",
   "readme": "https://github.com/rorynolan/strex/blob/master/README.md",
   "contIntegration": ["https://github.com/rorynolan/strex/actions/workflows/R-CMD-check.yaml", "https://codecov.io/github/rorynolan/strex?branch=master"],
