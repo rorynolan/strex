@@ -31,6 +31,8 @@ str_detect_all(c(".", "-"), coll("."))
 str_detect_all(c(".", "-"), coll("."), negate = TRUE)
 str_detect_all(c(".", "-"), c(".", ":"))
 str_detect_all(c(".", "-"), coll(c(".", ":")))
+str_detect_all("xyzabc", c("a", "c", "z"))
+str_detect_all(c("xyzabc", "abcxyz"), c(".b", "^x"))
 
 str_detect_any("quick brown fox", c("x", "y", "z"))
 str_detect_any(c(".", "-"), ".")
@@ -38,5 +40,6 @@ str_detect_any(c(".", "-"), coll("."))
 str_detect_any(c(".", "-"), coll("."), negate = TRUE)
 str_detect_any(c(".", "-"), c(".", ":"))
 str_detect_any(c(".", "-"), coll(c(".", ":")))
+str_detect_any(c("xyzabc", "abcxyz"), c(".b", "^x"))
 
 }

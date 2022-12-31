@@ -1,0 +1,43 @@
+---
+title: "And/Or detection"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{And/Or detection}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(strex)
+```
+
+## How it works
+
+`strex` offers easy and/or versions of `stringr::str_detect()` via `str_detect_all()` and `str_detect_any()`. These are vectorized over `string` but not `pattern`. `stringr::fixed()` and `stringr::coll())` are handled correctly. Otherwise, `stringr` regular expressions are used. For `str_detect_all()`, a pattern argument `c("x", "y")` is converted to `"(?=.*x)(?=.*y)"`. For `str_detect_any()`, a pattern argument `c("x", "y")` is converted to `"x|y"`. 
+
+## Examples
+
+```{r examples}
+str_detect_all("quick brown fox", c("x", "y", "z"))
+str_detect_all(c(".", "-"), ".")
+str_detect_all(c(".", "-"), coll("."))
+str_detect_all(c(".", "-"), coll("."), negate = TRUE)
+str_detect_all(c(".", "-"), c(".", ":"))
+str_detect_all(c(".", "-"), coll(c(".", ":")))
+str_detect_all("xyzabc", c("a", "c", "z"))
+str_detect_all(c("xyzabc", "abcxyz"), c(".b", "^x"))
+str_detect_any("quick brown fox", c("x", "y", "z"))
+str_detect_any(c(".", "-"), ".")
+str_detect_any(c(".", "-"), coll("."))
+str_detect_any(c(".", "-"), coll("."), negate = TRUE)
+str_detect_any(c(".", "-"), c(".", ":"))
+str_detect_any(c(".", "-"), coll(c(".", ":")))
+str_detect_any(c("xyzabc", "abcxyz"), c(".b", "^x"))
+```

@@ -17,6 +17,8 @@
 #' str_detect_all(c(".", "-"), coll("."), negate = TRUE)
 #' str_detect_all(c(".", "-"), c(".", ":"))
 #' str_detect_all(c(".", "-"), coll(c(".", ":")))
+#' str_detect_all("xyzabc", c("a", "c", "z"))
+#' str_detect_all(c("xyzabc", "abcxyz"), c(".b", "^x"))
 #'
 #' @export
 str_detect_all <- function(string, pattern, negate = FALSE) {
@@ -34,7 +36,7 @@ str_detect_all <- function(string, pattern, negate = FALSE) {
     out <- purrr::reduce(out, `&`)
   } else {
     pattern <- pattern %>%
-      str_c("(?=", ., ")") %>%
+      str_c("(?=.*", ., ")") %>%
       str_flatten() %>%
       str_c("^", .)
     out <- stringr::str_detect(string, pattern)
@@ -52,6 +54,7 @@ str_detect_all <- function(string, pattern, negate = FALSE) {
 #' str_detect_any(c(".", "-"), coll("."), negate = TRUE)
 #' str_detect_any(c(".", "-"), c(".", ":"))
 #' str_detect_any(c(".", "-"), coll(c(".", ":")))
+#' str_detect_any(c("xyzabc", "abcxyz"), c(".b", "^x"))
 #'
 #' @export
 str_detect_any <- function(string, pattern, negate = FALSE) {
