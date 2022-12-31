@@ -35,23 +35,25 @@ devtools::install_github("rorynolan/strex")
 
 The following articles contain all you need to get going:
 
-  - [Alphordering
-    Numbers](https://rorynolan.github.io/strex/articles/alphordering-numbers.html)
-    tells you how to fix the pesky problem of numbers in file names not
-    complying with alphabetical order.
-  - [Argument
-    Matching](https://rorynolan.github.io/strex/articles/argument-matching.html)
-    showcases `strex::match_arg()`, an improvement on
-    `base::match.arg()` which allows one to ignore case during argument
-    matching.
-  - [Before and
-    After](https://rorynolan.github.io/strex/articles/before-and-after.html)
-    is for the common problem where you want to get the bit of a string
-    before or after an occurrence of a pattern.
-  - [Numbers Within
-    Strings](https://rorynolan.github.io/strex/articles/numbers-in-strings.html)
-    shows how to deal with the common problem of extracting numeric
-    information contained within larger strings.
-  - [Important
-    Miscellany](https://rorynolan.github.io/strex/articles/important-miscellany.html)
-    is the rest, and there’s a lot.
+- [Alphordering
+  Numbers](https://rorynolan.github.io/strex/articles/alphordering-numbers.html)
+  tells you how to fix the pesky problem of numbers in file names not
+  complying with alphabetical order.
+- [Argument
+  Matching](https://rorynolan.github.io/strex/articles/argument-matching.html)
+  showcases `strex::match_arg()`, an improvement on `base::match.arg()`
+  which allows one to ignore case during argument matching.
+- [Before and
+  After](https://rorynolan.github.io/strex/articles/before-and-after.html)
+  is for the common problem where you want to get the bit of a string
+  before or after an occurrence of a pattern.
+- [Numbers Within
+  Strings](https://rorynolan.github.io/strex/articles/numbers-in-strings.html)
+  shows how to deal with the common problem of extracting numeric
+  information contained within larger strings.
+- [And/Or
+  Detection](https://rorynolan.github.io/strex/articles/detection.html)
+  showcases `str_detect_all()` and `str_detect_any()`.
+- [Important
+  Miscellany](https://rorynolan.github.io/strex/articles/important-miscellany.html)
+  is the rest, and there’s a lot.
