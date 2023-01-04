@@ -3,6 +3,10 @@
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
 
+/* FIXME: 
+   Check these declarations against the C/Fortran source code.
+*/
+
 /* .Call calls */
 extern SEXP C_chr_lst_nth_elems(SEXP, SEXP);
 extern SEXP C_chr_lst_remove_empties(SEXP);
@@ -24,6 +28,8 @@ extern SEXP C_lst_chr_to_dbl(SEXP, SEXP);
 extern SEXP C_lst_elems_common_length(SEXP, SEXP);
 extern SEXP C_lst_fullocate(SEXP, SEXP, SEXP);
 extern SEXP C_match_arg_index(SEXP, SEXP);
+extern SEXP C_str_detect_many_coll(SEXP, SEXP);
+extern SEXP C_str_detect_many_fixed(SEXP, SEXP);
 extern SEXP C_SXP_int_prlst_cbind(SEXP, SEXP);
 extern SEXP C_SXP_int_prlst_rbind(SEXP, SEXP);
 
@@ -48,6 +54,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"C_lst_elems_common_length",    (DL_FUNC) &C_lst_elems_common_length,    2},
     {"C_lst_fullocate",              (DL_FUNC) &C_lst_fullocate,              3},
     {"C_match_arg_index",            (DL_FUNC) &C_match_arg_index,            2},
+    {"C_str_detect_many_coll",       (DL_FUNC) &C_str_detect_many_coll,       2},
+    {"C_str_detect_many_fixed",      (DL_FUNC) &C_str_detect_many_fixed,      2},
     {"C_SXP_int_prlst_cbind",        (DL_FUNC) &C_SXP_int_prlst_cbind,        2},
     {"C_SXP_int_prlst_rbind",        (DL_FUNC) &C_SXP_int_prlst_rbind,        2},
     {NULL, NULL, 0}

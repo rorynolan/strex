@@ -1,8 +1,8 @@
 ---
-title: "And/Or detection"
+title: "And/Or Detection"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{And/Or detection}
+  %\VignetteIndexEntry{And/Or Detection}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -40,4 +40,16 @@ str_detect_any(c(".", "-"), coll("."), negate = TRUE)
 str_detect_any(c(".", "-"), c(".", ":"))
 str_detect_any(c(".", "-"), coll(c(".", ":")))
 str_detect_any(c("xyzabc", "abcxyz"), c(".b", "^x"))
+```
+
+## Performance
+
+Unless you're doing a huge amount of computation, it won't matter, but FWIW, it's faster to convert to regex using `str_escape()` rather than using `coll()`.
+
+```{r performance}
+bench::mark(
+  str_detect_all(rep("*", 1000), rep(str_escape("*"), 555)),
+  str_detect_all(rep("*", 1000), coll(rep("*", 555))),
+  min_iterations = 100
+)
 ```

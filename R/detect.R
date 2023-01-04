@@ -28,12 +28,13 @@ str_detect_all <- function(string, pattern, negate = FALSE) {
   }
   checkmate::assert_character(pattern, min.chars = 1)
   checkmate::assert_flag(negate)
-  if (inherits(pattern, "stringr_fixed") || inherits(pattern, "stringr_coll")) {
-    out <- list()
-    for (i in seq_along(pattern)) {
-      out[[i]] <- str_detect(string, pattern[i])
+  if (inherits(pattern, "stringr_coll") || inherits(pattern, "stringr_fixed")) {
+    if (inherits(pattern, "stringr_coll")) {
+      out <- str_detect_many_coll(string, pattern)
+    } else {
+      out <- str_detect_many_fixed(string, pattern)
     }
-    out <- purrr::reduce(out, `&`)
+    out <- Reduce(`&`, out)
   } else {
     pattern <- pattern %>%
       str_c("(?=.*", ., ")") %>%
@@ -64,12 +65,13 @@ str_detect_any <- function(string, pattern, negate = FALSE) {
   }
   checkmate::assert_character(pattern, min.chars = 1)
   checkmate::assert_flag(negate)
-  if (inherits(pattern, "stringr_fixed") || inherits(pattern, "stringr_coll")) {
-    out <- list()
-    for (i in seq_along(pattern)) {
-      out[[i]] <- str_detect(string, pattern[i])
+  if (inherits(pattern, "stringr_coll") || inherits(pattern, "stringr_fixed")) {
+    if (inherits(pattern, "stringr_coll")) {
+      out <- str_detect_many_coll(string, pattern)
+    } else {
+      out <- str_detect_many_fixed(string, pattern)
     }
-    out <- purrr::reduce(out, `|`)
+    out <- Reduce(`|`, out)
   } else {
     out <- str_detect(string, str_flatten(pattern, "|"))
   }

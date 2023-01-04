@@ -429,3 +429,31 @@ int_vec_all_value <- function(int_vec, int_scalar) {
   int_scalar <- checkmate::assert_int(int_scalar, coerce = TRUE)
   .Call(C_int_vec_all_value, int_vec, int_scalar)
 }
+
+#' C version of `purrr::map(pattern, ~stringi::stri_detect_coll(string, .)`.
+#'
+#' @inheritParams stringi::stri_detect_coll
+#'
+#' @return A list of logical vectors. The list is the same length as `pattern`.
+#'   The vectors are the same length as `string`.
+#'
+#' @noRd
+str_detect_many_coll <- function(string, pattern) {
+  checkmate::assert_character(string, min.chars = 1, min.len = 1)
+  checkmate::assert_character(pattern, min.chars = 1, min.len = 1)
+  .Call(C_str_detect_many_coll, string, pattern)
+}
+
+#' C version of `purrr::map(pattern, ~stringi::stri_detect_fixed(string, .)`.
+#'
+#' @inheritParams stringi::stri_detect_coll
+#'
+#' @return A list of logical vectors. The list is the same length as `pattern`.
+#'   The vectors are the same length as `string`.
+#'
+#' @noRd
+str_detect_many_fixed <- function(string, pattern) {
+  checkmate::assert_character(string, min.chars = 1, min.len = 1)
+  checkmate::assert_character(pattern, min.chars = 1, min.len = 1)
+  .Call(C_str_detect_many_fixed, string, pattern)
+}

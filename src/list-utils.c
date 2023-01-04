@@ -7,6 +7,18 @@
 #include "stringi-imports.h"
 
 
+SEXP C_stringi_replace_all_coll(SEXP string, SEXP pattern, SEXP replacement) {
+  static SEXP(*fun)(SEXP, SEXP, SEXP, SEXP, SEXP) = NULL;
+  if (fun == NULL) {
+    fun = (SEXP(*)(SEXP, SEXP, SEXP, SEXP, SEXP))
+    R_GetCCallable("stringi", "C_stri_replace_all_coll");
+  }
+  SEXP truesxp = PROTECT(Rf_ScalarLogical(1));
+  SEXP out = PROTECT(fun(string, pattern, replacement, truesxp, R_NilValue));
+  UNPROTECT(2);
+  return out;
+}
+
 SEXP C_lst_elems_common_length(SEXP lst, SEXP l) {
   R_xlen_t lst_len = *REAL(l);
   R_xlen_t len0 = Rf_xlength(VECTOR_ELT(lst, 0));
@@ -28,7 +40,7 @@ SEXP C_chr_to_dbl(SEXP x, int commas) {  // this int is treated like a bool
   unsigned char to_unprotect = 0;
   if (commas) {
     SEXP comma = PROTECT(Rf_mkString(",")), empty = PROTECT(Rf_mkString(""));
-    y = PROTECT(C_stringi_replace_all(x, comma, empty));
+    y = PROTECT(C_stringi_replace_all_coll(x, comma, empty));
     to_unprotect += 3;
   }
   SEXP out = PROTECT(Rf_coerceVector(y, REALSXP));
@@ -599,4 +611,3 @@ SEXP C_int_mat_lst_rbind_nth_rows(SEXP int_mat_lst, SEXP n) {
   UNPROTECT(1);
   return out;
 }
-

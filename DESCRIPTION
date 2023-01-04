@@ -22,13 +22,14 @@ Depends:
 Imports: 
     checkmate (>= 1.9.3),
     magrittr (>= 1.5),
-    purrr,
     rlang (>= 0.3.3),
     stats,
     stringi (>= 1.7.8)
 Suggests: 
+    bench,
     covr,
     knitr,
+    purrr,
     rmarkdown,
     spelling,
     testthat (>= 2.1)
