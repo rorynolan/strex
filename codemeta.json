@@ -205,7 +205,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "516.888KB",
+  "fileSize": "321.654KB",
   "releaseNotes": "https://github.com/rorynolan/strex/blob/master/NEWS.md",
   "readme": "https://github.com/rorynolan/strex/blob/master/README.md",
   "contIntegration": ["https://github.com/rorynolan/strex/actions/workflows/R-CMD-check.yaml", "https://codecov.io/github/rorynolan/strex?branch=master"],

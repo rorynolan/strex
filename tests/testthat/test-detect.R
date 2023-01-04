@@ -4,11 +4,14 @@ test_that("`str_detect_all()` works", {
   expect_equal(str_detect_all(c(".", "-"), coll(".")), c(TRUE, FALSE))
   expect_equal(str_detect_all(c(".", "-"), coll("."), negate = TRUE),
                c(FALSE, TRUE))
+  expect_equal(str_detect_all(c(".", "-"), fixed("."), negate = TRUE),
+               c(FALSE, TRUE))
   expect_equal(str_detect_all(c(".", "-"), c(".", ":")), c(FALSE, FALSE))
   expect_equal(str_detect_all(c(".", "-"), coll(c(".", ":"))), c(FALSE, FALSE))
   expect_equal(str_detect_any("quick brown fox", c("x", "y", "z")), TRUE)
   expect_equal(str_detect_any(c(".", "-"), "."), c(TRUE, TRUE))
   expect_equal(str_detect_any(c(".", "-"), coll(".")), c(TRUE, FALSE))
+  expect_equal(str_detect_any(c(".", "-"), fixed(".")), c(TRUE, FALSE))
   expect_equal(str_detect_any(c(".", "-"), coll("."), negate = TRUE),
                c(FALSE, TRUE))
   expect_equal(str_detect_any(c(".", "-"), c(".", ":")), c(TRUE, TRUE))
