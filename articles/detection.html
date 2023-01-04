@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>And/Or detection • strex</title>
+<title>And/Or Detection • strex</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="And/Or detection">
+<script src="../pkgdown.js"></script><meta property="og:title" content="And/Or Detection">
 <meta property="og:description" content="strex">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -66,7 +66,7 @@
       <a href="../articles/before-and-after.html">Before and After</a>
     </li>
     <li>
-      <a href="../articles/detection.html">And/Or detection</a>
+      <a href="../articles/detection.html">And/Or Detection</a>
     </li>
     <li>
       <a href="../articles/important-miscellany.html">Important Miscellany</a>
@@ -100,7 +100,7 @@
       </header><script src="detection_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>And/Or detection</h1>
+      <h1 data-toc-skip>And/Or Detection</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/rorynolan/strex/blob/HEAD/vignettes/detection.Rmd" class="external-link"><code>vignettes/detection.Rmd</code></a></small>
@@ -152,6 +152,24 @@
 <span><span class="co">#&gt; [1]  TRUE FALSE</span></span>
 <span><span class="fu"><a href="../reference/str_detect_all.html">str_detect_any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"xyzabc"</span>, <span class="st">"abcxyz"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">".b"</span>, <span class="st">"^x"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE TRUE</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="performance">Performance<a class="anchor" aria-label="anchor" href="#performance"></a>
+</h2>
+<p>Unless you’re doing a huge amount of computation, it won’t matter, but FWIW, it’s faster to convert to regex using <code><a href="https://stringr.tidyverse.org/reference/str_escape.html" class="external-link">str_escape()</a></code> rather than using <code><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">coll()</a></code>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="../reference/str_detect_all.html">str_detect_all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"*"</span>, <span class="fl">1000</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_escape.html" class="external-link">str_escape</a></span><span class="op">(</span><span class="st">"*"</span><span class="op">)</span>, <span class="fl">555</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/str_detect_all.html">str_detect_all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"*"</span>, <span class="fl">1000</span><span class="op">)</span>, <span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">coll</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"*"</span>, <span class="fl">555</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  min_iterations <span class="op">=</span> <span class="fl">100</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 6</span></span></span>
+<span><span class="co">#&gt;   expression                                                  min median itr/s…¹</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span>                                                <span style="color: #949494; font-style: italic;">&lt;bch&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> str_detect_all(rep("*", 1000), rep(str_escape("*"), 555)) 266ms  275ms    3.62</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> str_detect_all(rep("*", 1000), coll(rep("*", 555)))       443ms  460ms    2.17</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 2 more variables: mem_alloc &lt;bch:byt&gt;, `gc/sec` &lt;dbl&gt;, and abbreviated</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   variable name ¹​`itr/sec`</span></span></span></code></pre></div>
 </div>
   </div>
 
