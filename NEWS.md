@@ -1,3 +1,10 @@
+#' `strex` 1.5.1
+
+## BUG FIXES
+* `purrr` should not have been in `Imports`. It is now in `Suggests`.
+* Some lines in `stringi-imports.h` needed to be uncommented.
+
+
 # `strex` 1.5.0
 
 ## NEW FEATURES

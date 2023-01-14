@@ -3,11 +3,6 @@
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
 
-/* FIXME: 
-   Check these declarations against the C/Fortran source code.
-*/
-
-/* .Call calls */
 extern SEXP C_chr_lst_nth_elems(SEXP, SEXP);
 extern SEXP C_chr_lst_remove_empties(SEXP);
 extern SEXP C_chr_vec_remove_empties(SEXP);
