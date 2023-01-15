@@ -26,25 +26,9 @@ test_that("match_arg() works", {
     c(3, 1)
   )
   choices %<>% c("Avocados", "Apricots")
-  expect_error(
-    match_arg("A", choices, ignore_case = FALSE),
-    str_c(
-      "`A` must be a prefix.+of exactly one element of `choices`.+",
-      ". Your `A` \\\"A\\\" is a prefix of two or more elements.+",
-      "`choices`.+",
-      ". The first two of these are \\\"Apples\\\" and \\\"Avocados\\\"."
-    )
-  )
+  expect_snapshot_error(match_arg("A", choices, ignore_case = FALSE))
   x <- "a"
-  expect_error(
-    match_arg(x, choices, ignore_case = TRUE),
-    str_c(
-      "`x` must be a prefix of exactly one element of `choices`.+",
-      ". Your `x` \\\"a\\\" is a prefix of two or more elements of.+",
-      "`choices`.+",
-      ". The first two of these are \\\"Apples\\\" and \\\"Avocados\\\"."
-    )
-  )
+  expect_snapshot_error(match_arg(x, choices, ignore_case = TRUE))
   expect_error(
     match_arg(c("A", "a"), choices),
     str_c(
@@ -55,34 +39,12 @@ test_that("match_arg() works", {
     )
   )
   choices %<>% c("bananas")
-  expect_error(
-    match_arg("p", choices, ignore_case = TRUE),
-    str_c(
-      "`choices` must not have duplicate elements.+",
-      ". Since you have set `ignore_case = TRUE`, elements 3 and.+",
-      "7 of your `choices` \\(\\\"Bananas\\\" and \\\"bananas\\\"\\) are.+",
-      "effectively duplicates."
-    )
-  )
+  expect_snapshot_error(match_arg("p", choices, ignore_case = TRUE))
   choices %<>% c("Pears")
-  expect_error(
-    match_arg("p", choices, ignore_case = TRUE),
-    str_c(
-      "`choices` must not have duplicate elements.+",
-      ". Element 8, of your `choices` \\(\\\"Pears\\\"\\) is a duplicate."
-    )
-  )
+  expect_snapshot_error(match_arg("p", choices, ignore_case = TRUE))
   expect_equal(match_arg("ab", c("ab", "abc")), "ab")
   y <- "a"
-  expect_error(
-    match_arg(y, as.character(1:51)),
-    str_c(
-      "`y` must be a prefix of exactly one element of `choices`.+",
-      ". Your first 50 `choices` are \\\"1\\\", \\\"2\\\", \\\"3\\\", .+",
-      "47\\\", \\\"48\\\", \\\"49\\\", \\\"50\\\".+",
-      ". Your `y` \\\"a\\\" is not a prefix of any of your `choices`."
-    )
-  )
+  expect_snapshot_error(match_arg(y, as.character(1:51)))
   word <- function(w = c("abacus", "baseball", "candy")) {
     match_arg(w)
   }
@@ -96,27 +58,14 @@ test_that("match_arg() works", {
   word <- function(w = c("abacus", "baseball", "candy")) {
     match_arg(as.character(w), several_ok = TRUE)
   }
-  word_err_msg <- paste(
-    "You have used `match_arg()` without specifying a",
-    "`choices` argument.\n    * The only way to do this",
-    "is from another function where `arg` has a",
-    "default setting. This is the same as",
-    "`base::match.arg()`.\n    * See the man page for",
-    "`match_arg()`, particularly the examples:",
-    "enter `help(\"match_arg\", package = \"strex\")`",
-    "at the R console.\n    * See also the vignette on",
-    "argument matching: enter",
-    "`vignette(\"argument-matching\", package =",
-    "\"strex\")` at the R console."
-  )
-  expect_error(word(), word_err_msg, fixed = TRUE)
+  expect_snapshot_error(word())
   word <- function(w = 1:3) {
     match_arg(w, several_ok = TRUE)
   }
-  expect_error(word(), word_err_msg, fixed = TRUE)
+  expect_snapshot_error(word())
   word <- function(w = c("abacus", "baseball", "candy")) {
     x <- "a"
     match_arg(x, several_ok = TRUE)
   }
-  expect_error(word(), word_err_msg, fixed = TRUE)
+  expect_snapshot_error(word())
 })

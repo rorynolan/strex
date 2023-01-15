@@ -116,7 +116,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 2.1",
+      "version": ">= 3.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -176,7 +176,7 @@
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
-      "version": ">= 0.3.3",
+      "version": ">= 1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -203,9 +203,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringi"
     },
+    "8": {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "517.137KB",
+  "fileSize": "516.827KB",
   "releaseNotes": "https://github.com/rorynolan/strex/blob/master/NEWS.md",
   "readme": "https://github.com/rorynolan/strex/blob/master/README.md",
   "contIntegration": ["https://github.com/rorynolan/strex/actions/workflows/R-CMD-check.yaml", "https://codecov.io/github/rorynolan/strex?branch=master"],

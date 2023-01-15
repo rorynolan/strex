@@ -1,6 +1,3 @@
-context("Location")
-
-
 test_that("`str_locate_nth()` works", {
   expect_equal(
     str_locate_first(c("abcdabcxyz", "abcabc"), "abc"),
@@ -31,24 +28,8 @@ test_that("`str_locate_nth()` works", {
     ), ncol = 2, byrow = 2) %>%
       magrittr::set_colnames(c("start", "end"))
   )
-  expect_error(str_locate_first(c("a", "b"), c("c", "d", "e")),
-    paste(
-      "When `string` has length greater than 1,",
-      "`pattern` must either be length 1 or have the",
-      "same length as `string`.\n    * Your `string` has",
-      "length 2.\n    * Your `pattern` has length 3."
-    ),
-    fixed = TRUE
-  )
-  expect_error(str_locate_nth(c("a", "b"), c("a", "b"), 1:5),
-    paste(
-      "When `string` has length greater than 1, `n` must",
-      "either be length 1 or have the same length as",
-      "`string`.\n    * Your `string` has length 2.\n    *",
-      "Your `n` has length 5."
-    ),
-    fixed = TRUE
-  )
+  expect_snapshot_error(str_locate_first(c("a", "b"), c("c", "d", "e")))
+  expect_snapshot_error(str_locate_nth(c("a", "b"), c("a", "b"), 1:5))
   expect_equal(
     str_locate_nth("abc", "b", c(0, 1, 1, 2)),
     matrix(c(rep(NA, 2), rep(2, 4), rep(NA, 2)),

@@ -98,15 +98,7 @@ test_that("`str_nth_currency()` works", {
       stringsAsFactors = FALSE
     )
   )
-  expect_error(str_nth_currency(as.character(1:3), 1:7),
-    paste(
-      "When `string` has length greater than 1, `n` must",
-      "either be length 1 or have the same length as",
-      "`string`.\n    * Your `string` has length 3.\n    *",
-      "Your `n` has length 7."
-    ),
-    fixed = TRUE
-  )
+  expect_snapshot_error(str_nth_currency(as.character(1:3), 1:7))
   expect_equal(as.data.frame(str_nth_currency(string, n = -2)),
     data.frame(
       string_num = seq_along(string), string,
@@ -114,7 +106,7 @@ test_that("`str_nth_currency()` works", {
       amount = c(3, NA, 35, 5, NA),
       stringsAsFactors = FALSE
     ),
-    check.attributes = FALSE
+    ignore_attr = TRUE
   )
   expect_equal(
     as.data.frame(str_nth_currency(string, c(1, -2, 1, 2, -1))),

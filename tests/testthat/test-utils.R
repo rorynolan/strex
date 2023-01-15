@@ -17,13 +17,6 @@ test_that("`*_list_nth_elems()` error correctly", {
   )
 })
 
-test_that("`custom_stop()` errors correctly", {
-  expect_error(
-    custom_stop("a", 1),
-    "The arguments in ... must all be of character type."
-  )
-})
-
 test_that("assert_lst_elems_common_length() works", {
   lst <- list(1)
   expect_true(assert_lst_elems_common_length(lst))

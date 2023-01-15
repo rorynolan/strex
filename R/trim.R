@@ -40,22 +40,31 @@ str_trim_anything <- function(string, pattern, side = "both") {
     bad_starts <- str_starts(pattern, "\\(*\\^")
     bad_ends <- str_ends(pattern, "\\$\\)*")
     if (any(bad_starts)) {
-      custom_stop(
-        "In `str_trim_anything()`, don't start your regular expression patterns
-         with '^' to match the start of the string. The trimming by definition
-         is happening at the edges.",
-        "Element {first_bad} of your pattern, '{pattern[first_bad]}' is the
-         first offender.",
-        .envir = list(pattern = pattern, first_bad = which.max(bad_starts))
+      rlang::abort(
+        c(
+          paste(
+            "In `str_trim_anything()`, don't start your regular expression",
+            "patterns with '^' to match the start of the string.",
+            "The trimming by definition is happening at the edges."
+          ),
+          x = str_glue("Element {first_bad} of your pattern, ",
+                       "'{pattern[first_bad]}' is the first offender.",
+                       .envir = list(pattern = pattern,
+                                     first_bad = which.max(bad_starts)))
+        )
       )
     } else if (any(bad_ends)) {
-      custom_stop(
-        "In `str_trim_anything()`, don't end your regular expression patterns
-         with '$' to match the end of the string. The trimming by definition
-         is happening at the edges.",
-        "Element {first_bad} of your pattern, '{pattern[first_bad]}' is the
-         first offender.",
-        .envir = list(pattern = pattern, first_bad = which.max(bad_ends))
+      rlang::abort(
+        c(
+          paste("In `str_trim_anything()`, don't end your regular expression",
+                "patterns with '$' to match the end of the string.",
+                "The trimming by definition is happening at the edges."),
+          x = str_glue(
+            "Element {first_bad} of your pattern, '{pattern[first_bad]}' ",
+            "is the first offender.",
+            .envir = list(pattern = pattern, first_bad = which.max(bad_ends))
+          )
+        )
       )
     }
     pattern <- str_c("(", pattern, ")+")

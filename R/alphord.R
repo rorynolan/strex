@@ -38,12 +38,10 @@ str_alphord_nums <- function(string) {
   have_nums <- str_detect(string, "\\d")
   if (!all(have_nums)) {
     bad_index <- match(F, have_nums)
-    custom_stop(
-      "Some of the input strings have no numbers in them.",
-      "
-                The first bad string is string number {bad_index},
-                which is \"{string[bad_index]}\".
-                "
+    rlang::abort(
+      c("Some of the input strings have no numbers in them.",
+        x = str_glue("The first bad string is string number {bad_index}, ",
+                     "which is '{string[bad_index]}'."))
     )
   }
   non_nums <- str_extract_non_numerics(string)
@@ -54,27 +52,23 @@ str_alphord_nums <- function(string) {
         . + 1
       }
     }
-    custom_stop(
-      "The non-number bits of every string must be the same.",
-      "
-      The first pair of strings with different non-number bits are
-      strings 1 and {bad_index}.
-      ", "
-      They are \"{string[1]}\" and \"{string[bad_index]}\"
-      "
+    rlang::abort(
+      c("The non-number bits of every string must be the same.",
+        i = str_glue("The first pair of strings with different non-",
+                     "number bits are strings 1 and {bad_index}."),
+        x = str_glue("They are '{string[1]}' and '{string[bad_index]}'."))
     )
   }
   nums <- str_extract_numbers(string, leave_as_string = TRUE)
   nums_lengths <- lengths(nums)
   if (length(unique(nums_lengths)) > 1) {
     bad_index <- match(F, nums_lengths == nums_lengths[1])
-    custom_stop(
-      "The strings must all have the same number of numbers.",
-      "
-      Your string number 1 \"{string[1]}\" has {nums_lengths[1]} numbers,
-      whereas your string number {bad_index} \"{string[bad_index]}\" has
-      {nums_lengths[bad_index]} numbers.
-      "
+    rlang::abort(
+      c("The strings must all have the same number of numbers.",
+        x = str_glue("Your string number 1 \"{string[1]}\" has ",
+                     "{nums_lengths[1]} numbers, whereas your string number ",
+                     "{bad_index} '{string[bad_index]}' has ",
+                     "{nums_lengths[bad_index]} numbers."))
     )
   }
   nums %<>% simplify2array()
@@ -92,17 +86,15 @@ str_alphord_nums <- function(string) {
   num_first <- str_elem(string, 1) %>% str_can_be_numeric()
   if (length(unique(num_first)) > 1) {
     bad_index <- match(!num_first[1], num_first)
-    custom_stop(
-      "
-      It should either be the case that all strings start with numbers or
-      that none of them do.
-      ",
-      "
-      String number 1 \"{string[1]}\"
-      {ifelse(num_first[1], 'does', 'does not')} start with a number
-      whereas string number {bad_index} \"{string[bad_index]}\"
-      {ifelse(num_first[1], 'does not', 'does')}, start with a number.
-      "
+    rlang::abort(
+      c(paste("It should either be the case that all strings start with",
+              "numbers or that none of them do."),
+        x = str_glue(" String number 1 '{string[1]}' ",
+                     "{ifelse(num_first[1], 'does', 'does not')} ",
+                     "start with a number whereas ",
+                     "string number {bad_index} '{string[bad_index]}' ",
+                     "{ifelse(num_first[1], 'does not', 'does')} ",
+                     "start with a number."))
     )
   }
   if (num_first[1]) {

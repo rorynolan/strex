@@ -62,43 +62,32 @@ test_that("str_extract_numbers works", {
     str_extract_non_numerics("--123abc456", negs = TRUE),
     list(c("-", "abc"))
   )
-  expect_warning(
-    str_extract_numbers("abc1.2.3", decimals = TRUE),
-    paste0(
-      "NAs introduced by ambiguity.+The first such ambiguity\\s?",
-      "is in string number 1 which is.+'abc1.+2.+3'."
-    )
+  expect_snapshot_warning(
+    str_extract_numbers("abc1.2.3", decimals = TRUE)
   )
   expect_equal(suppressWarnings(
     str_extract_numbers("abc1.2.3", decimals = TRUE)
   ), list(NA_real_))
-  expect_warning(
+  expect_snapshot_warning(
     str_extract_numbers("ab.1.2",
       decimals = TRUE,
       leading_decimals = TRUE
-    ),
-    paste0(
-      "NAs introduced by ambiguity.+The first such ambiguity\\s?",
-      "is in string number 1 which is.+'ab.+1.+2'."
     )
   )
-  expect_warning(str_extract_numbers("ab.1.2",
-    decimals = TRUE,
-    leading_decimals = TRUE
-  ), paste0(
-    "NAs introduced by ambiguity.+The first such ambiguity\\s?",
-    "is in string number 1 which is.+'ab.+1.+2'."
-  ))
+  expect_snapshot_warning(
+    str_extract_numbers("ab.1.2",
+      decimals = TRUE,
+      leading_decimals = TRUE
+    )
+  )
   expect_equal(suppressWarnings(str_extract_numbers("ab.1.2",
     decimals = TRUE,
     leading_decimals = TRUE
   )), list(NA_real_))
-  expect_warning(str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"),
-    decimals = TRUE
-  ), paste0(
-    "NAs introduced by ambiguity.+The first such ambiguity\\s?",
-    "is in string number 1 which is.+'abc1.+2.+3'."
-  ))
+  expect_snapshot_warning(
+    str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"),
+                        decimals = TRUE)
+  )
   expect_equal(
     suppressWarnings(
       str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"),
@@ -128,16 +117,12 @@ test_that("str_extract_numbers works", {
     ),
     -1.4e5
   )
-  expect_warning(
+  expect_snapshot_warning(
     expect_equal(
       str_first_number("ab.1.2",
         decimals = TRUE, leading_decimals = TRUE
       ),
       NA_real_
-    ),
-    paste0(
-      "NAs introduced by ambiguity.+The first such ambiguity\\s?",
-      "is in string number 1 which is.+'ab.+1.+2'."
     )
   )
   expect_equal(
@@ -150,7 +135,7 @@ test_that("str_extract_numbers works", {
     decimals = TRUE,
     leading_decimals = TRUE
   )), NA_real_)
-  expect_error(str_extract_numbers("a.23", leading_decimals = T))
+  expect_snapshot_error(str_extract_numbers("a.23", leading_decimals = T))
   expect_equal(str_first_number("abc"), NA_integer_)
   expect_equal(
     strex:::dbl_lst_nth_elems(list(c(1, 2)), c(-1, 3)),

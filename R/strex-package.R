@@ -3,6 +3,7 @@
 #' @importFrom stringi stri_write_lines
 #' @importFrom magrittr '%>%' '%<>%' '%T>%'
 #' @importFrom stats as.dendrogram
+#' @importFrom utils head
 NULL
 
 

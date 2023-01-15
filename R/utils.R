@@ -1,59 +1,3 @@
-#' Construct the bullet point bits for `custom_stop()`.
-#'
-#' @param string The message for the bullet point.
-#'
-#' @return A string with the bullet-pointed message nicely formatted for the
-#'   console.
-#'
-#' @noRd
-custom_bullet <- function(string) {
-  checkmate::assert_string(string)
-  string %>%
-    stringr::str_replace_all("\\s+", " ") %>%
-    paste("    *", .)
-}
-
-custom_condition_prep <- function(main_message, ..., .envir = parent.frame()) {
-  checkmate::assert_string(main_message)
-  main_message %<>%
-    stringr::str_replace_all("\\s+", " ") %>%
-    stringr::str_glue(.envir = .envir) %>%
-    stringr::str_trim()
-  out <- main_message
-  dots <- unlist(list(...))
-  if (length(dots)) {
-    if (!is.character(dots)) {
-      stop("\nThe arguments in ... must all be of character type.")
-    }
-    dots %<>%
-      vapply(stringr::str_glue, character(1), .envir = .envir) %>%
-      vapply(custom_bullet, character(1))
-    out %<>% {
-      stringr::str_c(c(., dots), collapse = "\n")
-    }
-  }
-  out
-}
-
-#' Nicely formatted error message.
-#'
-#' Format an error message with bullet-pointed sub-messages with nice
-#' line-breaks.
-#'
-#' Arguments should be entered as `glue`-style strings.
-#'
-#' @param main_message The main error message.
-#' @param ... Bullet-pointed sub-messages.
-#'
-#' @noRd
-custom_stop <- function(main_message, ..., .envir = parent.frame()) {
-  rlang::abort(custom_condition_prep(main_message, ..., .envir = .envir))
-}
-
-custom_warn <- function(main_message, ..., .envir = parent.frame()) {
-  rlang::warn(custom_condition_prep(main_message, ..., .envir = .envir))
-}
-
 #' Assert that two objects have compatible lengths.
 #'
 #' Compatible means that either both have length less than or equal to 1, or
@@ -72,12 +16,13 @@ assert_compatible_lengths <- function(x, y) {
   checkmate::assert_vector(y)
   if (length(x) > 1 && length(y) > 1) {
     if (length(x) != length(y)) {
-      custom_stop(
-        "If both `{x_sym}` and `{y_sym}` have lengths greater than 1,
-        then their lengths must be equal.",
-        "`{x_sym}` has length {length(x)}.",
-        "`{y_sym}` has length {length(y)}.",
-        .envir = list(x = x, y = y, x_sym = x_sym, y_sym = y_sym)
+      rlang::abort(
+        c(
+          str_glue("If both `{x_sym}` and `{y_sym}` have lengths greater ",
+                   "than 1, then their lengths must be equal."),
+          x = str_glue("`{x_sym}` has length {length(x)}."),
+          x = str_glue("`{y_sym}` has length {length(y)}.")
+        )
       )
     }
   }
@@ -101,8 +46,8 @@ assert_lst_elems_common_length <- function(lst) {
   }
   good <- lst_elems_common_length(lst, as.double(l))
   if (!good) {
-    custom_stop("Elements of `{lst_sym}` do not have a common length.",
-      .envir = list(lst_sym = lst_sym)
+    rlang::abort(
+      str_glue("Elements of `{lst_sym}` do not have a common length.")
     )
   }
   invisible(TRUE)
@@ -122,16 +67,12 @@ err_string_len <- function(string, sym, replacement_sym = NULL) {
   } else {
     sym_str <- as.character(sym_sym)
   }
-  custom_stop(
-    "
-    When `string` has length greater than 1,
-    `{sym_str}` must either be length 1 or have the same length as `string`.
-    ",
-    "Your `string` has length {length(string)}.",
-    "Your `{sym_str}` has length {sym_len}.",
-    .envir = list(
-      sym_str = sym_str, sym_len = length(sym),
-      string = string
+  rlang::abort(
+    c(
+      str_glue("When `string` has length greater than 1, `{sym_str}` ",
+               "must either be length 1 or have the same length as `string`."),
+      x = str_glue("Your `string` has length {length(string)}."),
+      x = str_glue("Your `{sym_str}` has length {length(sym)}.")
     )
   )
 }
@@ -146,7 +87,7 @@ verify_string_pattern <- function(string, pattern, boundary_allowed = TRUE) {
       checkmate::assert_character(pattern, min.len = 1)
     }
   } else if (inherits(pattern, "stringr_boundary")) {
-    custom_stop("Function cannot handle a `pattern` of type 'boundary'.")
+    rlang::abort("Function cannot handle a `pattern` of type 'boundary'.")
   } else {
     checkmate::assert_character(pattern, min.len = 1)
   }
@@ -178,12 +119,13 @@ verify_string_pattern_n <- function(string, pattern, n,
   verify_string_pattern(string, pattern)
   if (length(pattern) > 1 && length(n) > 1 &&
     length(pattern) != length(n)) {
-    custom_stop(
-      "If `pattern` and `n` both have length greater than 1,
-      their lengths must be equal.",
-      "Your `pattern` has length {length(pattern)}.",
-      "Your `{n_sym_str}` has length {length(n)}.",
-      .envir = list(pattern = pattern, n = n, n_sym_str = n_sym_str)
+    rlang::abort(
+      c(
+        paste("If `pattern` and `n` both have length greater than 1,",
+              "their lengths must be equal."),
+        x = str_glue("Your `pattern` has length {length(pattern)}."),
+        x = str_glue("Your `{n_sym_str}` has length {length(n)}.")
+      )
     )
   }
   invisible(TRUE)
@@ -195,13 +137,13 @@ verify_string_pattern_n_m <- function(string, pattern, n, m) {
   verify_string_pattern_n(string, pattern, m, "m")
   if (length(n) > 1 && length(m) > 1 &&
     length(n) != length(m)) {
-    custom_stop(
-      "
-                If `n` and `m` both have length greater than 1,
-                their lengths must be equal.
-                ",
-      "Your `n` has length {length(n)}.",
-      "Your `m` has length {length(m)}."
+    rlang::abort(
+      c(
+        paste("If `n` and `m` both have length greater than 1,",
+              "their lengths must be equal."),
+        x = str_glue("Your `n` has length {length(n)}."),
+        x = str_glue("Your `m` has length {length(m)}.")
+      )
     )
   }
   invisible(TRUE)

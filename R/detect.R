@@ -24,7 +24,7 @@
 str_detect_all <- function(string, pattern, negate = FALSE) {
   checkmate::assert_character(string)
   if (inherits(pattern, "stringr_boundary")) {
-    custom_stop("Function cannot handle a `pattern` of type 'boundary'.")
+    rlang::abort("Function cannot handle a `pattern` of type 'boundary'.")
   }
   checkmate::assert_character(pattern, min.chars = 1)
   checkmate::assert_flag(negate)
@@ -61,7 +61,7 @@ str_detect_all <- function(string, pattern, negate = FALSE) {
 str_detect_any <- function(string, pattern, negate = FALSE) {
   checkmate::assert_character(string)
   if (inherits(pattern, "stringr_boundary")) {
-    custom_stop("Function cannot handle a `pattern` of type 'boundary'.")
+    rlang::abort("Function cannot handle a `pattern` of type 'boundary'.")
   }
   checkmate::assert_character(pattern, min.chars = 1)
   checkmate::assert_flag(negate)

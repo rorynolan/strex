@@ -2,15 +2,7 @@ test_that("str_elem() works", {
   expect_equal(str_elem(c("abcd", "xyz"), 3), c("c", "z"))
   expect_equal(str_elem("abcd", -2), "c")
   expect_equal(str_elem("abcd", 3), "c")
-  expect_error(str_elem(c("a", "b"), 1:3),
-    paste(
-      "When `string` has length greater than 1, `index`",
-      "must either be length 1 or have the same length",
-      "as `string`.\n    * Your `string` has length 2.\n  ",
-      " * Your `index` has length 3."
-    ),
-    fixed = TRUE
-  )
+  expect_snapshot_error(str_elem(c("a", "b"), 1:3))
 })
 
 test_that("str_elems() works", {

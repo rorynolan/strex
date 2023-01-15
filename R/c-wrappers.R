@@ -52,10 +52,12 @@ interleave_chr_vecs <- function(x, y) {
   checkmate::assert_character(x)
   checkmate::assert_character(y)
   if (abs(length(x) - length(y)) > 1) {
-    custom_stop(
-      "`x` and `y` must have lengths that differ by at most 1.",
-      "`x` has length {length(x)}.",
-      "`y` has length {length(y)}."
+    rlang::abort(
+      c(
+        "`x` and `y` must have lengths that differ by at most 1.",
+        x = str_glue("`x` has length {length(x)}."),
+        x = str_glue("`y` has length {length(y)}.")
+      )
     )
   }
   .Call(C_interleave_chr_vecs, x, y)

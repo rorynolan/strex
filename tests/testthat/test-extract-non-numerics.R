@@ -6,7 +6,7 @@ test_that("str_extract_non_numerics() works", {
   expect_equal(str_first_non_numeric("--123abc456"), "--")
   expect_equal(str_last_non_numeric("--123abc456"), "abc")
   expect_equal(str_nth_non_numeric("--123abc456", -2), "--")
-  expect_error(str_extract_non_numerics("a.23", leading_decimals = T))
+  expect_snapshot_error(str_extract_non_numerics("a.23", leading_decimals = T))
   expect_equal(str_first_non_numeric("1"), NA_character_)
   expect_equal(str_last_non_numeric(c("abc", "def")), c("abc", "def"))
   expect_equal(

@@ -92,20 +92,17 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
       }
     }
     if (null_choice_err) {
-      custom_stop(
-        "You have used `{fun}()` without specifying a `choices` argument. ",
-        "
-        The only way to do this is from another function where `arg` has a
-        default setting. This is the same as `base::match.arg()`.
-        ", "
-        See the man page for `{fun}()`, particularly the examples:
-        enter `help(\"{fun}\", package = \"strex\")` at the R console.
-        ", "
-        See also the vignette on argument matching:
-        enter `vignette(\"argument-matching\", package = \"strex\")`
-        at the R console.
-        ",
-        .envir = list(fun = as.character(match.call())[[1]])
+      rlang::abort(
+        c(
+          "You used `match_arg()` without specifying a `choices` argument.",
+          i = paste("The only way to do this is from another function where",
+                    "the `arg` has a default setting.",
+                    "This is the same as `base::match.arg()`."),
+          i = paste("See the man page for `match_arg()`."),
+          i = paste("See the vignette on argument matching:",
+                    "enter `vignette('argument-matching', package = 'strex')`",
+                    "at the R console.")
+        )
       )
     }
   }
@@ -138,10 +135,12 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
   arg_sym <- ifelse(is.na(arg_sym), "arg", arg_sym)
   first_dup <- anyDuplicated(choices)
   if (first_dup) {
-    custom_stop(
-      "`choices` must not have duplicate elements. ",
-      "Element {first_dup}, of your `choices` (\"{choices[first_dup]}\")
-       is a duplicate."
+    rlang::abort(
+      c(
+        "`choices` must not have duplicate elements.",
+        str_glue("Element {first_dup} of your `choices`, ",
+                 "'{choices[first_dup]}', is a duplicate.")
+      )
     )
   }
   if (ignore_case) {
@@ -152,14 +151,16 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
         match(lower_choices[first_dup], lower_choices),
         first_dup
       )
-      custom_stop(
-        "`choices` must not have duplicate elements. ",
-        "Since you have set `ignore_case = TRUE`, elements
-         {dupair_indices[1]} and {dupair_indices[2]} of your `choices`
-         (\"{dupair[1]}\" and \"{dupair[2]}\") are effectively duplicates.",
-        .envir = list(
-          dupair = choices[dupair_indices],
-          dupair_indices = dupair_indices
+      rlang::abort(
+        c(
+          "`choices` must not have duplicate elements.",
+          i = str_glue(
+            "Since you have set `ignore_case = TRUE`, elements ",
+            "{dupair_indices[1]} and {dupair_indices[2]} of your `choices`, ",
+            "('{dupair[1]}' and '{dupair[2]}') are effectively duplicates.",
+            .envir = list(dupair = choices[dupair_indices],
+                          dupair_indices = dupair_indices)
+          )
         )
       )
     }
@@ -169,11 +170,13 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
     if (isTRUE(all.equal(arg, choices))) {
       return(choices[[1]])
     }
-    custom_stop(
-      "`{arg_sym}` must have length 1.",
-      "Your `{arg_sym}` has length {arg_len}.",
-      "To use an `{arg_sym}` with length greater than one,
-       use `several_ok = TRUE`."
+    rlang::abort(
+      c(
+        str_glue("`{arg_sym}` must have length 1."),
+        x = str_glue("Your `{arg_sym}` has length {arg_len}."),
+        i = str_glue("To use an `{arg_sym}` with length greater than one, ",
+                     "use `several_ok = TRUE`.")
+      )
     )
   }
   if (ignore_case) {
@@ -187,15 +190,16 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
     first_bad_type <- indices[first_bad_index]
     stopifnot(first_bad_type %in% (-seq_len(2))) # should never happen
     if (first_bad_type == -1) {
-      custom_stop(
-        "`{arg_sym}` must be a prefix of exactly one element of `choices`.",
-        "Your{ifelse(lch > 50, \" first 50 \", \" \")}`choices` are
-         \"{paste(utils::head(choices, 50), collapse = \"\\\", \\\"\")}\".",
-        "Your `{arg_sym}` \"{arg[first_bad_index]}\" is not a prefix
-         of any of your `choices`.",
-        .envir = list(
-          lch = length(choices), choices = choices, arg = arg,
-          first_bad_index = first_bad_index, arg_sym = arg_sym
+      rlang::abort(
+        c(
+          str_glue("`{arg_sym}` must be a prefix of exactly one element of ",
+                   "`choices`."),
+          i = str_glue(
+            "Your{ifelse(length(choices) > 50, ' first 50 ', ' ')}`choices` ",
+            "are {paste(head(choices, 50), collapse = ', ')}."
+          ),
+          x = str_glue("Your `{arg_sym}`, '{arg[first_bad_index]}', is not a ",
+                       "prefix of any of your `choices`.")
         )
       )
     } else {
@@ -209,17 +213,18 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
       } else {
         ambigs <- str_subset(choices, str_c("^", arg[first_bad_index]))
       }
-      custom_stop(
-        "`{arg_sym}` must be a prefix of exactly one element of `choices`.",
-        "Your `{arg_sym}` \"{arg[first_bad_index]}\" is a prefix of two or more
-         elements of `choices`.",
-        "The first two of these are
-         \"{ambigs[1]}\" and \"{ambigs[2]}\"."
+      rlang::abort(
+        c(
+          str_glue("`arg` must be a prefix of exactly one element of ",
+                   "`choices`."),
+          x = str_glue("Your `arg`, '{arg[first_bad_index]}', is a ",
+                       "prefix of two or more elements of `choices`."),
+          i = str_glue("The first two of these are ",
+                       "'{ambigs[1]}' and '{ambigs[2]}'.")
+        )
       )
     }
   }
-  if (index) {
-    return(indices)
-  }
+  if (index) return(indices)
   choices[indices]
 }
