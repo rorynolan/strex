@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.0</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Argument Matching</h1>
             
-            <h4 data-toc-skip class="date">2023-01-04</h4>
+            <h4 data-toc-skip class="date">2023-01-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rorynolan/strex/blob/HEAD/vignettes/argument-matching.Rmd" class="external-link"><code>vignettes/argument-matching.Rmd</code></a></small>
       <div class="hidden name"><code>argument-matching.Rmd</code></div>
@@ -130,10 +130,10 @@
 <p>The default behaviour of <code><a href="../reference/str_match_arg.html">strex::match_arg()</a></code> is to observe case, but case ignorance can be turned on with <code>ignore_case = TRUE</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">strex</span><span class="fu">::</span><span class="fu"><a href="../reference/str_match_arg.html">match_arg</a></span><span class="op">(</span><span class="st">"Y"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `custom_stop()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `str_match_arg_basic()`:</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `Y` must be a prefix of exactly one element of `choices`.</span></span>
-<span><span class="co">#&gt;     * Your `choices` are "yes", "no".</span></span>
-<span><span class="co">#&gt;     * Your `Y` "Y" is not a prefix of any of your `choices`.</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> Your `choices` are yes, no.</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Your `Y`, 'Y', is not a prefix of any of your `choices`.</span></span>
 <span><span class="fu">strex</span><span class="fu">::</span><span class="fu"><a href="../reference/str_match_arg.html">match_arg</a></span><span class="op">(</span><span class="st">"Y"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span>, ignore_case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "yes"</span></span></code></pre></div>
 </div>
@@ -150,10 +150,10 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg</a></span><span class="op">(</span><span class="st">"Q"</span>, <span class="va">choices</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in match.arg("Q", choices): 'arg' should be one of "Apples", "Pears", "Bananas", "Oranges", "Avocados", "Apricots"</span></span>
 <span><span class="fu">strex</span><span class="fu">::</span><span class="fu"><a href="../reference/str_match_arg.html">match_arg</a></span><span class="op">(</span><span class="st">"Q"</span>, <span class="va">choices</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `custom_stop()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `str_match_arg_basic()`:</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `Q` must be a prefix of exactly one element of `choices`.</span></span>
-<span><span class="co">#&gt;     * Your `choices` are "Apples", "Pears", "Bananas", "Oranges", "Avocados", "Apricots".</span></span>
-<span><span class="co">#&gt;     * Your `Q` "Q" is not a prefix of any of your `choices`.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> Your `choices` are Apples, Pears, Bananas, Oranges, Avocados, Apricots.</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Your `Q`, 'Q', is not a prefix of any of your `choices`.</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="multiple-matches">Multiple matches<a class="anchor" aria-label="anchor" href="#multiple-matches"></a>
@@ -162,10 +162,10 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="va">choices</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in match.arg("A", choices): 'arg' should be one of "Apples", "Pears", "Bananas", "Oranges", "Avocados", "Apricots"</span></span>
 <span><span class="fu">strex</span><span class="fu">::</span><span class="fu"><a href="../reference/str_match_arg.html">match_arg</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="va">choices</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `custom_stop()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `A` must be a prefix of exactly one element of `choices`.</span></span>
-<span><span class="co">#&gt;     * Your `A` "A" is a prefix of two or more elements of `choices`.</span></span>
-<span><span class="co">#&gt;     * The first two of these are "Apples" and "Avocados".</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `str_match_arg_basic()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `arg` must be a prefix of exactly one element of `choices`.</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Your `arg`, 'A', is a prefix of two or more elements of `choices`.</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> The first two of these are 'Apples' and 'Avocados'.</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="wrong-arg-length">Wrong <code>arg</code> length<a class="anchor" aria-label="anchor" href="#wrong-arg-length"></a>
@@ -174,10 +174,10 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"a"</span><span class="op">)</span>, <span class="va">choices</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in match.arg(c("A", "a"), choices): 'arg' must be of length 1</span></span>
 <span><span class="fu">strex</span><span class="fu">::</span><span class="fu"><a href="../reference/str_match_arg.html">match_arg</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"a"</span><span class="op">)</span>, <span class="va">choices</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `custom_stop()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `str_match_arg_basic()`:</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `arg` must have length 1.</span></span>
-<span><span class="co">#&gt;     * Your `arg` has length 2.</span></span>
-<span><span class="co">#&gt;     * To use an `arg` with length greater than one, use `several_ok = TRUE`.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Your `arg` has length 2.</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> To use an `arg` with length greater than one, use `several_ok = TRUE`.</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="duplicate-elements-in-choices">Duplicate elements in <code>choices</code><a class="anchor" aria-label="anchor" href="#duplicate-elements-in-choices"></a>
@@ -187,9 +187,9 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg</a></span><span class="op">(</span><span class="st">"P"</span>, <span class="va">choices</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in match.arg("P", choices): 'arg' should be one of "Apples", "Pears", "Bananas", "Oranges", "Avocados", "Apricots"</span></span>
 <span><span class="fu">strex</span><span class="fu">::</span><span class="fu"><a href="../reference/str_match_arg.html">match_arg</a></span><span class="op">(</span><span class="st">"P"</span>, <span class="va">choices</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `custom_stop()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `str_match_arg_basic()`:</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `choices` must not have duplicate elements.</span></span>
-<span><span class="co">#&gt;     * Element 7, of your `choices` ("Pears") is a duplicate.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Element 7 of your `choices`, 'Pears', is a duplicate.</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="not-specifying-choices">Not specifying <code>choices</code><a class="anchor" aria-label="anchor" href="#not-specifying-choices"></a>
@@ -213,21 +213,21 @@
 <span>  <span class="va">w</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">myword</span><span class="op">(</span><span class="st">"b"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `custom_stop()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> You have used `strex::match_arg()` without specifying a `choices` argument.</span></span>
-<span><span class="co">#&gt;     * The only way to do this is from another function where `arg` has a default setting. This is the same as `base::match.arg()`.</span></span>
-<span><span class="co">#&gt;     * See the man page for `strex::match_arg()`, particularly the examples: enter `help("strex::match_arg", package = "strex")` at the R console.</span></span>
-<span><span class="co">#&gt;     * See also the vignette on argument matching: enter `vignette("argument-matching", package = "strex")` at the R console.</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `strex::match_arg()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> You used `match_arg()` without specifying a `choices` argument.</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> The only way to do this is from another function where the `arg` has a default setting. This is the same as `base::match.arg()`.</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> See the man page for `match_arg()`.</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> See the vignette on argument matching: enter `vignette('argument-matching', package = 'strex')` at the R console.</span></span>
 <span><span class="va">myword</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">w</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abacus"</span>, <span class="st">"baseball"</span>, <span class="st">"candy"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">w</span> <span class="op">&lt;-</span> <span class="fu">strex</span><span class="fu">::</span><span class="fu"><a href="../reference/str_match_arg.html">match_arg</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="va">w</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">myword</span><span class="op">(</span><span class="st">"b"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `custom_stop()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> You have used `strex::match_arg()` without specifying a `choices` argument.</span></span>
-<span><span class="co">#&gt;     * The only way to do this is from another function where `arg` has a default setting. This is the same as `base::match.arg()`.</span></span>
-<span><span class="co">#&gt;     * See the man page for `strex::match_arg()`, particularly the examples: enter `help("strex::match_arg", package = "strex")` at the R console.</span></span>
-<span><span class="co">#&gt;     * See also the vignette on argument matching: enter `vignette("argument-matching", package = "strex")` at the R console.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `strex::match_arg()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> You used `match_arg()` without specifying a `choices` argument.</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> The only way to do this is from another function where the `arg` has a default setting. This is the same as `base::match.arg()`.</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> See the man page for `match_arg()`.</span></span>
+<span><span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> See the vignette on argument matching: enter `vignette('argument-matching', package = 'strex')` at the R console.</span></span></code></pre></div>
 </div>
 </div>
   </div>
