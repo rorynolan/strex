@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/rorynolan/strex",
   "issueTracker": "https://github.com/rorynolan/strex/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
