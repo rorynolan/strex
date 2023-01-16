@@ -90,7 +90,7 @@ str_extract_currencies <- function(string) {
   locs_lens <- lengths(locs)
   string_num <- rep(seq_along(string), locs_lens / 2)
   string <- string[string_num]
-  locs %<>% do.call(rbind, .)
+  locs <- do.call(rbind, locs)
   extract_curr_helper(string_num, string, locs)
 }
 

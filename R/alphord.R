@@ -34,7 +34,7 @@ str_alphord_nums <- function(string) {
     checkmate::check_numeric(string, min.len = 1),
     checkmate::check_character(string, min.len = 1)
   )
-  if (is.numeric(string)) string %<>% as.character()
+  if (is.numeric(string)) string <- as.character(string)
   have_nums <- str_detect(string, "\\d")
   if (!all(have_nums)) {
     bad_index <- match(F, have_nums)
@@ -48,9 +48,7 @@ str_alphord_nums <- function(string) {
   if (length(unique(non_nums)) > 1) {
     bad_index <- 2
     while (isTRUE(all.equal(non_nums[[1]], non_nums[[bad_index]]))) {
-      bad_index %<>% {
-        . + 1
-      }
+      bad_index <- bad_index + 1
     }
     rlang::abort(
       c("The non-number bits of every string must be the same.",
@@ -71,17 +69,17 @@ str_alphord_nums <- function(string) {
                      "{nums_lengths[bad_index]} numbers."))
     )
   }
-  nums %<>% simplify2array()
-  if (!is.matrix(nums)) nums %<>% t()
+  nums <- simplify2array(nums)
+  if (!is.matrix(nums)) nums <- t(nums)
   ncn <- nums %>% {
     array(str_length(.), dim = dim(.))
   }
   max_lengths <- int_mat_row_maxs(ncn)
   min_length <- min(ncn)
   to_prefix <- rep("0", max(max_lengths) - min_length) %>% str_c(collapse = "")
-  nums %<>% str_c(to_prefix, .)
+  nums <- str_c(to_prefix, nums)
   starts <- -rep(max_lengths, ncol(ncn))
-  nums %<>% str_sub(starts, -1) %>%
+  nums <- str_sub(nums, starts, -1) %>%
     split(rep(seq_len(ncol(ncn)), each = nrow(ncn)))
   num_first <- str_elem(string, 1) %>% str_can_be_numeric()
   if (length(unique(num_first)) > 1) {

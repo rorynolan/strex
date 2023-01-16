@@ -69,7 +69,7 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
     if (!rlang::is_symbol(arg_sym)) null_choice_err <- TRUE
     if (!null_choice_err) {
       formal_args <- formals(sys.function(sys_p <- sys.parent()))
-      arg_sym %<>% as.character()
+      arg_sym <- as.character(arg_sym)
       default_arg_names <- formal_args %>% {
         names(.)[as.logical(str_length(as.character(.)))]
       }

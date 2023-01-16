@@ -25,7 +25,7 @@ test_that("match_arg() works", {
     ),
     c(3, 1)
   )
-  choices %<>% c("Avocados", "Apricots")
+  choices <- c(choices, "Avocados", "Apricots")
   expect_snapshot_error(match_arg("A", choices, ignore_case = FALSE))
   x <- "a"
   expect_snapshot_error(match_arg(x, choices, ignore_case = TRUE))
@@ -38,9 +38,9 @@ test_that("match_arg() works", {
       "`several_ok = TRUE`."
     )
   )
-  choices %<>% c("bananas")
+  choices <- c(choices, "bananas")
   expect_snapshot_error(match_arg("p", choices, ignore_case = TRUE))
-  choices %<>% c("Pears")
+  choices <- c(choices, "Pears")
   expect_snapshot_error(match_arg("p", choices, ignore_case = TRUE))
   expect_equal(match_arg("ab", c("ab", "abc")), "ab")
   y <- "a"

@@ -111,13 +111,12 @@ str_nth_non_numeric_no_ambigs <- function(string, num_pattern, n) {
       n = n + 1,
       omit_empty = TRUE, simplify = TRUE
     )[, n]
-    out %T>% {
-      .[!str_length(.)] <- NA_character_
-    }
+    out[!str_length(out)] <- NA_character_
   } else {
-    stringi::stri_split_regex(string, num_pattern, omit_empty = TRUE) %>%
+    out <- stringi::stri_split_regex(string, num_pattern, omit_empty = TRUE) %>%
       chr_lst_nth_elems(n)
   }
+  out
 }
 
 #' Extract the `n`th non-numeric substring from a string.

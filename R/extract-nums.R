@@ -101,9 +101,11 @@ num_ambigs <- function(string, decimals = FALSE, leading_decimals = decimals,
 ambig_warn <- function(string, ambigs, ambig_regex) {
   first_offender <- match(T, ambigs) %>%
     list(., string[.])
-  first_offender[[2]] %<>% {
-    ifelse(str_length(.) > 50, str_c(str_sub(., 1, 17), "..."), .)
-  }
+  first_offender[[2]] <- ifelse(
+    str_length(first_offender[[2]]) > 50,
+    str_c(str_sub(first_offender[[2]], 1, 17), "..."),
+    first_offender[[2]]
+  )
   rlang::warn(
     c(
       "`NA`s introduced by ambiguity.",
@@ -321,7 +323,7 @@ str_nth_number <- function(string, n, decimals = FALSE,
   if (leave_as_string) {
     return(out)
   }
-  if (commas) out %<>% str_replace_all(",", "")
+  if (commas) out <- str_replace_all(out, ",", "")
   as.numeric(out)
 }
 

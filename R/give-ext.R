@@ -26,10 +26,10 @@ str_give_ext <- function(string, ext, replace = FALSE) {
   checkmate::assert_flag(replace)
   ext <- str_match(ext, "^\\.*(.*)")[, 2]
   if (replace) {
-    string %<>% str_before_last_dot()
+    string <- str_before_last_dot(string)
   } else {
     correct_ext <- str_detect(string, str_c("\\.", ext, "$"))
-    string[correct_ext] %<>% str_before_last_dot()
+    string[correct_ext] <- str_before_last_dot(string[correct_ext])
   }
   str_c(string, ".", ext)
 }

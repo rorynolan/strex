@@ -31,7 +31,7 @@ str_elem <- function(string, index) {
 #'
 #' @noRd
 str_elems_helper <- function(string, indices, insist_bycol = FALSE) {
-  indices %<>% as.integer()
+  indices <- as.integer(indices)
   # The following lapplys can only be easily and efficiently replaced if Rcpp
   # starts dealing with UTF-8 strings well.
   if (!insist_bycol && length(indices) > length(string)) {
@@ -70,7 +70,7 @@ str_elems <- function(string, indices, byrow = TRUE) {
   checkmate::assert_flag(byrow)
   if (is_l0_char(string)) {
     out <- matrix(character(), ncol = length(indices))
-    if (!byrow) out %<>% t()
+    if (!byrow) out <- t(out)
     return(out)
   }
   checkmate::assert_character(string, min.len = 1)

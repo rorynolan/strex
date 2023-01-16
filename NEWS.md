@@ -1,6 +1,7 @@
 # `strex` 1.6.0
 
 ## MINOR IMPROVEMENTS
+* Remove usage of `magrittr`'s `%<>%` operator.
 * Now using the new `rlang::abort()` error message formatting.
 
 

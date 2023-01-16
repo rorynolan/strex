@@ -24,8 +24,8 @@ str_split_camel_case <- function(string, lower = FALSE) {
   }
   checkmate::assert_character(string)
   checkmate::assert_flag(lower)
-  string %<>% gsub("^[^[:alnum:]]+|[^[:alnum:]]+$", "", .) %>%
+  string <- gsub("^[^[:alnum:]]+|[^[:alnum:]]+$", "", string) %>%
     gsub("(?!^)(?=[[:upper:]])", " ", ., perl = TRUE)
-  if (lower) string %<>% str_to_lower()
+  if (lower) string <- str_to_lower(string)
   str_split(string, " ")
 }

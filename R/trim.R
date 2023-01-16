@@ -30,7 +30,7 @@ str_trim_anything <- function(string, pattern, side = "both") {
   verify_string_pattern(string, pattern, boundary_allowed = FALSE)
   out <- string
   checkmate::assert_string(side)
-  side %<>% match_arg(c("both", "left", "right"), ignore_case = TRUE)
+  side <- match_arg(side, c("both", "left", "right"), ignore_case = TRUE)
   type <- "regex"
   if (inherits(pattern, "stringr_fixed")) {
     type <- "fixed"
