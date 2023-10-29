@@ -22,7 +22,7 @@ str_detect_any(string, pattern, negate = FALSE)
 A character vector.
 }
 \description{
-Vectorized over \code{pattern}.
+Vectorized over \code{string}.
 }
 \examples{
 str_detect_all("quick brown fox", c("x", "y", "z"))

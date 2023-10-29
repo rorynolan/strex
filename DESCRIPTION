@@ -1,6 +1,6 @@
 Package: strex
 Title: Extra String Manipulation Functions
-Version: 1.6.0
+Version: 1.6.1
 Authors@R: 
     person("Rory", "Nolan", , "rorynoolan@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5239-4043"))

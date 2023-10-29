@@ -1,3 +1,9 @@
+# `strex` 1.6.1
+
+## BUG FIXES
+* Minor documentation fix for `str_detect_any()` and `str_detect_all()`.
+
+
 # `strex` 1.6.0
 
 ## MINOR IMPROVEMENTS

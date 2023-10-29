@@ -1,6 +1,6 @@
 #' Detect any or all patterns.
 #'
-#' Vectorized over `pattern`.
+#' Vectorized over `string`.
 #'
 #' @param string A character vector.
 #' @param pattern A character vector. The patterns to look for. Default is
