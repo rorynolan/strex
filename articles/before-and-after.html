@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
       </span>
     </div>
 
@@ -97,12 +97,12 @@
 
       
 
-      </header><script src="before-and-after_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Before and After</h1>
             
-            <h4 data-toc-skip class="date">2023-01-16</h4>
+            <h4 data-toc-skip class="date">2023-10-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rorynolan/strex/blob/HEAD/vignettes/before-and-after.Rmd" class="external-link"><code>vignettes/before-and-after.Rmd</code></a></small>
       <div class="hidden name"><code>before-and-after.Rmd</code></div>
@@ -111,14 +111,18 @@
 
     
     
-<p>Often, we want the part of a string that comes before or after a given pattern.</p>
+<p>Often, we want the part of a string that comes before or after a
+given pattern.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rorynolan.github.io/strex/" class="external-link">strex</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: stringr</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="before">Before<a class="anchor" aria-label="anchor" href="#before"></a>
 </h2>
-<p><code><a href="../reference/before-and-after.html">str_before_nth()</a></code> gives you the part of a string before the <code>n</code><sup>th</sup> appearance of a pattern. It has the friends <code><a href="../reference/before-and-after.html">str_before_first()</a></code> and <code><a href="../reference/before-and-after.html">str_before_last()</a></code>.</p>
+<p><code><a href="../reference/before-and-after.html">str_before_nth()</a></code> gives you the part of a string before
+the <code>n</code><sup>th</sup> appearance of a pattern. It has the
+friends <code><a href="../reference/before-and-after.html">str_before_first()</a></code> and
+<code><a href="../reference/before-and-after.html">str_before_last()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">string</span> <span class="op">&lt;-</span> <span class="st">"ab..cd..de..fg..h"</span></span>
 <span><span class="fu"><a href="../reference/before-and-after.html">str_before_first</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"e"</span><span class="op">)</span></span>
@@ -135,7 +139,9 @@
 <div class="section level2">
 <h2 id="after">After<a class="anchor" aria-label="anchor" href="#after"></a>
 </h2>
-<p><code><a href="../reference/before-and-after.html">str_after_nth()</a></code> gives you the part of a string after the <code>n</code><sup>th</sup> appearance of a pattern. It has the friends <code><a href="../reference/before-and-after.html">str_after_first()</a></code> and <code><a href="../reference/before-and-after.html">str_after_last()</a></code>.</p>
+<p><code><a href="../reference/before-and-after.html">str_after_nth()</a></code> gives you the part of a string after the
+<code>n</code><sup>th</sup> appearance of a pattern. It has the friends
+<code><a href="../reference/before-and-after.html">str_after_first()</a></code> and <code><a href="../reference/before-and-after.html">str_after_last()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">string</span> <span class="op">&lt;-</span> <span class="st">"ab..cd..de..fg..h"</span></span>
 <span><span class="fu"><a href="../reference/before-and-after.html">str_after_first</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"e"</span><span class="op">)</span></span>
@@ -154,7 +160,8 @@
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">string</span> <span class="op">&lt;-</span> <span class="st">"James did the cooking, Harry did the cleaning."</span></span></code></pre></div>
-<p>Let’s write a function to figure out which task each of the lads did.</p>
+<p>Let’s write a function to figure out which task each of the lads
+did.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
 <span><span class="va">get_task</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">string</span>, <span class="va">name</span><span class="op">)</span> <span class="op">{</span></span>
@@ -166,7 +173,9 @@
 <span><span class="co">#&gt; [1] "cooking"</span></span>
 <span><span class="fu">get_task</span><span class="op">(</span><span class="va">string</span>, <span class="st">"Harry"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "cleaning"</span></span></code></pre></div>
-<p><code>get_task()</code> would have been more difficult to write without <code><a href="../reference/before-and-after.html">str_after_first()</a></code> and <code><a href="../reference/before-and-after.html">str_before_first()</a></code>.</p>
+<p><code>get_task()</code> would have been more difficult to write
+without <code><a href="../reference/before-and-after.html">str_after_first()</a></code> and
+<code><a href="../reference/before-and-after.html">str_before_first()</a></code>.</p>
 </div>
   </div>
 

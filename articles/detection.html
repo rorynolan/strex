@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@
 
       
 
-      </header><script src="detection_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>And/Or Detection</h1>
@@ -116,7 +116,16 @@
 <div class="section level2">
 <h2 id="how-it-works">How it works<a class="anchor" aria-label="anchor" href="#how-it-works"></a>
 </h2>
-<p><code>strex</code> offers easy and/or versions of <code><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">stringr::str_detect()</a></code> via <code><a href="../reference/str_detect_all.html">str_detect_all()</a></code> and <code><a href="../reference/str_detect_all.html">str_detect_any()</a></code>. These are vectorized over <code>string</code> but not <code>pattern</code>. <code><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">stringr::fixed()</a></code> and <code>stringr::coll())</code> are handled correctly. Otherwise, <code>stringr</code> regular expressions are used. For <code><a href="../reference/str_detect_all.html">str_detect_all()</a></code>, a pattern argument <code>c("x", "y")</code> is converted to <code>"(?=.*x)(?=.*y)"</code>. For <code><a href="../reference/str_detect_all.html">str_detect_any()</a></code>, a pattern argument <code>c("x", "y")</code> is converted to <code>"x|y"</code>.</p>
+<p><code>strex</code> offers easy and/or versions of
+<code><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">stringr::str_detect()</a></code> via <code><a href="../reference/str_detect_all.html">str_detect_all()</a></code> and
+<code><a href="../reference/str_detect_all.html">str_detect_any()</a></code>. These are vectorized over
+<code>string</code> but not <code>pattern</code>.
+<code><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">stringr::fixed()</a></code> and <code>stringr::coll())</code> are
+handled correctly. Otherwise, <code>stringr</code> regular expressions
+are used. For <code><a href="../reference/str_detect_all.html">str_detect_all()</a></code>, a pattern argument
+<code>c("x", "y")</code> is converted to <code>"(?=.*x)(?=.*y)"</code>.
+For <code><a href="../reference/str_detect_all.html">str_detect_any()</a></code>, a pattern argument
+<code>c("x", "y")</code> is converted to <code>"x|y"</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
@@ -156,7 +165,9 @@
 <div class="section level2">
 <h2 id="performance">Performance<a class="anchor" aria-label="anchor" href="#performance"></a>
 </h2>
-<p>Unless you’re doing a huge amount of computation, it won’t matter, but FWIW, it’s faster to convert to regex using <code><a href="https://stringr.tidyverse.org/reference/str_escape.html" class="external-link">str_escape()</a></code> rather than using <code><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">coll()</a></code>.</p>
+<p>Unless you’re doing a huge amount of computation, it won’t matter,
+but FWIW, it’s faster to convert to regex using
+<code><a href="https://stringr.tidyverse.org/reference/str_escape.html" class="external-link">str_escape()</a></code> rather than using <code><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">coll()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/str_detect_all.html">str_detect_all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"*"</span>, <span class="fl">1000</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_escape.html" class="external-link">str_escape</a></span><span class="op">(</span><span class="st">"*"</span><span class="op">)</span>, <span class="fl">555</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -164,12 +175,10 @@
 <span>  min_iterations <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 6</span></span></span>
-<span><span class="co">#&gt;   expression                                                  min median itr/s…¹</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span>                                                <span style="color: #949494; font-style: italic;">&lt;bch&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> str_detect_all(rep("*", 1000), rep(str_escape("*"), 555)) 298ms  319ms    2.92</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> str_detect_all(rep("*", 1000), coll(rep("*", 555)))       507ms  530ms    1.87</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 2 more variables: mem_alloc &lt;bch:byt&gt;, `gc/sec` &lt;dbl&gt;, and abbreviated</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   variable name ¹​`itr/sec`</span></span></span></code></pre></div>
+<span><span class="co">#&gt;   expression                             min median `itr/sec` mem_alloc `gc/sec`</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;bch&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">"</span>str_detect_all(rep(\"*\", 1000), r… 287ms  297ms      3.37  142.01KB    0    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #949494;">"</span>str_detect_all(rep(\"*\", 1000), c… 468ms  507ms      1.96    4.31MB    0.218</span></span></code></pre></div>
 </div>
   </div>
 

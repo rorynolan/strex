@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
       </span>
     </div>
 
@@ -97,12 +97,12 @@
 
       
 
-      </header><script src="important-miscellany_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Important Miscellany</h1>
             
-            <h4 data-toc-skip class="date">2023-01-16</h4>
+            <h4 data-toc-skip class="date">2023-10-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rorynolan/strex/blob/HEAD/vignettes/important-miscellany.Rmd" class="external-link"><code>vignettes/important-miscellany.Rmd</code></a></small>
       <div class="hidden name"><code>important-miscellany.Rmd</code></div>
@@ -114,7 +114,11 @@
 <div class="section level2">
 <h2 id="the-importance-of-this-miscellany">The Importance of this miscellany<a class="anchor" aria-label="anchor" href="#the-importance-of-this-miscellany"></a>
 </h2>
-<p>The features of <code>strex</code> that were deemed the <em>most</em> interesting have been given their own vignettes. However, the package was intended as a miscellany of useful functions, so the functions demonstrated here encapsulate the spirit of this package, i.e. functions that save R string manipulators time.</p>
+<p>The features of <code>strex</code> that were deemed the <em>most</em>
+interesting have been given their own vignettes. However, the package
+was intended as a miscellany of useful functions, so the functions
+demonstrated here encapsulate the spirit of this package, i.e. functions
+that save R string manipulators time.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rorynolan.github.io/strex/" class="external-link">strex</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: stringr</span></span></code></pre></div>
@@ -122,7 +126,9 @@
 <div class="section level2">
 <h2 id="could-this-be-numeric">Could this be numeric?<a class="anchor" aria-label="anchor" href="#could-this-be-numeric"></a>
 </h2>
-<p>Sometimes you don’t want to know whether something is numeric, just whether or not it could be. Now you can find out with <code><a href="../reference/str_can_be_numeric.html">str_can_be_numeric()</a></code>.</p>
+<p>Sometimes you don’t want to know whether something is numeric, just
+whether or not it could be. Now you can find out with
+<code><a href="../reference/str_can_be_numeric.html">str_can_be_numeric()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/str_can_be_numeric.html">str_can_be_numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1a"</span>, <span class="st">"abc"</span>, <span class="st">"5"</span>, <span class="st">"2e7"</span>, <span class="st">"seven"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] FALSE FALSE  TRUE  TRUE FALSE</span></span></code></pre></div>
@@ -130,7 +136,14 @@
 <div class="section level2">
 <h2 id="currency">Currency<a class="anchor" aria-label="anchor" href="#currency"></a>
 </h2>
-<p>To get currencies and amounts mentioned in strings, there are <code><a href="../reference/currency.html">str_extract_currencies()</a></code> and <code><a href="../reference/currency.html">str_nth_currency()</a></code>, <code><a href="../reference/currency.html">str_first_currency()</a></code> and <code><a href="../reference/currency.html">str_last_currency()</a></code>. <code><a href="../reference/currency.html">str_first_currency()</a></code> just returns the first currency amount. <code><a href="../reference/currency.html">str_last_currency()</a></code> returns the last. <code><a href="../reference/currency.html">str_nth_currency()</a></code> allows you to get the second, third and so on. <code><a href="../reference/currency.html">str_extract_currencies()</a></code> returns all currency amounts mentioned in a string.</p>
+<p>To get currencies and amounts mentioned in strings, there are
+<code><a href="../reference/currency.html">str_extract_currencies()</a></code> and
+<code><a href="../reference/currency.html">str_nth_currency()</a></code>, <code><a href="../reference/currency.html">str_first_currency()</a></code> and
+<code><a href="../reference/currency.html">str_last_currency()</a></code>. <code><a href="../reference/currency.html">str_first_currency()</a></code> just
+returns the first currency amount. <code><a href="../reference/currency.html">str_last_currency()</a></code>
+returns the last. <code><a href="../reference/currency.html">str_nth_currency()</a></code> allows you to get the
+second, third and so on. <code><a href="../reference/currency.html">str_extract_currencies()</a></code> returns
+all currency amounts mentioned in a string.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Alan paid £5"</span>, <span class="st">"Joe paid $7"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/currency.html">str_first_currency</a></span><span class="op">(</span><span class="va">string</span><span class="op">)</span></span>
@@ -197,12 +210,14 @@
 <div class="section level2">
 <h2 id="force-a-file-name-to-have-an-extension">Force a file name to have an extension<a class="anchor" aria-label="anchor" href="#force-a-file-name-to-have-an-extension"></a>
 </h2>
-<p>We can give files a given extension, leaving them alone if they already have it.</p>
+<p>We can give files a given extension, leaving them alone if they
+already have it.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"spreadsheet1.csv"</span>, <span class="st">"spreadsheet2"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/str_give_ext.html">str_give_ext</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"csv"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "spreadsheet1.csv" "spreadsheet2.csv"</span></span></code></pre></div>
-<p>If the file already has an extension, we can append one or replace it.</p>
+<p>If the file already has an extension, we can append one or replace
+it.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/str_give_ext.html">str_give_ext</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"xls"</span><span class="op">)</span>  <span class="co"># append</span></span>
 <span><span class="co">#&gt; [1] "spreadsheet1.csv.xls" "spreadsheet2.xls"</span></span>
@@ -243,7 +258,9 @@
 <div class="section level2">
 <h2 id="convert-a-string-to-a-vector">Convert a string to a vector<a class="anchor" aria-label="anchor" href="#convert-a-string-to-a-vector"></a>
 </h2>
-<p>This is something I did a lot to avoid using regular expression. Don’t do it for that purpose. Learn regex. <a href="https://regexone.com/" class="external-link uri">https://regexone.com/</a> is a very good start.</p>
+<p>This is something I did a lot to avoid using regular expression.
+Don’t do it for that purpose. Learn regex. <a href="https://regexone.com/" class="external-link uri">https://regexone.com/</a> is a
+very good start.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">string</span> <span class="op">&lt;-</span> <span class="st">"R is good."</span></span>
 <span><span class="fu"><a href="../reference/str_to_vec.html">str_to_vec</a></span><span class="op">(</span><span class="va">string</span><span class="op">)</span></span>
@@ -252,7 +269,8 @@
 <div class="section level2">
 <h2 id="trim-anything-not-just-whitespace">Trim anything, not just whitespace<a class="anchor" aria-label="anchor" href="#trim-anything-not-just-whitespace"></a>
 </h2>
-<p>What if something is needlessly surrounded by parentheses and we want to get rid of them?</p>
+<p>What if something is needlessly surrounded by parentheses and we want
+to get rid of them?</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">string</span> <span class="op">&lt;-</span> <span class="st">"(((Why all the parentheses?)))"</span></span>
 <span><span class="va">string</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>

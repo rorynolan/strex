@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
       </span>
     </div>
 
@@ -97,12 +97,12 @@
 
       
 
-      </header><script src="argument-matching_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Argument Matching</h1>
             
-            <h4 data-toc-skip class="date">2023-01-16</h4>
+            <h4 data-toc-skip class="date">2023-10-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rorynolan/strex/blob/HEAD/vignettes/argument-matching.Rmd" class="external-link"><code>vignettes/argument-matching.Rmd</code></a></small>
       <div class="hidden name"><code>argument-matching.Rmd</code></div>
@@ -118,7 +118,10 @@
 <h3 id="base">
 <code>base</code><a class="anchor" aria-label="anchor" href="#base"></a>
 </h3>
-<p>The base function <code><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg()</a></code> is good, but it doesn’t offer the possiblity to ignore case during argument matching. Sometimes it’s good to ignore case; for example, if you’re matching the arguments <code>c("yes", "no")</code>, there’s no need to worry about case.</p>
+<p>The base function <code><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg()</a></code> is good, but it doesn’t
+offer the possiblity to ignore case during argument matching. Sometimes
+it’s good to ignore case; for example, if you’re matching the arguments
+<code>c("yes", "no")</code>, there’s no need to worry about case.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg</a></span><span class="op">(</span><span class="st">"Y"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in base::match.arg("Y", c("yes", "no")): 'arg' should be one of "yes", "no"</span></span></code></pre></div>
@@ -127,7 +130,9 @@
 <h3 id="strex">
 <code>strex</code><a class="anchor" aria-label="anchor" href="#strex"></a>
 </h3>
-<p>The default behaviour of <code><a href="../reference/str_match_arg.html">strex::match_arg()</a></code> is to observe case, but case ignorance can be turned on with <code>ignore_case = TRUE</code>.</p>
+<p>The default behaviour of <code><a href="../reference/str_match_arg.html">strex::match_arg()</a></code> is to
+observe case, but case ignorance can be turned on with
+<code>ignore_case = TRUE</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">strex</span><span class="fu">::</span><span class="fu"><a href="../reference/str_match_arg.html">match_arg</a></span><span class="op">(</span><span class="st">"Y"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `str_match_arg_basic()`:</span></span></span>
@@ -141,7 +146,9 @@
 <div class="section level2">
 <h2 id="error-messages">Error Messages<a class="anchor" aria-label="anchor" href="#error-messages"></a>
 </h2>
-<p>You can begin to see above that the error message from <code><a href="../reference/str_match_arg.html">strex::match_arg()</a></code> are more informative and nicely formatted. Here are a few more examples.</p>
+<p>You can begin to see above that the error message from
+<code><a href="../reference/str_match_arg.html">strex::match_arg()</a></code> are more informative and nicely
+formatted. Here are a few more examples.</p>
 <div class="section level3">
 <h3 id="no-matches">No matches<a class="anchor" aria-label="anchor" href="#no-matches"></a>
 </h3>
@@ -194,7 +201,9 @@
 <div class="section level3">
 <h3 id="not-specifying-choices">Not specifying <code>choices</code><a class="anchor" aria-label="anchor" href="#not-specifying-choices"></a>
 </h3>
-<p>It’s OK not to specify choices in one circumstance: when <code>arg</code> is passed as a default argument of another function.</p>
+<p>It’s OK not to specify choices in one circumstance: when
+<code>arg</code> is passed as a default argument of another
+function.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myword</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">w</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abacus"</span>, <span class="st">"baseball"</span>, <span class="st">"candy"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">w</span> <span class="op">&lt;-</span> <span class="fu">strex</span><span class="fu">::</span><span class="fu"><a href="../reference/str_match_arg.html">match_arg</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span></span>
@@ -206,7 +215,9 @@
 <span><span class="co">#&gt; [1] "baseball"</span></span>
 <span><span class="fu">myword</span><span class="op">(</span><span class="st">"c"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "candy"</span></span></code></pre></div>
-<p>This is very strict though, only the <em>symbol</em> for the default argument can be passed, not any variant of it, not even something which evaluates to the same thing.</p>
+<p>This is very strict though, only the <em>symbol</em> for the default
+argument can be passed, not any variant of it, not even something which
+evaluates to the same thing.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myword</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">w</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abacus"</span>, <span class="st">"baseball"</span>, <span class="st">"candy"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">w</span> <span class="op">&lt;-</span> <span class="fu">strex</span><span class="fu">::</span><span class="fu"><a href="../reference/str_match_arg.html">match_arg</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/identity.html" class="external-link">identity</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span><span class="op">)</span></span>

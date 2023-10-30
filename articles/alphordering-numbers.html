@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
       </span>
     </div>
 
@@ -97,12 +97,12 @@
 
       
 
-      </header><script src="alphordering-numbers_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Alphordering Numbers</h1>
             
-            <h4 data-toc-skip class="date">2023-01-16</h4>
+            <h4 data-toc-skip class="date">2023-10-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rorynolan/strex/blob/HEAD/vignettes/alphordering-numbers.Rmd" class="external-link"><code>vignettes/alphordering-numbers.Rmd</code></a></small>
       <div class="hidden name"><code>alphordering-numbers.Rmd</code></div>
@@ -114,7 +114,8 @@
 <div class="section level2">
 <h2 id="numbers-dont-comply-with-alphabetical-order">Numbers don’t comply with alphabetical order<a class="anchor" aria-label="anchor" href="#numbers-dont-comply-with-alphabetical-order"></a>
 </h2>
-<p><code>poorly_ordered</code> is a vector of file names of images of patient samples from different days.</p>
+<p><code>poorly_ordered</code> is a vector of file names of images of
+patient samples from different days.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">poorly_ordered</span></span>
 <span><span class="co">#&gt;  [1] "patient101-day9.png"  "patient98-day10.png"  "patient98-day9.png"  </span></span>
@@ -123,7 +124,8 @@
 <span><span class="co">#&gt; [10] "patient101-day11.png" "patient102-day9.png"  "patient99-day10.png" </span></span>
 <span><span class="co">#&gt; [13] "patient103-day10.png" "patient103-day9.png"  "patient101-day10.png"</span></span>
 <span><span class="co">#&gt; [16] "patient100-day10.png" "patient103-day11.png" "patient99-day11.png"</span></span></code></pre></div>
-<p>How do we get this vector into order? Well, alphabetical order doesn’t work:</p>
+<p>How do we get this vector into order? Well, alphabetical order
+doesn’t work:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">poorly_ordered</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "patient100-day10.png" "patient100-day11.png" "patient100-day9.png" </span></span>
@@ -132,12 +134,14 @@
 <span><span class="co">#&gt; [10] "patient103-day10.png" "patient103-day11.png" "patient103-day9.png" </span></span>
 <span><span class="co">#&gt; [13] "patient98-day10.png"  "patient98-day11.png"  "patient98-day9.png"  </span></span>
 <span><span class="co">#&gt; [16] "patient99-day10.png"  "patient99-day11.png"  "patient99-day9.png"</span></span></code></pre></div>
-<p>Patient 100 comes before patient 99. This is because 1 comes before 9 in alphabetical order.</p>
+<p>Patient 100 comes before patient 99. This is because 1 comes before 9
+in alphabetical order.</p>
 </div>
 <div class="section level2">
 <h2 id="alphordering-numbers">Alphordering numbers<a class="anchor" aria-label="anchor" href="#alphordering-numbers"></a>
 </h2>
-<p>It’s possible to <em>alphord</em> the numbers by prefixing them with zeroes:</p>
+<p>It’s possible to <em>alphord</em> the numbers by prefixing them with
+zeroes:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">strex</span><span class="fu">::</span><span class="fu"><a href="../reference/str_alphord_nums.html">str_alphord_nums</a></span><span class="op">(</span><span class="va">poorly_ordered</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "patient101-day09.png" "patient098-day10.png" "patient098-day09.png"</span></span>
