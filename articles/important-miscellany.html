@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Important Miscellany</h1>
             
-            <h4 data-toc-skip class="date">2023-10-30</h4>
+            <h4 data-toc-skip class="date">2024-01-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rorynolan/strex/blob/HEAD/vignettes/important-miscellany.Rmd" class="external-link"><code>vignettes/important-miscellany.Rmd</code></a></small>
       <div class="hidden name"><code>important-miscellany.Rmd</code></div>
@@ -155,7 +155,7 @@ all currency amounts mentioned in a string.</p>
 <span><span class="co">#&gt;   string_num      string curr_sym amount</span></span>
 <span><span class="co">#&gt; 1          1 €1 is $1.17        €   1.00</span></span>
 <span><span class="co">#&gt; 2          2 £1 is $1.29        $   1.29</span></span>
-<span><span class="fu"><a href="../reference/currency.html">str_last_currency</a></span><span class="op">(</span><span class="va">string</span><span class="op">)</span>  <span class="co"># only gets the first mentioned</span></span>
+<span><span class="fu"><a href="../reference/currency.html">str_last_currency</a></span><span class="op">(</span><span class="va">string</span><span class="op">)</span> <span class="co"># only gets the first mentioned</span></span>
 <span><span class="co">#&gt;   string_num      string curr_sym amount</span></span>
 <span><span class="co">#&gt; 1          1 €1 is $1.17        $   1.17</span></span>
 <span><span class="co">#&gt; 2          2 £1 is $1.29        $   1.29</span></span>
@@ -171,10 +171,10 @@ all currency amounts mentioned in a string.</p>
 </h2>
 <p>This is a simple wrapper around <code><a href="https://stringr.tidyverse.org/reference/str_sub.html" class="external-link">stringr::str_sub()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">string</span> <span class="op">=</span> <span class="st">"abcdefg"</span></span>
+<code class="sourceCode R"><span><span class="va">string</span> <span class="op">&lt;-</span> <span class="st">"abcdefg"</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html" class="external-link">str_sub</a></span><span class="op">(</span><span class="va">string</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "c"</span></span>
-<span><span class="fu"><a href="../reference/str_elem.html">str_elem</a></span><span class="op">(</span><span class="va">string</span>, <span class="fl">3</span><span class="op">)</span>  <span class="co"># simpler and more exressive</span></span>
+<span><span class="fu"><a href="../reference/str_elem.html">str_elem</a></span><span class="op">(</span><span class="va">string</span>, <span class="fl">3</span><span class="op">)</span> <span class="co"># simpler and more exressive</span></span>
 <span><span class="co">#&gt; [1] "c"</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -219,9 +219,9 @@ already have it.</p>
 <p>If the file already has an extension, we can append one or replace
 it.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/str_give_ext.html">str_give_ext</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"xls"</span><span class="op">)</span>  <span class="co"># append</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/str_give_ext.html">str_give_ext</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"xls"</span><span class="op">)</span> <span class="co"># append</span></span>
 <span><span class="co">#&gt; [1] "spreadsheet1.csv.xls" "spreadsheet2.xls"</span></span>
-<span><span class="fu"><a href="../reference/str_give_ext.html">str_give_ext</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"csv"</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  <span class="co"># replace</span></span>
+<span><span class="fu"><a href="../reference/str_give_ext.html">str_give_ext</a></span><span class="op">(</span><span class="va">string</span>, <span class="st">"csv"</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># replace</span></span>
 <span><span class="co">#&gt; [1] "spreadsheet1.csv" "spreadsheet2.csv"</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -273,8 +273,8 @@ very good start.</p>
 to get rid of them?</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">string</span> <span class="op">&lt;-</span> <span class="st">"(((Why all the parentheses?)))"</span></span>
-<span><span class="va">string</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/str_trim_anything.html">str_trim_anything</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">coll</a></span><span class="op">(</span><span class="st">"("</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span><span class="va">string</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/str_trim_anything.html">str_trim_anything</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">coll</a></span><span class="op">(</span><span class="st">"("</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/str_trim_anything.html">str_trim_anything</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">coll</a></span><span class="op">(</span><span class="st">")"</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Why all the parentheses?"</span></span></code></pre></div>
 </div>

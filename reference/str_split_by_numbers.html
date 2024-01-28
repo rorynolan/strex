@@ -19,7 +19,7 @@ string."><meta property="og:image" content="/logo.png"><!-- mathjax --><script s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">strex</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0</span>
       </span>
     </div>
 
@@ -88,6 +88,7 @@ vice-versa. Keep the whole string, just split it up. Vectorised over
 <span>  leading_decimals <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  negs <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  sci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  big_mark <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  commas <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -118,10 +119,18 @@ are not handled here (see the examples).</p></dd>
 as 2000.</p></dd>
 
 
+<dt>big_mark</dt>
+<dd><p>A character. Allow this character to be used as a thousands
+separator. This character will be removed from between digits before they
+are converted to numeric. You may specify many at once by pasting them
+together e.g. <code>big_mark = ",_"</code> will allow both commas and underscores.
+Internally, this will be used inside a <code>[]</code> regex block so e.g. <code>"a-z"</code>
+will behave differently to <code>"az-"</code>. Most common separators (commas, spaces,
+underscores) should work fine.</p></dd>
+
+
 <dt>commas</dt>
-<dd><p>Allow comma separators in numbers (i.e. interpret 1,100 as a
-single number (one thousand one hundred) rather than two numbers (one and
-one hundred)).</p></dd>
+<dd><p>Deprecated. Use <code>big_mark</code> instead.</p></dd>
 
 </dl></div>
     <div id="value">
