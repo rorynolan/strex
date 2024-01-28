@@ -70,9 +70,10 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
     if (!null_choice_err) {
       formal_args <- formals(sys.function(sys_p <- sys.parent()))
       arg_sym <- as.character(arg_sym)
-      default_arg_names <- formal_args %>% {
-        names(.)[as.logical(str_length(as.character(.)))]
-      }
+      default_arg_names <- formal_args %>%
+        {
+          names(.)[as.logical(str_length(as.character(.)))]
+        }
       if (arg_sym %in% default_arg_names) {
         choices <- eval(formal_args[[arg_sym]], envir = sys.frame(sys_p))
         if (is.character(choices)) {
@@ -95,13 +96,17 @@ str_match_arg <- function(arg, choices = NULL, index = FALSE,
       rlang::abort(
         c(
           "You used `match_arg()` without specifying a `choices` argument.",
-          i = paste("The only way to do this is from another function where",
-                    "the `arg` has a default setting.",
-                    "This is the same as `base::match.arg()`."),
+          i = paste(
+            "The only way to do this is from another function where",
+            "the `arg` has a default setting.",
+            "This is the same as `base::match.arg()`."
+          ),
           i = paste("See the man page for `match_arg()`."),
-          i = paste("See the vignette on argument matching:",
-                    "enter `vignette('argument-matching', package = 'strex')`",
-                    "at the R console.")
+          i = paste(
+            "See the vignette on argument matching:",
+            "enter `vignette('argument-matching', package = 'strex')`",
+            "at the R console."
+          )
         )
       )
     }
@@ -138,8 +143,10 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
     rlang::abort(
       c(
         "`choices` must not have duplicate elements.",
-        str_glue("Element {first_dup} of your `choices`, ",
-                 "'{choices[first_dup]}', is a duplicate.")
+        str_glue(
+          "Element {first_dup} of your `choices`, ",
+          "'{choices[first_dup]}', is a duplicate."
+        )
       )
     )
   }
@@ -158,8 +165,10 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
             "Since you have set `ignore_case = TRUE`, elements ",
             "{dupair_indices[1]} and {dupair_indices[2]} of your `choices`, ",
             "('{dupair[1]}' and '{dupair[2]}') are effectively duplicates.",
-            .envir = list(dupair = choices[dupair_indices],
-                          dupair_indices = dupair_indices)
+            .envir = list(
+              dupair = choices[dupair_indices],
+              dupair_indices = dupair_indices
+            )
           )
         )
       )
@@ -174,8 +183,10 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
       c(
         str_glue("`{arg_sym}` must have length 1."),
         x = str_glue("Your `{arg_sym}` has length {arg_len}."),
-        i = str_glue("To use an `{arg_sym}` with length greater than one, ",
-                     "use `several_ok = TRUE`.")
+        i = str_glue(
+          "To use an `{arg_sym}` with length greater than one, ",
+          "use `several_ok = TRUE`."
+        )
       )
     )
   }
@@ -192,14 +203,18 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
     if (first_bad_type == -1) {
       rlang::abort(
         c(
-          str_glue("`{arg_sym}` must be a prefix of exactly one element of ",
-                   "`choices`."),
+          str_glue(
+            "`{arg_sym}` must be a prefix of exactly one element of ",
+            "`choices`."
+          ),
           i = str_glue(
             "Your{ifelse(length(choices) > 50, ' first 50 ', ' ')}`choices` ",
             "are {paste(head(choices, 50), collapse = ', ')}."
           ),
-          x = str_glue("Your `{arg_sym}`, '{arg[first_bad_index]}', is not a ",
-                       "prefix of any of your `choices`.")
+          x = str_glue(
+            "Your `{arg_sym}`, '{arg[first_bad_index]}', is not a ",
+            "prefix of any of your `choices`."
+          )
         )
       )
     } else {
@@ -215,16 +230,24 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
       }
       rlang::abort(
         c(
-          str_glue("`arg` must be a prefix of exactly one element of ",
-                   "`choices`."),
-          x = str_glue("Your `arg`, '{arg[first_bad_index]}', is a ",
-                       "prefix of two or more elements of `choices`."),
-          i = str_glue("The first two of these are ",
-                       "'{ambigs[1]}' and '{ambigs[2]}'.")
+          str_glue(
+            "`arg` must be a prefix of exactly one element of ",
+            "`choices`."
+          ),
+          x = str_glue(
+            "Your `arg`, '{arg[first_bad_index]}', is a ",
+            "prefix of two or more elements of `choices`."
+          ),
+          i = str_glue(
+            "The first two of these are ",
+            "'{ambigs[1]}' and '{ambigs[2]}'."
+          )
         )
       )
     }
   }
-  if (index) return(indices)
+  if (index) {
+    return(indices)
+  }
   choices[indices]
 }

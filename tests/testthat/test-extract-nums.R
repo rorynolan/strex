@@ -86,7 +86,8 @@ test_that("str_extract_numbers works", {
   )), list(NA_real_))
   expect_snapshot_warning(
     str_extract_numbers(c(rep("abc1.2.3", 2), "a1b2.2.3", "e5r6"),
-                        decimals = TRUE)
+      decimals = TRUE
+    )
   )
   expect_equal(
     suppressWarnings(
@@ -162,7 +163,7 @@ test_that("str_extract_numbers works", {
     c(123, 0.12, 0.12, 1, 1)
   )
   expect_equal(
-    str_last_number(strings, commas = TRUE),
+    str_last_number(strings, big_mark = ","),
     c(456, 345, 9, 5, 1000)
   )
   expect_equal(str_nth_number(strings,
@@ -171,11 +172,11 @@ test_that("str_extract_numbers works", {
   ), c(123, 0.12, 1200, 1, 1))
   expect_equal(str_first_number(strings,
     decimals = TRUE, leading_decimals = TRUE,
-    sci = TRUE, commas = TRUE, negs = TRUE
+    sci = TRUE, big_mark = ",", negs = TRUE
   ), c(123, -0.12, 1200, 1100, Inf))
   expect_equal(str_last_number(strings,
     decimals = TRUE, leading_decimals = FALSE,
-    sci = FALSE, commas = TRUE, leave_as_string = TRUE
+    sci = FALSE, big_mark = ",", leave_as_string = TRUE
   ), c("456", "345", "9", "1,230.5", "1,000"))
   expect_equal(
     str_extract_numbers(strings),
@@ -203,7 +204,7 @@ test_that("str_extract_numbers works", {
     ), c(1, 100, 3, 215, 4, 1, 0))
   )
   expect_equal(
-    str_extract_numbers(strings, commas = TRUE),
+    str_extract_numbers(strings, big_mark = ","),
     list(c(123, 456), c(0, 12, 345), c(12, 4, 34, 5, 9), c(
       1100,
       1230, 5
@@ -216,14 +217,14 @@ test_that("str_extract_numbers works", {
     1, 230.5
   ), c(1, 1e+05, 215, 40, 0)))
   expect_equal(str_extract_numbers(strings,
-    decimals = TRUE, sci = TRUE, commas = TRUE, negs = TRUE
+    decimals = TRUE, sci = TRUE, big_mark = ",", negs = TRUE
   ), list(c(123, 456), c(-0.12, 0.345), c(1200, 3.45e+10), c(
     1100,
     1230.5
   ), c(Inf, Inf)))
   expect_equal(str_extract_numbers(strings,
     decimals = TRUE, leading_decimals = FALSE,
-    sci = FALSE, commas = TRUE, leave_as_string = TRUE
+    sci = FALSE, big_mark = ",", leave_as_string = TRUE
   ), list(c("123", "456"), c("0.12", "345"), c(
     "12", "4", "34.5",
     "9"

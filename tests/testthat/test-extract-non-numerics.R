@@ -50,7 +50,7 @@ test_that("str_extract_non_numerics() works", {
     ))
   )
   expect_equal(
-    str_extract_non_numerics(strings, commas = TRUE),
+    str_extract_non_numerics(strings, big_mark = ","),
     list(c("abc", "def"), c("abc-", ".", "def."), c(
       "abc.", "e",
       "def", ".", "e"
@@ -68,7 +68,7 @@ test_that("str_extract_non_numerics() works", {
   ), c("abc", ",", ",", "def", ",")))
   expect_equal(str_extract_non_numerics(strings,
     decimals = TRUE, leading_decimals = TRUE,
-    sci = TRUE, commas = TRUE, negs = TRUE
+    sci = TRUE, big_mark = ",", negs = TRUE
   ), list(c("abc", "def"), c("abc", "def"), c("abc", "def"), c(
     "abc",
     "def"
@@ -86,7 +86,7 @@ test_that("str_extract_non_numerics() works", {
     leading_decimals = FALSE
   ), c("abc", "abc-", "abc.", "abc", "abc"))
   expect_equal(
-    str_last_non_numeric(strings, commas = TRUE),
+    str_last_non_numeric(strings, big_mark = ","),
     c("def", "def.", "e", ".", "e")
   )
   expect_equal(str_nth_non_numeric(strings,
@@ -95,7 +95,7 @@ test_that("str_extract_non_numerics() works", {
   ), c("abc", "abc-", "abc", "abc", "abc"))
   expect_equal(str_first_non_numeric(strings,
     decimals = TRUE, leading_decimals = TRUE,
-    sci = TRUE, commas = TRUE, negs = TRUE
+    sci = TRUE, big_mark = ",", negs = TRUE
   ), c("abc", "abc", "abc", "abc", "abc"))
   expect_equal(
     suppressWarnings(str_extract_non_numerics("abc25.25.25def",

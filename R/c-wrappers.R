@@ -4,18 +4,19 @@
 #' for comma handling.
 #'
 #' @param x A list of character vectors.
-#' @param commas Allow for comma separation?
+#' @inheritParams str_extract_numbers
 #'
 #' @return A list of numeric vectors.
 #'
 #' @examples
-#' lst_chr_to_dbl(list(c("1", "2,000"), c("1.3", "2.2", "5.9")), commas = TRUE)
+#' lst_chr_to_dbl(list(c("1", "2,000"), c("1.3", "2.2", "5.9")), big_mark_regex = "[,]")
 #' @noRd
-lst_chr_to_dbl <- function(x, commas = FALSE) {
+lst_chr_to_dbl <- function(x, big_mark_regex = "") {
   checkmate::assert_list(x, types = "character")
-  checkmate::assert_logical(commas, min.len = 1)
-  assert_compatible_lengths(x, commas)
-  .Call(C_lst_chr_to_dbl, x, commas)
+  checkmate::assert_character(big_mark_regex)
+  big_mark_regex <- ifelse(big_mark_regex == "[]", "", big_mark_regex)
+  assert_compatible_lengths(x, big_mark_regex)
+  .Call(C_lst_chr_to_dbl, x, big_mark_regex)
 }
 
 #' Get the indices of the `choices` that are matches for `arg`.

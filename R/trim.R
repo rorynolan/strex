@@ -48,17 +48,22 @@ str_trim_anything <- function(string, pattern, side = "both") {
             "The trimming by definition is happening at the edges."
           ),
           x = str_glue("Element {first_bad} of your pattern, ",
-                       "'{pattern[first_bad]}' is the first offender.",
-                       .envir = list(pattern = pattern,
-                                     first_bad = which.max(bad_starts)))
+            "'{pattern[first_bad]}' is the first offender.",
+            .envir = list(
+              pattern = pattern,
+              first_bad = which.max(bad_starts)
+            )
+          )
         )
       )
     } else if (any(bad_ends)) {
       rlang::abort(
         c(
-          paste("In `str_trim_anything()`, don't end your regular expression",
-                "patterns with '$' to match the end of the string.",
-                "The trimming by definition is happening at the edges."),
+          paste(
+            "In `str_trim_anything()`, don't end your regular expression",
+            "patterns with '$' to match the end of the string.",
+            "The trimming by definition is happening at the edges."
+          ),
           x = str_glue(
             "Element {first_bad} of your pattern, '{pattern[first_bad]}' ",
             "is the first offender.",
@@ -68,8 +73,7 @@ str_trim_anything <- function(string, pattern, side = "both") {
       )
     }
     pattern <- str_c("(", pattern, ")+")
-    pattern <- switch(
-      side,
+    pattern <- switch(side,
       left = str_c("^", pattern),
       right = str_c(pattern, "$"),
       pattern
@@ -84,8 +88,7 @@ str_trim_anything <- function(string, pattern, side = "both") {
   } else if (side == "left") {
     starts <- which(str_starts(out, pattern))
     while (any(starts)) {
-      out[starts] <- switch(
-        type,
+      out[starts] <- switch(type,
         fixed = stringi::stri_replace_first_fixed(
           out[starts],
           pattern[ifelse(length(pattern) == 1, 1, starts)],
@@ -102,8 +105,7 @@ str_trim_anything <- function(string, pattern, side = "both") {
   } else if (side == "right") {
     ends <- which(str_ends(out, pattern))
     while (length(ends)) {
-      out[ends] <- switch(
-        type,
+      out[ends] <- switch(type,
         fixed = stringi::stri_replace_last_fixed(
           out[ends],
           pattern[ifelse(length(pattern) == 1, 1, ends)],

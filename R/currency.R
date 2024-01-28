@@ -4,7 +4,7 @@
 #'
 #' @noRd
 curr_pattern <- function() {
-  num_regex(decimals = TRUE, sci = TRUE, negs = TRUE, commas = TRUE)
+  num_regex(decimals = TRUE, sci = TRUE, negs = TRUE, big_mark = ",")
 }
 
 #' Helper for currency extration.

@@ -10,11 +10,12 @@ test_that("str_split_camel_case()` works", {
     )
   )
   expect_equal(
-    str_split_camel_case(c(
-      "RoryNolan", "NaomiFlagg",
-      "DepartmentOfSillyHats"
-    ),
-    lower = TRUE
+    str_split_camel_case(
+      c(
+        "RoryNolan", "NaomiFlagg",
+        "DepartmentOfSillyHats"
+      ),
+      lower = TRUE
     ),
     list(
       c("Rory", "Nolan"), c("Naomi", "Flagg"),

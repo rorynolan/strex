@@ -61,8 +61,8 @@ Let's write a function to figure out which task each of the lads did.
 ```{r get-task}
 library(magrittr)
 get_task <- function(string, name) {
-  str_c(name, " did the ") %>% 
-    str_after_first(string, .) %>% 
+  str_c(name, " did the ") %>%
+    str_after_first(string, .) %>%
     str_before_first("[\\.,]")
 }
 get_task(string, "James")

@@ -13,8 +13,9 @@ str_nth_number(
   leading_decimals = decimals,
   negs = FALSE,
   sci = FALSE,
-  commas = FALSE,
-  leave_as_string = FALSE
+  big_mark = "",
+  leave_as_string = FALSE,
+  commas = FALSE
 )
 
 str_first_number(
@@ -23,8 +24,9 @@ str_first_number(
   leading_decimals = decimals,
   negs = FALSE,
   sci = FALSE,
-  commas = FALSE,
-  leave_as_string = FALSE
+  big_mark = "",
+  leave_as_string = FALSE,
+  commas = FALSE
 )
 
 str_last_number(
@@ -33,8 +35,9 @@ str_last_number(
   leading_decimals = decimals,
   negs = FALSE,
   sci = FALSE,
-  commas = FALSE,
-  leave_as_string = FALSE
+  big_mark = "",
+  leave_as_string = FALSE,
+  commas = FALSE
 )
 }
 \arguments{
@@ -57,20 +60,25 @@ are not handled here (see the examples).}
 \item{sci}{Make the search aware of scientific notation e.g. 2e3 is the same
 as 2000.}
 
-\item{commas}{Allow comma separators in numbers (i.e. interpret 1,100 as a
-single number (one thousand one hundred) rather than two numbers (one and
-one hundred)).}
+\item{big_mark}{A character. Allow this character to be used as a thousands
+separator. This character will be removed from between digits before they
+are converted to numeric. You may specify many at once by pasting them
+together e.g. \code{big_mark = ",_"} will allow both commas and underscores.
+Internally, this will be used inside a \verb{[]} regex block so e.g. \code{"a-z"}
+will behave differently to \code{"az-"}. Most common separators (commas, spaces,
+underscores) should work fine.}
 
 \item{leave_as_string}{Do you want to return the number as a string (\code{TRUE})
 or as numeric (\code{FALSE}, the default)?}
+
+\item{commas}{Deprecated. Use \code{big_mark} instead.}
 }
 \value{
 A numeric vector (or a character vector if \code{leave_as_string = TRUE}).
 }
 \description{
 Extract the \code{n}th number from a string, where decimals, scientific notation
-and commas (as separators, not as an alternative to the decimal point) are
-optionally allowed.
+and thousand separators are optionally allowed.
 }
 \details{
 \itemize{ \item \code{str_first_number(...)} is just \code{str_nth_number(..., n = 1)}.
@@ -87,18 +95,18 @@ strings <- c(
 str_nth_number(strings, n = 2)
 str_nth_number(strings, n = -2, decimals = TRUE)
 str_first_number(strings, decimals = TRUE, leading_decimals = TRUE)
-str_last_number(strings, commas = TRUE)
+str_last_number(strings, big_mark = ",")
 str_nth_number(strings,
   n = 1, decimals = TRUE, leading_decimals = TRUE,
   sci = TRUE
 )
 str_first_number(strings,
   decimals = TRUE, leading_decimals = TRUE,
-  sci = TRUE, commas = TRUE, negs = TRUE
+  sci = TRUE, big_mark = ",", negs = TRUE
 )
 str_last_number(strings,
   decimals = TRUE, leading_decimals = FALSE,
-  sci = FALSE, commas = TRUE, negs = TRUE, leave_as_string = TRUE
+  sci = FALSE, big_mark = ",", negs = TRUE, leave_as_string = TRUE
 )
 str_first_number(c("22", "1.2.3"), decimals = TRUE)
 }

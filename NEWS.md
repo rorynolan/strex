@@ -1,3 +1,9 @@
+# `strex` 2.0.0
+
+## BREAKING CHANGES
+* The `commas` argument has been replaced by the more flexible `big_mark`.
+
+
 # `strex` 1.6.1
 
 ## BUG FIXES

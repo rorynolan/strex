@@ -10,6 +10,7 @@ str_split_by_numbers(
   leading_decimals = FALSE,
   negs = FALSE,
   sci = FALSE,
+  big_mark = "",
   commas = FALSE
 )
 }
@@ -28,9 +29,15 @@ are not handled here (see the examples).}
 \item{sci}{Make the search aware of scientific notation e.g. 2e3 is the same
 as 2000.}
 
-\item{commas}{Allow comma separators in numbers (i.e. interpret 1,100 as a
-single number (one thousand one hundred) rather than two numbers (one and
-one hundred)).}
+\item{big_mark}{A character. Allow this character to be used as a thousands
+separator. This character will be removed from between digits before they
+are converted to numeric. You may specify many at once by pasting them
+together e.g. \code{big_mark = ",_"} will allow both commas and underscores.
+Internally, this will be used inside a \verb{[]} regex block so e.g. \code{"a-z"}
+will behave differently to \code{"az-"}. Most common separators (commas, spaces,
+underscores) should work fine.}
+
+\item{commas}{Deprecated. Use \code{big_mark} instead.}
 }
 \value{
 A list of character vectors.

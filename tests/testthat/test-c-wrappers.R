@@ -312,13 +312,13 @@ test_that("`interleave_chr_vecs()` works", {
 test_that("`lst_chr_to_dbl()` works", {
   expect_equal(
     lst_chr_to_dbl(list(c("1", "2,000"), c("1.3", "2.2", "5.9")),
-      commas = TRUE
+      big_mark = ","
     ),
     lapply(list(c("1", "2000"), c("1.3", "2.2", "5.9")), as.double)
   )
   expect_equal(
     lst_chr_to_dbl(list(c("1", "2,000"), c("1.3", "2.2", "5.9")),
-      commas = c(TRUE, FALSE)
+      big_mark = c(",", "")
     ),
     lapply(list(c("1", "2000"), c("1.3", "2.2", "5.9")), as.double)
   )

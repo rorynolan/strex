@@ -18,8 +18,7 @@ str_extract_non_nums_no_ambigs <- function(string, num_pattern) {
 #' Extract non-numbers from a string.
 #'
 #' Extract the non-numeric bits of a string where numbers are optionally defined
-#' with decimals, scientific notation and commas (as separators, not as an
-#' alternative to the decimal point).
+#' with decimals, scientific notation and thousand separators.
 #'
 #' \itemize{ \item `str_first_non_numeric(...)` is just
 #' `str_nth_non_numeric(..., n = 1)`. \item `str_last_non_numeric(...)` is just
@@ -35,43 +34,50 @@ str_extract_non_nums_no_ambigs <- function(string, num_pattern) {
 #' str_extract_non_numerics(strings)
 #' str_extract_non_numerics(strings, decimals = TRUE, leading_decimals = FALSE)
 #' str_extract_non_numerics(strings, decimals = TRUE)
-#' str_extract_non_numerics(strings, commas = TRUE)
+#' str_extract_non_numerics(strings, big_mark = ",")
 #' str_extract_non_numerics(strings,
 #'   decimals = TRUE, leading_decimals = TRUE,
 #'   sci = TRUE
 #' )
 #' str_extract_non_numerics(strings,
 #'   decimals = TRUE, leading_decimals = TRUE,
-#'   sci = TRUE, commas = TRUE, negs = TRUE
+#'   sci = TRUE, big_mark = ",", negs = TRUE
 #' )
 #' str_extract_non_numerics(c("22", "1.2.3"), decimals = TRUE)
 #' @family non-numeric extractors
 #' @export
 str_extract_non_numerics <- function(string, decimals = FALSE,
                                      leading_decimals = decimals, negs = FALSE,
-                                     sci = FALSE, commas = FALSE) {
+                                     sci = FALSE, big_mark = "",
+                                     commas = FALSE) {
+  if (!isFALSE(commas)) {
+    lifecycle::deprecate_stop(
+      "2.0.0", "strex::str_extract_non_numerics(commas)",
+      details = "Use the `big_mark` argument instead."
+    )
+  }
   checkmate::assert_character(string)
   checkmate::assert_flag(decimals)
   checkmate::assert_flag(leading_decimals)
   checkmate::assert_flag(negs)
   checkmate::assert_flag(sci)
-  checkmate::assert_flag(commas)
+  checkmate::assert_character(big_mark)
   if (is_l0_char(string)) {
     return(list())
   }
   num_pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
-    negs = negs, sci = sci, commas = commas
+    negs = negs, sci = sci, big_mark = big_mark
   )
   ambig_pattern <- ambig_num_regex(
     decimals = decimals,
     leading_decimals = leading_decimals,
-    sci = sci, commas = commas
+    sci = sci, big_mark = big_mark
   )
   ambigs <- num_ambigs(string,
     decimals = decimals,
     leading_decimals = leading_decimals, sci = sci,
-    commas = commas
+    big_mark = big_mark
   )
   out <- vector(mode = "list", length = length(string))
   if (any(ambigs)) {
@@ -122,8 +128,7 @@ str_nth_non_numeric_no_ambigs <- function(string, num_pattern, n) {
 #' Extract the `n`th non-numeric substring from a string.
 #'
 #' Extract the `n`th non-numeric bit of a string where numbers are optionally
-#' defined with decimals, scientific notation and commas (as separators, not as
-#' an alternative to the decimal point).
+#' defined with decimals, scientific notation and thousand separators.
 #' \itemize{ \item `str_first_non_numeric(...)` is just
 #' `str_nth_non_numeric(..., n = 1)`. \item `str_last_non_numeric(...)` is
 #' just `str_nth_non_numeric(..., n = -1)`. }
@@ -141,21 +146,25 @@ str_nth_non_numeric_no_ambigs <- function(string, num_pattern, n) {
 #' str_nth_non_numeric(strings, n = 2)
 #' str_nth_non_numeric(strings, n = -2, decimals = TRUE)
 #' str_first_non_numeric(strings, decimals = TRUE, leading_decimals = FALSE)
-#' str_last_non_numeric(strings, commas = TRUE)
+#' str_last_non_numeric(strings, big_mark = ",")
 #' str_nth_non_numeric(strings,
 #'   n = 1, decimals = TRUE, leading_decimals = TRUE,
 #'   sci = TRUE
 #' )
 #' str_first_non_numeric(strings,
 #'   decimals = TRUE, leading_decimals = TRUE,
-#'   sci = TRUE, commas = TRUE, negs = TRUE
+#'   sci = TRUE, big_mark = ",", negs = TRUE
 #' )
 #' str_first_non_numeric(c("22", "1.2.3"), decimals = TRUE)
 #' @family non-numeric extractors
 #' @export
 str_nth_non_numeric <- function(string, n, decimals = FALSE,
                                 leading_decimals = decimals, negs = FALSE,
-                                sci = FALSE, commas = FALSE) {
+                                sci = FALSE, big_mark = "", commas = FALSE) {
+  if (!isFALSE(commas)) {
+    lifecycle::deprecate_stop("2.0.0", "strex::str_nth_non_numeric(commas)",
+                              details = "Use the `big_mark` argument instead.")
+  }
   if (is_l0_char(string)) {
     return(character())
   }
@@ -164,20 +173,20 @@ str_nth_non_numeric <- function(string, n, decimals = FALSE,
   checkmate::assert_flag(leading_decimals)
   checkmate::assert_flag(negs)
   checkmate::assert_flag(sci)
-  checkmate::assert_flag(commas)
+  checkmate::assert_character(big_mark)
   num_pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
-    negs = negs, sci = sci, commas = commas
+    negs = negs, sci = sci, big_mark = big_mark
   )
   ambig_pattern <- ambig_num_regex(
     decimals = decimals,
     leading_decimals = leading_decimals,
-    sci = sci, commas = commas
+    sci = sci, big_mark = big_mark
   )
   ambigs <- num_ambigs(string,
     decimals = decimals,
     leading_decimals = leading_decimals, sci = sci,
-    commas = commas
+    big_mark = big_mark
   )
   out <- character(length(string))
   if (any(ambigs)) {
@@ -198,11 +207,11 @@ str_nth_non_numeric <- function(string, n, decimals = FALSE,
 #' @export
 str_first_non_numeric <- function(string, decimals = FALSE,
                                   leading_decimals = decimals, negs = FALSE,
-                                  sci = FALSE, commas = FALSE) {
+                                  sci = FALSE, big_mark = "", commas = FALSE) {
   str_nth_non_numeric(string,
     n = 1,
     decimals = decimals, leading_decimals = leading_decimals,
-    negs = negs, sci = sci, commas = commas
+    negs = negs, sci = sci, big_mark = big_mark, commas = commas
   )
 }
 
@@ -210,10 +219,10 @@ str_first_non_numeric <- function(string, decimals = FALSE,
 #' @export
 str_last_non_numeric <- function(string, decimals = FALSE,
                                  leading_decimals = decimals, negs = FALSE,
-                                 sci = FALSE, commas = FALSE) {
+                                 sci = FALSE, big_mark = "") {
   str_nth_non_numeric(string,
     n = -1,
     decimals = decimals, leading_decimals = leading_decimals,
-    negs = negs, sci = sci, commas = commas
+    negs = negs, sci = sci, big_mark = big_mark
   )
 }

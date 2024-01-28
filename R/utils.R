@@ -18,8 +18,10 @@ assert_compatible_lengths <- function(x, y) {
     if (length(x) != length(y)) {
       rlang::abort(
         c(
-          str_glue("If both `{x_sym}` and `{y_sym}` have lengths greater ",
-                   "than 1, then their lengths must be equal."),
+          str_glue(
+            "If both `{x_sym}` and `{y_sym}` have lengths greater ",
+            "than 1, then their lengths must be equal."
+          ),
           x = str_glue("`{x_sym}` has length {length(x)}."),
           x = str_glue("`{y_sym}` has length {length(y)}.")
         )
@@ -69,8 +71,10 @@ err_string_len <- function(string, sym, replacement_sym = NULL) {
   }
   rlang::abort(
     c(
-      str_glue("When `string` has length greater than 1, `{sym_str}` ",
-               "must either be length 1 or have the same length as `string`."),
+      str_glue(
+        "When `string` has length greater than 1, `{sym_str}` ",
+        "must either be length 1 or have the same length as `string`."
+      ),
       x = str_glue("Your `string` has length {length(string)}."),
       x = str_glue("Your `{sym_str}` has length {length(sym)}.")
     )
@@ -121,8 +125,10 @@ verify_string_pattern_n <- function(string, pattern, n,
     length(pattern) != length(n)) {
     rlang::abort(
       c(
-        paste("If `pattern` and `n` both have length greater than 1,",
-              "their lengths must be equal."),
+        paste(
+          "If `pattern` and `n` both have length greater than 1,",
+          "their lengths must be equal."
+        ),
         x = str_glue("Your `pattern` has length {length(pattern)}."),
         x = str_glue("Your `{n_sym_str}` has length {length(n)}.")
       )
@@ -139,8 +145,10 @@ verify_string_pattern_n_m <- function(string, pattern, n, m) {
     length(n) != length(m)) {
     rlang::abort(
       c(
-        paste("If `n` and `m` both have length greater than 1,",
-              "their lengths must be equal."),
+        paste(
+          "If `n` and `m` both have length greater than 1,",
+          "their lengths must be equal."
+        ),
         x = str_glue("Your `n` has length {length(n)}."),
         x = str_glue("Your `m` has length {length(m)}.")
       )

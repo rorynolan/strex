@@ -1,6 +1,6 @@
 Package: strex
 Title: Extra String Manipulation Functions
-Version: 1.6.1
+Version: 2.0.0
 Authors@R: 
     person("Rory", "Nolan", , "rorynoolan@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5239-4043"))
@@ -9,7 +9,7 @@ Description: There are some things that I wish were easier with the
     extraction of numbers from strings. 'stringr' and 'stringi' make you
     figure out the regular expression for yourself; 'strex' takes care of
     this for you. There are many other handy functionalities in 'strex'.
-    Contributions to this package are encouraged: it is intended as a
+    Contributions to this package are encouraged; it is intended as a
     miscellany of string manipulation functions that cannot be found in
     'stringi' or 'stringr'.
 License: GPL-3
@@ -21,6 +21,7 @@ Depends:
     stringr (>= 1.5)
 Imports: 
     checkmate (>= 1.9.3),
+    lifecycle,
     magrittr (>= 1.5),
     rlang (>= 1.0),
     stats,

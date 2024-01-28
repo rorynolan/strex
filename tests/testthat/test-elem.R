@@ -7,25 +7,27 @@ test_that("str_elem() works", {
 
 test_that("str_elems() works", {
   string <- c("abc", "def", "ghi", "vwxyz")
-  ans <- matrix(c(
-    "a", "b",
-    "d", "e",
-    "g", "h",
-    "v", "w"
-  ),
-  ncol = 2, byrow = TRUE
+  ans <- matrix(
+    c(
+      "a", "b",
+      "d", "e",
+      "g", "h",
+      "v", "w"
+    ),
+    ncol = 2, byrow = TRUE
   )
   expect_equal(str_elems(string, 1:2), ans)
   expect_equal(str_elems(string, 1:2, byrow = FALSE), t(ans))
   expect_equal(
     str_elems(string, c(1, 2, 3, 4, -1)),
-    matrix(c(
-      "a", "b", "c", "", "c",
-      "d", "e", "f", "", "f",
-      "g", "h", "i", "", "i",
-      "v", "w", "x", "y", "z"
-    ),
-    nrow = length(string), byrow = TRUE
+    matrix(
+      c(
+        "a", "b", "c", "", "c",
+        "d", "e", "f", "", "f",
+        "g", "h", "i", "", "i",
+        "v", "w", "x", "y", "z"
+      ),
+      nrow = length(string), byrow = TRUE
     )
   )
   expect_equal(str_elems(character(), 1:3), matrix(character(), ncol = 3))

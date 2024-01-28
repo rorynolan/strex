@@ -78,14 +78,15 @@ test_that("`str_nth_currency()` works", {
     data.frame(
       string_num = 1:5,
       string = c(
-      "ab3 13", "$1", "35.00 $1.14",
-      "abc5 $3.8", "stuff"
-    ),
-    curr_sym = c("b", "$", "", "c", NA),
-    amount = c(
-      3,
-      1, 35, 5, NA
-    ), stringsAsFactors = FALSE)
+        "ab3 13", "$1", "35.00 $1.14",
+        "abc5 $3.8", "stuff"
+      ),
+      curr_sym = c("b", "$", "", "c", NA),
+      amount = c(
+        3,
+        1, 35, 5, NA
+      ), stringsAsFactors = FALSE
+    )
   )
   expect_equal(
     str_last_currency(string),

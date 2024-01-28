@@ -10,6 +10,7 @@ str_extract_non_numerics(
   leading_decimals = decimals,
   negs = FALSE,
   sci = FALSE,
+  big_mark = "",
   commas = FALSE
 )
 }
@@ -28,14 +29,19 @@ are not handled here (see the examples).}
 \item{sci}{Make the search aware of scientific notation e.g. 2e3 is the same
 as 2000.}
 
-\item{commas}{Allow comma separators in numbers (i.e. interpret 1,100 as a
-single number (one thousand one hundred) rather than two numbers (one and
-one hundred)).}
+\item{big_mark}{A character. Allow this character to be used as a thousands
+separator. This character will be removed from between digits before they
+are converted to numeric. You may specify many at once by pasting them
+together e.g. \code{big_mark = ",_"} will allow both commas and underscores.
+Internally, this will be used inside a \verb{[]} regex block so e.g. \code{"a-z"}
+will behave differently to \code{"az-"}. Most common separators (commas, spaces,
+underscores) should work fine.}
+
+\item{commas}{Deprecated. Use \code{big_mark} instead.}
 }
 \description{
 Extract the non-numeric bits of a string where numbers are optionally defined
-with decimals, scientific notation and commas (as separators, not as an
-alternative to the decimal point).
+with decimals, scientific notation and thousand separators.
 }
 \details{
 \itemize{ \item \code{str_first_non_numeric(...)} is just
@@ -50,14 +56,14 @@ strings <- c(
 str_extract_non_numerics(strings)
 str_extract_non_numerics(strings, decimals = TRUE, leading_decimals = FALSE)
 str_extract_non_numerics(strings, decimals = TRUE)
-str_extract_non_numerics(strings, commas = TRUE)
+str_extract_non_numerics(strings, big_mark = ",")
 str_extract_non_numerics(strings,
   decimals = TRUE, leading_decimals = TRUE,
   sci = TRUE
 )
 str_extract_non_numerics(strings,
   decimals = TRUE, leading_decimals = TRUE,
-  sci = TRUE, commas = TRUE, negs = TRUE
+  sci = TRUE, big_mark = ",", negs = TRUE
 )
 str_extract_non_numerics(c("22", "1.2.3"), decimals = TRUE)
 }

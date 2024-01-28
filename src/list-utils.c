@@ -7,11 +7,11 @@
 #include "stringi-imports.h"
 
 
-SEXP C_stringi_replace_all_coll(SEXP string, SEXP pattern, SEXP replacement) {
+SEXP C_stringi_replace_all_regex(SEXP string, SEXP pattern, SEXP replacement) {
   static SEXP(*fun)(SEXP, SEXP, SEXP, SEXP, SEXP) = NULL;
   if (fun == NULL) {
     fun = (SEXP(*)(SEXP, SEXP, SEXP, SEXP, SEXP))
-    R_GetCCallable("stringi", "C_stri_replace_all_coll");
+    R_GetCCallable("stringi", "C_stri_replace_all_regex");
   }
   SEXP truesxp = PROTECT(Rf_ScalarLogical(1));
   SEXP out = PROTECT(fun(string, pattern, replacement, truesxp, R_NilValue));
@@ -35,35 +35,39 @@ SEXP C_lst_elems_common_length(SEXP lst, SEXP l) {
   return out;
 }
 
-SEXP C_chr_to_dbl(SEXP x, int commas) {  // this int is treated like a bool
+SEXP C_chr_to_dbl(SEXP x, SEXP big_mark_regex) {  // this int is treated like a bool
   SEXP y = x;
   unsigned char to_unprotect = 0;
-  if (commas) {
-    SEXP comma = PROTECT(Rf_mkString(",")), empty = PROTECT(Rf_mkString(""));
-    y = PROTECT(C_stringi_replace_all_coll(x, comma, empty));
-    to_unprotect += 3;
+  if (strlen(CHAR(STRING_ELT(big_mark_regex, 0)))) {
+    SEXP empty = PROTECT(Rf_mkString(""));
+    y = PROTECT(C_stringi_replace_all_regex(x, big_mark_regex, empty));
+    to_unprotect += 2;
   }
   SEXP out = PROTECT(Rf_coerceVector(y, REALSXP));
   UNPROTECT(++to_unprotect);
   return out;
 }
 
-SEXP C_lst_chr_to_dbl(SEXP x, SEXP commas) {
-  R_xlen_t commas_len = Rf_xlength(commas);
-  int *commas_int = INTEGER(commas);
+SEXP C_lst_chr_to_dbl(SEXP x, SEXP big_mark_regex) {
+  R_xlen_t big_mark_regex_len = Rf_xlength(big_mark_regex);
   R_xlen_t n = Rf_xlength(x);
   SEXP out = PROTECT(Rf_allocVector(VECSXP, n));
-  if (commas_len == 1) {
+  if (big_mark_regex_len == 1) {
     for (R_xlen_t i = 0; i != n; ++i) {
-      SEXP out_i = PROTECT(C_chr_to_dbl(VECTOR_ELT(x, i), *commas_int));
+      SEXP out_i = PROTECT(
+        C_chr_to_dbl(VECTOR_ELT(x, i), big_mark_regex)
+      );
       SET_VECTOR_ELT(out, i, out_i);
       UNPROTECT(1);
     }
   } else {
     for (R_xlen_t i = 0; i != n; ++i) {
-      SEXP out_i = PROTECT(C_chr_to_dbl(VECTOR_ELT(x, i), commas_int[i]));
+      SEXP big_mark_regex_i = PROTECT(
+        Rf_ScalarString(STRING_ELT(big_mark_regex, i))
+      );
+      SEXP out_i = PROTECT(C_chr_to_dbl(VECTOR_ELT(x, i), big_mark_regex_i));
       SET_VECTOR_ELT(out, i, out_i);
-      UNPROTECT(1);
+      UNPROTECT(2);
     }
   }
   UNPROTECT(1);

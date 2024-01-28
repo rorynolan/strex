@@ -37,7 +37,14 @@ str_split_by_numbers_no_ambigs <- function(string, num_pattern) {
 #' @export
 str_split_by_numbers <- function(string, decimals = FALSE,
                                  leading_decimals = FALSE, negs = FALSE,
-                                 sci = FALSE, commas = FALSE) {
+                                 sci = FALSE, big_mark = "",
+                                 commas = FALSE) {
+  if (!isFALSE(commas)) {
+    lifecycle::deprecate_stop(
+      "2.0.0", "strex::str_split_by_numbers(commas)",
+      details = "Use the `big_mark` argument instead."
+    )
+  }
   if (is_l0_char(string)) {
     return(list())
   }
@@ -46,19 +53,19 @@ str_split_by_numbers <- function(string, decimals = FALSE,
   checkmate::assert_flag(leading_decimals)
   checkmate::assert_flag(negs)
   checkmate::assert_flag(sci)
-  checkmate::assert_flag(commas)
+  checkmate::assert_string(big_mark)
   num_pattern <- num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
-    negs = negs, sci = sci, commas = commas
+    negs = negs, sci = sci, big_mark = big_mark
   )
   ambig_pattern <- ambig_num_regex(
     decimals = decimals,
     leading_decimals = leading_decimals,
-    sci = sci, commas = commas
+    sci = sci, big_mark = big_mark
   )
   ambigs <- num_ambigs(string,
     decimals = decimals,
-    leading_decimals = leading_decimals, sci = sci, commas = commas
+    leading_decimals = leading_decimals, sci = sci, big_mark = big_mark
   )
   out <- vector(mode = "list", length = length(string))
   if (any(ambigs)) {

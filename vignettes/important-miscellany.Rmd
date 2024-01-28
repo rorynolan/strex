@@ -43,7 +43,7 @@ string <- c("Alan paid £5", "Joe paid $7")
 str_first_currency(string)
 string <- c("€1 is $1.17", "£1 is $1.29")
 str_nth_currency(string, n = c(1, 2))
-str_last_currency(string)  # only gets the first mentioned
+str_last_currency(string) # only gets the first mentioned
 str_extract_currencies(string)
 ```
 
@@ -53,9 +53,9 @@ str_extract_currencies(string)
 This is a simple wrapper around `stringr::str_sub()`.
 
 ```{r str-elem}
-string = "abcdefg"
+string <- "abcdefg"
 str_sub(string, 3, 3)
-str_elem(string, 3)  # simpler and more exressive
+str_elem(string, 3) # simpler and more exressive
 ```
 
 
@@ -87,8 +87,8 @@ str_give_ext(string, "csv")
 If the file already has an extension, we can append one or replace it.
 
 ```{r give-ext-replace}
-str_give_ext(string, "xls")  # append
-str_give_ext(string, "csv", replace = TRUE)  # replace
+str_give_ext(string, "xls") # append
+str_give_ext(string, "csv", replace = TRUE) # replace
 ```
 
 
@@ -135,8 +135,8 @@ What if something is needlessly surrounded by parentheses and we want to get rid
 
 ```{r trim-anything}
 string <- "(((Why all the parentheses?)))"
-string %>% 
-  str_trim_anything(coll("("), side = "left") %>% 
+string %>%
+  str_trim_anything(coll("("), side = "left") %>%
   str_trim_anything(coll(")"), side = "r")
 ```
 

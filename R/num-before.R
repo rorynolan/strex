@@ -20,8 +20,15 @@ str_nth_number_before_mth <- function(string, pattern, n, m,
                                       decimals = FALSE,
                                       leading_decimals = decimals,
                                       negs = FALSE,
-                                      sci = FALSE, commas = FALSE,
-                                      leave_as_string = FALSE) {
+                                      sci = FALSE, big_mark = "",
+                                      leave_as_string = FALSE,
+                                      commas = FALSE) {
+  if (!isFALSE(commas)) {
+    lifecycle::deprecate_stop(
+      "2.0.0", "strex::str_nth_number_before_mth(commas)",
+      details = "Use the `big_mark` argument instead."
+    )
+  }
   checkmate::assert_flag(leave_as_string)
   if (is_l0_char(string)) {
     return(vector(mode = ifelse(leave_as_string, "character", "numeric")))
@@ -31,12 +38,13 @@ str_nth_number_before_mth <- function(string, pattern, n, m,
   checkmate::assert_flag(leading_decimals)
   checkmate::assert_flag(negs)
   checkmate::assert_flag(sci)
-  checkmate::assert_flag(commas)
+  checkmate::assert_character(big_mark)
   string %>%
     str_before_nth(pattern, m) %>%
     str_nth_number(n,
       decimals = decimals, leading_decimals = leading_decimals,
-      negs = negs, leave_as_string = leave_as_string, sci = sci, commas = commas
+      negs = negs, leave_as_string = leave_as_string, sci = sci,
+      big_mark = big_mark
     )
 }
 
@@ -48,13 +56,15 @@ str_nth_number_before_first <- function(string, pattern, n,
                                         decimals = FALSE,
                                         leading_decimals = decimals,
                                         negs = FALSE,
-                                        sci = FALSE, commas = FALSE,
-                                        leave_as_string = FALSE) {
+                                        sci = FALSE, big_mark = "",
+                                        leave_as_string = FALSE,
+                                        commas = FALSE) {
   str_nth_number_before_mth(string, pattern,
     n = n, m = 1,
-    decimals = decimals, sci = sci, commas = commas,
+    decimals = decimals, sci = sci, big_mark = big_mark,
     leading_decimals = leading_decimals,
-    negs = negs, leave_as_string = leave_as_string
+    negs = negs, leave_as_string = leave_as_string,
+    commas = commas
   )
 }
 
@@ -66,13 +76,15 @@ str_nth_number_before_last <- function(string, pattern, n,
                                        decimals = FALSE,
                                        leading_decimals = decimals,
                                        negs = FALSE,
-                                       sci = FALSE, commas = FALSE,
-                                       leave_as_string = FALSE) {
+                                       sci = FALSE, big_mark = "",
+                                       leave_as_string = FALSE,
+                                       commas = FALSE) {
   str_nth_number_before_mth(string, pattern,
     n = n, m = -1,
     decimals = decimals,
-    leading_decimals = leading_decimals, sci = sci, commas = commas,
-    negs = negs, leave_as_string = leave_as_string
+    leading_decimals = leading_decimals, sci = sci, big_mark = big_mark,
+    negs = negs, leave_as_string = leave_as_string,
+    commas = commas
   )
 }
 
@@ -84,13 +96,15 @@ str_first_number_before_mth <- function(string, pattern, m,
                                         decimals = FALSE,
                                         leading_decimals = decimals,
                                         negs = FALSE,
-                                        sci = FALSE, commas = FALSE,
-                                        leave_as_string = FALSE) {
+                                        sci = FALSE, big_mark = "",
+                                        leave_as_string = FALSE,
+                                        commas = FALSE) {
   str_nth_number_before_mth(string, pattern,
     n = 1, m = m,
     decimals = decimals,
-    leading_decimals = leading_decimals, sci = sci, commas = commas,
-    negs = negs, leave_as_string = leave_as_string
+    leading_decimals = leading_decimals, sci = sci, big_mark = big_mark,
+    negs = negs, leave_as_string = leave_as_string,
+    commas = commas
   )
 }
 
@@ -102,13 +116,15 @@ str_last_number_before_mth <- function(string, pattern, m,
                                        decimals = FALSE,
                                        leading_decimals = decimals,
                                        negs = FALSE,
-                                       sci = FALSE, commas = FALSE,
-                                       leave_as_string = FALSE) {
+                                       sci = FALSE, big_mark = "",
+                                       leave_as_string = FALSE,
+                                       commas = FALSE) {
   str_nth_number_before_mth(string, pattern,
     n = -1, m = m,
     decimals = decimals,
-    leading_decimals = leading_decimals, sci = sci, commas = commas,
-    negs = negs, leave_as_string = leave_as_string
+    leading_decimals = leading_decimals, sci = sci, big_mark = big_mark,
+    negs = negs, leave_as_string = leave_as_string,
+    commas = commas
   )
 }
 
@@ -120,13 +136,15 @@ str_first_number_before_first <- function(string, pattern,
                                           decimals = FALSE,
                                           leading_decimals = decimals,
                                           negs = FALSE,
-                                          sci = FALSE, commas = FALSE,
-                                          leave_as_string = FALSE) {
+                                          sci = FALSE, big_mark = "",
+                                          leave_as_string = FALSE,
+                                          commas = FALSE) {
   str_nth_number_before_mth(string, pattern,
     n = 1, m = 1,
     decimals = decimals,
-    leading_decimals = leading_decimals, sci = sci, commas = commas,
-    negs = negs, leave_as_string = leave_as_string
+    leading_decimals = leading_decimals, sci = sci, big_mark = big_mark,
+    negs = negs, leave_as_string = leave_as_string,
+    commas = commas
   )
 }
 
@@ -138,13 +156,15 @@ str_first_number_before_last <- function(string, pattern,
                                          decimals = FALSE,
                                          leading_decimals = decimals,
                                          negs = FALSE,
-                                         sci = FALSE, commas = FALSE,
-                                         leave_as_string = FALSE) {
+                                         sci = FALSE, big_mark = "",
+                                         leave_as_string = FALSE,
+                                         commas = FALSE) {
   str_nth_number_before_mth(string, pattern,
     n = 1, m = -1,
     decimals = decimals,
-    leading_decimals = leading_decimals, sci = sci, commas = commas,
-    negs = negs, leave_as_string = leave_as_string
+    leading_decimals = leading_decimals, sci = sci, big_mark = big_mark,
+    negs = negs, leave_as_string = leave_as_string,
+    commas = commas
   )
 }
 
@@ -156,13 +176,15 @@ str_last_number_before_first <- function(string, pattern,
                                          decimals = FALSE,
                                          leading_decimals = decimals,
                                          negs = FALSE,
-                                         sci = FALSE, commas = FALSE,
-                                         leave_as_string = FALSE) {
+                                         sci = FALSE, big_mark = "",
+                                         leave_as_string = FALSE,
+                                         commas = FALSE) {
   str_nth_number_before_mth(string, pattern,
     n = -1, m = 1,
     decimals = decimals,
-    leading_decimals = leading_decimals, sci = sci, commas = commas,
-    negs = negs, leave_as_string = leave_as_string
+    leading_decimals = leading_decimals, sci = sci, big_mark = big_mark,
+    negs = negs, leave_as_string = leave_as_string,
+    commas = commas
   )
 }
 
@@ -174,12 +196,14 @@ str_last_number_before_last <- function(string, pattern,
                                         decimals = FALSE,
                                         leading_decimals = decimals,
                                         negs = FALSE,
-                                        sci = FALSE, commas = FALSE,
-                                        leave_as_string = FALSE) {
+                                        sci = FALSE, big_mark = "",
+                                        leave_as_string = FALSE,
+                                        commas = FALSE) {
   str_nth_number_before_mth(string, pattern,
     n = -1, m = -1,
     decimals = decimals,
-    leading_decimals = leading_decimals, sci = sci, commas = commas,
-    negs = negs, leave_as_string = leave_as_string
+    leading_decimals = leading_decimals, sci = sci, big_mark = big_mark,
+    negs = negs, leave_as_string = leave_as_string,
+    commas = commas
   )
 }
