@@ -14,8 +14,8 @@ miscellany of string manipulation functions which cannot be found in
 `stringi` or `stringr`.
 
 [![R-CMD-check](https://github.com/rorynolan/strex/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rorynolan/strex/actions/workflows/R-CMD-check.yaml)
-[![Coverage
-status](https://codecov.io/gh/rorynolan/strex/branch/master/graph/badge.svg)](https://codecov.io/github/rorynolan/strex?branch=master)
+[![Codecov test
+coverage](https://codecov.io/gh/rorynolan/strex/branch/master/graph/badge.svg)](https://app.codecov.io/gh/rorynolan/strex?branch=master)
 
 ![Project Status: Active – The project has reached a stable, usable
 state and is being actively
