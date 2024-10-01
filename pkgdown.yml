@@ -1,5 +1,5 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   alphordering-numbers: alphordering-numbers.html
@@ -8,5 +8,4 @@ articles:
   detection: detection.html
   important-miscellany: important-miscellany.html
   numbers-in-strings: numbers-in-strings.html
-last_built: 2024-01-31T16:02Z
-
+last_built: 2024-10-01T21:52Z

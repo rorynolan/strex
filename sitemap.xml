@@ -1,123 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/articles/alphordering-numbers.html</loc>
-  </url>
-  <url>
-    <loc>/articles/argument-matching.html</loc>
-  </url>
-  <url>
-    <loc>/articles/before-and-after.html</loc>
-  </url>
-  <url>
-    <loc>/articles/detection.html</loc>
-  </url>
-  <url>
-    <loc>/articles/important-miscellany.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/numbers-in-strings.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/before-and-after.html</loc>
-  </url>
-  <url>
-    <loc>/reference/currency.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_alphord_nums.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_before_last_dot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_can_be_numeric.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_detect_all.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_elem.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_elems.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_extract_non_numerics.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_extract_numbers.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_give_ext.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_locate_braces.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_locate_nth.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_match_arg.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_nth_non_numeric.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_nth_number.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_nth_number_after_mth.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_nth_number_before_mth.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_paste_elems.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_remove_quoted.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_singleize.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_split_by_numbers.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_split_camel_case.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_to_vec.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_trim_anything.html</loc>
-  </url>
-  <url>
-    <loc>/reference/strex.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/CONTRIBUTING.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/articles/alphordering-numbers.html</loc></url>
+<url><loc>/articles/argument-matching.html</loc></url>
+<url><loc>/articles/before-and-after.html</loc></url>
+<url><loc>/articles/detection.html</loc></url>
+<url><loc>/articles/important-miscellany.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/numbers-in-strings.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/before-and-after.html</loc></url>
+<url><loc>/reference/currency.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/str_alphord_nums.html</loc></url>
+<url><loc>/reference/str_before_last_dot.html</loc></url>
+<url><loc>/reference/str_can_be_numeric.html</loc></url>
+<url><loc>/reference/str_detect_all.html</loc></url>
+<url><loc>/reference/str_elem.html</loc></url>
+<url><loc>/reference/str_elems.html</loc></url>
+<url><loc>/reference/str_extract_non_numerics.html</loc></url>
+<url><loc>/reference/str_extract_numbers.html</loc></url>
+<url><loc>/reference/str_give_ext.html</loc></url>
+<url><loc>/reference/str_locate_braces.html</loc></url>
+<url><loc>/reference/str_locate_nth.html</loc></url>
+<url><loc>/reference/str_match_arg.html</loc></url>
+<url><loc>/reference/str_nth_non_numeric.html</loc></url>
+<url><loc>/reference/str_nth_number.html</loc></url>
+<url><loc>/reference/str_nth_number_after_mth.html</loc></url>
+<url><loc>/reference/str_nth_number_before_mth.html</loc></url>
+<url><loc>/reference/str_paste_elems.html</loc></url>
+<url><loc>/reference/str_remove_quoted.html</loc></url>
+<url><loc>/reference/str_singleize.html</loc></url>
+<url><loc>/reference/str_split_by_numbers.html</loc></url>
+<url><loc>/reference/str_split_camel_case.html</loc></url>
+<url><loc>/reference/str_to_vec.html</loc></url>
+<url><loc>/reference/str_trim_anything.html</loc></url>
+<url><loc>/reference/strex.html</loc></url>
 </urlset>
+
