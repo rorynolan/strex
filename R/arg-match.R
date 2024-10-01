@@ -161,14 +161,14 @@ str_match_arg_basic <- function(arg, choices, index, several_ok, ignore_case,
       rlang::abort(
         c(
           "`choices` must not have duplicate elements.",
-          i = str_glue(
-            "Since you have set `ignore_case = TRUE`, elements ",
-            "{dupair_indices[1]} and {dupair_indices[2]} of your `choices`, ",
-            "('{dupair[1]}' and '{dupair[2]}') are effectively duplicates.",
-            .envir = list(
+          i = str_glue_data(
+            list(
               dupair = choices[dupair_indices],
               dupair_indices = dupair_indices
-            )
+            ),
+            "Since you have set `ignore_case = TRUE`, elements ",
+            "{dupair_indices[1]} and {dupair_indices[2]} of your `choices`, ",
+            "('{dupair[1]}' and '{dupair[2]}') are effectively duplicates."
           )
         )
       )

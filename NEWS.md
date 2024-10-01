@@ -1,3 +1,9 @@
+# `strex` 2.0.1
+
+## BUG FIXES
+* Was using `str_glue()` where `str_glue_data()` should have been used.
+
+
 # `strex` 2.0.0
 
 ## BREAKING CHANGES

@@ -193,7 +193,7 @@ str_last_number_after_last(string, "abc")
 \seealso{
 Other numeric extractors: 
 \code{\link{str_extract_numbers}()},
-\code{\link{str_nth_number_before_mth}()},
-\code{\link{str_nth_number}()}
+\code{\link{str_nth_number}()},
+\code{\link{str_nth_number_before_mth}()}
 }
 \concept{numeric extractors}

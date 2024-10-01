@@ -32,7 +32,7 @@ str_paste_elems("abc", c(1, 5, 55, 43, 3))
 }
 \seealso{
 Other single element extractors: 
-\code{\link{str_elems}()},
-\code{\link{str_elem}()}
+\code{\link{str_elem}()},
+\code{\link{str_elems}()}
 }
 \concept{single element extractors}

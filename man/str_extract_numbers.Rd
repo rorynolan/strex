@@ -91,8 +91,8 @@ str_extract_numbers(c("22", "1.2.3"), decimals = TRUE)
 }
 \seealso{
 Other numeric extractors: 
+\code{\link{str_nth_number}()},
 \code{\link{str_nth_number_after_mth}()},
-\code{\link{str_nth_number_before_mth}()},
-\code{\link{str_nth_number}()}
+\code{\link{str_nth_number_before_mth}()}
 }
 \concept{numeric extractors}

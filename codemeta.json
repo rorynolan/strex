@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/rorynolan/strex",
   "issueTracker": "https://github.com/rorynolan/strex/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
+  "runtimePlatform": "R version 4.4.0 (2024-04-24)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -222,7 +222,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "499.291KB",
+  "fileSize": "517.201KB",
   "releaseNotes": "https://github.com/rorynolan/strex/blob/master/NEWS.md",
   "readme": "https://github.com/rorynolan/strex/blob/master/README.md",
   "contIntegration": ["https://github.com/rorynolan/strex/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/rorynolan/strex?branch=master"],

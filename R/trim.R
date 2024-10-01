@@ -47,12 +47,13 @@ str_trim_anything <- function(string, pattern, side = "both") {
             "patterns with '^' to match the start of the string.",
             "The trimming by definition is happening at the edges."
           ),
-          x = str_glue("Element {first_bad} of your pattern, ",
-            "'{pattern[first_bad]}' is the first offender.",
-            .envir = list(
+          x = str_glue_data(
+            list(
               pattern = pattern,
               first_bad = which.max(bad_starts)
-            )
+            ),
+            "Element {first_bad} of your pattern, ",
+            "'{pattern[first_bad]}' is the first offender.",
           )
         )
       )
@@ -64,10 +65,10 @@ str_trim_anything <- function(string, pattern, side = "both") {
             "patterns with '$' to match the end of the string.",
             "The trimming by definition is happening at the edges."
           ),
-          x = str_glue(
+          x = str_glue_data(
+            list(pattern = pattern, first_bad = which.max(bad_ends)),
             "Element {first_bad} of your pattern, '{pattern[first_bad]}' ",
-            "is the first offender.",
-            .envir = list(pattern = pattern, first_bad = which.max(bad_ends))
+            "is the first offender."
           )
         )
       )

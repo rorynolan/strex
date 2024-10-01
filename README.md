@@ -24,9 +24,10 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/strex)](https://cran.r-project.org/package=strex)
-![RStudio CRAN
-downloads](http://cranlogs.r-pkg.org/badges/grand-total/strex) ![RStudio
-CRAN monthly downloads](http://cranlogs.r-pkg.org/badges/strex)
+[![RStudio CRAN
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/strex)](https://cranlogs.r-pkg.org/badges/grand-total/strex)
+[![RStudio CRAN monthly
+downloads](https://cranlogs.r-pkg.org/badges/strex)](https://cranlogs.r-pkg.org/badges/strex)
 
 ## Installation
 

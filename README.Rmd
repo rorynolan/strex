@@ -24,8 +24,8 @@ There are some things that I wish were easier with the `stringr` or `stringi` pa
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 [![CRAN status](https://www.r-pkg.org/badges/version/strex)](https://cran.r-project.org/package=strex)
-![RStudio CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/strex)
-![RStudio CRAN monthly downloads](http://cranlogs.r-pkg.org/badges/strex)
+[![RStudio CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/strex)](https://cranlogs.r-pkg.org/badges/grand-total/strex)
+[![RStudio CRAN monthly downloads](https://cranlogs.r-pkg.org/badges/strex)](https://cranlogs.r-pkg.org/badges/strex)
 
 
 

@@ -20,3 +20,16 @@ Rory Nolan and Sergi Padilla-Parra (2017). filesstrings: An R
 package for file and string manipulation. The Journal of Open Source
 Software, 2(14).  \doi{10.21105/joss.00260}.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://rorynolan.github.io/strex/}
+  \item \url{https://github.com/rorynolan/strex}
+  \item Report bugs at \url{https://github.com/rorynolan/strex/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Rory Nolan \email{rorynoolan@gmail.com} (\href{https://orcid.org/0000-0002-5239-4043}{ORCID})
+
+}
