@@ -103,10 +103,12 @@ num_ambigs <- function(string, decimals = FALSE, leading_decimals = decimals,
   if (!any(c(decimals, sci))) {
     return(FALSE)
   }
-  str_detect(string, ambig_num_regex(
+  out <- str_detect(string, ambig_num_regex(
     decimals = decimals, leading_decimals = leading_decimals,
     sci = sci, big_mark = big_mark
   ))
+  out[is.na(out)] <- FALSE
+  out
 }
 
 ambig_warn <- function(string, ambigs, ambig_regex) {
@@ -316,7 +318,10 @@ str_nth_number <- function(string, n, decimals = FALSE,
       sci = sci, big_mark = big_mark
     )
     ambigs <- FALSE
-    if (str_length(ambig_pattern)) ambigs <- str_detect(string, ambig_pattern)
+    if (str_length(ambig_pattern)) {
+      ambigs <- str_detect(string, ambig_pattern)
+      ambigs[is.na(ambigs)] <- FALSE
+    }
     if (any(ambigs)) {
       ambig_warn(string, ambigs, ambig_regex = ambig_pattern)
       not_ambigs <- !ambigs

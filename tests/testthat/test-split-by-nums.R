@@ -17,3 +17,10 @@ test_that("str_split_by_numbers works", {
   )
   expect_equal(str_split_by_numbers(character()), list())
 })
+
+test_that("`NA` input gives `NA`, not an error (#11)", {
+  expect_equal(
+    str_split_by_numbers(NA_character_, decimals = TRUE),
+    list(NA_character_)
+  )
+})

@@ -236,3 +236,18 @@ test_that("str_extract_numbers works", {
     character()
   )
 })
+
+test_that("`NA` input gives `NA`, not an error (#11)", {
+  expect_equal(
+    str_extract_numbers(NA_character_, decimals = TRUE),
+    list(NA_real_)
+  )
+  expect_equal(
+    str_first_number(NA_character_, decimals = TRUE),
+    NA_real_
+  )
+  expect_equal(
+    str_last_number(NA_character_, decimals = TRUE, leave_as_string = TRUE),
+    NA_character_
+  )
+})

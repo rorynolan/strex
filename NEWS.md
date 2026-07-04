@@ -1,3 +1,9 @@
+# `strex` 2.1.0
+
+## BUG FIXES
+* Numeric extraction functions (e.g. `str_extract_numbers()`, `str_nth_number()`, `str_nth_number_before_mth()`, `str_nth_number_after_mth()`, `str_extract_non_numerics()`, `str_nth_non_numeric()`, `str_split_by_numbers()`) no longer error on `NA` input or on strings with no matching number; they now correctly return `NA` (#11).
+
+
 # `strex` 2.0.1
 
 ## BUG FIXES

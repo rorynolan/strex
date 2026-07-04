@@ -15,3 +15,20 @@ test_that("`nth_number_before_mth()` works", {
   expect_equal(str_last_number_before_last(string, "def"), c(4, 7))
   expect_equal(str_first_number_before_last(character(), "def"), numeric())
 })
+
+test_that("no match or `NA` input gives `NA`, not an error (#11)", {
+  expect_equal(
+    str_last_number_before_first(
+      "Ledge rim with diagonal on edge.", "cm|mm",
+      decimals = TRUE, leave_as_string = TRUE
+    ),
+    NA_character_
+  )
+  expect_equal(
+    str_last_number_before_first(
+      NA_character_, "cm|mm",
+      decimals = TRUE, leave_as_string = TRUE
+    ),
+    NA_character_
+  )
+})

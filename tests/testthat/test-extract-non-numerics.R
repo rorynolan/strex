@@ -112,3 +112,14 @@ test_that("str_extract_non_numerics() works", {
   expect_equal(str_extract_non_numerics(character()), list())
   expect_equal(str_last_non_numeric(character()), character())
 })
+
+test_that("`NA` input gives `NA`, not an error (#11)", {
+  expect_equal(
+    str_extract_non_numerics(NA_character_, decimals = TRUE),
+    list(NA_character_)
+  )
+  expect_equal(
+    str_nth_non_numeric(NA_character_, 1, decimals = TRUE),
+    NA_character_
+  )
+})
