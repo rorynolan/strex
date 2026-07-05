@@ -20,3 +20,4 @@
 ^CODE_OF_CONDUCT\.md$
 ^\.pre-commit-config\.yaml$
 ^CRAN-SUBMISSION$
+^\.claude$
